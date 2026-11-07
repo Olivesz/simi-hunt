@@ -25,6 +25,11 @@ On Windows, run `python -m http.server 8000` in the folder and open `/app/`.
 
 **Your own permanent link:** fork this repo, then go to Settings → Pages, set the source to the `main` branch, and save. Your copy appears at `https://<you>.github.io/simi-hunt/app/`.
 
+## Demo
+
+- `demo/simi-hunt-demo.mp4`: a 62-second walkthrough recorded in presenter mode
+- `demo/frames/`: key screens, including the completed SimiDex with all 18 Simis
+
 ## What's inside
 
 - `app/`: the web app (no build step; plain ES modules)
