@@ -14,23 +14,29 @@
 // below. The token is already public in the printed QR, so this adds no way to
 // forge a code; the signature is still checked as usual.
 //
-// Geofence: off by default. Set GEOFENCE.enabled = true (or later wire it to a
-// settings toggle) to require the player's last known position within radiusM of
-// the store. Codes for storeId "any" and stores without coordinates are not fenced.
+// Active codes: codes.json (made by sign.py) lists every live code. When it is
+// loaded, a signed code it leaves out, or whose store, shelf or Simi differ from
+// the payload, is refused as "no longer active". codes.json is unsigned, so it can
+// only take codes away, never add one. To retire a code, delete it from
+// tools/sign/config.json and re-run sign.py.
+//
+// Geofence: off in this prototype. Set GEOFENCE.enabled = true to require a real
+// GPS fix (source 'gps', and no older than maxAgeMs when the fix carries an `at`
+// time) within radiusM of the store. Demo mode is the stated exception, so the
+// on-stage scan works. Codes for storeId "any" and stores without coordinates
+// are not fenced.
 
-export const GEOFENCE = { enabled: false, radiusM: 150 };
+export const GEOFENCE = { enabled: false, radiusM: 100, maxAgeMs: 120000 };
 
 const KEY_URL = new URL('../keys/public.jwk', import.meta.url);
 const TOKEN_RE = /^[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{40,}$/;
 const STYLE_ID = 'claim-style';
 
-// Fallback short codes, used when codes.json has no `short`/`token` fields.
-// Tokens match print/links.json; re-signing the codes means updating these too.
+// Fallback for the two demo signs, used only when codes.json is missing or has no
+// `short`/`token` fields. Any token signed with the current key works here.
 const SHORT_CODES = {
-  SUN24: { id: 'qr-a', token: 'eyJjIjoicXItYSIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoic3VuLWNhcmUiLCJtIjoiYmVhY2giLCJ2IjoxfQ.WPHqXp6_oIUYvAhqxtU_jqS0f5hgtThtZiP6Npb5ew7MGIJZMbUVL68Lk8xn3zoQTNOtDuEQjlRnuvtOfoY-xw' },
-  TEX24: { id: 'qr-b', token: 'eyJjIjoicXItYiIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoiZHItc2ltaSIsIm0iOiJ0ZXhhcyIsInYiOjF9.OlX7XPbNLpAe38_Ly2-W9OKHFnZ3OBAxthrsMgtqshzst1fzmtRLwJWlioR-xxatzy2D9Ezw753he79G6-2jMw' },
-  ROCK50: { id: 'qr-c', token: 'eyJjIjoicXItYyIsInMiOiJjdnMtY29uZ3Jlc3MtNTAwIiwiaCI6ImRyLXNpbWkiLCJtIjoicm9ja3N0YXIiLCJ2IjoxfQ.57acPUe0_mys5GUcFjCyUe240S6KxlCSyOtt9EQfevBS8YbO9BnvBM9jbD6D0-0IzaJCBQhZuBM7VUp_HWheqQ' },
-  SPA01: { id: 'qr-d', token: 'eyJjIjoicXItZCIsInMiOiJhbnkiLCJoIjoic2tpbmNhcmUiLCJtIjoic3BhIiwidiI6MX0.YZdNwoc-q-nPlR4qpU5vILb2kEPNUy9vJSa4u-tRzVZb0mBJ4a44iGG2Qv7whzA6P3l53b0UZ0jgze2ApPJ-hQ' },
+  SUN24: { id: 'qr-a', token: 'eyJjIjoicXItYSIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoic3VuLWNhcmUiLCJtIjoiYmVhY2giLCJ2IjoxfQ.-CSms7RlhmTSTWwxiuTdkBLXGQAOr4XglyChAQsm2iNm_013IG7rMW4pZsDkNNkZPZPC-8NeooCQZ3PzIHazgg' },
+  TEX24: { id: 'qr-b', token: 'eyJjIjoicXItYiIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoiZHItc2ltaSIsIm0iOiJ0ZXhhcyIsInYiOjF9.exxtNZg-Jox3C7DzbnnZW463Zo2ynDpzN6lNeXHdbIoVgMerR53hqlTcIf3c4T1Ong2B8nyyd2pWzK14IqI85g' },
 };
 
 let root = null;
@@ -67,9 +73,14 @@ function b64urlBytes(s) {
   return Uint8Array.from(b, (ch) => ch.charCodeAt(0));
 }
 
+function b64url(bytes) {
+  return btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
 function publicKey() {
   if (!keyPromise) {
-    keyPromise = fetch(KEY_URL, { cache: 'no-cache' })
+    // A normal fetch, then any cached copy if the network is down.
+    keyPromise = fetch(KEY_URL).catch(() => fetch(KEY_URL, { cache: 'force-cache' }))
       .then((r) => { if (!r.ok) throw new Error('public key missing'); return r.json(); })
       .then((jwk) => crypto.subtle.importKey('jwk', { kty: jwk.kty, crv: jwk.crv, x: jwk.x, y: jwk.y, ext: true },
         { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']))
@@ -85,6 +96,9 @@ export function warmKey() {
 
 // Resolves to the payload {c, s, h, m, v} when the signature checks out.
 // Throws an Error whose .code is 'malformed' | 'forged' | 'insecure' | 'nokey'.
+// The signature must be the exact, canonical base64url of 64 bytes: atob ignores
+// the 4 spare bits of the last character, so without this check some one-character
+// edits would still verify.
 export async function verifyToken(token) {
   const fail = (code, msg) => Object.assign(new Error(msg), { code });
   if (!TOKEN_RE.test(token || '')) throw fail('malformed', 'not a Simi Hunt code');
@@ -101,8 +115,10 @@ export async function verifyToken(token) {
   if (!globalThis.crypto || !crypto.subtle) throw fail('insecure', 'this page needs HTTPS or localhost to check codes');
   let key;
   try { key = await publicKey(); } catch { throw fail('nokey', 'could not load the verification key'); }
-  const sigBytes = b64urlBytes(sig);
-  const ok = sigBytes.length === 64 && await crypto.subtle.verify(
+  let sigBytes;
+  try { sigBytes = b64urlBytes(sig); } catch { throw fail('malformed', 'unreadable signature'); }
+  if (sigBytes.length !== 64 || b64url(sigBytes) !== sig) throw fail('forged', 'signature does not match');
+  const ok = await crypto.subtle.verify(
     { name: 'ECDSA', hash: 'SHA-256' }, key, sigBytes, new TextEncoder().encode(head));
   if (!ok) throw fail('forged', 'signature does not match');
   return payload;
@@ -119,20 +135,39 @@ export function unlockHash(p) {
   return `#/unlock/${encodeURIComponent(p.m)}?store=${encodeURIComponent(p.s)}&shelf=${encodeURIComponent(p.h)}`;
 }
 
+// A genuine code that codes.json no longer lists (or lists differently), or whose
+// Simi isn't in simis.json, is refused. Skipped when those files didn't load.
+function checkActive(p, data) {
+  const retired = () => Object.assign(new Error('code is not active'), { code: 'retired' });
+  const codes = data.codes && typeof data.codes === 'object' ? data.codes : {};
+  if (Object.keys(codes).length) {
+    const c = codes[p.c];
+    if (!c || c.storeId !== p.s || c.shelfType !== p.h || c.simiId !== p.m) throw retired();
+  }
+  const simis = Array.isArray(data.simis) ? data.simis : [];
+  if (simis.length && !simis.some((x) => x && x.id === p.m)) throw retired();
+}
+
+function checkGeofence(p, snap, data) {
+  if (!GEOFENCE.enabled || p.s === 'any' || snap.demo) return;
+  const store = (data.stores || []).find((x) => x.id === p.s);
+  if (!store || !Number.isFinite(store.lat) || !Number.isFinite(store.lon)) return;
+  const pos = snap.position;
+  const fresh = pos && pos.source === 'gps' && (!Number.isFinite(pos.at) || Date.now() - pos.at <= GEOFENCE.maxAgeMs);
+  if (!fresh || distanceM(pos, store) > GEOFENCE.radiusM) {
+    throw Object.assign(new Error('too far from the store'), { code: 'geofence' });
+  }
+}
+
 // Verify a token and grant its Simi once. Used by this screen and by the scanner,
 // which claims in place so the player goes straight from the camera to the reveal.
 // Resolves to { payload, already, isNew, hash }; throws like verifyToken, or with
-// .code 'geofence'.
+// .code 'retired' or 'geofence'.
 export async function claimToken(token, { state, data = {} }) {
   const p = await verifyToken(token);
+  checkActive(p, data);
   if (state.hasClaimed(p.c)) return { payload: p, already: true, isNew: false, hash: unlockHash(p) };
-  if (GEOFENCE.enabled && p.s !== 'any') {
-    const store = (data.stores || []).find((x) => x.id === p.s);
-    const pos = state.get().position;
-    if (store && Number.isFinite(store.lat) && (!pos || distanceM(pos, store) > GEOFENCE.radiusM)) {
-      throw Object.assign(new Error('too far from the store'), { code: 'geofence' });
-    }
-  }
+  checkGeofence(p, state.get(), data);
   const had = typeof state.has === 'function' ? state.has(p.m) : false;
   state.recordClaim(p.c);
   const res = state.addCatch({ simiId: p.m, source: 'qr', storeId: p.s, shelfType: p.h });
@@ -188,20 +223,21 @@ function injectStyle() {
   .clm-wait { text-align: center; color: #fff; animation: clm-in .25s ease-out both; }
   .clm-wait h2 { font-family: var(--font-display, system-ui, sans-serif); font-size: 24px; margin: 0 0 4px; }
   .clm-wait p { margin: 0; opacity: .75; font-size: 15px; }
-  .clm-spin { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; border: 6px solid rgba(255,255,255,.18); border-top-color: #ffd35a; animation: clm-r .8s linear infinite; }
+  .clm-spin { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; border: 6px solid rgba(255,255,255,.18); border-top-color: var(--sun, #FFC72C); animation: clm-r .8s linear infinite; }
   .clm-card { width: 100%; max-width: 360px; background: #fff; border-radius: 26px; padding: 26px 20px 20px; text-align: center; box-sizing: border-box;
               box-shadow: 0 18px 50px rgba(0,0,0,.35); animation: clm-in .28s cubic-bezier(.2,1.2,.4,1) both; }
-  .clm-icon { width: 72px; height: 72px; margin: 0 auto 12px; border-radius: 50%; display: grid; place-items: center; font: 800 36px var(--font-display, system-ui, sans-serif); color: #fff; background: #0798E8; }
-  .clm-icon.bad { background: #D60F3C; }
+  .clm-icon { width: 72px; height: 72px; margin: 0 auto 12px; border-radius: 50%; display: grid; place-items: center; font: 800 36px var(--font-display, system-ui, sans-serif); color: #fff; background: var(--simi-sky, #0798E8); }
+  .clm-icon.bad { background: var(--danger, #D23A3A); }
   .clm-art { width: 112px; height: 112px; margin: -8px auto 6px; display: block; object-fit: contain; filter: drop-shadow(0 6px 10px rgba(20,48,95,.25)); }
   .clm h2 { margin: 0 0 6px; font-family: var(--font-display, system-ui, sans-serif); font-size: 26px; line-height: 1.1; }
   .clm-card p { margin: 0 0 16px; font-size: 16px; line-height: 1.4; color: #3c4b63; }
-  .clm-btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 54px; margin-top: 10px; border: 0; border-radius: 16px;
-             font: 700 17px var(--font-display, system-ui, sans-serif); cursor: pointer; background: #024EA2; color: #fff;
+  .clm-btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 54px; margin-top: 10px; border: 0; border-radius: var(--r-md, 18px);
+             font: 800 17px var(--font-display, system-ui, sans-serif); cursor: pointer; background: var(--simi-blue, #024EA2); color: #fff;
+             box-shadow: 0 4px 0 var(--simi-navy, #1C4889);
              touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: transform .08s ease-out; }
-  .clm-btn.alt { background: #eef3fa; color: #024EA2; }
+  .clm-btn.alt { background: var(--simi-ice, #E8F1FC); color: var(--simi-blue, #024EA2); box-shadow: 0 4px 0 var(--line, #DCE4F2); }
   .clm-btn:active, .clm-x:active { transform: scale(.96); }
-  .clm-btn:focus-visible, .clm-x:focus-visible { outline: 3px solid #ffd35a; outline-offset: 2px; }
+  .clm-btn:focus-visible, .clm-x:focus-visible { outline: 3px solid var(--sun, #FFC72C); outline-offset: 2px; }
   @keyframes clm-r { to { transform: rotate(360deg); } }
   @keyframes clm-in { from { opacity: 0; transform: translateY(10px) scale(.98); } }
   @media (prefers-reduced-motion: reduce) { .clm-card, .clm-wait { animation: none; } .clm-btn:active, .clm-x:active { transform: none; } }
@@ -215,14 +251,18 @@ function render(html, card = true) {
   if (root) root.innerHTML = `<div class="clm">${CLOSE_X}${card ? `<div class="clm-card">${html}</div>` : html}</div>`;
 }
 
+const ERROR_COPY = {
+  forged: ['This code isn’t genuine', 'It doesn’t match a real Simi Hunt sign, so nothing was added. Scan the sign on the shelf.'],
+  malformed: ['That’s not a Simi Hunt code', 'Try scanning the shelf sign again, or type the code printed under it.'],
+  retired: ['This sign is no longer active', 'Nothing was added. Look for a current Simi sign on the shelf.'],
+  insecure: ['Open the secure link', 'Codes can only be checked on the app’s https:// address. Open it there and scan again.'],
+  nokey: ['Can’t check codes right now', 'Check your connection and try again.'],
+  geofence: ['Get a little closer', 'This code only works in the store. Head to the shelf and scan again.'],
+};
+
 function errorCard(err) {
-  const copy = {
-    forged: ['This code isn’t genuine', 'It doesn’t match a real Simi Hunt sign, so nothing was added. Scan the sign on the shelf.'],
-    malformed: ['That’s not a Simi Hunt code', 'Try scanning the shelf sign again, or type the code printed under it.'],
-    insecure: ['Open the secure link', 'Codes can only be checked on the app’s https:// address. Open it there and scan again.'],
-    nokey: ['Can’t check codes right now', 'Check your connection and try again.'],
-    geofence: ['Get a little closer', 'This code only works in the store. Head to the shelf and scan again.'],
-  }[err.code] || ['Something went wrong', 'This code couldn’t be checked. Try scanning again.'];
+  const copy = (typeof err?.code === 'string' && ERROR_COPY[err.code])
+    || ['Something went wrong', 'This code couldn’t be checked. Try scanning again.'];
   render(`<div class="clm-icon bad">!</div><h2>${esc(copy[0])}</h2><p>${esc(copy[1])}</p>
     <button class="clm-btn" data-go="#/scan">Scan again</button>
     <button class="clm-btn alt" data-go="#/map">Back to map</button>`);

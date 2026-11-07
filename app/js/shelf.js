@@ -2,15 +2,19 @@
 // the real products on it, and a demo coupon.
 
 // Per-shelf names, demo offer and coupon code, kept together so the copy lives in one place.
+// `ask` shelves carry supplements or medicines, so they show the "ask your pharmacist" line.
 const SHELVES = {
   'sun-care': { en: 'Sun Care', code: 'SUNCARE', off: '$1 off', what: 'any Sun Care item' },
   'skincare': { en: 'Skincare', code: 'SKINCARE', off: '$1 off', what: 'any Skincare item' },
-  'vitamins': { en: 'Vitamins', code: 'VITAMINS', off: '$2 off', what: 'any vitamin or gummy' },
-  'sleep': { en: 'Sleep', code: 'SLEEP', off: '$1 off', what: 'any Sleep item' },
-  'sports-nutrition': { en: 'Sports Nutrition', code: 'SPORTS', off: '$2 off', what: 'any protein or creatine' },
-  'cold-flu': { en: 'Cold & Flu', code: 'COLDFLU', off: '$1 off', what: 'any cough drop or syrup' },
-  'dr-simi': { en: 'Dr. Simi', code: 'DRSIMI', off: '20% off', what: 'any Dr. Simi product' },
+  'vitamins': { en: 'Vitamins', code: 'VITAMINS', off: '$2 off', what: 'any vitamin or gummy', ask: true },
+  'sleep': { en: 'Sleep', code: 'SLEEP', off: '$1 off', what: 'any Sleep item', ask: true },
+  'sports-nutrition': { en: 'Sports Nutrition', code: 'SPORTS', off: '$2 off', what: 'any protein or creatine', ask: true },
+  'cold-flu': { en: 'Cold & Flu', code: 'COLDFLU', off: '$1 off', what: 'any cough or throat drop', ask: true },
+  'dr-simi': { en: 'Dr. Simi', code: 'DRSIMI', off: '20% off', what: 'any Dr. Simi product', ask: true },
 };
+
+// Sleep has no shelf Simi, so Sleepy Simi (a map Simi) greets there instead.
+const GREETERS = { sleep: 'sleepy' };
 
 // Screen copy, with the Spanish line next to the English one.
 const T = {
@@ -27,12 +31,15 @@ const T = {
   lostTitle: 'Shelf not found', lost: 'We couldn’t find this shelf', lostEs: 'No encontramos este estante',
   lostBody: 'Scan the Simi sign again, or pick a shelf from a SimiStop on the map.',
   scanSign: 'Scan a sign', anyStore: 'Any participating CVS',
+  ask: 'Ask your pharmacist which one is right for you.',
+  askEs: 'Pregúntale a tu farmacéutico cuál te conviene.',
 };
 
 // The product each shelf Simi points players to (shown first, with a "Simi's pick" tag).
+// No picks on the cold & flu or sleep shelves: a doctor mascot doesn't choose medicine for you.
 const SIMI_PICKS = {
-  beach: 'off-0813277019916', spa: 'drsimi-eternal-scrub', astronaut: 'drsimi-multigomi',
-  flu: 'off-0312546001879', boxeador: 'off-0748927069518', texas: 'drsimi-vitc',
+  beach: 'off-0075486091125', spa: 'drsimi-eternal-scrub', astronaut: 'drsimi-multigomi',
+  boxeador: 'off-0748927069518', texas: 'drsimi-vitc',
 };
 
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -47,7 +54,10 @@ const ICON = {
   chev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   qr: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="1.2"/><rect x="14" y="4" width="6" height="6" rx="1.2"/><rect x="4" y="14" width="6" height="6" rx="1.2"/><path d="M14 14h2.5v2.5M20 14v.01M14 20h.01M17.5 20H20v-2.5" stroke-linecap="round"/></svg>',
   ticket: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a1 1 0 0 1 1 1v3a2 2 0 0 0 0 4v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a2 2 0 0 0 0-4V7a1 1 0 0 1 1-1z" fill="currentColor" opacity=".9"/><path d="M15 7.5v9" stroke="var(--simi-blue)" stroke-width="1.6" stroke-dasharray="2 2"/></svg>',
+  ask: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M12 7.5v6M9 10.5h6"/></svg>',
 };
+
+const BASE_ART = '../art/base/simi-base.svg';
 
 // Simple product pictograms for items without a usable photo.
 const PICTO = {
@@ -70,14 +80,12 @@ function kindOf(p) {
 }
 
 // Up to two key facts a shopper scans for, read from the name and blurb.
+// Strengths (mg) are left to the label and the pharmacist, never pulled out as a chip.
 function factsOf(p) {
   const s = `${p.name || ''} ${p.blurb || ''}`;
   const out = [];
   const spf = s.match(/SPF\s*(\d+)/i);
   if (spf) out.push(['SPF ' + spf[1], 'sun']);
-  const mg = s.match(/(\d[\d,]*)\s*mg\b/i);
-  if (mg) out.push([mg[1] + ' mg', '']);
-  if (/\bkids?\b|\bbaby\b|little ones/i.test(s)) out.push(['Kids', '']);
   if (/\bmineral\b|zinc oxide/i.test(s)) out.push(['Mineral', '']);
   if (/sugar[- ]free/i.test(s)) out.push(['Sugar-free', '']);
   if (/fragrance[- ]free/i.test(s)) out.push(['Fragrance-free', '']);
@@ -110,10 +118,13 @@ function barcodeSvg(text) {
   return `<svg viewBox="0 0 250 66" preserveAspectRatio="none" role="img" aria-label="Demo coupon barcode" fill="#10204A">${bars}</svg>`;
 }
 
+// A price shows only when the data says where it came from.
+const hasPrice = p => typeof p.price === 'number' && !!p.priceSource;
+
 function productRow(p, i, { pickId, allDr }) {
   const isPick = p.id === pickId;
   const showDr = p.drSimi && !allDr;
-  const price = typeof p.price === 'number' ? `<span class="sh-chip is-price">$${p.price.toFixed(2)}</span>` : '';
+  const price = hasPrice(p) ? `<span class="sh-chip is-price">$${p.price.toFixed(2)}</span>` : '';
   const facts = factsOf(p).map(([t, k]) => `<span class="sh-chip${k ? ' is-' + k : ''}">${esc(t)}</span>`).join('');
   const size = p.size ? `<span class="sh-chip is-size">${esc(p.size)}</span>` : '';
   const aisle = p.aisle ? `<span class="sh-chip is-aisle">Aisle ${esc(p.aisle)}</span>` : '';
@@ -159,6 +170,36 @@ function simiBanner(simi, { owned, ownShelf }) {
     <span class="sh-simi-art"><img src="${art}" alt=""></span>
     <span class="sh-simi-text"><span class="sh-simi-name">${esc(T.hello(simi.name))}</span>${quote}</span>
   </section>`;
+}
+
+const ext = (href, text) => `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+
+// Credits under the list: the ODbL notice for product data, one line for brand packshots,
+// any other photo credit as given, and where the prices came from.
+function footNotes(products) {
+  const out = [];
+  if (products.some(p => /ODbL/i.test(p.license || ''))) {
+    out.push(`Product data © ${ext('https://world.openfoodfacts.org/', 'Open Food Facts')} / ${ext('https://world.openbeautyfacts.org/', 'Open Beauty Facts')} contributors, ${ext('https://opendatacommons.org/licenses/odbl/1-0/', 'ODbL 1.0')}.`);
+  }
+  const brands = new Set();
+  const other = new Set();
+  for (const p of products) {
+    const c = String(p.imageCredit || '').trim();
+    const m = c.match(/^©\s*(.+?)\s*—\s*product image/i);
+    if (m) brands.add(m[1]);
+    else if (c) other.add(c);
+  }
+  if (brands.size) out.push(`Product images © their brand owners (${esc([...brands].join(', '))}), for demo use only.`);
+  for (const c of other) out.push(esc(c));
+  const checked = new Set();
+  for (const p of products.filter(hasPrice)) {
+    const m = String(p.priceSource).match(/^(\S+)(?:.*checked (\d{4}-\d{2}-\d{2}))?/);
+    let host = '';
+    try { host = new URL(m[1]).hostname.replace(/^www\./, ''); } catch { /* not a URL */ }
+    if (host) checked.add(m[2] ? `${host} (checked ${m[2]})` : host);
+  }
+  if (checked.size) out.push(`Prices from ${esc([...checked].join(', '))}; store prices may differ.`);
+  return out.map(t => `<p>${t}</p>`).join('');
 }
 
 function couponHtml(shelf, where, code) {
@@ -224,7 +265,9 @@ function render(el, ctx, params) {
   const sims = data.simis || [];
   const simi = sims.find(s => s.shelf === shelfType && s.storeId === storeId)
     || sims.find(s => s.shelf === shelfType && !s.storeId)
-    || sims.find(s => s.id === 'classic');
+    || sims.find(s => s.id === GREETERS[shelfType])
+    // Classic Simi's catchphrase is the Dr. Simi brand slogan, so he greets only on the brand's own shelf.
+    || (shelfType === 'dr-simi' ? sims.find(s => s.id === 'classic') : null);
   const ownShelf = !!simi && simi.shelf === shelfType;
   let owned = false;
   try { owned = !!simi && !!ctx.state?.has?.(simi.id); } catch { /* state unavailable */ }
@@ -260,11 +303,13 @@ function render(el, ctx, params) {
   products.sort((a, b) => rank(a) - rank(b));
 
   const code = `SIMI-${shelf.code}-DEMO`;
-  const credits = [...new Set(products.map(p => p.imageCredit).filter(Boolean))];
-  const hasOpen = products.some(p => /Open (Beauty|Food) Facts/.test(p.imageCredit || ''));
+  const ask = shelf.ask && products.length
+    ? `<p class="sh-ask">${ICON.ask}<span><b>${T.ask}</b><span class="is-es" lang="es">${T.askEs}</span></span></p>`
+    : '';
 
   el.innerHTML = `<div class="shelf">${top}
     ${simi ? simiBanner(simi, { owned, ownShelf }) : ''}
+    ${ask}
     <ul class="sh-list">${products.length
       ? products.map((p, i) => productRow(p, i, { pickId, allDr })).join('')
       : `<li class="sh-empty">${T.empty}<br><span lang="es">${T.emptyEs}</span></li>`}</ul>
@@ -276,8 +321,8 @@ function render(el, ctx, params) {
     </div>
     <footer class="sh-foot">
       <button type="button" class="pill pill-ghost sh-home" data-go="${esc(backHash)}">${ICON.back}${T.backToMap} · <span lang="es">${T.backToMapEs}</span></button>
-      <p>Products shown are examples of this kind of item and may not match what your store stocks today.${hasOpen ? ' Photos from Open Beauty Facts and Open Food Facts contributors, CC BY-SA.' : ''}</p>
-      ${credits.filter(c => !/Open (Beauty|Food) Facts/.test(c)).map(c => `<p>${esc(c)}</p>`).join('')}
+      <p>Products shown are examples of this kind of item and may not match what your store stocks today.</p>
+      ${footNotes(products)}
     </footer>
   </div>`;
 
@@ -289,8 +334,13 @@ function render(el, ctx, params) {
     img.addEventListener('load', show, { once: true });
     img.addEventListener('error', () => img.remove(), { once: true });
   });
+  // Art that fails to load falls back to the base Simi, then to an empty disc.
   const simiImg = el.querySelector('.sh-simi-art img');
-  if (simiImg) simiImg.addEventListener('error', () => simiImg.remove(), { once: true });
+  if (simiImg) simiImg.onerror = () => {
+    const base = new URL(BASE_ART, document.baseURI).href;
+    if (simiImg.src === base) simiImg.remove();
+    else simiImg.src = base;
+  };
 
   let coupon = null;
   const openCoupon = () => {

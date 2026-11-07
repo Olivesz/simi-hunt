@@ -2,7 +2,7 @@
 
 *Leather jacket, electric guitar, no hair to flip. Rocks out anyway.*
 
-**Tier:** Store exclusive (QR) · **Rarity:** Legendary · **Height:** 12 in (30 cm), 13 in in platform boots · **Weight:** 13 oz (370 g), guitar not included
+**Tier:** Store exclusive (QR) · **Rarity:** Legendary · **Height:** 12 in (30 cm), 13 in with high-tops on · **Weight:** 13 oz (370 g), guitar not included
 
 **How to meet him:** Store exclusive. Only at CVS, 500 Congress Ave, Austin. Scan the QR code at the Dr. Simi section.
 

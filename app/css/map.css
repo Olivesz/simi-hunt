@@ -19,13 +19,24 @@
   user-select: none;
   touch-action: none;
 }
-.sm-map { position: absolute; inset: 0; }
+/* .sm-root raises this above MapLibre's own .maplibregl-map { position: relative }, whichever stylesheet loads last */
+.sm-root .sm-map { position: absolute; inset: 0; }
 .sm-map canvas { outline: none; }
 
 .sm-loading {
-  position: absolute; inset: 0; display: grid; place-items: center;
-  font-weight: 800; color: #2d6b3a; font-size: 17px; pointer-events: none;
+  position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px;
+  font-weight: 800; color: #2d6b3a; font-size: 17px; pointer-events: none; text-align: center; padding: 0 24px;
 }
+.sm-loading p { margin: 0; }
+.sm-retry {
+  pointer-events: auto; min-height: 48px; padding: 0 24px; border: 0; border-radius: 999px;
+  background: var(--sm-blue); color: #fff; font-family: var(--font-display, inherit); font-weight: 800; font-size: 17px;
+  box-shadow: 0 4px 0 var(--sm-navy);
+}
+.sm-retry:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--sm-navy); }
+
+/* Another screen covers the map: its marker animations need not run underneath. */
+body:not(.on-map) .sm-root * { animation-play-state: paused !important; }
 
 /* attribution: small, above the bottom nav */
 .sm-root .maplibregl-ctrl-bottom-right { bottom: calc(var(--sm-bottom) + 2px); }
@@ -56,7 +67,8 @@
   100% { transform: scale(1); opacity: 0; }
 }
 
-.sm-hunter { width: 48px; height: 72px; pointer-events: none; }
+/* z-index: the player stays in front of a Simi or stop standing just behind them */
+.sm-hunter { width: 48px; height: 72px; pointer-events: none; z-index: 2; }
 .sm-hunter-shadow { position: absolute; left: 0; top: 87%; width: 100%; height: 16.67%; }
 .sm-hunter-sprite {
   position: absolute; inset: 0; transform-origin: 50% 95%;
@@ -163,12 +175,19 @@
 
 /* ---------- HUD bits ---------- */
 
-.sm-demo-badge {
-  position: absolute; right: 12px; top: calc(var(--safe-top, env(safe-area-inset-top, 0px)) + 14px);
-  display: none; padding: 5px 10px; border-radius: 999px;
-  background: rgba(28, 72, 137, .88); color: #fff; font-weight: 800; font-size: 11px; letter-spacing: .08em;
+/* "Use my location": shown while the position is simulated and real GPS could take over */
+.sm-loc {
+  position: absolute; right: 12px; top: calc(var(--safe-top, env(safe-area-inset-top, 0px)) + 12px); z-index: 6;
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 44px; padding: 0 14px 0 10px; border: 0; border-radius: 999px;
+  background: rgba(255, 255, 255, .96); color: var(--sm-navy); font-weight: 800; font-size: 13px;
+  box-shadow: 0 3px 0 rgba(28, 72, 137, .3), 0 6px 14px rgba(0, 0, 0, .12);
 }
-.sm-root.auto-demo .sm-demo-badge { display: block; }
+.sm-loc[hidden] { display: none; }
+.sm-loc svg { width: 20px; height: 20px; flex: none; color: var(--sm-blue); }
+.sm-loc[data-state="denied"] svg, .sm-loc[data-state="weak"] svg, .sm-loc[data-state="outside"] svg { color: #8a97ab; }
+.sm-loc[data-state="asking"] svg { animation: sm-loc-pulse 1s ease-in-out infinite; }
+@keyframes sm-loc-pulse { 50% { opacity: .35; } }
 
 .sm-joy {
   position: absolute; left: 14px; bottom: calc(var(--sm-bottom) + 18px);
@@ -177,6 +196,7 @@
 .sm-root.demo .sm-joy { display: block; }
 .sm-root.sheet-open .sm-joy, .sm-root.sheet-open .sm-walk { visibility: hidden; }
 
+/* Shown whenever a demo route exists, GPS or not, so a walk is always one tap away. */
 .sm-walk {
   position: absolute; right: 12px; bottom: calc(var(--sm-bottom) + 26px); z-index: 5;
   min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px;
@@ -184,8 +204,15 @@
   box-shadow: 0 3px 0 rgba(28, 72, 137, .35), 0 6px 14px rgba(0, 0, 0, .15);
   display: none;
 }
-.sm-root.demo .sm-walk:not([hidden]) { display: block; }
+.sm-root .sm-walk:not([hidden]) { display: block; }
 .sm-walk.on { background: var(--sm-blue); color: #fff; }
+
+/* The center menu draws over the bottom of the map: fade the map's own controls out of its way. */
+.sm-joy, .sm-walk, .sm-walk-stop, .sm-pbar, .sm-loc { transition: opacity .18s; }
+body.menu-open .sm-root .sm-walk, body.menu-open .sm-root .sm-walk-stop, body.menu-open .sm-root .sm-joy,
+body.menu-open .sm-root .sm-pbar, body.menu-open .sm-root .sm-recenter, body.menu-open .sm-root .sm-loc {
+  opacity: 0; pointer-events: none;
+}
 
 .sm-toast {
   position: absolute; left: 50%; top: 40%; transform: translate(-50%, 10px);
@@ -241,18 +268,18 @@
 .sm-ex-img { width: 48px; height: 48px; object-fit: contain; }
 .sm-ex-art:not(.owned) .sm-ex-img, .sm-ex-art:not(.owned) .sm-art-fallback { filter: brightness(0) opacity(.7); }
 .sm-ex-art .sm-art-fallback { width: 44px; height: 44px; }
-.sm-ex-label { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #9a6b00; }
+.sm-ex-label { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #9a6b00; }
 .sm-ex-name { font-size: 15px; font-weight: 800; color: #1b2a44; }
 
 .sm-shelves-label { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #55627a; margin: 12px 0 6px; text-align: left; }
 .sm-shelves { display: flex; flex-wrap: wrap; gap: 8px; }
 .sm-shelf {
-  min-height: 36px; padding: 0 14px; border: 2px solid #dbe5f3; border-radius: 999px; background: #f6f9fd;
+  min-height: 44px; padding: 0 14px; border: 2px solid #dbe5f3; border-radius: 999px; background: #f6f9fd;
   font-weight: 800; font-size: 13px; color: var(--sm-navy);
 }
 .sm-scan {
   width: 100%; min-height: 52px; margin-top: 12px; border: 0; border-radius: 999px;
-  background: var(--sm-blue); color: #fff; font-weight: 800; font-size: 17px;
+  background: var(--sm-blue); color: #fff; font-family: var(--font-display, inherit); font-weight: 800; font-size: 17px;
   box-shadow: 0 4px 0 var(--sm-navy);
 }
 .sm-scan:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--sm-navy); }
@@ -267,7 +294,7 @@
 .sm-root.presenter .sm-joy, .sm-root.presenter .sm-walk:not([hidden]) { display: none; }
 .sm-stop-sheet .sm-sheet-close { display: none; } /* the shell sheet draws its own X */
 .sm-pbar-toggle {
-  min-height: 36px; padding: 0 14px; border: 0; border-radius: 999px;
+  min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px;
   background: rgba(28, 72, 137, .92); color: #fff; font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
   box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
 }
@@ -322,7 +349,7 @@
 
 .sm-walk-stop {
   display: none; position: absolute; right: 12px; bottom: calc(var(--sm-bottom) + 78px); z-index: 5;
-  min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px;
+  min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px;
   background: rgba(28, 72, 137, .92); color: #fff; font-weight: 800; font-size: 13px;
 }
 .sm-root.route-walking.demo:not(.presenter) .sm-walk-stop { display: block; }
@@ -332,15 +359,21 @@
 
 /* ---------- presenter: jacket color ---------- */
 
-.sm-pbar-colors { display: flex; gap: 8px; align-items: center; padding: 4px 6px; border-radius: 14px; background: rgba(255, 255, 255, .96); box-shadow: 0 6px 14px rgba(0, 0, 0, .12); }
+.sm-pbar-colors { display: flex; gap: 0; align-items: center; padding: 0 2px; border-radius: 14px; background: rgba(255, 255, 255, .96); box-shadow: 0 6px 14px rgba(0, 0, 0, .12); }
+/* 44 px hit area around a 36 px swatch */
 .sm-pbar-items .sm-swatch {
-  width: 36px; min-height: 36px; height: 36px; padding: 0; border-radius: 50%; border: 3px solid #fff;
-  box-shadow: 0 0 0 2px rgba(28, 72, 137, .25);
+  position: relative; width: 44px; min-height: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
+  background: transparent; box-shadow: none;
 }
-.sm-pbar-items .sm-swatch.on { box-shadow: 0 0 0 3px var(--sm-navy); }
-.sm-swatch[data-color="blue"] { background: #1f5fbf; }
-.sm-swatch[data-color="red"] { background: #d23a3a; }
-.sm-swatch[data-color="green"] { background: #2e9a4f; }
+.sm-swatch::before {
+  content: ''; position: absolute; inset: 4px; border-radius: 50%; border: 3px solid #fff;
+  background: var(--sw); box-shadow: 0 0 0 2px rgba(28, 72, 137, .25);
+}
+.sm-pbar-items .sm-swatch.on { background: transparent; }
+.sm-swatch.on::before { box-shadow: 0 0 0 3px var(--sm-navy); }
+.sm-swatch[data-color="blue"] { --sw: #1f5fbf; }
+.sm-swatch[data-color="red"] { --sw: #d23a3a; }
+.sm-swatch[data-color="green"] { --sw: #2e9a4f; }
 
 /* keep the presenter toolbar clear of the player, who stands at screen center */
 .sm-pbar-items { max-width: 146px; }

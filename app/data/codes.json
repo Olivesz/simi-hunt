@@ -3,24 +3,32 @@
     "storeId": "cvs-guadalupe-2402",
     "shelfType": "sun-care",
     "simiId": "beach",
-    "label": "QR-A \u00b7 Guadalupe \u00b7 Sun care"
+    "label": "QR-A \u00b7 Guadalupe \u00b7 Sun care",
+    "short": "SUN24",
+    "token": "eyJjIjoicXItYSIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoic3VuLWNhcmUiLCJtIjoiYmVhY2giLCJ2IjoxfQ.-CSms7RlhmTSTWwxiuTdkBLXGQAOr4XglyChAQsm2iNm_013IG7rMW4pZsDkNNkZPZPC-8NeooCQZ3PzIHazgg"
   },
   "qr-b": {
     "storeId": "cvs-guadalupe-2402",
     "shelfType": "dr-simi",
     "simiId": "texas",
-    "label": "QR-B \u00b7 Guadalupe \u00b7 Dr. Simi section (store exclusive)"
+    "label": "QR-B \u00b7 Guadalupe \u00b7 Dr. Simi section (store exclusive)",
+    "short": "TEX24",
+    "token": "eyJjIjoicXItYiIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoiZHItc2ltaSIsIm0iOiJ0ZXhhcyIsInYiOjF9.exxtNZg-Jox3C7DzbnnZW463Zo2ynDpzN6lNeXHdbIoVgMerR53hqlTcIf3c4T1Ong2B8nyyd2pWzK14IqI85g"
   },
   "qr-c": {
     "storeId": "cvs-congress-500",
     "shelfType": "dr-simi",
     "simiId": "rockstar",
-    "label": "Test \u00b7 Congress \u00b7 Dr. Simi section (store exclusive)"
+    "label": "Test \u00b7 Congress \u00b7 Dr. Simi section (store exclusive)",
+    "short": "ROCK50",
+    "token": "eyJjIjoicXItYyIsInMiOiJjdnMtY29uZ3Jlc3MtNTAwIiwiaCI6ImRyLXNpbWkiLCJtIjoicm9ja3N0YXIiLCJ2IjoxfQ.GAmFAuTcLDKRilF7AEnUrH7S1sCwZYNV8yvTLn0FFVh6-d2-MJsqkYZxZLAyiKwfaO9JyaVut21zmn0FWK_CNw"
   },
   "qr-d": {
     "storeId": "any",
     "shelfType": "skincare",
     "simiId": "spa",
-    "label": "Test \u00b7 Any participating store \u00b7 Skincare"
+    "label": "Test \u00b7 Any participating store \u00b7 Skincare",
+    "short": "SPA01",
+    "token": "eyJjIjoicXItZCIsInMiOiJhbnkiLCJoIjoic2tpbmNhcmUiLCJtIjoic3BhIiwidiI6MX0.IXfd0RrA-BpeRpqKr_a5ccdSjbISdPzpdRI8C3EV2qVL9q3gDEc231tmKHZwld-7xvVNAEi7nujEqGHrhSQBIQ"
   }
 }

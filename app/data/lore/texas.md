@@ -1,6 +1,6 @@
 # #013 Texas Simi · Simi Texano
 
-*Cowboy hat, boots, bolo tie. Says 'y'all' and 'ustedes' in the same sentence.*
+*Cowboy hat with a bluebonnet, red bandana, star buckle and a lasso for roping in friends.*
 
 **Tier:** Store exclusive (QR) · **Rarity:** Legendary · **Height:** 12 in (30 cm), 17 in with hat · **Weight:** 11 oz (310 g), boots and buckle included
 

@@ -2,9 +2,10 @@
    Motion is transform and opacity only; prefers-reduced-motion turns it off. */
 
 .sdx {
-  --blue: #024EA2; --sky: #0798E8; --red: #D60F3C; --gold: #F5B400;
-  --ink: #14213D; --muted: #5B6B86; --line: rgba(20, 33, 61, .08);
-  --bg: #EEF3FA; --card: #fff;
+  /* --ink, --bg, --line and --card come from the shell (app.css :root). The store tier
+     uses the Similares red from art/STYLE.md; CVS red stays reserved for SimiStop pins. */
+  --blue: var(--simi-blue, #024EA2); --sky: var(--simi-sky, #0798E8); --red: #D60F3C; --gold: var(--sun, #FFC72C);
+  --green: var(--ok, #1E9E5A); --muted: var(--ink-2, #44507A);
   --display: var(--font-display, 'Baloo 2', 'Nunito', ui-rounded, system-ui, sans-serif);
   --t: var(--blue); --t2: #9CCBFF;
   --sdx-mini-h: calc(56px + env(safe-area-inset-top, 0px));
@@ -16,6 +17,7 @@
   -webkit-tap-highlight-color: transparent;
   padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
 }
+.sdx[data-view=grid] { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
 :where(.sdx) *, :where(.sdx) *::before, :where(.sdx) *::after { box-sizing: border-box; }
 :where(.sdx) button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; padding: 0; touch-action: manipulation; }
 :where(.sdx) a { color: inherit; text-decoration: none; touch-action: manipulation; }
@@ -23,9 +25,9 @@
 .sdx-ic { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* Tier colors */
-.sdx [data-tier=common], .sdx[data-tier=common] { --t: #14A06A; --t2: #8BE3B8; }
-.sdx [data-tier=shelf], .sdx[data-tier=shelf] { --t: #0798E8; --t2: #93D8FF; }
-.sdx [data-tier=store], .sdx[data-tier=store] { --t: #D60F3C; --t2: #FFA3B5; }
+.sdx [data-tier=common], .sdx[data-tier=common] { --t: var(--green); --t2: #8BE3B8; }
+.sdx [data-tier=shelf], .sdx[data-tier=shelf] { --t: var(--sky); --t2: #93D8FF; }
+.sdx [data-tier=store], .sdx[data-tier=store] { --t: var(--red); --t2: #FFA3B5; }
 .sdx [data-tier=event], .sdx[data-tier=event] { --t: #7A4DFF; --t2: #CDB9FF; }
 
 /* Pressed feedback shows on touch-down (JS adds .is-pressed) and on :active. */
@@ -108,7 +110,7 @@
   animation: sdx-rise .45s .15s var(--ease) backwards;
 }
 .sdx-start-top { display: flex; align-items: center; gap: 14px; }
-.sdx-start-art { width: 84px; height: 84px; flex: none; border-radius: 20px; --t: #14A06A; --t2: #8BE3B8; }
+.sdx-start-art { width: 84px; height: 84px; flex: none; border-radius: 20px; --t: var(--green); --t2: #8BE3B8; }
 .sdx-start-text { min-width: 0; display: grid; gap: 2px; }
 .sdx-start-text small { justify-self: start; padding: 3px 9px; border-radius: 99px; background: #FFF3C4; color: #8A5A00; font-size: 12px; font-weight: 800; }
 .sdx-start-text h2 { font-size: 21px; font-weight: 700; line-height: 1.15; }
@@ -198,7 +200,7 @@
 .sdx-row-text { min-width: 0; display: grid; gap: 1px; }
 .sdx-row-name { display: flex; align-items: center; gap: 4px; font: 600 16px var(--display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sdx-row[data-status=locked] .sdx-row-name { color: var(--muted); }
-.sdx-row-check { width: 16px; height: 16px; color: #14A06A; stroke-width: 3; }
+.sdx-row-check { width: 16px; height: 16px; color: var(--green); stroke-width: 3; }
 .sdx-row-store { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sdx-row-dist { font-size: 13px; font-weight: 800; color: var(--red); }
 .sdx-row-dist:empty { display: none; }
@@ -245,7 +247,7 @@
 .sdx-foot span { flex-basis: 100%; }
 .sdx-empty { text-align: center; color: var(--muted); font-size: 14px; padding: 28px 24px 0; margin: 0; }
 
-/* ---------- bottom dock: close (and prev/next on entries), in thumb reach ---------- */
+/* ---------- bottom dock: prev/next on entries, in thumb reach ---------- */
 .sdx-dock {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 7;
   display: flex; align-items: center; justify-content: center; gap: 28px; pointer-events: none;
@@ -253,14 +255,6 @@
   background: linear-gradient(to top, var(--bg) 35%, color-mix(in srgb, var(--bg) 0%, transparent));
 }
 .sdx-dock > * { pointer-events: auto; }
-.sdx-close {
-  width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center;
-  background: #fff; color: var(--ink);
-  box-shadow: 0 8px 22px rgba(20, 33, 61, .24), 0 0 0 1px rgba(20, 33, 61, .06);
-  transition: transform .12s var(--ease);
-}
-.sdx-close .sdx-ic { width: 26px; height: 26px; stroke-width: 2.6; }
-.sdx-close:active, .sdx-close.is-pressed { transform: scale(.9); }
 .sdx-step {
   width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
   background: rgba(255, 255, 255, .96); color: color-mix(in srgb, var(--t) 80%, #000);
@@ -271,7 +265,7 @@
 .sdx-step:active, .sdx-step.is-pressed { transform: scale(.9); }
 
 /* ---------- entry ---------- */
-.sdx[data-view=entry] { --bg: #F3F6FB; background: var(--bg); touch-action: pan-y; }
+.sdx[data-view=entry] { touch-action: pan-y; }
 .sdx-entry { animation: sdx-in-0 .25s ease-out both; }
 .sdx-entry[data-dir='1'] { animation: sdx-in-r .3s var(--ease) both; }
 .sdx-entry[data-dir='-1'] { animation: sdx-in-l .3s var(--ease) both; }
@@ -297,6 +291,13 @@
 @keyframes sdx-spin { to { transform: rotate(360deg); } }
 .sdx.is-past-hero .sdx-rays, .sdx.is-past-hero .sdx-hero-art, .sdx.is-past-hero .sdx-hero-art::after { animation-play-state: paused; }
 .sdx-topbar { position: absolute; top: calc(10px + env(safe-area-inset-top, 0px)); left: 12px; right: 12px; z-index: 3; display: flex; align-items: center; justify-content: space-between; }
+.sdx-topbar-gap { width: 44px; flex: none; }
+/* The entry's only exit: pinned top-left so it stays in reach while reading the lore. */
+.sdx-back {
+  position: fixed; top: calc(10px + env(safe-area-inset-top, 0px)); left: 12px; z-index: 8;
+  background: rgba(255, 255, 255, .94); color: var(--ink);
+  box-shadow: 0 4px 12px rgba(16, 32, 74, .2), 0 0 0 1px rgba(16, 32, 74, .05);
+}
 .sdx-hero-no { font: 700 18px var(--display); letter-spacing: .06em; padding: 8px 14px; border-radius: 99px; background: rgba(0, 0, 0, .16); }
 .sdx-hero-pos { min-width: 44px; text-align: center; font-size: 13px; font-weight: 700; opacity: .9; font-variant-numeric: tabular-nums; }
 .sdx-hero-stage { position: relative; z-index: 2; margin-top: 24px; }
@@ -317,7 +318,7 @@
 @keyframes sdx-shadow { 50% { transform: scaleX(.85); opacity: .7; } }
 
 .sdx-sheet {
-  position: relative; z-index: 4; margin-top: -28px; padding: 20px 16px 8px; border-radius: 28px 28px 0 0; background: #F3F6FB;
+  position: relative; z-index: 4; margin-top: -28px; padding: 20px 16px 8px; border-radius: 28px 28px 0 0; background: var(--bg);
   display: grid; gap: 12px;
 }
 .sdx-title { text-align: center; display: grid; justify-items: center; gap: 4px; }
@@ -344,7 +345,7 @@
 .sdx-cta { display: flex; gap: 8px; }
 .sdx-btn {
   flex: 1 1 auto; min-height: 48px; padding: 0 18px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  background: var(--t, var(--blue)); color: #fff !important; font-weight: 800; font-size: 15px;
+  background: var(--t, var(--blue)); color: #fff !important; font-family: var(--display); font-weight: 800; font-size: 15px;
   box-shadow: 0 6px 14px color-mix(in srgb, var(--t, var(--blue)) 35%, transparent); transition: transform .12s var(--ease);
 }
 .sdx-btn:active { transform: scale(.96); }
@@ -355,9 +356,9 @@
 .sdx-btn-ghost { background: color-mix(in srgb, var(--t) 12%, #fff); color: color-mix(in srgb, var(--t) 85%, #000) !important; box-shadow: none; }
 .sdx-btn-side { flex: 0 0 auto; padding: 0 16px; }
 .sdx[data-status=locked] .sdx-btn { --t: var(--blue); }
-.sdx[data-status=locked][data-tier=common] .sdx-btn { --t: #14A06A; }
-.sdx[data-status=locked][data-tier=shelf] .sdx-btn { --t: #0798E8; }
-.sdx[data-status=locked][data-tier=store] .sdx-btn { --t: #D60F3C; }
+.sdx[data-status=locked][data-tier=common] .sdx-btn { --t: var(--green); }
+.sdx[data-status=locked][data-tier=shelf] .sdx-btn { --t: var(--sky); }
+.sdx[data-status=locked][data-tier=store] .sdx-btn { --t: var(--red); }
 .sdx[data-status=locked][data-tier=event] .sdx-btn { --t: #7A4DFF; }
 
 .sdx-panel { background: var(--card); border-radius: 20px; padding: 14px 16px; box-shadow: 0 1px 0 var(--line), 0 4px 14px rgba(20, 33, 61, .05); }
@@ -454,7 +455,6 @@
 /* ---------- card <-> entry morph (View Transitions) ---------- */
 ::view-transition-group(sdx-hero) { animation-duration: .34s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
 ::view-transition-old(sdx-hero), ::view-transition-new(sdx-hero) { animation-duration: .34s; }
-::view-transition-group(sdx-close) { animation-duration: .26s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
 html.sdx-vt::view-transition-old(root), html.sdx-vt::view-transition-new(root) { animation-duration: .26s; }
 
 .sdx-noanim .sdx-card, .sdx-noanim .sdx-entry, .sdx-noanim .sdx-ring-wrap, .sdx-noanim .sdx-goal-bar > i, .sdx-noanim .sdx-start { animation: none; }

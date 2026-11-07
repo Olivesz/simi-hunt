@@ -4,7 +4,7 @@
 
 There is only one Dr. Simi. He just owns a lot of clothes.
 
-Dr. Simi goes wherever people need a little care, and he dresses for the occasion. At the soccer field he wears the green jersey. At the beach he wears the floral shirt and the palm hat. On a cold night he wears three scarves. Each look is a Simi, and every Simi will tell you the same thing with a straight face: *"Soy el mismo, nomás con otro sombrero."* Same Simi, different hat.
+Dr. Simi goes wherever people need a little care, and he dresses for the occasion. At the soccer field he wears the blue number 10. At the beach he wears the floral shirt and the palm hat. On a cold night he wears a beanie and a long striped scarf. Each look is a Simi, and every Simi will tell you the same thing with a straight face: *"Soy el mismo, nomás con otro sombrero."* Same Simi, different hat.
 
 That is the whole idea of the brand, folded into one joke. Farmacias Similares built its name on *lo mismo, pero más barato*: the same care, for less. The Simis apply the rule to fashion. Same doctor, same heart, new outfit, and the hug is still free.
 
@@ -18,7 +18,7 @@ That is the whole idea of the brand, folded into one joke. Farmacias Similares b
 
 ## Where Simis live
 
-Simis wander the neighborhood on their own errands. Fútbol Simi is at the park, Chef Simi is near the food trucks, and Sleepy Simi only comes out after dark. Wherever you walk, a Simi is somewhere close, running late for something.
+Simis wander the neighborhood on their own errands. Fútbol Simi is at the park, Chef Simi is near the food trucks, and Sleepy Simi mostly comes out after dark. Wherever you walk, a Simi is somewhere close, running late for something.
 
 Their real home is the **SimiStop**, a participating CVS. Each Simi has a favorite shelf and hangs around it like a regular at a café. Beach Simi naps by the sunscreen. Spa Simi has strong opinions about the skincare aisle. Astronaut Simi orbits the vitamins, slowly. A few Simis are so attached to one store that they never leave it at all, which is why you will only meet Texas Simi on Guadalupe Street.
 
@@ -28,7 +28,7 @@ Each shelf sign carries a small QR code. That code is the Simi's front door. Sca
 
 You never capture a Simi. You **check in** with one, the way a good doctor checks in with a patient: *¿cómo estás?*
 
-The tool for the job is the **SimiCápsula**, a two-tone vitamin capsule, Similares blue on one half and white on the other. Toss it gently toward a Simi. It pops open, the Simi waves, poses for a photo, and stamps himself into your **SimiDex**. Then he goes right back to what he was doing. Nobody is trapped. The capsule is an appointment card, and the SimiDex is a scrapbook of everyone who said hi.
+The tool for the job is the **Simi Capsule** (*SimiCápsula* in Spanish), a two-tone vitamin capsule, Similares blue on one half and white on the other. Toss it gently toward a Simi. It pops open, the Simi waves, poses for a photo, and stamps himself into your **SimiDex**. Then he goes right back to what he was doing. Nobody is trapped. The capsule is an appointment card, and the SimiDex is a scrapbook of everyone who said hi.
 
 Simis are used to being tossed. Fans have been throwing Dr. Simi plushies onto concert stages for years, so a capsule toss is basically a high five. If a toss misses, the Simi just laughs and says *"¡Otra vez, campeón!"*
 

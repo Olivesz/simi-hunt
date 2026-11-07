@@ -12,6 +12,6 @@ A disciplined Simi who trains by the sports nutrition shelf. He respects rest da
 
 ## Dialogue
 
-- **Appears:** "*jab, jab* Oh! Hey, champ. Want to train?"
+- **Appears:** "Jab, jab! Oh, hey, champ. Want to train?"
 - **Checked in:** "Ding ding! Checked in! Water break, campeón."
 - **QR unlock:** "You made it to my corner. Every champion starts right here."

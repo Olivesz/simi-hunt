@@ -20,13 +20,18 @@ const ROUTE_SPEED = 45;        // m/s: the ~2 km demo route takes ~45 s
 const PRESENTER_ROUTE_SPEED = 45; // m/s, same as demo route so presenters never wait
 const TAP_MOVE_SPEED = 30;     // m/s for presenter tap-to-move (clamped to 0.4-2.5 s)
 const GUADALUPE_ID = 'cvs-guadalupe-2402';
+const STAGE_BACK_M = 100;      // a fresh game opens this far before CVS Guadalupe on the demo route
 const ZOOM = 17.2;
+const MIN_ZOOM = 15.5;         // a full pinch-out stays near 1 MB of tiles
 const PITCH = 56;
+const MAX_GPS_ACC_M = 100;     // fuzzier fixes (e.g. Precise Location off) can't drive a 40 m catch ring
+const PRESENTER_SPIN_MS = 3000; // presenter mode shows the used stop this long, then resets it
 const SPIN_KEY = 'simihunt.map.spins';
+const HINT_KEY = 'simihunt.map.hinted';
 const COMMON_IDS = ['classic', 'gym', 'sleepy', 'futbol', 'bombero', 'chef', 'beisbolista'];
 const SHELF_LABEL = {
-  'sun-care': 'Sun care', skincare: 'Skincare', vitamins: 'Vitamins', sleep: 'Sleep',
-  'sports-nutrition': 'Sports nutrition', 'cold-flu': 'Cold & flu', 'dr-simi': 'Dr. Simi',
+  'sun-care': 'Sun Care', skincare: 'Skincare', vitamins: 'Vitamins', sleep: 'Sleep',
+  'sports-nutrition': 'Sports Nutrition', 'cold-flu': 'Cold & Flu', 'dr-simi': 'Dr. Simi',
 };
 
 // Central Austin, UT campus to downtown.
@@ -75,6 +80,19 @@ let routeStoreId = null; // store sheet the current route asks for
 let ready = false;        // mount finished; update() may act directly
 let presenter = false;    // stage mode: tap-to-move, toolbar, no range checks or cooldowns
 let summoned = new Map(); // spawnId -> spawn, presenter "Summon Simi" (spawnId demo:<simiId>)
+let starting = null;      // promise while the map is being created
+let regionChanged = false;
+let startBearing = null;  // camera bearing for a freshly staged start
+let paused = false;       // another screen covers the map: no timers, GPS or walking
+let spawnLoading = null;  // spawns.js import, started before the map
+let hinted = false;
+// GPS: asked for only after a tap (or when the site already has permission).
+let gpsWanted = false;    // the player asked for location, or granted it before
+let gpsState = 'off';     // off | asking | on | denied | weak | outside
+let gpsFix = null;        // last usable fix inside the play area
+let manual = false;       // joystick, walk or presenter move: GPS fixes wait for "Use my location"
+let sheetTick = 0;
+const presenterSpun = new Map(); // storeId -> time the presenter-mode "used" look ends
 
 // ---------- small helpers ----------
 
@@ -85,8 +103,20 @@ function haversine(aLat, aLon, bLat, bLon) {
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 const distTo = (p) => (pos ? haversine(pos.lat, pos.lon, p.lat, p.lon) : Infinity);
-const fmtDist = (m) => (!isFinite(m) ? '—' : m < 1000 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(1)} km`);
+// US units, the same rule as the SimiDex: feet under 0.1 mi, then miles.
+function fmtDist(m) {
+  if (!isFinite(m)) return '—';
+  const mi = m / 1609.344;
+  return mi < 0.1 ? `${Math.max(50, Math.round((m * 3.28084) / 50) * 50)} ft` : `${mi < 10 ? mi.toFixed(1) : Math.round(mi)} mi`;
+}
+const RANGE_FT = Math.round((RANGE_M * 3.28084) / 10) * 10;
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// Every store is named "CVS Pharmacy", so the street tells them apart (same rule as the SimiDex).
+function storeLabel(s) {
+  const street = s.address ? String(s.address).split(',')[0].trim() : '';
+  if (s.name && /\d/.test(s.name)) return s.name;
+  return street ? `CVS · ${street}` : (s.name || 'CVS Pharmacy');
+}
 
 function hue(id) {
   let h = 0;
@@ -139,12 +169,24 @@ const inRegion = (p) => {
   return p && p.lon >= w && p.lon <= e && p.lat >= s && p.lat <= n;
 };
 
+// Resolves once the stylesheet applies. A failed one is removed, so the next call tries again
+// (a dead <link> left behind would leave MapLibre markers unpositioned after a retry).
+const cssLoads = new Map();
 function loadCss(href) {
-  if ([...document.styleSheets].some((s) => s.href === href) || document.querySelector(`link[href="${href}"]`)) return;
-  const l = document.createElement('link');
-  l.rel = 'stylesheet';
-  l.href = href;
-  document.head.appendChild(l);
+  if (cssLoads.has(href)) return cssLoads.get(href);
+  const done = new Promise((res, rej) => {
+    let l = document.querySelector(`link[href="${href}"]`);
+    if (l?.sheet) { res(); return; }
+    l?.remove();
+    l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = href;
+    l.addEventListener('load', () => res(), { once: true });
+    l.addEventListener('error', () => { l.remove(); cssLoads.delete(href); rej(new Error(`stylesheet failed: ${href}`)); }, { once: true });
+    document.head.appendChild(l);
+  });
+  cssLoads.set(href, done);
+  return done;
 }
 
 function toast(msg) {
@@ -167,8 +209,18 @@ function writeSpin(id) {
   try { localStorage.setItem(SPIN_KEY, JSON.stringify(spinsCache)); } catch { /* storage off */ }
 }
 
-// Spawns already caught (state.caughtSpawn) or whose encounter has ended (caught, fled or left) stay hidden.
+// Spawns stay hidden once caught (state.caughtSpawn, or the 'catch' event below) or once they fled
+// (encounter.js's record). Backing out of an encounter without a throw leaves the Simi in place.
 const GONE_KEY = 'simihunt.map.gone';
+const FLED_KEY = 'simihunt.enc.fled'; // set by encounter.js
+let fled = null, fledAt = 0;
+function fledMap() {
+  if (!fled || Date.now() - fledAt > 1000) {
+    try { fled = JSON.parse(localStorage.getItem(FLED_KEY) || '{}') || {}; } catch { fled = {}; }
+    fledAt = Date.now();
+  }
+  return fled;
+}
 let gone = null;          // spawnId -> expiresAt
 let pendingEncounter = null;
 function goneMap() {
@@ -184,7 +236,8 @@ function setGone(spawnId, until) {
   if (until) g[spawnId] = until; else delete g[spawnId];
   try { localStorage.setItem(GONE_KEY, JSON.stringify(g)); } catch { /* storage off */ }
 }
-const isGone = (id) => !!goneMap()[id] || !!ctx?.state?.caughtSpawn?.(id);
+const isGone = (id) => !!goneMap()[id] || fledMap()[id] > Date.now()
+  || !!ctx?.state?.caughtSpawn?.(id) || !!ctx?.state?.spawnGone?.(id);
 
 const buzz = () => { try { navigator.vibrate?.(10); } catch { /* unsupported */ } };
 // Pressed look for touch (iOS does not apply :active without a touch listener).
@@ -205,6 +258,8 @@ function fadeRemove(m) {
   setTimeout(() => m.marker.remove(), 400);
 }
 const cooldownLeft = (id) => Math.max(0, (readSpins()[id] || 0) + SPIN_COOLDOWN_MS - Date.now());
+// Presenter mode skips the 5-minute cooldown but still shows a short "used" state.
+const coolLeft = (id) => (presenter ? Math.max(0, (presenterSpun.get(id) || 0) - Date.now()) : cooldownLeft(id));
 
 const stores = () => (Array.isArray(ctx?.data?.stores) ? ctx.data.stores : [])
   .map((s) => ({ ...s, lat: Number(s.lat), lon: Number(s.lon) }))
@@ -233,7 +288,8 @@ function simiImg(id, cls = '') {
 // ---------- spawns ----------
 
 function stubSpawnApi() {
-  // Used only until app/js/spawns.js exists: 4 random commons around the player.
+  // Used only when app/js/spawns.js can't load: 4 random commons around the player.
+  // Ids carry the Simi after a colon, which encounter.js reads without spawns.js.
   let cache = [];
   const ids = () => {
     const c = (ctx?.data?.simis || []).filter((s) => s.tier === 'common').map((s) => s.id);
@@ -246,7 +302,7 @@ function stubSpawnApi() {
         const a = Math.random() * Math.PI * 2, d = 30 + Math.random() * (radiusM * 0.6);
         const sLat = lat + (d * Math.cos(a)) / 111320, sLon = lon + (d * Math.sin(a)) / (111320 * Math.cos(lat * Math.PI / 180));
         const simiId = ids()[Math.floor(Math.random() * ids().length)];
-        cache.push({ spawnId: `stub-${simiId}-${Math.round(now)}-${cache.length}`, simiId, lat: sLat, lon: sLon, expiresAt: now + 10 * 60 * 1000 });
+        cache.push({ spawnId: `stub:${simiId}:${Math.round(now).toString(36)}-${cache.length}`, simiId, lat: sLat, lon: sLon, expiresAt: now + 10 * 60 * 1000 });
       }
       return cache.slice();
     },
@@ -304,13 +360,36 @@ function refreshSpawns(force = false) {
     spawnMarkers.set(s.spawnId, { marker, el, spawn: s, inRange: null });
   }
   updateRangeClasses();
+  maybeHint();
+}
+
+// True when a shown spawn sits in the open part of the screen (clear of the top and bottom HUD).
+function spawnOnScreen() {
+  if (!map) return false;
+  const c = map.getContainer(), W = c.clientWidth, H = c.clientHeight;
+  for (const m of spawnMarkers.values()) {
+    const p = map.project([m.spawn.lon, m.spawn.lat]);
+    if (p.x > 30 && p.x < W - 30 && p.y > 110 && p.y < H - 130) return true;
+  }
+  return false;
+}
+
+// First-run tip, shown only once a Simi is actually on screen to tap.
+function maybeHint() {
+  if (hinted || paused || sheetStoreId || !spawnOnScreen()) return;
+  hinted = true;
+  try {
+    if (localStorage.getItem(HINT_KEY)) return;
+    localStorage.setItem(HINT_KEY, '1');
+  } catch { return; }
+  setTimeout(() => { if (mounted && !paused) toast('Tap a Simi near you to catch it'); }, 700);
 }
 
 function tapSpawn(spawnId) {
   const m = spawnMarkers.get(spawnId);
   if (!m) return;
   if (presenter || distTo(m.spawn) <= RANGE_M) { pendingEncounter = m.spawn; ctx.go('#/encounter/' + spawnId); }
-  else toast('Get closer');
+  else toast(`${simiById(m.spawn.simiId)?.name || 'This Simi'} · ${fmtDist(distTo(m.spawn))} away`);
 }
 
 // Touch the DOM only when a marker's state actually changes.
@@ -320,7 +399,7 @@ function updateRangeClasses() {
     if (m.inRange !== r) { m.inRange = r; m.el.classList.toggle('in-range', r); }
   }
   for (const m of stopMarkers.values()) {
-    const r = distTo(m.store) <= RANGE_M, c = !presenter && cooldownLeft(m.store.id) > 0;
+    const r = distTo(m.store) <= RANGE_M, c = coolLeft(m.store.id) > 0;
     if (m.inRange !== r) { m.inRange = r; m.el.classList.toggle('in-range', r); }
     if (m.cooling !== c) { m.cooling = c; m.el.classList.toggle('cooling', c); }
   }
@@ -340,7 +419,7 @@ function refreshStops() {
     el.className = 'sm-stop';
     el.dataset.storeId = s.id;
     el.dataset.lngLat = `${s.lon},${s.lat}`;
-    el.setAttribute('aria-label', `SimiStop ${s.name || s.id}`);
+    el.setAttribute('aria-label', `SimiStop ${storeLabel(s)}`);
     el.innerHTML = `<div class="sm-stop-float"><div class="sm-stop-disc"><span class="sm-stop-cross"></span></div></div>
       <div class="sm-stop-pole"></div><div class="sm-stop-base"></div>`;
     if (s.exclusiveSimi) {
@@ -359,14 +438,27 @@ function refreshStops() {
 let sheetEl = null;      // content element of the open store sheet
 let shellSheet = null;   // handle from ctx.sheet() when the shell provides it
 
+// Shelves at this store where a Simi code can be found: a shelf-tier Simi's shelf type, or this
+// store's exclusive on its shelf. Without Simi data, every listed shelf.
+function codeShelves(s) {
+  const shelves = Array.isArray(s.shelves) ? s.shelves : [];
+  const simis = Array.isArray(ctx?.data?.simis) ? ctx.data.simis : [];
+  if (!simis.length) return shelves;
+  return shelves.filter((t) => simis.some((m) => m.shelf === t && (m.tier === 'shelf' || (m.tier === 'store' && m.storeId === s.id))));
+}
+
 function sheetHtml(s, withClose) {
   const ex = s.exclusiveSimi;
   const owned = ex && ctx.state?.has?.(ex);
+  const label = storeLabel(s);
+  // The full address sits right under the title, so the title can drop the street suffix and fit one line.
+  const title = label.replace(/\s+(Street|St\.?|Avenue|Ave\.?|Boulevard|Blvd\.?|Road|Rd\.?|Drive|Dr\.?|Lane|Ln\.?|Parkway|Pkwy\.?)$/i, '');
+  const shelves = codeShelves(s);
   return `
-    <div class="sm-sheet-card" aria-label="${esc(s.name)}">
+    <div class="sm-sheet-card" aria-label="${esc(label)}">
       ${withClose ? '<button class="sm-sheet-close" type="button" aria-label="Close">×</button>' : ''}
-      <div class="sm-sheet-kicker">SimiStop · CVS Pharmacy</div>
-      <h2 class="sm-sheet-title">${esc(s.name || 'CVS Pharmacy')}</h2>
+      <div class="sm-sheet-kicker">SimiStop</div>
+      <h2 class="sm-sheet-title">${esc(title)}</h2>
       <div class="sm-sheet-addr">${esc(s.address || '')}</div>
       ${s.drSimiStocked ? '<div class="sm-ex-label">Dr. Simi sold here</div>' : ''}
       <div class="sm-sheet-dist"></div>
@@ -376,8 +468,8 @@ function sheetHtml(s, withClose) {
       ${ex ? `<div class="sm-ex"><div class="sm-ex-art ${owned ? 'owned' : ''}"></div>
         <div><div class="sm-ex-label">Store-exclusive Simi</div>
         <div class="sm-ex-name">${owned ? esc(simiById(ex)?.name || ex) : '??? Scan a shelf code here to find out'}</div></div></div>` : ''}
-      ${(s.shelves || []).length ? `<div class="sm-shelves-label">Shelves with Simi codes</div>
-        <div class="sm-shelves">${s.shelves.map((t) => `<button type="button" class="sm-shelf" data-shelf="${esc(t)}">${esc(SHELF_LABEL[t] || t)}</button>`).join('')}</div>` : ''}
+      ${shelves.length ? `<div class="sm-shelves-label">Shelves with Simi codes</div>
+        <div class="sm-shelves">${shelves.map((t) => `<button type="button" class="sm-shelf" data-shelf="${esc(t)}">${esc(SHELF_LABEL[t] || t)}</button>`).join('')}</div>` : ''}
     </div>`;
 }
 
@@ -413,6 +505,7 @@ function openSheet(storeId) {
   const s = stores().find((x) => x.id === storeId);
   if (!s) { toast('Store not found'); closeSheet(); return; }
   if (sheetStoreId === storeId && sheetEl) { updateSheet(); return; }
+  if (walk?.route) stopWalk(); // the sheet's distance must not climb while the walk runs on
   closeSheet({ recenter: false });
   sheetStoreId = storeId;
   const leave = (hash) => { closeSheet(); ctx.go(hash); };
@@ -423,6 +516,7 @@ function openSheet(storeId) {
     shellSheet.closed.then(() => {
       if (shellSheet !== mine) return;
       shellSheet = null; sheetEl = null; sheetStoreId = null;
+      clearInterval(sheetTick); sheetTick = 0;
       root?.classList.remove('sheet-open');
       recenter();
       if (/^#\/stop\//.test(location.hash)) ctx.go('#/map');
@@ -445,6 +539,8 @@ function openSheet(storeId) {
   sheetEl.querySelectorAll('.sm-shelf').forEach((b) => { b.onclick = () => leave(`#/shelf/${s.id}/${b.dataset.shelf}`); });
   root.classList.add('sheet-open');
   updateSheet();
+  clearInterval(sheetTick);
+  sheetTick = setInterval(updateSheet, 1000); // the recharge countdown ticks while the sheet is open
   pauseFollow();
   if (map) map.easeTo({ center: [s.lon, s.lat], duration: 600 });
 }
@@ -453,36 +549,42 @@ function updateSheet() {
   if (!sheetStoreId || !sheetEl) return;
   const s = stores().find((x) => x.id === sheetStoreId);
   if (!s) return;
-  const d = distTo(s), cd = presenter ? 0 : cooldownLeft(s.id);
+  const d = distTo(s), cd = coolLeft(s.id);
   const setText = (el, t) => { if (el && el.textContent !== t) el.textContent = t; };
   setText(sheetEl.querySelector('.sm-sheet-dist'), `${fmtDist(d)} away`);
   const disc = sheetEl.querySelector('.sm-spin-disc');
   const hint = sheetEl.querySelector('.sm-spin-hint');
   disc.classList.toggle('cooling', cd > 0);
   disc.classList.toggle('far', !presenter && d > RANGE_M);
-  let t = `Tap the disc to spin for ${SPIN_CAPSULES} capsules`;
-  if (!presenter && cd > 0) t = `Recharging · ${Math.floor(cd / 60000)}:${String(Math.floor((cd % 60000) / 1000)).padStart(2, '0')}`;
-  else if (!presenter && d > RANGE_M) t = `Walk within ${RANGE_M} m to spin for capsules`;
+  let t = `Tap the disc to spin for ${SPIN_CAPSULES} Simi Capsules`;
+  const sec = Math.ceil(cd / 1000);
+  if (cd > 0) t = `Recharging · ${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
+  else if (!presenter && d > RANGE_M) t = `Walk within about ${RANGE_FT} ft to spin`;
   setText(hint, t);
 }
 
 function spin(s) {
-  if (!presenter) {
-    if (cooldownLeft(s.id) > 0) { toast('This stop is recharging'); return; }
-    if (distTo(s) > RANGE_M) { toast('Get closer'); return; }
+  if (coolLeft(s.id) > 0) { toast('This stop is recharging'); return; }
+  if (presenter) {
+    presenterSpun.set(s.id, Date.now() + PRESENTER_SPIN_MS);
+    setTimeout(() => { updateRangeClasses(); updateSheet(); }, PRESENTER_SPIN_MS + 50);
+  } else {
+    if (distTo(s) > RANGE_M) { toast(`${fmtDist(distTo(s))} away · walk closer to spin`); return; }
     writeSpin(s.id);
   }
   ctx.state?.addCapsules?.(SPIN_CAPSULES);
   const disc = sheetEl?.querySelector('.sm-spin-disc');
   if (disc) { disc.classList.remove('spinning'); void disc.offsetWidth; disc.classList.add('spinning'); }
   const total = ctx.state?.get?.()?.capsules;
-  toast(`+${SPIN_CAPSULES} Simi capsules${isFinite(total) ? ` · ${total} total` : ''}`);
+  toast(`+${SPIN_CAPSULES} Simi Capsules${isFinite(total) ? ` · ${total} total` : ''}`);
   updateRangeClasses();
   updateSheet();
 }
 
 function closeSheet({ recenter: back = true } = {}) {
   const wasOpen = !!sheetStoreId;
+  clearInterval(sheetTick);
+  sheetTick = 0;
   sheetStoreId = null;
   if (shellSheet) { const h = shellSheet; shellSheet = null; h.close(); }
   const own = root?.querySelector('.sm-sheet');
@@ -556,10 +658,62 @@ function addDataLayers() {
   const rc = routeCoords();
   setOrAdd('sm-route', { type: 'FeatureCollection', features: rc ? [{ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: rc } }] : [] });
   if (!map.getLayer('sm-route-line')) {
-    map.addLayer({ id: 'sm-route-line', type: 'line', source: 'sm-route', layout: { 'line-cap': 'round', 'line-join': 'round', visibility: 'none' },
-      paint: { 'line-color': '#0798E8', 'line-width': 4, 'line-opacity': 0.55, 'line-dasharray': [1, 2] } }, 'building');
+    // Shown from the first frame, so the demo walk's path and its SimiStop are visible before any tap.
+    map.addLayer({ id: 'sm-route-line', type: 'line', source: 'sm-route', layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': '#0798E8', 'line-width': 5, 'line-opacity': 0.75, 'line-dasharray': [1, 2] } }, 'building');
   }
   root.querySelector('.sm-walk').hidden = !rc;
+  const pw = root.querySelector('[data-pa="walk"]');
+  if (pw) pw.hidden = !rc;
+}
+
+// ---------- route geometry ----------
+
+function measure(coords) {
+  const cum = [0];
+  for (let i = 1; i < coords.length; i++) cum.push(cum[i - 1] + haversine(coords[i - 1][1], coords[i - 1][0], coords[i][1], coords[i][0]));
+  return { coords, cum, total: cum[cum.length - 1] };
+}
+
+// Point d metres along a measured path.
+function pointAt(w, d) {
+  let i = 1;
+  while (i < w.cum.length - 1 && w.cum[i] < d) i++;
+  const [a, b] = [w.coords[i - 1], w.coords[i]];
+  const k = Math.max(0, Math.min(1, (d - w.cum[i - 1]) / Math.max(1e-6, w.cum[i] - w.cum[i - 1])));
+  return { lon: a[0] + (b[0] - a[0]) * k, lat: a[1] + (b[1] - a[1]) * k };
+}
+
+const bearingTo = (a, b) => (Math.atan2((b.lon - a.lon) * Math.cos(a.lat * Math.PI / 180), b.lat - a.lat) * 180) / Math.PI;
+
+// Opening spot for a fresh game: on the demo route, STAGE_BACK_M before CVS Guadalupe and facing it,
+// so the route, the SimiStop and the player share the first frame. Falls back to the route start.
+function stagedStart() {
+  const coords = routeCoords();
+  const s = stores().find((x) => x.id === GUADALUPE_ID);
+  if (coords && s) {
+    const w = measure(coords);
+    const r = onRoute(w, s.lat, s.lon);
+    if (r.off < RANGE_M) {
+      const p = pointAt(w, Math.max(0, r.along - STAGE_BACK_M));
+      return { ...p, bearing: bearingTo(p, s) };
+    }
+  }
+  if (coords) return { lat: coords[0][1], lon: coords[0][0], bearing: 0 };
+  return { ...region.center, bearing: 0 };
+}
+
+// The first SimiStop listed in the route's waypoints that lies on the route past `from` metres.
+function nextRouteStop(w, from) {
+  const fc = asFC(ctx?.data?.route);
+  const ids = fc.features.flatMap((f) => (Array.isArray(f.properties?.waypoints) ? f.properties.waypoints : []));
+  let best = null;
+  for (const s of stores()) {
+    if (!ids.includes(s.id)) continue;
+    const r = onRoute(w, s.lat, s.lon);
+    if (r.off <= RANGE_M && r.along > from + 5 && (!best || r.along < best.along)) best = { id: s.id, along: r.along };
+  }
+  return best;
 }
 
 // ---------- player ----------
@@ -697,30 +851,105 @@ function setPos(p, { ease = false, push = false } = {}) {
   }
 }
 
+// demo: the position is simulated (joystick shown). Forced by ?demo=1, Settings or presenter mode;
+// otherwise on until a usable GPS fix arrives, and again whenever the player moves by hand.
 function setDemo(on) {
   demo = on;
   root.classList.toggle('demo', on);
-  root.classList.toggle('auto-demo', on && !forcedDemo);
+  updateLocBtn();
   if (on && !joystick) initJoystick();
 }
 
-function startGps() {
-  if (gpsWatch != null) return;
-  if (forcedDemo || presenter || !navigator.geolocation) { setDemo(true); return; }
+// ---------- GPS ----------
+
+const LOC_TEXT = {
+  off: 'Use my location', asking: 'Finding you…', on: 'Use my location',
+  denied: 'Location off', weak: 'Weak GPS · demo', outside: 'Outside play area',
+};
+
+// "Use my location": shown while the position is simulated and real GPS could take over.
+function updateLocBtn() {
+  const b = root?.querySelector('.sm-loc');
+  if (!b) return;
+  b.hidden = forcedDemo || presenter || !navigator.geolocation || !demo;
+  const t = LOC_TEXT[gpsState] || LOC_TEXT.off;
+  const label = b.querySelector('.sm-loc-text');
+  if (label.textContent !== t) label.textContent = t;
+  b.dataset.state = gpsState;
+}
+
+function setGpsState(s) {
+  gpsState = s;
+  updateLocBtn();
+}
+
+function stopGps() {
+  if (gpsWatch == null) return;
+  try { navigator.geolocation.clearWatch(gpsWatch); } catch { /* ignore */ }
+  gpsWatch = null;
+}
+
+// Watches GPS only once the player asked (ask=true, from a tap) or granted it on an earlier visit.
+function startGps(ask = false) {
+  if (gpsWatch != null || forcedDemo || presenter || paused || !navigator.geolocation) return;
+  if (ask) gpsWanted = true;
+  if (!gpsWanted) return;
+  if (gpsState !== 'on') setGpsState('asking');
   try {
-    gpsWatch = navigator.geolocation.watchPosition((g) => {
-      const p = { lat: g.coords.latitude, lon: g.coords.longitude, source: 'gps' };
-      if (forcedDemo || presenter) return;
-      if (!inRegion(p)) {
-        if (!outsideWarned) { outsideWarned = true; toast('Outside the play area · demo mode'); }
-        setDemo(true);
-        return;
-      }
-      if (joyVec || walk) return; // user is driving the demo position
-      setDemo(false);
-      setPos(p, { ease: true, push: true });
-    }, () => setDemo(true), { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
-  } catch { setDemo(true); }
+    gpsWatch = navigator.geolocation.watchPosition(onFix, onGpsError, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
+  } catch { setGpsState('weak'); }
+}
+
+function onFix(g) {
+  if (forcedDemo || presenter) return;
+  const p = { lat: g.coords.latitude, lon: g.coords.longitude, source: 'gps' };
+  const acc = g.coords.accuracy;
+  if (Number.isFinite(acc) && acc > MAX_GPS_ACC_M) {
+    if (!gpsFix && gpsState !== 'weak') { setGpsState('weak'); toast('Weak GPS · using demo mode'); }
+    return;
+  }
+  if (!inRegion(p)) {
+    if (!outsideWarned) { outsideWarned = true; toast('Outside the play area · demo mode'); }
+    gpsFix = null;
+    setGpsState('outside');
+    setDemo(true);
+    return;
+  }
+  gpsFix = p;
+  setGpsState('on');
+  if (manual) return; // the player is moving by hand; "Use my location" hands the position back to GPS
+  setDemo(false);
+  setPos(p, { ease: true, push: true });
+}
+
+function onGpsError(e) {
+  if (e?.code === 1) { // permission denied
+    stopGps();
+    gpsWanted = false;
+    gpsFix = null;
+    setGpsState('denied');
+    setDemo(true);
+    toast('Location is blocked. Allow it for this site in your browser settings, or play on in demo mode.');
+    return;
+  }
+  // Unavailable or timed out: the watch keeps trying; play on in demo meanwhile.
+  if (gpsFix) return;
+  if (gpsState !== 'weak') { setGpsState('weak'); toast('Weak GPS · using demo mode'); }
+  setDemo(true);
+}
+
+function useMyLocation() {
+  if (gpsState === 'outside') { toast('You are outside the play area, so the map stays in demo mode'); return; }
+  manual = false;
+  if (walk) stopWalk();
+  if (gpsFix && gpsWatch != null) {
+    setDemo(false);
+    resumeFollow();
+    setPos(gpsFix, { ease: true, push: true });
+    return;
+  }
+  stopGps(); // a fresh watch retries after "denied" or "weak"
+  startGps(true);
 }
 
 async function initJoystick() {
@@ -737,6 +966,7 @@ async function initJoystick() {
     if (!d?.angle) return;
     const f = Math.min(1, d.force ?? 1);
     joyVec = { x: Math.cos(d.angle.radian) * f, y: Math.sin(d.angle.radian) * f };
+    manual = true;
     resumeFollow();
     if (walk) stopWalk();
     setDemo(true);
@@ -765,38 +995,48 @@ function loop() {
       const heading = b + Math.atan2(joyVec.x, joyVec.y);
       moveBy(Math.sin(heading) * speed * dt, Math.cos(heading) * speed * dt);
     } else if (walk) {
-      walk.d += walk.speed * dt;
-      if (walk.d >= walk.total) { stopWalk(); rafId = 0; return; }
-      let i = 1;
-      while (i < walk.cum.length && walk.cum[i] < walk.d) i++;
-      const [a, b2] = [walk.coords[i - 1], walk.coords[i]];
-      const k = (walk.d - walk.cum[i - 1]) / Math.max(1e-6, walk.cum[i] - walk.cum[i - 1]);
-      setPos({ lon: a[0] + (b2[0] - a[0]) * k, lat: a[1] + (b2[1] - a[1]) * k, source: 'demo' });
+      walk.t += dt;
+      const end = walk.stopAt ? walk.stopAt.along : walk.total;
+      let v = walk.speed;
+      // Route walks ease in, then slow over the last ~20 m so the player arrives at a stop instead of passing it.
+      if (walk.route) v = Math.min(v * Math.min(1, 0.3 + walk.t * 1.4), Math.max(4, (end - walk.d) * 2.2));
+      walk.d = Math.min(end, walk.d + v * dt);
+      setPos({ ...pointAt(walk, walk.d), source: 'demo' });
+      if (walk.d >= end) {
+        const stop = walk.stopAt;
+        stopWalk();
+        rafId = 0;
+        if (stop) ctx.go('#/stop/' + stop.id);
+        return;
+      }
     }
     rafId = requestAnimationFrame(step);
   };
   rafId = requestAnimationFrame(step);
 }
 
-function walkPath(coords, speed, route) {
+function walkPath(coords, speed, route, from = 0, stopAt = null) {
+  manual = true;
   resumeFollow();
-  const cum = [0];
-  for (let i = 1; i < coords.length; i++) cum.push(cum[i - 1] + haversine(coords[i - 1][1], coords[i - 1][0], coords[i][1], coords[i][0]));
-  walk = { coords, cum, total: cum[cum.length - 1], d: 0, speed, route };
+  walk = { ...measure(coords), d: from, t: 0, speed, route, stopAt };
   loop();
 }
 
+// Walks the demo route from where the player stands on it (or from its start) and stops at the next
+// SimiStop it lists, opening that store's sheet.
 function startWalk() {
   const coords = routeCoords();
-  if (!coords) return;
+  if (!coords || !map) return;
   if (walk) stopWalk();
   setDemo(true);
   closeSheetIfOpen();
-  map.setLayoutProperty('sm-route-line', 'visibility', 'visible');
+  const w = measure(coords);
+  const here = pos ? onRoute(w, pos.lat, pos.lon) : null;
+  const from = here && here.off < 30 && here.along < w.total - 30 ? here.along : 0;
+  if (!from) setPos({ lon: coords[0][0], lat: coords[0][1], source: 'demo' }, { push: true });
   root.querySelectorAll('.sm-walk, [data-pa="walk"]').forEach((b) => { b.classList.add('on'); b.textContent = 'Skip ahead ⏭'; });
   root.classList.add('route-walking');
-  setPos({ lon: coords[0][0], lat: coords[0][1], source: 'demo' }, { push: true });
-  walkPath(coords, presenter ? PRESENTER_ROUTE_SPEED : ROUTE_SPEED, true);
+  walkPath(coords, presenter ? PRESENTER_ROUTE_SPEED : ROUTE_SPEED, true, from, nextRouteStop(w, from));
 }
 
 function stopWalk() {
@@ -809,7 +1049,6 @@ function stopWalk() {
     if (pb) pb.textContent = 'Walk route';
     root.querySelectorAll('.sm-walk, [data-pa="walk"]').forEach((b) => b.classList.remove('on'));
     root.classList.remove('route-walking');
-    if (map?.getLayer('sm-route-line')) map.setLayoutProperty('sm-route-line', 'visibility', 'none');
   }
   if (pos) setPos(pos, { push: true });
 }
@@ -865,10 +1104,12 @@ function setPresenter(on) {
   presenter = on;
   root.classList.toggle('presenter', on);
   if (on) {
-    if (gpsWatch != null) { try { navigator.geolocation.clearWatch(gpsWatch); } catch { /* ignore */ } gpsWatch = null; }
+    stopGps();
     setDemo(true);
     root.querySelector('[data-pa="walk"]').hidden = !routeCoords();
   } else if (mounted && ready && !forcedDemo) startGps();
+  updateLocBtn();
+  updateRangeClasses();
   updateSheet();
 }
 
@@ -881,7 +1122,7 @@ function walkTo(lat, lon) {
   walkPath([[pos.lon, pos.lat], [lon, lat]], d / secs, false);
 }
 
-function summonSimi() {
+function summonSimi({ quiet = false } = {}) {
   const commons = (ctx?.data?.simis || []).filter((x) => x.tier === 'common').map((x) => x.id);
   const ids = commons.length ? commons : COMMON_IDS;
   const simiId = ids[Math.floor(Math.random() * ids.length)];
@@ -899,11 +1140,12 @@ function summonSimi() {
   setGone(sp.spawnId, 0);
   summoned.set(sp.spawnId, sp);
   refreshSpawns(true);
-  toast(`A wild ${simiById(simiId)?.name || simiId} appeared`);
+  if (!quiet) toast(`A wild ${simiById(simiId)?.name || simiId} appeared`);
 }
 
 function jumpTo(lat, lon) {
   if (walk) stopWalk();
+  manual = true;
   setFollowing(true);
   setPos({ lat, lon, source: 'demo' }, { push: true, ease: true });
   refreshSpawns(true);
@@ -918,11 +1160,13 @@ function jumpToGuadalupe() {
   ctx.go('#/stop/' + GUADALUPE_ID);
 }
 
+// Back to the opening frame: on the route before CVS Guadalupe, facing it.
 function jumpToStart() {
   closeSheetIfOpen();
-  const rc = routeCoords();
-  if (rc) jumpTo(rc[0][1], rc[0][0]);
-  else jumpTo(region.center.lat, region.center.lon);
+  const s = stagedStart();
+  jumpTo(s.lat, s.lon);
+  camBusyUntil = performance.now() + 950;
+  map.easeTo({ center: [s.lon, s.lat], bearing: s.bearing, zoom: ZOOM, pitch: PITCH, duration: 900 });
 }
 
 function closeSheetIfOpen() { if (sheetStoreId) { closeSheet(); ctx.go('#/map'); } }
@@ -934,15 +1178,16 @@ function buildRoot() {
   root.className = 'sm-root following';
   root.innerHTML = `
     <div class="sm-map"></div>
-    <div class="sm-hud">
-      <div class="sm-demo-badge" title="No GPS fix in the play area, so the position is simulated">DEMO · no GPS</div>
-    </div>
+    <button class="sm-loc" type="button" hidden title="The position is simulated until GPS takes over">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-3.9 0-7 3-7 6.9 0 5 7 12.1 7 12.1s7-7.1 7-12.1c0-3.9-3.1-6.9-7-6.9Z" fill="currentColor"/><circle cx="12" cy="9.4" r="2.6" fill="#fff"/></svg>
+      <span class="sm-loc-text">Use my location</span>
+    </button>
     <div class="sm-joy" aria-label="Move (demo)"></div>
     <button class="sm-walk" type="button" hidden>Walk the demo route</button>
     <button class="sm-walk-stop" type="button" aria-label="Stop walking">Stop</button>
     <button class="sm-recenter" type="button" aria-label="Back to my location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 19.5 20 12 16.3 4.5 20Z" fill="currentColor"/></svg></button>
-    <div class="sm-pbar">
-      <button class="sm-pbar-toggle" type="button" aria-expanded="true">Presenter <span aria-hidden="true">▾</span></button>
+    <div class="sm-pbar collapsed">
+      <button class="sm-pbar-toggle" type="button" aria-expanded="false">Presenter <span aria-hidden="true">▾</span></button>
       <div class="sm-pbar-items">
         <button type="button" data-pa="summon">Summon Simi</button>
         <button type="button" data-pa="walk">Walk route</button>
@@ -961,6 +1206,7 @@ function buildRoot() {
     <div class="sm-toast" role="status" aria-live="polite"></div>`;
   root.querySelector('.sm-walk').onclick = () => { buzz(); walk?.route ? skipAhead() : startWalk(); };
   root.querySelector('.sm-walk-stop').onclick = () => { buzz(); stopWalk(); };
+  root.querySelector('.sm-loc').onclick = () => { buzz(); useMyLocation(); };
   const bar = root.querySelector('.sm-pbar');
   bar.querySelector('.sm-pbar-toggle').onclick = () => {
     const open = bar.classList.toggle('collapsed');
@@ -1010,17 +1256,19 @@ async function loadStyle() {
 }
 
 async function createMap() {
-  const [mod, style] = await Promise.all([import(ML_JS), loadStyle()]);
+  // MapLibre's stylesheet positions every marker; without it the map is unusable, so it must load too.
+  const [mod, style] = await Promise.all([import(ML_JS), loadStyle(), loadCss(ML_CSS)]);
   ml = mod;
   const start = pos || region.center;
   map = new ml.Map({
     container: root.querySelector('.sm-map'),
     style,
     center: [start.lon, start.lat],
+    bearing: startBearing ?? 0,
     zoom: ZOOM, // region.zoom is an overview level; the game camera stays close
     pitch: PITCH,
     maxPitch: 62,
-    minZoom: 12.5,
+    minZoom: MIN_ZOOM,
     maxZoom: 19,
     maxBounds: region.bounds,
     attributionControl: false,
@@ -1030,9 +1278,11 @@ async function createMap() {
     doubleClickZoom: true,
     touchPitch: true,
     keyboard: true,
-    fadeDuration: 0,
+    // Phones at DPR 3 would fill a 3 Mpx canvas every walking frame; 2 looks the same at arm's length.
+    pixelRatio: Math.min(window.devicePixelRatio || 1, 2),
     canvasContextAttributes: { antialias: true },
   });
+  startBearing = null;
   map.touchZoomRotate.enable();
   map.scrollZoom.enable();
   map.addControl(new ml.AttributionControl({ compact: false }), 'bottom-right');
@@ -1069,73 +1319,142 @@ async function createMap() {
   sizeRing();
 
   // Wait for the style only, not every tile: one slow tile must not hold up spawns and the player.
-  await new Promise((res) => (map.isStyleLoaded() ? res() : map.once('style.load', res)));
+  await new Promise((res, rej) => {
+    if (map.isStyleLoaded()) { res(); return; }
+    map.once('style.load', res);
+    map.once('error', (e) => { if (!map?.isStyleLoaded()) rej(e?.error || new Error('map style failed to load')); });
+  });
   root.querySelector('.sm-loading')?.remove();
   addDataLayers();
+}
+
+// A failed start leaves no half-built map behind and offers a retry; update() also retries on the
+// next visit to #/map, so an app launched from the Home Screen recovers without a reload.
+function mapFailed(e) {
+  console.error('map failed to start', e);
+  if (map) { try { map.remove(); } catch { /* already gone */ } }
+  map = null; ml = null; avatar = null; ring = null; heading = null;
+  spawnMarkers.clear(); stopMarkers.clear();
+  lastQueryPos = null;
+  let l = root.querySelector('.sm-loading');
+  if (!l) { l = document.createElement('div'); l.className = 'sm-loading'; root.querySelector('.sm-map').after(l); }
+  l.innerHTML = '<p>Map could not load. Check the connection.</p><button type="button" class="sm-retry">Try again</button>';
+  l.querySelector('.sm-retry').onclick = () => { buzz(); startMap(); };
+}
+
+function startMap() {
+  if (!starting) starting = runStart().finally(() => { starting = null; });
+  return starting;
+}
+
+async function runStart() {
+  const l = root.querySelector('.sm-loading');
+  if (l) l.textContent = 'Loading map…';
+  try {
+    if (!map) await createMap();
+    else {
+      map.resize();
+      if (regionChanged) map.setMaxBounds(region.bounds);
+      if (startBearing != null) { map.jumpTo({ center: [pos.lon, pos.lat], bearing: startBearing }); startBearing = null; }
+      addDataLayers();
+    }
+  } catch (e) {
+    mapFailed(e);
+    return;
+  }
+  regionChanged = false;
+  if (mounted) afterMapReady();
 }
 
 export async function mount(el, c, params = {}) {
   if (mounted) unmount();
   mounted = true;
+  paused = false;
   ctx = c;
-  loadCss(ML_CSS);
-  loadCss(MAP_CSS);
+  loadCss(ML_CSS).catch(() => { /* createMap awaits it and reports the failure */ });
+  loadCss(MAP_CSS).catch(() => { /* the map still works, unstyled */ });
   if (!root) buildRoot();
   el.appendChild(root);
+  // spawns.js pulls a CDN dependency; start it now so it loads alongside MapLibre.
+  if (!spawnApi && !spawnLoading) spawnLoading = loadSpawnApi();
 
   const st = ctx.state?.get?.() || {};
   const q = new URLSearchParams(location.search + '&' + (location.hash.split('?')[1] || ''));
   forcedDemo = !!st.demo || q.get('demo') === '1';
   const newRegion = normRegion(ctx.data?.region);
-  const regionChanged = JSON.stringify(newRegion.bounds) !== JSON.stringify(region.bounds);
+  regionChanged = regionChanged || JSON.stringify(newRegion.bounds) !== JSON.stringify(region.bounds);
   region = newRegion;
   if (!pos || regionChanged) {
     const saved = st.position && toLatLon(st.position);
-    pos = saved && inRegion(saved) ? { ...saved, source: st.position.source || 'demo' } : { ...region.center, source: 'demo' };
+    if (saved && inRegion(saved)) pos = { ...saved, source: st.position.source || 'demo' };
+    else {
+      const s0 = stagedStart();
+      pos = { lat: s0.lat, lon: s0.lon, source: 'demo' };
+      startBearing = s0.bearing;
+    }
   }
 
   ready = false;
   routeStoreId = params.storeId || decodeURIComponent((location.hash.match(/^#\/stop\/([^/?]+)/) || [])[1] || '') || null;
+  await startMap();
+}
 
-  try {
-    if (!map) await createMap();
-    else {
-      map.resize();
-      if (regionChanged) { map.setMaxBounds(region.bounds); }
-      addDataLayers();
-    }
-  } catch (e) {
-    console.error('map failed to start', e);
-    const l = root.querySelector('.sm-loading');
-    if (l) l.textContent = 'Map could not load. Check the connection.';
-    return;
-  }
-  if (!mounted) return;
+function startSpawnTimer() {
+  clearInterval(spawnTimer);
+  spawnTimer = setInterval(() => { refreshSpawns(true); refreshStops(); updateRangeClasses(); updateSheet(); }, 10000);
+}
 
-  setDemo(forcedDemo || demo || !navigator.geolocation);
+// Rehearsal leftovers go with Settings > Reset progress: hidden spawns, stop cooldowns, the first-run tip.
+function clearMapMemory() {
+  gone = {}; spinsCache = {}; hinted = false;
+  presenterSpun.clear();
+  for (const k of [GONE_KEY, SPIN_KEY, HINT_KEY]) { try { localStorage.removeItem(k); } catch { /* storage off */ } }
+  refreshSpawns(true);
+  updateRangeClasses();
+  updateSheet();
+}
+
+function afterMapReady() {
   setPresenter(readPresenterFlag());
+  // Simulated until GPS has a usable fix and the player isn't moving by hand.
+  setDemo(forcedDemo || presenter || !navigator.geolocation || !gpsFix || manual);
   setPos(pos, { push: true });
   refreshStops();
   startGps();
-  // spawns.js pulls a CDN dependency; don't hold the player and stops back for it.
-  if (spawnApi) refreshSpawns(true);
-  else loadSpawnApi().then((api) => { spawnApi = api; if (mounted) refreshSpawns(true); });
-  spawnTimer = setInterval(() => { refreshSpawns(true); refreshStops(); updateRangeClasses(); updateSheet(); }, 10000);
+  // A site granted location on an earlier visit starts GPS without asking again.
+  if (!gpsWanted && !forcedDemo && !presenter && navigator.permissions?.query) {
+    navigator.permissions.query({ name: 'geolocation' })
+      .then((r) => { if (r.state === 'granted' && mounted && !paused) startGps(true); })
+      .catch(() => { /* not supported */ });
+  }
+  const spawnsIn = (api) => {
+    spawnApi = api;
+    if (!mounted || !map) return;
+    refreshSpawns(true);
+    // Presenter mode: make sure the opening frame has a Simi to catch.
+    if (presenter && !spawnOnScreen()) summonSimi({ quiet: true });
+  };
+  if (spawnApi) spawnsIn(spawnApi);
+  else (spawnLoading || (spawnLoading = loadSpawnApi())).then(spawnsIn);
+  startSpawnTimer();
   const onCatch = ctx.state?.on?.('catch', (snap, detail) => {
     const sid = detail?.spawnId ?? snap?.spawnId;
     if (sid) { setGone(sid, Date.now() + 3 * 3600 * 1000); summoned.delete(sid); }
     refreshSpawns(true);
   });
   if (typeof onCatch === 'function') unsubs.push(onCatch);
-  const onChange = ctx.state?.on?.('change', (ev) => {
-    if (ev?.kind === 'position') return;
+  // Listeners get (snapshot, detail); position updates arrive many times a second, so skip them first.
+  const onChange = ctx.state?.on?.('change', (snap, detail) => {
+    const kind = detail?.kind;
+    if (kind === 'position') return;
+    if (kind === 'reset') clearMapMemory();
     const pf = readPresenterFlag();
     if (pf !== presenter) setPresenter(pf);
-    const f = !!ctx.state.get()?.demo;
+    const f = !!(snap || ctx.state.get())?.demo;
     if (f === forcedDemo) return;
     forcedDemo = f;
-    if (f) { if (gpsWatch != null) { navigator.geolocation.clearWatch(gpsWatch); gpsWatch = null; } setDemo(true); }
-    else if (!presenter) { setDemo(demo); startGps(); }
+    if (f) { stopGps(); setDemo(true); }
+    else if (!presenter) { setDemo(!gpsFix || manual); startGps(); }
   });
   if (typeof onChange === 'function') unsubs.push(onChange);
   window.addEventListener('hashchange', onHash);
@@ -1148,12 +1467,6 @@ export async function mount(el, c, params = {}) {
   unsubs.push(() => window.removeEventListener('hashchange', onHash));
 
   ready = true;
-  try {
-    if (!localStorage.getItem('simihunt.map.hinted')) {
-      localStorage.setItem('simihunt.map.hinted', '1');
-      setTimeout(() => toast('Tap a Simi near you to catch it'), 900);
-    }
-  } catch { /* storage off */ }
   if (routeStoreId) openSheet(routeStoreId);
   else closeSheet();
 }
@@ -1162,32 +1475,62 @@ export async function mount(el, c, params = {}) {
 export function update(params = {}, c) {
   if (c) ctx = c;
   routeStoreId = params.storeId || null;
-  if (!mounted || !ready) return; // mount() applies routeStoreId when it finishes
+  if (!mounted) return;
+  if (!ready) { if (!map && !starting) startMap(); return; } // a failed start retries here; mount applies routeStoreId
+  resume();
   if (params.storeId) openSheet(params.storeId);
   else closeSheet();
   if (map) { refreshStops(); updateRangeClasses(); }
 }
 
-// A sheet must not linger over another screen (e.g. after the back button).
+const isMapHash = (h) => !h || h === '#' || h === '#/' || /^#\/(map|stop\/)/.test(h);
+
+// Another screen covers the map: stop its timers, GPS watch and any walk until update() brings it back.
+function pause() {
+  if (paused) return;
+  paused = true;
+  clearInterval(spawnTimer);
+  spawnTimer = 0;
+  stopGps();
+  joyVec = null;
+  if (walk) stopWalk();
+  cancelAnimationFrame(camRaf);
+  camRaf = 0;
+}
+
+function resume() {
+  if (!paused) return;
+  paused = false;
+  startSpawnTimer();
+  startGps();
+  if (pos) setPos(pos, { push: true });
+  refreshSpawns(true);
+  refreshStops();
+}
+
 function onHash() {
-  if (sheetStoreId && !/^#\/stop\//.test(location.hash)) closeSheet();
+  const h = location.hash;
+  // A sheet must not linger over another screen (e.g. after the back button).
+  if (sheetStoreId && !/^#\/stop\//.test(h)) closeSheet();
   if (pendingEncounter) {
-    let h = location.hash;
-    try { h = decodeURIComponent(h); } catch { /* keep raw */ }
-    if (!h.startsWith('#/encounter/' + pendingEncounter.spawnId)) {
-      setGone(pendingEncounter.spawnId, pendingEncounter.expiresAt || Date.now() + 3 * 3600 * 1000);
-      summoned.delete(pendingEncounter.spawnId);
+    let d = h;
+    try { d = decodeURIComponent(h); } catch { /* keep raw */ }
+    // Out of the encounter: a catch hides the spawn through the 'catch' event and a flee through
+    // encounter.js's record; backing out without a throw leaves the Simi where it was.
+    if (!d.startsWith('#/encounter/' + pendingEncounter.spawnId)) {
       pendingEncounter = null;
       refreshSpawns(true);
     }
   }
+  if (!isMapHash(h)) pause();
 }
 
 export function unmount() {
   mounted = false;
   ready = false;
-  if (gpsWatch != null) { try { navigator.geolocation.clearWatch(gpsWatch); } catch { /* ignore */ } gpsWatch = null; }
+  stopGps();
   clearInterval(spawnTimer);
+  spawnTimer = 0;
   clearTimeout(walkTimer);
   cancelAnimationFrame(rafId);
   rafId = 0;

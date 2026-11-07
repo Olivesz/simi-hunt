@@ -2,6 +2,7 @@
  {
   "id": "cvs-guadalupe-2021",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 2021 Guadalupe St",
   "address": "2021 Guadalupe Street, Austin, TX 78705",
   "lat": 30.283548,
   "lon": -97.741602,
@@ -10,7 +11,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu"
   ],
@@ -19,6 +19,7 @@
  {
   "id": "cvs-guadalupe-2402",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 2402 Guadalupe St",
   "address": "2402 Guadalupe Street, Austin, TX 78705",
   "lat": 30.287877,
   "lon": -97.741902,
@@ -28,7 +29,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu",
    "dr-simi"
@@ -38,6 +38,7 @@
  {
   "id": "cvs-congress-500",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 500 Congress Ave",
   "address": "500 Congress Avenue, Austin, TX 78701",
   "lat": 30.267451,
   "lon": -97.743612,
@@ -47,15 +48,16 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
-   "cold-flu"
+   "cold-flu",
+   "dr-simi"
   ],
   "drSimiStocked": false
  },
  {
   "id": "cvs-airport-2213",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 2213 Airport Blvd",
   "address": "2213 Airport Boulevard, Austin, TX 78722",
   "lat": 30.286125,
   "lon": -97.70538,
@@ -65,15 +67,16 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
-   "cold-flu"
+   "cold-flu",
+   "dr-simi"
   ],
   "drSimiStocked": false
  },
  {
   "id": "cvs-lake-austin-2610",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 2610 Lake Austin Blvd",
   "address": "2610 Lake Austin Boulevard, Austin, TX 78703",
   "lat": 30.281509,
   "lon": -97.774953,
@@ -82,7 +85,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu"
   ],
@@ -91,6 +93,7 @@
  {
   "id": "cvs-lamar-2101",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 2101 S Lamar Blvd",
   "address": "2101 South Lamar Boulevard, Austin, TX 78704",
   "lat": 30.247502,
   "lon": -97.770017,
@@ -99,7 +102,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu"
   ],
@@ -108,6 +110,7 @@
  {
   "id": "cvs-lamar-11300",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 11300 N Lamar Blvd",
   "address": "11300 N Lamar Boulevard, Austin, TX 78753",
   "lat": 30.38201019,
   "lon": -97.68640607,
@@ -118,7 +121,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu",
    "dr-simi"
@@ -127,6 +129,7 @@
  {
   "id": "cvs-congress-5526",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 5526 S Congress Ave",
   "address": "5526 S Congress Avenue, Austin, TX 78745",
   "lat": 30.20555117,
   "lon": -97.7746135,
@@ -137,7 +140,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu",
    "dr-simi"
@@ -146,6 +148,7 @@
  {
   "id": "cvs-williamcannon-1950",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 1950 W William Cannon Dr",
   "address": "1950 W William Cannon Drive, Austin, TX 78745",
   "lat": 30.20282046,
   "lon": -97.80560111,
@@ -156,7 +159,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu",
    "dr-simi"
@@ -165,6 +167,7 @@
  {
   "id": "cvs-fm620-11725",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 11725 N FM 620",
   "address": "11725 N FM 620, Austin, TX 78750",
   "lat": 30.4572617,
   "lon": -97.82280327,
@@ -175,7 +178,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu",
    "dr-simi"
@@ -184,6 +186,7 @@
  {
   "id": "cvs-williamcannon-7101",
   "name": "CVS Pharmacy",
+  "label": "CVS \u00b7 7101 E William Cannon Dr",
   "address": "7101 E William Cannon Drive, Austin, TX 78744",
   "lat": 30.162000825203,
   "lon": -97.7258197063457,
@@ -194,7 +197,6 @@
    "sun-care",
    "skincare",
    "vitamins",
-   "sleep",
    "sports-nutrition",
    "cold-flu",
    "dr-simi"

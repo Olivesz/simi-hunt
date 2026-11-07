@@ -35,28 +35,6 @@
    "blurb": "Broad spectrum, built for sweaty days."
   },
   {
-   "id": "off-77275271",
-   "name": "Baby Continuous Protection Zinc Oxide Sunscreen SPF 50",
-   "brand": "Aveeno",
-   "image": "img/products/packshots/off-77275271.jpg",
-   "imageCredit": "© Aveeno — product image, demo use",
-   "sourceUrl": "https://www.aveeno.com/products/baby-continuous-protection-sensitive-skin-zinc-oxide-sunscreen-spf-50",
-   "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
-   "drSimi": false,
-   "blurb": "Mineral sunscreen for sensitive skin."
-  },
-  {
-   "id": "off-0813277019916",
-   "name": "Kids SPF 50 Mineral Sunscreen",
-   "brand": "Babyganics",
-   "image": "img/products/packshots/off-0813277019916.jpg",
-   "imageCredit": "© Babyganics — product image, demo use",
-   "sourceUrl": "https://babyganics.com/products/bkids-spf-50/",
-   "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
-   "drSimi": false,
-   "blurb": "A mineral pick for little beachgoers."
-  },
-  {
    "id": "off-0086800211549",
    "name": "Ultra Sheer Dry-Touch Sunscreen SPF 30",
    "brand": "Neutrogena",
@@ -113,7 +91,7 @@
    "sourceUrl": "https://www.walmart.com/ip/Eucerin-Roughness-Relief-Body-Lotion-Fragrance-Free-16-9-fl-oz-Bottle/845487111",
    "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
    "drSimi": false,
-   "blurb": "Soothes rough, dry skin."
+   "blurb": "Body lotion for rough, dry skin."
   },
   {
    "id": "off-0381370038443",
@@ -138,7 +116,7 @@
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
    "blurb": "Gentle exfoliating face scrub.",
-   "priceSource": "https://www.drsimi.com/products/eternal-secret-exfoliating-face-scrub-with-vitamin-e-2-oz (checked 2026-11-06)"
+   "priceSource": "https://www.drsimi.com/products/eternal-secret-exfoliating-face-scrub-with-vitamin-e-2-oz (checked 2026-11-07)"
   }
  ],
  "vitamins": [
@@ -188,67 +166,35 @@
    "sourceUrl": "https://www.drsimi.com/products/dr-simi-vitamin-c-with-rose-hips-60-tab",
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
-   "blurb": "1000 mg vitamin C with rose hips.",
-   "priceSource": "https://www.drsimi.com/products/dr-simi-vitamin-c-with-rose-hips-60-tab (checked 2026-11-06)"
+   "blurb": "Vitamin C tablets with rose hips.",
+   "priceSource": "https://www.drsimi.com/products/dr-simi-vitamin-c-with-rose-hips-60-tab (checked 2026-11-07)"
   },
   {
    "id": "drsimi-multigomi",
    "name": "Multigomi Vitamins/Minerals Gummies",
    "brand": "Dr. Simi",
    "size": "60 gummies",
+   "price": 12.99,
    "image": "img/products/packshots/drsimi-multigomi.jpg",
    "imageCredit": "© Dr. Simi — product image, demo use",
    "sourceUrl": "https://www.drsimi.com/products/multigomi-vitamins-minerals-flavored-gummies-60-pcs",
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
-   "blurb": "Flavored multivitamin gummies."
+   "blurb": "Flavored multivitamin gummies.",
+   "priceSource": "https://www.drsimi.com/products/multigomi-vitamins-minerals-flavored-gummies-60-pcs (checked 2026-11-07)"
   }
  ],
  "sleep": [
   {
-   "id": "off-0031604031312",
-   "name": "Melatonin Gummies",
-   "brand": "Nature Made",
-   "image": "img/products/packshots/off-0031604031312.jpg",
-   "imageCredit": "© Nature Made — product image, demo use",
-   "sourceUrl": "https://www.naturemade.com/products/nature-made-melatonin-10-mg-gummies",
-   "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
-   "drSimi": false,
-   "blurb": "Melatonin in a gummy."
-  },
-  {
-   "id": "off-0047469073312",
-   "name": "Melatonin 10 mg",
-   "brand": "Natrol",
-   "image": "img/products/packshots/off-0047469073312.jpg",
-   "imageCredit": "© Natrol — product image, demo use",
-   "sourceUrl": "https://www.natrol.com/products/melatonin-gummies-sleep-support-strawberry-10mg",
-   "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
-   "drSimi": false,
-   "blurb": "High-strength melatonin."
-  },
-  {
    "id": "off-0682430179206",
-   "name": "Pure ZZZs Melatonin Gummies",
+   "name": "Pure Zzzs Melatonin + Chamomile & Lavender Gummies",
    "brand": "Vicks",
    "image": "img/products/packshots/off-0682430179206.jpg",
    "imageCredit": "© Vicks — product image, demo use",
    "sourceUrl": "https://www.zzzquil.com/en-us/product/pure-zzzs-melatonin-gummies",
    "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
    "drSimi": false,
-   "blurb": "Wind-down gummies."
-  },
-  {
-   "id": "off-0681131428330",
-   "name": "Extra Strength Melatonin 10 mg",
-   "brand": "Spring Valley",
-   "size": "120 ct",
-   "image": "img/products/packshots/off-0681131428330.jpg",
-   "imageCredit": "© Spring Valley — product image, demo use",
-   "sourceUrl": "https://www.walmart.com/ip/Spring-Valley-Extra-Strength-Melatonin-Gummies-for-Sleep-Support-Blueberry-10mg-120-Count/699876042",
-   "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
-   "drSimi": false,
-   "blurb": "Value-size melatonin."
+   "blurb": "Melatonin gummies with chamomile and lavender."
   },
   {
    "id": "off-0023249013365",
@@ -260,6 +206,20 @@
    "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
    "drSimi": false,
    "blurb": "A melatonin-free sleep option."
+  },
+  {
+   "id": "drsimi-lemon-balm-guava",
+   "name": "Lemon Balm & Guava Capsules",
+   "brand": "Dr. Simi",
+   "size": "30 capsules",
+   "price": 10.99,
+   "image": "img/products/packshots/drsimi-inositol.jpg",
+   "imageCredit": "© Dr. Simi — product image, demo use",
+   "sourceUrl": "https://www.drsimi.com/products/dr-simi-lemon-balm-guava-30-capsules",
+   "license": "Official brand image, local copy for demo use only",
+   "drSimi": true,
+   "blurb": "Herbal capsules with lemon balm and guava.",
+   "priceSource": "https://www.drsimi.com/products/dr-simi-lemon-balm-guava-30-capsules (checked 2026-11-07)"
   }
  ],
  "sports-nutrition": [
@@ -296,7 +256,7 @@
    "sourceUrl": "https://dymatize.com/products/iso100-gourmet-chocolate",
    "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
    "drSimi": false,
-   "blurb": "Fast-absorbing whey isolate."
+   "blurb": "Hydrolyzed whey protein isolate."
   },
   {
    "id": "off-0840266324591",
@@ -319,19 +279,21 @@
    "sourceUrl": "https://www.thorne.com/products/dp/creatine",
    "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
    "drSimi": false,
-   "blurb": "Creatine powder, 5 g servings."
+   "blurb": "A simple creatine powder."
   },
   {
    "id": "drsimi-xgear-creatine",
    "name": "X-Gear Creatine Dietary Supplement Powder",
    "brand": "Dr. Simi",
    "size": "5.3 oz",
+   "price": 11.9,
    "image": "img/products/packshots/drsimi-xgear-creatine.jpg",
    "imageCredit": "© Dr. Simi — product image, demo use",
    "sourceUrl": "https://www.drsimi.com/products/creatine_5g_powder_150gr_xgear",
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
-   "blurb": "Creatine powder from the X-Gear sport line."
+   "blurb": "Creatine powder from the X-Gear sport line.",
+   "priceSource": "https://www.drsimi.com/products/creatine_5g_powder_150gr_xgear (checked 2026-11-07)"
   }
  ],
  "cold-flu": [
@@ -345,7 +307,7 @@
    "sourceUrl": "https://www.heb.com/product-detail/halls-throat-soothing-cough-drops-honey-30-ct/1961856",
    "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
    "drSimi": false,
-   "blurb": "Honey-menthol soothing drops."
+   "blurb": "Honey-menthol drops."
   },
   {
    "id": "off-0312546632615",
@@ -382,18 +344,6 @@
    "blurb": "Lemon-mint herb drops."
   },
   {
-   "id": "off-0897233709028",
-   "name": "Baby Cough Syrup + Immune, Dark Honey + Zinc, Natural Cherry",
-   "brand": "Zarbee's",
-   "size": "2 fl oz",
-   "image": "img/products/packshots/off-0897233709028.jpg",
-   "imageCredit": "© Zarbee's — product image, demo use",
-   "sourceUrl": "https://www.zarbees.com/product/baby-cough-syrup-immune",
-   "license": "Data ODbL 1.0 / DbCL 1.0; image © brand owner, demo use only",
-   "drSimi": false,
-   "blurb": "Honey-based syrup for little ones."
-  },
-  {
    "id": "off-0814832010683",
    "name": "Sugar Free Wild Cherry Throat Drops",
    "brand": "Luden's",
@@ -417,35 +367,25 @@
    "sourceUrl": "https://www.drsimi.com/products/dr-simi-vitamin-c-with-rose-hips-60-tab",
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
-   "blurb": "1000 mg vitamin C with rose hips.",
-   "priceSource": "https://www.drsimi.com/products/dr-simi-vitamin-c-with-rose-hips-60-tab (checked 2026-11-06)"
+   "blurb": "Vitamin C tablets with rose hips.",
+   "priceSource": "https://www.drsimi.com/products/dr-simi-vitamin-c-with-rose-hips-60-tab (checked 2026-11-07)"
   },
   {
    "id": "drsimi-multigomi",
    "name": "Multigomi Vitamins/Minerals Gummies",
    "brand": "Dr. Simi",
    "size": "60 gummies",
+   "price": 12.99,
    "image": "img/products/packshots/drsimi-multigomi.jpg",
    "imageCredit": "© Dr. Simi — product image, demo use",
    "sourceUrl": "https://www.drsimi.com/products/multigomi-vitamins-minerals-flavored-gummies-60-pcs",
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
-   "blurb": "Flavored multivitamin gummies."
+   "blurb": "Flavored multivitamin gummies.",
+   "priceSource": "https://www.drsimi.com/products/multigomi-vitamins-minerals-flavored-gummies-60-pcs (checked 2026-11-07)"
   },
   {
-   "id": "drsimi-multigomi-kids",
-   "name": "Multigomi Zinc / Beta Glucan / Vit C Kids Gummies",
-   "brand": "Dr. Simi",
-   "size": "60 gummies",
-   "image": "img/products/packshots/drsimi-multigomi-kids.jpg",
-   "imageCredit": "© Dr. Simi — product image, demo use",
-   "sourceUrl": "https://www.drsimi.com/products/multigomi-zinc-beta-glucan-vit-c-kids-60-gummies",
-   "license": "Official brand image, local copy for demo use only",
-   "drSimi": true,
-   "blurb": "Immune-support gummies for kids."
-  },
-  {
-   "id": "drsimi-inositol",
+   "id": "drsimi-lemon-balm-guava",
    "name": "Lemon Balm & Guava Capsules",
    "brand": "Dr. Simi",
    "size": "30 capsules",
@@ -455,20 +395,22 @@
    "sourceUrl": "https://www.drsimi.com/products/dr-simi-lemon-balm-guava-30-capsules",
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
-   "blurb": "Lemon balm and guava capsules from the Dr. Simi sleep and relaxation line.",
-   "priceSource": "https://www.drsimi.com/products/dr-simi-lemon-balm-guava-30-capsules (checked 2026-11-06)"
+   "blurb": "Herbal capsules with lemon balm and guava.",
+   "priceSource": "https://www.drsimi.com/products/dr-simi-lemon-balm-guava-30-capsules (checked 2026-11-07)"
   },
   {
    "id": "drsimi-xgear-creatine",
    "name": "X-Gear Creatine Dietary Supplement Powder",
    "brand": "Dr. Simi",
    "size": "5.3 oz",
+   "price": 11.9,
    "image": "img/products/packshots/drsimi-xgear-creatine.jpg",
    "imageCredit": "© Dr. Simi — product image, demo use",
    "sourceUrl": "https://www.drsimi.com/products/creatine_5g_powder_150gr_xgear",
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
-   "blurb": "Creatine powder from the X-Gear sport line."
+   "blurb": "Creatine powder from the X-Gear sport line.",
+   "priceSource": "https://www.drsimi.com/products/creatine_5g_powder_150gr_xgear (checked 2026-11-07)"
   },
   {
    "id": "drsimi-eternal-scrub",
@@ -482,7 +424,7 @@
    "license": "Official brand image, local copy for demo use only",
    "drSimi": true,
    "blurb": "Gentle exfoliating face scrub.",
-   "priceSource": "https://www.drsimi.com/products/eternal-secret-exfoliating-face-scrub-with-vitamin-e-2-oz (checked 2026-11-06)"
+   "priceSource": "https://www.drsimi.com/products/eternal-secret-exfoliating-face-scrub-with-vitamin-e-2-oz (checked 2026-11-07)"
   }
  ]
 }

@@ -19,20 +19,40 @@ function defaults() {
   };
 }
 
+const REGIONS = ['austin', 'lasvegas'];
+const DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
+const isObj = (x) => !!x && typeof x === 'object' && !Array.isArray(x);
+
+// Keeps only well-formed fields, so one bad entry in saved state can't break
+// the HUD or the SimiDex on boot.
+function sanitize(saved) {
+  const d = defaults();
+  if (!isObj(saved)) return d;
+  const s = { ...d, ...saved };
+  s.catches = Array.isArray(saved.catches)
+    ? saved.catches.filter((c) => isObj(c) && typeof c.simiId === 'string' && c.simiId) : [];
+  s.seen = Array.isArray(saved.seen) ? [...new Set(saved.seen.filter((x) => typeof x === 'string' && x))] : [];
+  s.claims = isObj(saved.claims) ? saved.claims : {};
+  s.capsules = Number.isFinite(saved.capsules) && saved.capsules >= 0 ? Math.floor(saved.capsules) : d.capsules;
+  const st = isObj(saved.streak) ? saved.streak : {};
+  s.streak = {
+    count: Number.isFinite(st.count) && st.count >= 0 ? Math.floor(st.count) : 0,
+    lastDay: typeof st.lastDay === 'string' && DAY_RE.test(st.lastDay) ? st.lastDay : null,
+  };
+  const p = saved.position;
+  s.position = isObj(p) && Number.isFinite(p.lat) && Number.isFinite(p.lon)
+    ? { lat: p.lat, lon: p.lon, source: p.source === 'demo' ? 'demo' : 'gps' } : null;
+  s.region = REGIONS.includes(saved.region) ? saved.region : d.region;
+  s.demo = !!saved.demo;
+  s.presenter = !!saved.presenter;
+  return s;
+}
+
 function load() {
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return defaults();
-    const saved = JSON.parse(raw);
-    const s = { ...defaults(), ...saved };
-    s.streak = { ...defaults().streak, ...(saved.streak || {}) };
-    if (!Array.isArray(s.catches)) s.catches = [];
-    if (!Array.isArray(s.seen)) s.seen = [];
-    if (!s.claims || typeof s.claims !== 'object') s.claims = {};
-    if (typeof s.capsules !== 'number') s.capsules = 20;
-    s.demo = !!s.demo;
-    s.presenter = !!s.presenter;
-    return s;
+    return sanitize(JSON.parse(raw));
   } catch (e) {
     console.warn('[state] could not read saved state, starting fresh', e);
     return defaults();
@@ -64,17 +84,40 @@ function commit(kind, detail) {
   emit('change', { kind, ...detail });
 }
 
-function dayKey(d = new Date()) {
-  const p = (n) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+// The streak follows spawns.js nextStreak(), as CONTRACT.md asks. spawns.js is
+// loaded lazily so a problem there can never stop the app from booting; until it
+// arrives, the same rule runs here (local day in the region's time zone).
+const REGION_TZ = { austin: 'America/Chicago', lasvegas: 'America/Los_Angeles' };
+let nextStreakFn = null;
+import('./spawns.js')
+  .then((m) => { if (typeof m.nextStreak === 'function') nextStreakFn = m.nextStreak; })
+  .catch((e) => console.warn('[state] spawns.js not loaded, using the built-in streak rule', e));
+
+function localDay(ms, tz) {
+  try {
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' })
+      .formatToParts(new Date(ms)).map((x) => [x.type, x.value]));
+    return `${p.year}-${p.month}-${p.day}`;
+  } catch {
+    const d = new Date(ms), pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  }
+}
+
+function fallbackNextStreak(streak, now, tz) {
+  const today = localDay(now, tz);
+  if (streak.lastDay === today) return { count: streak.count, lastDay: today };
+  const yesterday = localDay(now - 24 * 3600 * 1000, tz);
+  return { count: streak.lastDay === yesterday ? streak.count + 1 : 1, lastDay: today };
 }
 
 function bumpStreak() {
-  const today = dayKey();
-  if (s.streak.lastDay === today) return;
-  const y = new Date();
-  y.setDate(y.getDate() - 1);
-  s.streak = { count: s.streak.lastDay === dayKey(y) ? s.streak.count + 1 : 1, lastDay: today };
+  const now = Date.now();
+  const tz = REGION_TZ[s.region] || REGION_TZ.austin;
+  let next = null;
+  try { next = nextStreakFn?.({ ...s.streak }, now, tz); } catch (e) { console.warn('[state] nextStreak failed', e); }
+  if (!next || !Number.isFinite(next.count) || typeof next.lastDay !== 'string') next = fallbackNextStreak(s.streak, now, tz);
+  s.streak = { count: next.count, lastDay: next.lastDay };
 }
 
 // Returns a copy, so callers can't mutate state behind the write API.
@@ -163,10 +206,23 @@ export function setPresenter(on) {
   commit('presenter', { presenter: s.presenter });
 }
 
+// Other modules keep per-device progress under their own simihunt.* keys
+// (hidden spawns, stop cooldowns, SimiDex filter, hints). Reset clears those
+// too; these keys are settings and survive.
+const KEEP_ON_RESET = new Set([KEY, 'simihunt.map.hunterColor']);
+
 // Wipes progress but keeps the chosen region, demo and presenter modes.
 export function reset() {
   const { region, demo, presenter } = s;
   s = { ...defaults(), region, demo, presenter };
+  try {
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith('simihunt.') && !KEEP_ON_RESET.has(k)) localStorage.removeItem(k);
+    }
+  } catch (e) {
+    console.warn('[state] could not clear saved progress keys', e);
+  }
   commit('reset', {});
 }
 

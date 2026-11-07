@@ -1,6 +1,39 @@
 // Deterministic wild-Simi spawns. No server: every phone derives the same
 // spawns from (geohash cell, 3-hour window, slot).
-import ngeohash from 'https://esm.sh/ngeohash@0.6.3';
+
+// ---------- geohash ----------
+// Standard geohash encode and bounding-box decode, kept here so spawns never
+// wait on a CDN. Output matches ngeohash 0.6.3 exactly.
+const B32 = '0123456789bcdefghjkmnpqrstuvwxyz';
+function encode(lat, lon, chars) {
+  let hash = '', bits = 0, total = 0, v = 0;
+  let minLat = -90, maxLat = 90, minLon = -180, maxLon = 180;
+  while (hash.length < chars) {
+    if (total % 2 === 0) {
+      const mid = (maxLon + minLon) / 2;
+      if (lon > mid) { v = v * 2 + 1; minLon = mid; } else { v *= 2; maxLon = mid; }
+    } else {
+      const mid = (maxLat + minLat) / 2;
+      if (lat > mid) { v = v * 2 + 1; minLat = mid; } else { v *= 2; maxLat = mid; }
+    }
+    bits++; total++;
+    if (bits === 5) { hash += B32[v]; bits = 0; v = 0; }
+  }
+  return hash;
+}
+function decodeBbox(hash) {
+  let isLon = true, minLat = -90, maxLat = 90, minLon = -180, maxLon = 180;
+  for (const ch of hash.toLowerCase()) {
+    const v = B32.indexOf(ch);
+    for (let b = 4; b >= 0; b--) {
+      const on = (v >> b) & 1;
+      if (isLon) { const mid = (maxLon + minLon) / 2; if (on) minLon = mid; else maxLon = mid; }
+      else { const mid = (maxLat + minLat) / 2; if (on) minLat = mid; else maxLat = mid; }
+      isLon = !isLon;
+    }
+  }
+  return [minLat, minLon, maxLat, maxLon];
+}
 
 const PRECISION = 7;                     // ~153 m x 153 m cells
 const WINDOW_MS = 3 * 3600 * 1000;       // clock-aligned (UTC) windows
@@ -134,7 +167,9 @@ function indexOf(data) {
     if (kinds.includes('water') && polys.length) { idx.water.push(...polys); kinds.splice(kinds.indexOf('water'), 1); }
     if (!kinds.length) continue;
     let pt = null;
-    if (g.type === 'Point') pt = g.coordinates;
+    const c = f.properties && f.properties.centroid;            // optional [lon, lat], survives simplification
+    if (Array.isArray(c) && c.length === 2 && c.every(Number.isFinite)) pt = c;
+    else if (g.type === 'Point') pt = g.coordinates;
     else if (polys.length) {
       const r = polys[0][0];
       pt = [r.reduce((s, c) => s + c[0], 0) / r.length, r.reduce((s, c) => s + c[1], 0) / r.length];
@@ -167,15 +202,22 @@ function biomeTags(simi) {
 function weightFor(simi, ctx, hasPois, isNight) {
   let w = RARITY_W[simi.rarity] ?? RARITY_W.common;
   const tags = biomeTags(simi);
-  if (tags.has('night')) w *= isNight ? 4 : 0.25;
+  if (tags.has('night')) w *= isNight ? 4 : 0.25;   // by day a hit is redrawn (generateCell)
   const place = [...tags].filter((t) => t !== 'night');
   if (place.length && hasPois) w *= place.some((t) => ctx.has(t)) ? 3 : 0.6;
   return w;
 }
+const nightOnly = (simi) => biomeTags(simi).has('night');
+function pickWeighted(pool, ctx, hasPois, isNight, r) {
+  const ws = pool.map((s) => weightFor(s, ctx, hasPois, isNight));
+  let x = r * ws.reduce((a, b) => a + b, 0), i = 0;
+  while (i < pool.length - 1 && x >= ws[i]) { x -= ws[i]; i++; }
+  return pool[i];
+}
 
 // ---------- spawn generation ----------
 function generateCell(cell, w, data) {
-  const [minLat, minLon, maxLat, maxLon] = ngeohash.decode_bbox(cell);
+  const [minLat, minLon, maxLat, maxLon] = decodeBbox(cell);
   const cLat = (minLat + maxLat) / 2, cLon = (minLon + maxLon) / 2;
   const tz = tzFor(cLon, data);
   const mid = w * WINDOW_MS + WINDOW_MS / 2;
@@ -199,10 +241,14 @@ function generateCell(cell, w, data) {
     } else {
       let pool = commons.filter((s) => !used.has(s.id));
       if (!pool.length) pool = commons;
-      const ws = pool.map((s) => weightFor(s, ctx, hasPois, isNight));
-      let r = rng() * ws.reduce((a, b) => a + b, 0), i = 0;
-      while (i < pool.length - 1 && r >= ws[i]) { r -= ws[i]; i++; }
-      simiId = pool[i].id;
+      let pick = pickWeighted(pool, ctx, hasPois, isNight, rng());
+      // Night-only Simis (Sleepy) never appear by day. Redrawing only when the
+      // first draw lands on one leaves every other cell's Simi where it was.
+      if (!isNight && nightOnly(pick)) {
+        const day = pool.filter((s) => !nightOnly(s));
+        if (day.length) pick = pickWeighted(day, ctx, hasPois, isNight, rng());
+      }
+      simiId = pick.id;
     }
     used.add(simiId);
     // jitter inside the cell (10%-90%), retry off water
@@ -219,21 +265,37 @@ function generateCell(cell, w, data) {
   return out;
 }
 
+// A cell's spawns are fixed for its window, so keep them per data object and
+// window. Asking for a newer window drops the older one's cells; an older
+// window (a stale encounter link) is computed without touching the cache.
+// Callers get copies, so the cached objects never change.
+const cellCache = new WeakMap();
+const NO_DATA = {};
+function cellSpawns(cell, w, data) {
+  const key = data && typeof data === 'object' ? data : NO_DATA;
+  let c = cellCache.get(key);
+  if (!c || w > c.w) { c = { w, cells: new Map() }; cellCache.set(key, c); }
+  if (w !== c.w) return generateCell(cell, w, data);
+  let out = c.cells.get(cell);
+  if (!out) { out = generateCell(cell, w, data); c.cells.set(cell, out); }
+  return out;
+}
+
 export function spawnsNear(lat, lon, radiusM, now, data) {
   const w = Math.floor(now / WINDOW_MS);
-  const [bl, bn, bt, bx] = ngeohash.decode_bbox(ngeohash.encode(lat, lon, PRECISION));
+  const [bl, bn, bt, bx] = decodeBbox(encode(lat, lon, PRECISION));
   const hLat = bt - bl, hLon = bx - bn;
   const dLat = radiusM / M_LAT + hLat, dLon = radiusM / mLon(lat) + hLon;
   const cells = new Set();
   for (let a = lat - dLat; a <= lat + dLat + hLat; a += hLat) {
     for (let o = lon - dLon; o <= lon + dLon + hLon; o += hLon) {
-      cells.add(ngeohash.encode(Math.max(-89.9, Math.min(89.9, a)), o, PRECISION));
+      cells.add(encode(Math.max(-89.9, Math.min(89.9, a)), o, PRECISION));
     }
   }
   const out = [];
   for (const cell of [...cells].sort()) {
-    for (const s of generateCell(cell, w, data)) {
-      if (distM(lat, lon, s.lat, s.lon) <= radiusM) out.push(s);
+    for (const s of cellSpawns(cell, w, data)) {
+      if (distM(lat, lon, s.lat, s.lon) <= radiusM) out.push({ ...s });
     }
   }
   return out;
@@ -243,7 +305,8 @@ export function getSpawn(spawnId, data) {
   const m = /^([0-9b-hjkmnp-z]{7})-([0-9a-z]+)-(\d)$/.exec(String(spawnId));
   if (!m) return null;
   const w = parseInt(m[2], 36);
-  return generateCell(m[1], w, data).find((s) => s.spawnId === spawnId) || null;
+  const s = cellSpawns(m[1], w, data).find((x) => x.spawnId === spawnId);
+  return s ? { ...s } : null;
 }
 
 // ---------- daily streak ----------

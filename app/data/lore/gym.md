@@ -1,6 +1,6 @@
 # #002 Gym Simi · Simi del Gym
 
-*Sweatband on, towel on shoulder. Counts your reps out loud, in two languages.*
+*Sweatband on, dumbbell up. Counts your reps out loud, in two languages.*
 
 **Tier:** Common (map) · **Rarity:** Common · **Height:** 12 in (30 cm), 13 in on tiptoe · **Weight:** 10 oz (285 g), mostly enthusiasm
 

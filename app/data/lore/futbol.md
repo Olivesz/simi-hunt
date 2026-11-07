@@ -1,6 +1,6 @@
 # #004 Fútbol Simi · Simi Futbolista
 
-*Green jersey, white shorts, and a goal celebration longer than the match.*
+*Blue #10 jersey, lime cleats, and a goal celebration longer than the match.*
 
 **Tier:** Common (map) · **Rarity:** Common · **Height:** 12 in (30 cm), cleats on · **Weight:** 10 oz (285 g), mostly legs
 

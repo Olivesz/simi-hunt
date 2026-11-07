@@ -2,7 +2,7 @@
 // Reads data.simis (falls back to the contract roster with placeholder names)
 // and each Simi's art (falls back to a tier-colored tile).
 
-const CONFETTI = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.module.mjs';
+const CONFETTI = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.module.mjs';
 const CSS_URL = new URL('../css/simidex.css', import.meta.url).href;
 const APP_BASE = new URL('../', import.meta.url);
 const ART_DIR = new URL('../../art/simis/', import.meta.url);
@@ -130,8 +130,9 @@ function safeState() {
   let st = {};
   try { st = (ctx.state && ctx.state.get && ctx.state.get()) || {}; } catch (e) { console.warn('[dex] state.get failed', e); }
   return {
-    catches: Array.isArray(st.catches) ? st.catches : [],
-    seen: Array.isArray(st.seen) ? st.seen : [],
+    // Skip malformed records rather than failing the whole screen on one bad entry.
+    catches: Array.isArray(st.catches) ? st.catches.filter((c) => c && typeof c.simiId === 'string') : [],
+    seen: Array.isArray(st.seen) ? st.seen.filter((id) => typeof id === 'string') : [],
     position: st.position && Number.isFinite(st.position.lat) ? st.position : null,
   };
 }
@@ -185,6 +186,17 @@ function progressOf(entries, st) {
   return { status, byTier, nCaught, total: entries.length, commonsDone, caught };
 }
 
+// When the last Map Simi was first caught. The badge remembers this rather than a plain
+// flag, so after a progress reset the next completion earns the medal moment again.
+function commonsDoneAt(entries, st) {
+  const first = new Map();
+  for (const c of st.catches) {
+    const at = Number(c.at) || 0;
+    if (!first.has(c.simiId) || at < first.get(c.simiId)) first.set(c.simiId, at);
+  }
+  return Math.max(0, ...entries.filter((e) => e.tier === 'common').map((e) => first.get(e.id) || 0));
+}
+
 // Caught Simis whose entry the player has not opened yet. The first time this runs,
 // catches older than ten minutes count as already seen, so an existing collection
 // does not light up all at once.
@@ -221,7 +233,8 @@ function distShort(store, pos) {
   if (!pos || !store || !Number.isFinite(store.lat) || !Number.isFinite(store.lon)) return '';
   const m = haversineM(pos, store);
   const mi = m / 1609.344;
-  return mi < 0.1 ? `${Math.max(50, Math.round(m * 3.28084 / 50) * 50)} ft` : `${mi < 10 ? mi.toFixed(1) : Math.round(mi)} mi`;
+  // US units, as everywhere in the app: feet under 0.1 mi, then miles to one decimal.
+  return mi < 0.1 ? `${Math.max(10, Math.round(m * 3.28084 / 10) * 10)} ft` : `${mi < 10 ? mi.toFixed(1) : Math.round(mi)} mi`;
 }
 function distText(store, pos) {
   const d = distShort(store, pos);
@@ -285,20 +298,31 @@ function biomeText(e) {
   return /\s/.test(e.biome) ? e.biome : title(e.biome);
 }
 
-// Reads the event window from the lore's unlock line ("... during Día de Muertos, November 1 to 3.",
-// "... on weekends ...") and says whether it is on today, on the player's own clock.
+// The event's window, from the lore's eventWindow ({label, start:'MM-DD', end:'MM-DD'} or
+// {label, weekdays:[6,0]}), else read from its unlock line ("... during Día de Muertos,
+// November 1 to 2.", "... on weekends ..."). Says whether it is on today, on the player's own clock.
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 function eventInfo(e, now = new Date()) {
   const txt = String(e.unlock || '');
+  const w = e.eventWindow && typeof e.eventWindow === 'object' ? e.eventWindow : {};
   const phrase = ((/\bduring\s+([^.]+)/i.exec(txt) || /\bon\s+(weekends[^.]*)/i.exec(txt) || [])[1] || '').trim();
-  const when = phrase ? phrase.charAt(0).toUpperCase() + phrase.slice(1) : 'Watch the map for the next event';
-  if (/weekend|saturday|sunday/i.test(txt)) {
+  const when = phrase ? phrase.charAt(0).toUpperCase() + phrase.slice(1) : (w.label ? String(w.label) : 'Watch the map for the next event');
+  const days = Array.isArray(w.weekdays) ? w.weekdays.map(Number).filter((n) => n >= 0 && n <= 6)
+    : /weekend|saturday|sunday/i.test(txt) ? [6, 0] : [];
+  if (days.length) {
     const d = now.getDay();
-    if (d === 0 || d === 6) return { live: true, label: 'On the map now · this weekend', when };
-    return { live: false, label: d === 5 ? 'Back tomorrow · Saturday' : 'Back this Saturday', when };
+    const weekend = days.length === 2 && days.includes(6) && days.includes(0);
+    if (days.includes(d)) return { live: true, label: weekend ? 'On the map now · this weekend' : 'On the map now', when };
+    const k = [1, 2, 3, 4, 5, 6].find((n) => days.includes((d + n) % 7));
+    const next = DAYS[(d + k) % 7];
+    return { live: false, label: k === 1 ? `Back tomorrow · ${next}` : `Back this ${next}`, when };
   }
+  const md = (v) => /^(\d{1,2})-(\d{1,2})$/.exec(String(v || ''));
+  const ws = md(w.start), we = md(w.end);
   const M = MONTHS.join('|');
-  const m = new RegExp(`(${M})\\s+(\\d{1,2})\\s*(?:to|through|-|–)\\s*(?:(${M})\\s+)?(\\d{1,2})`, 'i').exec(txt);
-  if (m) {
+  const m = ws && we ? [null, MONTHS[ws[1] - 1], ws[2], MONTHS[we[1] - 1], we[2]]
+    : new RegExp(`(${M})\\s+(\\d{1,2})\\s*(?:to|through|-|–)\\s*(?:(${M})\\s+)?(\\d{1,2})`, 'i').exec(txt);
+  if (m && m[1]) {
     const y = now.getFullYear();
     const m1 = MONTHS.indexOf(m[1].toLowerCase());
     const m2 = m[3] ? MONTHS.indexOf(m[3].toLowerCase()) : m1;
@@ -341,7 +365,6 @@ function morph(fromEl, navigate) {
   if (!canMorph() || !fromEl) { navigate(); return; }
   clearMorph();
   nameForMorph(fromEl, 'sdx-hero');
-  nameForMorph(root.querySelector('.sdx-close'), 'sdx-close');
   document.documentElement.classList.add('sdx-vt');
   vtSince = performance.now();
   let vt;
@@ -373,7 +396,6 @@ function finishMorph() {
   } else if (view.returnFrom) {
     nameForMorph(root.querySelector(`.sdx-list [data-id="${CSS.escape(view.returnFrom)}"] .sdx-art`), 'sdx-hero');
   }
-  nameForMorph(root.querySelector('.sdx-close'), 'sdx-close');
   const r = pendingVT;
   pendingVT = null;
   r();
@@ -536,8 +558,7 @@ function renderGrid(entries, prog, st, data) {
     <i class="sdx-stick-mark" aria-hidden="true"></i>
     <nav class="sdx-chips" aria-label="Filter">${chipsHTML(prog)}</nav>
     <div class="sdx-list">${listHTML(entries, prog, st, data, newIds)}</div>
-    <p class="sdx-foot">${icon('pin')}${icon('shelf')}${icon('store')}${icon('calendar')}<span>The icon on each card shows where to find it.</span></p>
-    <div class="sdx-dock"><button class="sdx-close" data-act="close" aria-label="Close SimiDex, back to map">${icon('close')}</button></div>`;
+    <p class="sdx-foot">${icon('pin')}${icon('shelf')}${icon('store')}${icon('calendar')}<span>The icon on each card shows where to find it.</span></p>`;
   watchStuck();
   return newIds;
 }
@@ -578,7 +599,6 @@ function setFilter(id, fromGoal) {
   const wasStuck = root.classList.contains('is-stuck');
   view.filter = id;
   root.dataset.show = id;
-  writePrefs({ filter: id });
   refreshList();
   const mark = root.querySelector('.sdx-stick-mark');
   if (!mark) return;
@@ -741,7 +761,7 @@ function renderEntry(entries, prog, st, data) {
       <div class="sdx-hero">
         <div class="sdx-rays" aria-hidden="true"></div>
         <div class="sdx-topbar">
-          <button class="sdx-round" data-act="close" aria-label="Back to SimiDex">${icon('back')}</button>
+          <i class="sdx-topbar-gap" aria-hidden="true"></i>
           <span class="sdx-hero-no">No. ${pad(e.dexNo)}</span>
           <span class="sdx-hero-pos" aria-label="Entry ${idx + 1} of ${entries.length}">${idx + 1} / ${entries.length}</span>
         </div>
@@ -749,9 +769,9 @@ function renderEntry(entries, prog, st, data) {
       </div>
       <div class="sdx-sheet">${sheet}</div>
     </div>
-    <div class="sdx-dock sdx-dock-3">
+    <button class="sdx-round sdx-back" data-act="close" aria-label="Back to SimiDex">${icon('back')}</button>
+    <div class="sdx-dock">
       <button class="sdx-step" data-step="-1" data-go="#/dex/${esc(prev.id)}" aria-label="Previous entry">${icon('back')}</button>
-      <button class="sdx-close" data-act="close" aria-label="Back to SimiDex">${icon('close')}</button>
       <button class="sdx-step" data-step="1" data-go="#/dex/${esc(next.id)}" aria-label="Next entry">${icon('next')}</button>
     </div>`;
   root.scrollTop = 0;
@@ -799,7 +819,7 @@ function showBadgeModal() {
   root.appendChild(m);
   const close = m.querySelector('[data-act=close-modal]');
   setTimeout(() => close.focus({ preventScroll: true }), 50);
-  writePrefs({ badgeShown: true });
+  writePrefs({ badgeShown: commonsDoneAt(buildEntries(ctx.data || {}), safeState()) });
   buzz([20, 40, 30]);
   if (!reducedMotion()) {
     import(CONFETTI).then((mod) => {
@@ -838,7 +858,7 @@ function render(animate) {
   }
   const newIds = renderGrid(entries, prog, st, data);
   root.scrollTop = view.gridScroll;
-  if (prog.commonsDone && !readPrefs().badgeShown) setTimeout(showBadgeModal, animate ? 450 : 0);
+  if (prog.commonsDone && readPrefs().badgeShown !== commonsDoneAt(entries, st)) setTimeout(showBadgeModal, animate ? 450 : 0);
   return { prog, newIds };
 }
 
@@ -922,6 +942,7 @@ function onImgError(ev) {
 function onStateChange(_s, detail) {
   if (!root) return;
   if (detail && detail.kind === 'position') { updateDistances(); return; }
+  if (detail && detail.kind === 'reset') view.filter = 'all';
   clearTimeout(renderTimer);
   renderTimer = setTimeout(() => {
     if (!root) return;
@@ -942,7 +963,7 @@ function updateDistances() {
 
 // Pressed state that shows on the first touch, before navigation replaces the screen.
 function bindPress() {
-  const SEL = '.sdx-card, .sdx-row-main, .sdx-chip, .sdx-btn, .sdx-round, .sdx-close, .sdx-step, .sdx-row-go, .sdx-goal, .sdx-seg button, .sdx-more';
+  const SEL = '.sdx-card, .sdx-row-main, .sdx-chip, .sdx-btn, .sdx-round, .sdx-step, .sdx-row-go, .sdx-goal, .sdx-seg button, .sdx-more';
   let el = null, t0 = 0;
   const release = () => {
     if (!el) return;
@@ -1002,8 +1023,8 @@ export function mount(el, c, params = {}) {
   ctx = c || {};
   if (typeof ctx.go !== 'function') ctx.go = (h) => { location.hash = h; };
   if (view.filter === null) {
-    const f = readPrefs().filter;
-    view.filter = FILTERS.some((x) => x.id === f) ? f : 'all';
+    view.filter = 'all';
+    if ('filter' in readPrefs()) writePrefs({ filter: undefined }); // older builds saved the filter across visits
   }
   current = { id: params.simiId || null };
 
@@ -1017,6 +1038,12 @@ export function mount(el, c, params = {}) {
     if (kind === 'deep-replace') view.gridDeep = true;
     else if (kind !== 'entry-back' && !fromOwnEntry) view.gridDeep = false;
     view.returnFrom = view.lastKind === 'entry' ? view.lastEntryId : null;
+    // Coming back from one of its own entries keeps the filter and scroll. Arriving from
+    // anywhere else (the map, a scan, a reload) always opens on All, at the top.
+    if (kind !== 'entry-back' && kind !== 'deep-replace' && !fromOwnEntry) {
+      view.filter = 'all';
+      view.gridScroll = 0;
+    }
   }
 
   root = document.createElement('div');

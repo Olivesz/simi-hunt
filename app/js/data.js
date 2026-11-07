@@ -11,7 +11,9 @@ const cache = new Map();
 
 async function fetchJSON(name, fallback) {
   try {
-    const res = await fetch(name instanceof URL ? name : new URL(name, DATA_DIR), { cache: 'no-cache' });
+    // Default cache mode: the service worker revalidates same-origin files and
+    // answers from its cache when the network is down.
+    const res = await fetch(name instanceof URL ? name : new URL(name, DATA_DIR));
     if (!res.ok) return fallback();
     return await res.json();
   } catch (e) {

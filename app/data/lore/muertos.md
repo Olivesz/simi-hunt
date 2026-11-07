@@ -4,7 +4,7 @@
 
 **Tier:** Event · **Rarity:** Legendary · **Height:** 12 in (30 cm), 14 in with marigold crown · **Weight:** 9 oz (255 g), plus a basket of pan de muerto
 
-**How to meet him:** Event Simi. Appears on the map during Día de Muertos, November 1 to 3.
+**How to meet him:** Event Simi. Appears on the map during Día de Muertos, November 1 to 2.
 
 ## SimiDex entry
 

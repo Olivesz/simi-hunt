@@ -145,29 +145,38 @@ export function confirmModal(title, body, { ok = 'OK', cancel = 'Cancel', danger
 
 // ---------- module loading and mounting ----------
 
+// key -> Promise of { ok, mod } | { ok:false, missing } | { ok:false, error }.
+// Only successes stay cached; after a failure the next visit tries again.
 const loaded = new Map();
+const failures = new Map(); // key -> failed attempts, used to bypass a cached failed import
 
-async function loadModule(key) {
+function loadModule(key) {
   if (loaded.has(key)) return loaded.get(key);
-  const url = new URL(MODULES[key], import.meta.url).href;
-  let result;
-  try {
-    const head = await fetch(url, { method: 'HEAD', cache: 'no-cache' });
-    if (!head.ok) {
-      result = { ok: false, missing: true };
-      return result; // not cached: a later visit picks up the file once it exists
-    }
-  } catch { /* offline: try the import anyway */ }
+  const p = importModule(key);
+  loaded.set(key, p);
+  p.then((r) => { if (!r.ok) loaded.delete(key); });
+  return p;
+}
+
+async function importModule(key) {
+  const base = new URL(MODULES[key], import.meta.url).href;
+  const n = failures.get(key) || 0;
+  const url = n ? `${base}?retry=${n}` : base;
   try {
     const mod = await import(url);
-    if (typeof mod.mount !== 'function') result = { ok: false, error: new Error(`${MODULES[key]} does not export mount(el, ctx, params)`) };
-    else result = { ok: true, mod };
+    if (typeof mod.mount !== 'function') return { ok: false, error: new Error(`${MODULES[key]} does not export mount(el, ctx, params)`) };
+    failures.delete(key);
+    return { ok: true, mod };
   } catch (e) {
+    failures.set(key, n + 1);
+    // Only now ask whether the file exists, so the normal path never waits on a probe.
+    try {
+      const head = await fetch(base, { method: 'HEAD', cache: 'no-store' });
+      if (head.status === 404) return { ok: false, missing: true };
+    } catch { /* offline */ }
     console.error(`[shell] ${MODULES[key]} failed to load`, e);
-    result = { ok: false, error: e };
+    return { ok: false, error: e };
   }
-  loaded.set(key, result);
-  return result;
 }
 
 let data = null;
@@ -176,7 +185,7 @@ let screen = null;          // { mod, host } for the module in #screen-layer
 let map = null;             // { mod, hash } once map.js is mounted
 
 function ctxFor(route) {
-  return { state, data, go: router.go, back: router.back, toast, modal, sheet, route, params: route.params };
+  return { state, data, go: router.go, back: router.back, toast, modal, sheet, fmtDist, route, params: route.params };
 }
 
 function safeUnmount(mod, what) {
@@ -195,12 +204,14 @@ async function render(route) {
   screenLayer.replaceChildren();
   screenLayer.hidden = onMap;
 
+  // The module downloads while the game data loads, instead of after it.
+  const modP = onMap && map ? null : loadModule(route.module);
   try { data = await loadData(); } catch (e) { console.error('[shell] loadData failed', e); }
   if (seq !== navSeq) return;
 
   if (onMap) { await showMap(route, seq); return; }
 
-  const res = await loadModule(route.module);
+  const res = await modP;
   if (seq !== navSeq) return;
   const host = document.createElement('div');
   host.className = `screen screen-${route.module}`;
@@ -298,6 +309,10 @@ function bump(el) {
 
 let last = {};
 function renderHud() {
+  try { drawHud(); } catch (e) { console.error('[shell] HUD render failed', e); }
+}
+
+function drawHud() {
   const s = state.get();
   const vals = { capsules: s.capsules, dex: uniqueCaught(s), streak: s.streak?.count || 0 };
   const ids = { capsules: 'capsule-count', dex: 'dex-count', streak: 'streak-count' };
@@ -352,7 +367,7 @@ $('#btn-dex').addEventListener('click', () => router.go('#/dex'));
 $('#btn-profile').addEventListener('click', openProfile);
 $('#chip-capsules').addEventListener('click', () => {
   const n = state.get().capsules;
-  toast(n > 0 ? `${n} Simi Capsules ready. Visit a SimiStop to stock up.` : 'Out of capsules! Spin a SimiStop to get more.');
+  toast(n > 0 ? `${n} Simi Capsules ready. Spin a SimiStop to stock up.` : '¡Ay! Out of Simi Capsules. Spin a SimiStop to get more.');
 });
 
 // ---------- sheets: stores, profile, settings ----------
@@ -364,9 +379,25 @@ function distM(a, b) {
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 
-function fmtDist(m) {
-  if (!Number.isFinite(m)) return '';
-  return m < 100 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(1)} km`;
+// One distance format for every screen (US audience): feet under 0.1 mi,
+// rounded to 10 ft, then miles to one decimal. fmtDist(40) is "130 ft".
+export function fmtDist(m) {
+  if (!Number.isFinite(m) || m < 0) return '';
+  const mi = m / 1609.344;
+  if (mi < 0.1) return `${Math.max(10, Math.round((m * 3.28084) / 10) * 10)} ft`;
+  return `${mi < 10 ? mi.toFixed(1) : Math.round(mi)} mi`;
+}
+
+// "CVS · 2402 Guadalupe St": every store in the data is named "CVS Pharmacy",
+// so the street address tells them apart.
+const STREET_ABBR = { street: 'St', avenue: 'Ave', boulevard: 'Blvd', drive: 'Dr', road: 'Rd', lane: 'Ln', parkway: 'Pkwy', highway: 'Hwy' };
+export function storeLabel(st) {
+  if (!st) return 'A participating CVS';
+  if (st.shortName) return st.shortName;
+  if (st.name && st.name !== 'CVS Pharmacy') return st.name;
+  const line = String(st.address || '').split(',')[0].trim();
+  if (!line) return st.name || st.id || 'A participating CVS';
+  return 'CVS · ' + line.replace(/\b([A-Za-z]+)$/, (w) => STREET_ABBR[w.toLowerCase()] || w);
 }
 
 function regionCenter(d) {
@@ -384,19 +415,27 @@ async function openStores() {
   const pos = s.position;
   const from = pos && Number.isFinite(pos.lat) && Number.isFinite(pos.lon) ? pos : regionCenter(d);
   const simiName = (id) => d.simis.find((x) => x.id === id)?.name || id;
+  // Shelves that actually carry a Simi sign: a shelf-tier Simi for that shelf
+  // type, or this store's own exclusive on its shelf.
+  const signShelves = (st) => (st.shelves || []).filter((sh) => d.simis.some((x) => x.shelf === sh
+    && (x.tier === 'shelf' || (x.tier === 'store' && x.storeId === st.id)))).length;
   const far = (x) => (Number.isFinite(x) ? x : Infinity);
   const stores = d.stores
     .map((st) => ({ ...st, d: from && Number.isFinite(st.lat) && Number.isFinite(st.lon) ? distM(from, st) : NaN }))
     .sort((a, b) => far(a.d) - far(b.d));
-  const rows = stores.map((st) => `
+  const rows = stores.map((st) => {
+    const signs = signShelves(st);
+    // Keep store exclusives a surprise until they are unlocked, as the map and SimiDex do.
+    const excl = st.exclusiveSimi ? (state.has(st.exclusiveSimi) ? esc(simiName(st.exclusiveSimi)) : '???') : '';
+    return `
     <button class="store-row" data-store="${esc(st.id)}">
       <span class="stop-pin" aria-hidden="true"></span>
-      <span class="store-main"><b>${esc(st.name || st.id)}</b><small>${esc(st.address || '')}</small>
-        ${st.exclusiveSimi ? `<span class="tag tag-excl">Exclusive: ${esc(simiName(st.exclusiveSimi))}</span>` : ''}
-        ${st.shelves?.length ? `<span class="tag">${st.shelves.length} scan shelves</span>` : ''}
+      <span class="store-main"><b>${esc(storeLabel(st))}</b><small>${esc(st.address || '')}</small>
+        <span class="tags">${excl ? `<span class="tag tag-excl">Exclusive: ${excl}</span>` : ''}${signs ? `<span class="tag">${signs} Simi sign${signs === 1 ? '' : 's'}</span>` : ''}</span>
       </span>
       <span class="store-dist">${fmtDist(st.d)}</span>
-    </button>`).join('');
+    </button>`;
+  }).join('');
   const sh = sheet(`<h2 class="sheet-title"><span class="stop-pin sm" aria-hidden="true"></span> SimiStops nearby</h2>
     <p class="sheet-sub">Participating CVS Pharmacy stores, nearest first${pos ? '' : ' (from the map center)'}. Scan the Simi signs on their shelves to unlock exclusives.</p>
     <div class="store-list">${rows || '<p class="empty">No SimiStops loaded for this region yet.</p>'}</div>`);
@@ -449,22 +488,22 @@ function openSettings() {
       <input type="checkbox" class="switch" id="set-presenter" ${s.presenter ? 'checked' : ''}>
     </label>
     <button class="set-row as-btn" data-about><span><b>About this demo</b><small>What Simi Hunt is and where the data comes from</small></span><span class="chev" aria-hidden="true">›</span></button>
-    <button class="set-row as-btn danger" data-reset><span><b>Reset progress</b><small>Clears catches, capsules, streak and scanned codes</small></span><span class="chev" aria-hidden="true">›</span></button>`);
+    <button class="set-row as-btn danger" data-reset><span><b>Reset progress</b><small>Clears catches, capsules, streak, scanned codes and hidden map Simis</small></span><span class="chev" aria-hidden="true">›</span></button>`);
   sh.el.addEventListener('click', async (e) => {
     const rb = e.target.closest('[data-region]');
     if (rb) {
       if (rb.dataset.region === state.get().region) return;
       state.setRegion(rb.dataset.region);
       clearDataCache();
-      toast(`Travelling to ${REGIONS.find((r) => r.id === rb.dataset.region)?.name}…`);
+      toast(`Traveling to ${REGIONS.find((r) => r.id === rb.dataset.region)?.name}… ¡Vámonos!`);
       setTimeout(() => { location.hash = '#/map'; location.reload(); }, 400);
       return;
     }
     if (e.target.closest('[data-about]')) { openAbout(); return; }
     if (e.target.closest('[data-reset]')) {
-      if (await confirmModal('Reset progress?', 'This clears every Simi you caught, your capsules, streak and scanned codes. It cannot be undone.', { ok: 'Reset', danger: true })) {
+      if (await confirmModal('Reset progress?', 'This clears every Simi you caught, your capsules, streak, scanned codes, SimiDex filter and stop cooldowns. It cannot be undone.', { ok: 'Reset', danger: true })) {
         state.reset();
-        toast('Progress reset. Fresh SimiDex!');
+        toast('¡Listo! Progress reset. Fresh SimiDex.');
         setTimeout(() => { location.hash = '#/map'; location.reload(); }, 500);
       }
     }
@@ -486,7 +525,7 @@ function openAbout() {
   const n = (x) => (Array.isArray(x) ? x.length : x && typeof x === 'object' ? Object.keys(x).length : 0);
   modal(`<h2 class="m-title">About Simi Hunt</h2>
     <p class="m-body">Simi Hunt is a concept prototype for a case competition: <b>Simi Hunts at CVS</b>. Walk the map to catch Simis, Dr. Simi in different outfits. Participating CVS stores are <b>SimiStops</b>. Scanning the Simi sign on a shelf unlocks an exclusive Simi and shows the real products on that shelf.</p>
-    <p class="m-body small">Not an official Farmacias Similares, Dr. Simi or CVS Pharmacy product. Brand names belong to their owners. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>.</p>
+    <p class="m-body small">Not an official Farmacias Similares, Dr. Simi or CVS Pharmacy product. Brand names belong to their owners. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>, tiles by <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>. Product data © <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener">Open Food Facts</a> / <a href="https://world.openbeautyfacts.org/" target="_blank" rel="noopener">Open Beauty Facts</a> contributors, <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">ODbL</a>. Product photos are placeholders for demo use only.</p>
     <p class="m-body small muted">Loaded: ${n(d.simis)} Simis · ${n(d.stores)} SimiStops · ${n(d.codes)} shelf codes · ${n(d.products)} shelf types.</p>
     <div class="m-actions"><button class="pill pill-primary" data-close>Got it</button></div>`);
 }
@@ -519,17 +558,21 @@ function setAvatar() {
 }
 
 applyQueryFlags();
+router.start(render);
 renderHud();
 setAvatar();
 state.on('change', renderHud);
-router.start(render);
 applyOpenFlag();
 
+// Registered a moment after load, so its precache doesn't compete with the
+// first map load on a slow network.
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch((e) => console.warn('[shell] service worker not registered', e));
+    setTimeout(() => {
+      navigator.serviceWorker.register('sw.js').catch((e) => console.warn('[shell] service worker not registered', e));
+    }, 2500);
   });
 }
 
 // Handy from the console and for integration checks.
-window.SimiHunt = { state, go: router.go, toast, modal, sheet, loadData, get data() { return data; } };
+window.SimiHunt = { state, go: router.go, toast, modal, sheet, fmtDist, loadData, get data() { return data; } };

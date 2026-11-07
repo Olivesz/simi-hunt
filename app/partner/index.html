@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simi Hunt Partner Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22%23024EA2%22/%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22178%22%20fill%3D%22%23fff%22/%3E%3Cg%20transform%3D%22rotate%2835%20256%20256%29%22%3E%3Crect%20x%3D%22196%22%20y%3D%22116%22%20width%3D%22120%22%20height%3D%22280%22%20rx%3D%2260%22%20fill%3D%22%231C4889%22/%3E%3Cpath%20d%3D%22M206%20256V176a50%2050%200%200%201%20100%200v80z%22%20fill%3D%22%232C73C6%22/%3E%3Cpath%20d%3D%22M206%20256h100v80a50%2050%200%200%201-100%200z%22%20fill%3D%22%23FFC72C%22/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{--blue:#024EA2;--navy:#1C4889;--red:#CC0000;--ink:#14243d;--mute:#5b6b82;--line:#dde4ee;--bg:#f2f5fa;--card:#fff;--tint:#e8f0fb}
@@ -42,7 +43,7 @@ footer b{color:var(--red)}
 <header><div class="wrap">
 <small>Partner dashboard · CVS Pharmacy × Farmacias Similares</small>
 <h1>Simi Hunt: 4-week Austin pilot</h1>
-<p>How shelf-sign QR codes turn Dr. Simi collecting into measurable CVS store visits, product views and coupon redemptions. Three participating SimiStops.</p>
+<p>How shelf-sign QR codes turn Dr. Simi collecting into measurable shelf scans, product views and coupon redemptions. Three participating SimiStops.</p>
 </div></header>
 <main><div class="wrap">
 <section class="kpis" id="kpis" aria-label="Key metrics"></section>
@@ -54,7 +55,7 @@ footer b{color:var(--red)}
 <div class="card"><h2>New vs repeat scanners</h2><p class="sub">Share of unique scanners</p><div class="ch"><canvas id="cRepeat"></canvas></div></div>
 <div class="card wide how"><h2>How it's measured</h2>
 <ol>
-<li><b>Each signed QR claim is a verified in-store visit.</b> Shelf signs carry a cryptographically signed code bound to one store and one shelf, so a valid claim means the player was at that shelf.</li>
+<li><b>Each signed QR claim is a scan of a real printed sign.</b> Shelf signs carry a cryptographically signed code bound to one store and one shelf, so a claim can't be forged. With the pilot's location check on, it also means a visit near the store. Visits here are a proxy: sign scans, counted once per scanner per day.</li>
 <li><b>Coupon codes close the loop at the register.</b> Unlocking a Simi reveals shelf products and a coupon; redemption at checkout ties engagement to a sale.</li>
 <li><b>Privacy-light.</b> Counts come from claims and coupon codes only, with no personal profile required.</li>
 </ol></div>
@@ -66,7 +67,8 @@ footer b{color:var(--red)}
 function rng(s){return function(){s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 const R=rng(20261106);
 const poisson=l=>{let L=Math.exp(-l),k=0,p=1;do{k++;p*=R()}while(p>L);return k-1};
-const FALLBACK=[{id:'cvs-guadalupe-2402',name:'Guadalupe St'},{id:'cvs-congress-500',name:'Congress Ave'},{id:'cvs-airport-2213',name:'Airport Blvd'}];
+// The three pilot SimiStops (CONTRACT.md store ids), in chart order.
+const PILOT=[{id:'cvs-guadalupe-2402',name:'2402 Guadalupe St'},{id:'cvs-congress-500',name:'500 Congress Ave'},{id:'cvs-airport-2213',name:'2213 Airport Blvd'}];
 const SHELVES=[['dr-simi','Dr. Simi',.8],['sun-care','Sun care',.9],['skincare','Skincare',.7],['vitamins','Vitamins',.6],['cold-flu','Cold & flu',.55],['sleep','Sleep',.3],['sports-nutrition','Sports nutrition',.25]];
 const sum=a=>a.reduce((x,y)=>x+y,0), fmt=n=>Math.round(n).toLocaleString('en-US');
 
@@ -88,7 +90,7 @@ function build(stores){
 }
 function render(M){
  const K=[['QR scans',fmt(M.scans),'signed shelf-sign claims'],['Unique scanners',fmt(M.uniq),'distinct devices'],
- ['Scan-driven visits',fmt(M.visits),'verified in-store trips'],['Coupon redemptions',fmt(M.coupons),'closed at register'],
+ ['Store visits (proxy)',fmt(M.visits),'sign scans, once per scanner a day'],['Coupon redemptions',fmt(M.coupons),'closed at register'],
  ['Redemption rate',(M.coupons/M.views*100).toFixed(1)+'%','of product views'],['Dr. Simi product views',fmt(M.views),'after a scan'],
  ['SimiDex completion',M.dex+'%','avg of 18 Simis, scanners']];
  document.getElementById('kpis').innerHTML=K.map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}</div><div class="n">${k[2]}</div></div>`).join('');
@@ -101,9 +103,11 @@ function render(M){
  new Chart(cFunnel,{type:'bar',data:{labels:F.map(f=>f[0]),datasets:[{data:F.map(f=>f[1]),backgroundColor:[N,N,B,B,Rd]}]},options:{...base,indexAxis:'y',scales:{x:{beginAtZero:true}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.parsed.x)+' ('+(c.parsed.x/F[0][1]*100).toFixed(1)+'% of map opens)'}}}}});
  new Chart(cRepeat,{type:'doughnut',data:{labels:['New scanners','Repeat scanners'],datasets:[{data:[M.uniq-M.repeat,M.repeat],backgroundColor:[B,Rd],borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:true,position:'bottom'}}}});
 }
-fetch('../data/stores-austin.json').then(r=>r.ok?r.json():Promise.reject()).then(a=>{
- const s=a.filter(x=>x&&x.id).map(x=>({id:x.id,name:(x.name||x.id).replace(/^CVS( Pharmacy)?\s*[-–—,]?\s*/i,'')||x.id}));
- return s.length?s:FALLBACK}).catch(()=>FALLBACK).then(s=>render(build(s.slice(0,6))));
+// Label each pilot store by its street address from stores-austin.json when present.
+const short=a=>String(a||'').split(',')[0].replace(/\bStreet\b/,'St').replace(/\bAvenue\b/,'Ave').replace(/\bBoulevard\b/,'Blvd').trim();
+fetch('../data/stores-austin.json').then(r=>r.ok?r.json():Promise.reject()).then(a=>
+ PILOT.map(p=>{const x=Array.isArray(a)&&a.find(s=>s&&s.id===p.id);return{id:p.id,name:(x&&short(x.address))||p.name}})
+).catch(()=>PILOT).then(s=>render(build(s)));
 </script>
 </body>
 </html>
