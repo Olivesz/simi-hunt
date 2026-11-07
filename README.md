@@ -4,17 +4,26 @@ A location-based collecting game prototype: walk the map, catch Dr. Simi in 18 o
 
 **Play:** https://olivesz.github.io/simi-hunt/app/ (best on a phone; add `?presenter=1` for the stage demo controls)
 
-## Run it locally
+## Open it on a phone
 
-No install or build step is needed, only Python 3 (already on macOS):
+**Fastest, with no setup:** open https://olivesz.github.io/simi-hunt/app/ on any phone. The camera, GPS and QR codes all work there.
+
+**From your own copy:**
 
 ```bash
 git clone https://github.com/Olivesz/simi-hunt.git
 cd simi-hunt
-python3 -m http.server 8000
+./run.sh
 ```
 
-Open http://localhost:8000/app/ in a browser. The camera, GPS and QR scanning need either localhost or HTTPS, so open it on a phone through the GitHub Pages link above.
+`run.sh` only needs Python 3, which is already on macOS. It prints three addresses:
+- **This computer:** `http://localhost:8000/app/`
+- **Phones on the same Wi-Fi:** `http://<your-ip>:8000/app/?presenter=1`. Everything works except the camera and real GPS, because phones only allow those over HTTPS. Presenter mode lets you move, summon Simis and paste codes instead.
+- **Any phone, over HTTPS:** if `cloudflared` is installed (`brew install cloudflared`), the script also prints a free https://….trycloudflare.com address, and the camera, GPS and QR scanning all work on it.
+
+On Windows, run `python -m http.server 8000` in the folder and open `/app/`.
+
+**Your own permanent link:** fork this repo, then go to Settings → Pages, set the source to the `main` branch, and save. Your copy appears at `https://<you>.github.io/simi-hunt/app/`.
 
 ## What's inside
 
