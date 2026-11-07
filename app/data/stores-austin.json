@@ -1,0 +1,203 @@
+[
+ {
+  "id": "cvs-guadalupe-2021",
+  "name": "CVS Pharmacy",
+  "address": "2021 Guadalupe Street, Austin, TX 78705",
+  "lat": 30.283548,
+  "lon": -97.741602,
+  "osmId": "node/8947076987",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStocked": false
+ },
+ {
+  "id": "cvs-guadalupe-2402",
+  "name": "CVS Pharmacy",
+  "address": "2402 Guadalupe Street, Austin, TX 78705",
+  "lat": 30.287877,
+  "lon": -97.741902,
+  "osmId": "node/3853225907",
+  "exclusiveSimi": "texas",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu",
+   "dr-simi"
+  ],
+  "drSimiStocked": false
+ },
+ {
+  "id": "cvs-congress-500",
+  "name": "CVS Pharmacy",
+  "address": "500 Congress Avenue, Austin, TX 78701",
+  "lat": 30.267451,
+  "lon": -97.743612,
+  "osmId": "way/99725034",
+  "exclusiveSimi": "rockstar",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStocked": false
+ },
+ {
+  "id": "cvs-airport-2213",
+  "name": "CVS Pharmacy",
+  "address": "2213 Airport Boulevard, Austin, TX 78722",
+  "lat": 30.286125,
+  "lon": -97.70538,
+  "osmId": "way/1196928235",
+  "exclusiveSimi": "mariachi",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStocked": false
+ },
+ {
+  "id": "cvs-lake-austin-2610",
+  "name": "CVS Pharmacy",
+  "address": "2610 Lake Austin Boulevard, Austin, TX 78703",
+  "lat": 30.281509,
+  "lon": -97.774953,
+  "osmId": "way/304316009",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStocked": false
+ },
+ {
+  "id": "cvs-lamar-2101",
+  "name": "CVS Pharmacy",
+  "address": "2101 South Lamar Boulevard, Austin, TX 78704",
+  "lat": 30.247502,
+  "lon": -97.770017,
+  "osmId": "way/1310777205",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStocked": false
+ },
+ {
+  "id": "cvs-lamar-11300",
+  "name": "CVS Pharmacy",
+  "address": "11300 N Lamar Boulevard, Austin, TX 78753",
+  "lat": 30.38201019,
+  "lon": -97.68640607,
+  "cvsStoreNumber": "7442",
+  "drSimiStocked": true,
+  "drSimiSource": "drsimi.com store locator, data 12/12/25",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu",
+   "dr-simi"
+  ]
+ },
+ {
+  "id": "cvs-congress-5526",
+  "name": "CVS Pharmacy",
+  "address": "5526 S Congress Avenue, Austin, TX 78745",
+  "lat": 30.20555117,
+  "lon": -97.7746135,
+  "cvsStoreNumber": "213",
+  "drSimiStocked": true,
+  "drSimiSource": "drsimi.com store locator, data 12/12/25",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu",
+   "dr-simi"
+  ]
+ },
+ {
+  "id": "cvs-williamcannon-1950",
+  "name": "CVS Pharmacy",
+  "address": "1950 W William Cannon Drive, Austin, TX 78745",
+  "lat": 30.20282046,
+  "lon": -97.80560111,
+  "cvsStoreNumber": "7210",
+  "drSimiStocked": true,
+  "drSimiSource": "drsimi.com store locator, data 12/12/25",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu",
+   "dr-simi"
+  ]
+ },
+ {
+  "id": "cvs-fm620-11725",
+  "name": "CVS Pharmacy",
+  "address": "11725 N FM 620, Austin, TX 78750",
+  "lat": 30.4572617,
+  "lon": -97.82280327,
+  "cvsStoreNumber": "8322",
+  "drSimiStocked": true,
+  "drSimiSource": "drsimi.com store locator, data 12/12/25",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu",
+   "dr-simi"
+  ]
+ },
+ {
+  "id": "cvs-williamcannon-7101",
+  "name": "CVS Pharmacy",
+  "address": "7101 E William Cannon Drive, Austin, TX 78744",
+  "lat": 30.162000825203,
+  "lon": -97.7258197063457,
+  "cvsStoreNumber": "11306",
+  "drSimiStocked": true,
+  "drSimiSource": "drsimi.com store locator, data 12/12/25",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu",
+   "dr-simi"
+  ]
+ }
+]

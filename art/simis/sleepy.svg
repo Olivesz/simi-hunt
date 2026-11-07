@@ -1,0 +1,387 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <title>Dormilón Simi</title>
+  <!-- Dormilón Simi (common, sleep aids).
+       Read at 48 px: a long striped nightcap drooping left with a pompom, Zzz at upper right, periwinkle pajamas, a teddy at his feet.
+       Pose: default arms; the teddy is held up by one paw, the other hand holds a mug of warm milk.
+       Expression: heavy half-closed lids (skin over the top of each eye, 4 px lid arc). The smile stays.
+       Story: star print with white piping, a pocket with a stitched crescent moon, fluffy slippers, a bandage on the teddy's head (the doctor patched him up), steam off the milk.
+       Colors: pajamas #A3B4F2/#7F8FD6 with #FFD866 stars; slippers #6E80CF/#5A69B5; teddy #C98B55/#A66B3A, muzzle #F2D7B0; mug #FFD866/#E8B93A; milk #F6EBD9.
+       Head anchors used: lids over the eyes at (215, 175) and (297, 175); cap cuff bottom near y 122, above the brows; pompom beside the left tuft.
+       Head copied verbatim from art/base/simi-base.svg; body copied from the base, re-posed only where noted. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- body pieces -->
+    <use href="#b-torso" stroke-width="28"/>
+    <use href="#b-arm-l" fill="none" stroke-width="72"/>
+    <use href="#b-arm-r" fill="none" stroke-width="72"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#b-shoe-l" stroke-width="28"/>
+    <use href="#b-shoe-r" stroke-width="28"/>
+    <!-- outfit and prop pieces -->
+    <use href="#sleepy-cap" stroke-width="28"/>
+    <use href="#sleepy-cuff" stroke-width="28"/>
+    <use href="#sleepy-pom" stroke-width="28"/>
+    <use href="#sleepy-slip-l" stroke-width="28"/>
+    <use href="#sleepy-slip-r" stroke-width="28"/>
+    <use href="#sleepy-fluff-l" stroke-width="26"/>
+    <use href="#sleepy-fluff-r" stroke-width="26"/>
+    <use href="#sleepy-sleeve-l" fill="none" stroke-width="76"/>
+    <use href="#sleepy-sleeve-r" fill="none" stroke-width="76"/>
+    <use href="#sleepy-bear-head" stroke-width="26"/>
+    <use href="#sleepy-bear-body" stroke-width="26"/>
+    <use href="#sleepy-bear-ear-l" stroke-width="26"/>
+    <use href="#sleepy-bear-ear-r" stroke-width="26"/>
+    <use href="#sleepy-bear-arm-l" stroke-width="26"/>
+    <use href="#sleepy-bear-foot-l" stroke-width="26"/>
+    <use href="#sleepy-bear-foot-r" stroke-width="26"/>
+    <use href="#sleepy-mug" stroke-width="28"/>
+    <use href="#sleepy-handle" fill="none" stroke-width="38"/>
+    <use href="#sleepy-steam0" fill="none" stroke-width="33"/>
+    <use href="#sleepy-steam1" fill="none" stroke-width="33"/>
+    <use href="#sleepy-z0" fill="none" stroke-width="37"/>
+    <use href="#sleepy-z1" fill="none" stroke-width="35"/>
+    <use href="#sleepy-z2" fill="none" stroke-width="33"/>
+  </g>
+
+  <g id="outfit-back"></g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M182 314 C164 326 140 346 124 370"/>
+      <path id="b-arm-r" d="M330 314 C348 326 372 346 388 370"/>
+      <circle id="b-hand-l" cx="118" cy="382" r="22"/>
+      <circle id="b-hand-r" cx="394" cy="382" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M124 368 C130 372 132 380 128 386" stroke-width="4"/>
+      <path d="M388 368 C382 372 380 380 384 386" stroke-width="4"/>
+    </g>
+  </g>
+
+  <g id="outfit-body">
+    <defs>
+      <path id="sleepy-top" d="M120 280 L392 280 L392 410 C330 424 182 424 120 410 Z"/>
+      <clipPath id="sleepy-top-c"><use href="#sleepy-top"/></clipPath>
+      <path id="sleepy-pocket" d="M294 326 L338 326 L338 360 C338 368 334 372 326 372 L306 372 C298 372 294 368 294 360 Z"/>
+      <rect id="sleepy-pants" x="120" y="400" width="280" height="70"/>
+      <rect id="sleepy-leg-l" x="188" y="420" width="48" height="44" rx="12"/>
+      <clipPath id="sleepy-leg-l-c"><use href="#sleepy-leg-l"/></clipPath>
+      <rect id="sleepy-leg-r" x="276" y="420" width="48" height="44" rx="12"/>
+      <clipPath id="sleepy-leg-r-c"><use href="#sleepy-leg-r"/></clipPath>
+      <path id="sleepy-collar-l" d="M194 288 C210 290 230 296 242 306 L226 332 C212 318 200 304 194 288 Z"/>
+      <clipPath id="sleepy-collar-l-c"><use href="#sleepy-collar-l"/></clipPath>
+      <path id="sleepy-collar-r" d="M 318 288 C 302 290 282 296 270 306 L 286 332 C 300 318 312 304 318 288 Z"/>
+      <clipPath id="sleepy-collar-r-c"><use href="#sleepy-collar-r"/></clipPath>
+      <ellipse id="sleepy-slip-l" cx="211" cy="472" rx="30" ry="17"/>
+      <clipPath id="sleepy-slip-l-c"><use href="#sleepy-slip-l"/></clipPath>
+      <ellipse id="sleepy-slip-r" cx="301" cy="472" rx="30" ry="17"/>
+      <clipPath id="sleepy-slip-r-c"><use href="#sleepy-slip-r"/></clipPath>
+      <path id="sleepy-fluff-l" d="M184 466 C182 456 192 452 198 456 C200 448 212 448 214 455 C218 448 230 450 230 458 C238 456 242 466 236 470 C222 476 198 476 184 466 Z"/>
+      <path id="sleepy-fluff-r" d="M 328 466 C 330 456 320 452 314 456 C 312 448 300 448 298 455 C 294 448 282 450 282 458 C 274 456 270 466 276 470 C 290 476 314 476 328 466 Z"/>
+      <path id="sleepy-sleeve-l" d="M182 314 C170.8 321.4 157.4 332 144.9 344.6"/>
+      <path id="sleepy-sleeve-r" d="M330 314 C341.2 321.4 354.6 332 367.1 344.6"/>
+    </defs>
+    <!-- pajama trouser legs -->
+    <g clip-path="url(#sleepy-leg-l-c)"><use href="#sleepy-leg-l" fill="#7F8FD6"/><use href="#sleepy-leg-l" fill="#A3B4F2" transform="translate(-5 -6)"/></g>
+    <use href="#sleepy-leg-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#sleepy-leg-r-c)"><use href="#sleepy-leg-r" fill="#7F8FD6"/><use href="#sleepy-leg-r" fill="#A3B4F2" transform="translate(-5 -6)"/></g>
+    <use href="#sleepy-leg-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- sleeves: same tube method as the arms -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#sleepy-sleeve-l" stroke="#3B2A24" stroke-width="54"/>
+      <use href="#sleepy-sleeve-r" stroke="#3B2A24" stroke-width="54"/>
+      <use href="#sleepy-sleeve-l" stroke="#7F8FD6" stroke-width="44"/>
+      <use href="#sleepy-sleeve-r" stroke="#7F8FD6" stroke-width="44"/>
+      <use href="#sleepy-sleeve-l" stroke="#A3B4F2" stroke-width="30" transform="translate(-3 -5)"/>
+      <use href="#sleepy-sleeve-r" stroke="#A3B4F2" stroke-width="30" transform="translate(-3 -5)"/>
+    </g>
+    <g fill="none" stroke-linecap="butt">
+      <path d="M152.6 337.1 L142.6 346.9" stroke="#3B2A24" stroke-width="56"/><path d="M150.4 339.2 L144.7 344.8" stroke="#DCE3EC" stroke-width="46"/><path d="M150.4 339.2 L144.7 344.8" stroke="#FFFFFF" stroke-width="34" transform="translate(-2 -3)"/>
+      <path d="M359.4 337.1 L369.4 346.9" stroke="#3B2A24" stroke-width="56"/><path d="M361.6 339.2 L367.3 344.8" stroke="#DCE3EC" stroke-width="46"/><path d="M361.6 339.2 L367.3 344.8" stroke="#FFFFFF" stroke-width="34" transform="translate(-2 -3)"/>
+    </g>
+    <!-- pajama top and trousers share the torso silhouette -->
+    <g clip-path="url(#b-torso-c)">
+      <use href="#sleepy-pants" fill="#7F8FD6"/>
+      <use href="#sleepy-pants" fill="#A3B4F2" transform="translate(-10 -6)"/>
+      <g fill="#FFD866"><path d="M167.2 426.1 L169.4 429.5 L173.4 429.4 L170.8 432.5 L172.2 436.3 L168.4 434.9 L165.2 437.3 L165.4 433.3 L162.1 431 L166 429.9 Z"/><path d="M211.2 426.1 L213.4 429.5 L217.4 429.4 L214.8 432.5 L216.2 436.3 L212.4 434.9 L209.2 437.3 L209.4 433.3 L206.1 431 L210 429.9 Z"/><path d="M299.2 426.1 L301.4 429.5 L305.4 429.4 L302.8 432.5 L304.2 436.3 L300.4 434.9 L297.2 437.3 L297.4 433.3 L294.1 431 L298 429.9 Z"/><path d="M343.2 426.1 L345.4 429.5 L349.4 429.4 L346.8 432.5 L348.2 436.3 L344.4 434.9 L341.2 437.3 L341.4 433.3 L338.1 431 L342 429.9 Z"/></g>
+      <path d="M256 424 L256 448" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+      <g clip-path="url(#sleepy-top-c)">
+        <use href="#sleepy-top" fill="#7F8FD6"/>
+        <use href="#sleepy-top" fill="#A3B4F2" transform="translate(-12 -8)"/>
+        <g fill="#FFD866"><path d="M149.1 319.6 L151.5 323.2 L155.8 323.2 L153.1 326.5 L154.5 330.7 L150.4 329.1 L146.9 331.7 L147.2 327.4 L143.6 324.9 L147.8 323.8 Z"/><path d="M187.1 319.6 L189.5 323.2 L193.8 323.2 L191.1 326.5 L192.5 330.7 L188.4 329.1 L184.9 331.7 L185.2 327.4 L181.6 324.9 L185.8 323.8 Z"/><path d="M225.1 319.6 L227.5 323.2 L231.8 323.2 L229.1 326.5 L230.5 330.7 L226.4 329.1 L222.9 331.7 L223.2 327.4 L219.6 324.9 L223.8 323.8 Z"/><path d="M168.1 347.6 L170.5 351.2 L174.8 351.2 L172.1 354.5 L173.5 358.7 L169.4 357.1 L165.9 359.7 L166.2 355.4 L162.6 352.9 L166.8 351.8 Z"/><path d="M206.1 347.6 L208.5 351.2 L212.8 351.2 L210.1 354.5 L211.5 358.7 L207.4 357.1 L203.9 359.7 L204.2 355.4 L200.6 352.9 L204.8 351.8 Z"/><path d="M244.1 347.6 L246.5 351.2 L250.8 351.2 L248.1 354.5 L249.5 358.7 L245.4 357.1 L241.9 359.7 L242.2 355.4 L238.6 352.9 L242.8 351.8 Z"/><path d="M282.1 347.6 L284.5 351.2 L288.8 351.2 L286.1 354.5 L287.5 358.7 L283.4 357.1 L279.9 359.7 L280.2 355.4 L276.6 352.9 L280.8 351.8 Z"/><path d="M358.1 347.6 L360.5 351.2 L364.8 351.2 L362.1 354.5 L363.5 358.7 L359.4 357.1 L355.9 359.7 L356.2 355.4 L352.6 352.9 L356.8 351.8 Z"/><path d="M149.1 375.6 L151.5 379.2 L155.8 379.2 L153.1 382.5 L154.5 386.7 L150.4 385.1 L146.9 387.7 L147.2 383.4 L143.6 380.9 L147.8 379.8 Z"/><path d="M187.1 375.6 L189.5 379.2 L193.8 379.2 L191.1 382.5 L192.5 386.7 L188.4 385.1 L184.9 387.7 L185.2 383.4 L181.6 380.9 L185.8 379.8 Z"/><path d="M225.1 375.6 L227.5 379.2 L231.8 379.2 L229.1 382.5 L230.5 386.7 L226.4 385.1 L222.9 387.7 L223.2 383.4 L219.6 380.9 L223.8 379.8 Z"/><path d="M301.1 375.6 L303.5 379.2 L307.8 379.2 L305.1 382.5 L306.5 386.7 L302.4 385.1 L298.9 387.7 L299.2 383.4 L295.6 380.9 L299.8 379.8 Z"/><path d="M339.1 375.6 L341.5 379.2 L345.8 379.2 L343.1 382.5 L344.5 386.7 L340.4 385.1 L336.9 387.7 L337.2 383.4 L333.6 380.9 L337.8 379.8 Z"/></g>
+        <use href="#sleepy-top" fill="none" stroke="#FFFFFF" stroke-width="12"/>
+      </g>
+      <use href="#sleepy-top" fill="none" stroke="#3B2A24" stroke-width="5"/>
+      <path d="M256 306 L256 414" fill="none" stroke="#3B2A24" stroke-width="4"/>
+      <use href="#sleepy-pocket" fill="#A3B4F2" stroke="#3B2A24" stroke-width="4"/>
+      <path d="M294 330 L338 330" stroke="#FFFFFF" stroke-width="6"/>
+      <path d="M294 326 L338 326 M294 334 L338 334" stroke="#3B2A24" stroke-width="3"/>
+      <path d="M322 344 C312 344 308 356 316 362 C308 362 302 354 304 347 C306 340 316 338 322 344 Z" fill="#FFD866" stroke="#3B2A24" stroke-width="3"/>
+      <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5">
+        <circle cx="266" cy="334" r="6"/><circle cx="266" cy="362" r="6"/><circle cx="266" cy="390" r="6"/>
+      </g>
+    </g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- collar -->
+    <g clip-path="url(#sleepy-collar-l-c)"><use href="#sleepy-collar-l" fill="#7F8FD6"/><use href="#sleepy-collar-l" fill="#A3B4F2" transform="translate(-3 -4)"/><use href="#sleepy-collar-l" fill="none" stroke="#FFFFFF" stroke-width="10"/></g>
+    <use href="#sleepy-collar-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#sleepy-collar-r-c)"><use href="#sleepy-collar-r" fill="#7F8FD6"/><use href="#sleepy-collar-r" fill="#A3B4F2" transform="translate(-3 -4)"/><use href="#sleepy-collar-r" fill="none" stroke="#FFFFFF" stroke-width="10"/></g>
+    <use href="#sleepy-collar-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- slippers with fluffy trim -->
+    <g clip-path="url(#sleepy-slip-l-c)"><use href="#sleepy-slip-l" fill="#5A69B5"/><use href="#sleepy-slip-l" fill="#6E80CF" transform="translate(-4 -5)"/></g>
+    <use href="#sleepy-slip-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#sleepy-slip-r-c)"><use href="#sleepy-slip-r" fill="#5A69B5"/><use href="#sleepy-slip-r" fill="#6E80CF" transform="translate(-4 -5)"/></g>
+    <use href="#sleepy-slip-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#sleepy-fluff-l"/>
+      <use href="#sleepy-fluff-r"/>
+    </g>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head">
+    <defs>
+      <path id="sleepy-cap" d="M346 100 C354 62 332 34 284 30 C230 24 154 28 114 58 C86 78 70 116 74 160 C80 134 94 108 114 90 C130 78 156 76 168 92 Z"/>
+      <clipPath id="sleepy-cap-c"><use href="#sleepy-cap"/></clipPath>
+      <path id="sleepy-cuff" d="M172 82 C208 101 304 101 340 82 C352 88 360 100 360 112 C318 128 194 128 152 112 C152 100 160 88 172 82 Z"/>
+      <clipPath id="sleepy-cuff-c"><use href="#sleepy-cuff"/></clipPath>
+      <circle id="sleepy-pom" cx="77" cy="170" r="18"/>
+      <clipPath id="sleepy-pom-c"><use href="#sleepy-pom"/></clipPath>
+    </defs>
+    <!-- heavy eyelids -->
+    <g fill="#F6C9A4">
+      <path d="M200 178 C200 154 230 154 230 178 C222 182 208 182 200 178 Z"/>
+      <path d="M282 178 C282 154 312 154 312 178 C304 182 290 182 282 178 Z"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round">
+      <path d="M201 178 C208 183 222 183 229 178"/>
+      <path d="M283 178 C290 183 304 183 311 178"/>
+    </g>
+    <!-- long nightcap drooping to the left -->
+    <g clip-path="url(#sleepy-cap-c)"><use href="#sleepy-cap" fill="#7F8FD6"/><use href="#sleepy-cap" fill="#A3B4F2" transform="translate(-10 -8)"/><path d="M318 30 C306 56 308 80 322 100" fill="none" stroke="#FFFFFF" stroke-width="13"/><path d="M240 22 C228 48 230 74 240 96" fill="none" stroke="#FFFFFF" stroke-width="13"/><path d="M166 30 C160 52 168 72 184 88" fill="none" stroke="#FFFFFF" stroke-width="13"/><path d="M96 62 C108 72 120 80 136 84" fill="none" stroke="#FFFFFF" stroke-width="13"/><path d="M70 116 C80 118 90 118 100 114" fill="none" stroke="#FFFFFF" stroke-width="13"/><path d="M250 44 C226 44 204 48 186 56" fill="none" stroke="#C3CEF8" stroke-width="7" stroke-linecap="round"/></g>
+    <use href="#sleepy-cap" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <g clip-path="url(#sleepy-cuff-c)"><use href="#sleepy-cuff" fill="#DCE3EC"/><use href="#sleepy-cuff" fill="#FFFFFF" transform="translate(-4 -6)"/></g>
+    <use href="#sleepy-cuff" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <g clip-path="url(#sleepy-pom-c)"><use href="#sleepy-pom" fill="#DCE3EC"/><use href="#sleepy-pom" fill="#FFFFFF" transform="translate(-4 -5)"/></g>
+    <use href="#sleepy-pom" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M66 164 C69 158 75 156 81 158" fill="none" stroke="#DCE3EC" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g id="prop">
+    <defs>
+      <circle id="sleepy-bear-head" cx="92" cy="422" r="24"/>
+      <clipPath id="sleepy-bear-head-c"><use href="#sleepy-bear-head"/></clipPath>
+      <ellipse id="sleepy-bear-body" cx="90" cy="460" rx="21" ry="24"/>
+      <clipPath id="sleepy-bear-body-c"><use href="#sleepy-bear-body"/></clipPath>
+      <circle id="sleepy-bear-ear-l" cx="72" cy="404" r="9"/>
+      <circle id="sleepy-bear-ear-r" cx="110" cy="402" r="9"/>
+      <ellipse id="sleepy-bear-foot-l" cx="78" cy="480" rx="10" ry="8"/>
+      <ellipse id="sleepy-bear-foot-r" cx="102" cy="481" rx="10" ry="8"/>
+      <ellipse id="sleepy-bear-arm-l" cx="70" cy="452" rx="8" ry="12" transform="rotate(20 70 452)"/>
+      <path id="sleepy-bear-arm-r" d="M106 444 C112 426 116 410 118 394"/>
+      <rect id="sleepy-mug" x="384" y="350" width="50" height="56" rx="10"/>
+      <clipPath id="sleepy-mug-c"><use href="#sleepy-mug"/></clipPath>
+      <path id="sleepy-handle" d="M434 364 C450 364 452 392 434 392"/>
+      <ellipse id="sleepy-milk" cx="409" cy="356" rx="20" ry="5"/>
+    </defs>
+    <!-- teddy bear with a bandage, held by the paw -->
+    <g fill="#C98B55" stroke="#3B2A24" stroke-width="4">
+      <use href="#sleepy-bear-ear-l"/><use href="#sleepy-bear-ear-r"/>
+      <use href="#sleepy-bear-arm-l"/>
+      <use href="#sleepy-bear-foot-l"/><use href="#sleepy-bear-foot-r"/>
+    </g>
+    <g fill="#F2D7B0"><circle cx="72" cy="404" r="4"/><circle cx="110" cy="402" r="4"/></g>
+    <g clip-path="url(#sleepy-bear-body-c)"><use href="#sleepy-bear-body" fill="#A66B3A"/><use href="#sleepy-bear-body" fill="#C98B55" transform="translate(-4 -5)"/><ellipse cx="88" cy="464" rx="11" ry="12" fill="#F2D7B0"/></g>
+    <use href="#sleepy-bear-body" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g fill="none" stroke-linecap="round">
+      <use href="#sleepy-bear-arm-r" stroke="#3B2A24" stroke-width="20"/>
+      <use href="#sleepy-bear-arm-r" stroke="#C98B55" stroke-width="12"/>
+    </g>
+    <g clip-path="url(#sleepy-bear-head-c)"><use href="#sleepy-bear-head" fill="#A66B3A"/><use href="#sleepy-bear-head" fill="#C98B55" transform="translate(-4 -5)"/></g>
+    <use href="#sleepy-bear-head" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <ellipse cx="92" cy="430" rx="11" ry="8" fill="#F2D7B0" stroke="#3B2A24" stroke-width="3.5"/>
+    <ellipse cx="92" cy="426" rx="4.5" ry="3.5" fill="#3B2A24"/>
+    <path d="M92 430 L92 434 M87 435 C90 437 94 437 97 435" fill="none" stroke="#3B2A24" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#3B2A24"><circle cx="83" cy="417" r="3.5"/><circle cx="101" cy="417" r="3.5"/></g>
+    <g transform="rotate(-30 76 410)">
+      <rect x="64" y="404" width="26" height="11" rx="5" fill="#F6EBD9" stroke="#3B2A24" stroke-width="3"/>
+      <rect x="72" y="404" width="10" height="11" fill="#EBCB9C" stroke="#3B2A24" stroke-width="2"/>
+    </g>
+    <g clip-path="url(#b-hand-l-c)"><use href="#b-hand-l" fill="#E3A982"/><use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/></g>
+    <use href="#b-hand-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"><path d="M106 377 C116 374 126 375 132 379"/><path d="M106 389 C116 386 126 387 132 391"/></g>
+    <!-- mug of warm milk -->
+    <use href="#sleepy-handle" fill="none" stroke="#3B2A24" stroke-width="16" stroke-linecap="round"/>
+    <use href="#sleepy-handle" fill="none" stroke="#FFD866" stroke-width="7" stroke-linecap="round"/>
+    <g clip-path="url(#sleepy-mug-c)"><use href="#sleepy-mug" fill="#E8B93A"/><use href="#sleepy-mug" fill="#FFD866" transform="translate(-5 -4)"/><rect x="389" y="362" width="5" height="30" rx="2.5" fill="#FFF0B8"/><path d="M418 372 C408 372 404 388 414 394 C406 394 400 386 402 378 C404 370 412 368 418 372 Z" fill="#FFFFFF"/></g>
+    <use href="#sleepy-mug" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <use href="#sleepy-milk" fill="#F6EBD9" stroke="#3B2A24" stroke-width="3.5"/>
+    <g clip-path="url(#b-hand-r-c)"><use href="#b-hand-r" fill="#E3A982"/><use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/></g>
+    <use href="#b-hand-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"><path d="M406 377 C396 374 386 375 380 379"/><path d="M406 389 C396 386 386 387 380 391"/></g>
+  </g>
+
+  <g id="fx">
+    <defs>
+      <path id="sleepy-z0" d="M382 76 L410 76 L382 104 L410 104"/>
+      <path id="sleepy-z1" d="M422 48 L442 48 L422 68 L442 68"/>
+      <path id="sleepy-z2" d="M454 32 L467 32 L454 45 L467 45"/>
+      <path id="sleepy-steam0" d="M400 340 C392 330 408 322 400 310 C394 302 404 296 400 288"/>
+      <path id="sleepy-steam1" d="M418 340 C412 332 424 326 418 316"/>
+    </defs>
+    <!-- steam -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#sleepy-steam0" stroke="#3B2A24" stroke-width="11"/><use href="#sleepy-steam1" stroke="#3B2A24" stroke-width="11"/>
+      <use href="#sleepy-steam0" stroke="#FFFFFF" stroke-width="5"/><use href="#sleepy-steam1" stroke="#FFFFFF" stroke-width="5"/>
+    </g>
+    <!-- zzz -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#sleepy-z0" stroke="#3B2A24" stroke-width="15"/><use href="#sleepy-z1" stroke="#3B2A24" stroke-width="13"/><use href="#sleepy-z2" stroke="#3B2A24" stroke-width="11"/>
+      <use href="#sleepy-z0" stroke="#A3B4F2" stroke-width="7"/><use href="#sleepy-z1" stroke="#A3B4F2" stroke-width="6"/><use href="#sleepy-z2" stroke="#A3B4F2" stroke-width="5"/>
+    </g>
+  </g>
+</svg>

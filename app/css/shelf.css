@@ -1,0 +1,148 @@
+.shelf, .shelf *, .sh-coupon, .sh-coupon * { box-sizing: border-box; }
+.shelf { min-height: 100%; width: 100%; background: var(--bg); color: var(--ink); font-family: var(--font-body); padding: 0 16px; }
+
+/* ---------- sticky title bar ---------- */
+.sh-top {
+  position: sticky; top: 0; z-index: 3;
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 -16px; padding: calc(var(--safe-top) + 10px) 16px 10px;
+  background: var(--bg);
+}
+.sh-top::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 12px; pointer-events: none;
+  background: linear-gradient(rgba(16, 32, 74, .12), rgba(16, 32, 74, 0));
+  opacity: 0; transition: opacity .2s ease;
+}
+.sh-top.is-stuck::after { opacity: 1; }
+.sh-back {
+  flex: none; display: inline-flex; align-items: center; gap: 2px;
+  height: 44px; padding: 0 16px 0 8px; border: 0; border-radius: var(--r-pill);
+  background: var(--card); color: var(--simi-blue);
+  font: 800 17px/1 var(--font-display);
+  box-shadow: 0 3px 0 var(--line), 0 1px 4px rgba(16, 32, 74, .12);
+  transition: transform .12s ease;
+}
+.sh-back svg { width: 24px; height: 24px; }
+.sh-title { min-width: 0; flex: 1; }
+.sh-eyebrow { margin: 0; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sh-top h1 { margin: 0; font: 800 26px/1.1 var(--font-display); color: var(--simi-navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sh-store { margin: 1px 0 0; font-size: 13px; font-weight: 600; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- Simi banner ---------- */
+.sh-simi {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  margin: 4px 0 14px; padding: 12px 14px; border: 0; border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--simi-sky), var(--simi-blue)); color: #fff;
+  text-align: left; font: inherit;
+  box-shadow: 0 6px 16px rgba(2, 78, 162, .25);
+  transition: transform .12s ease;
+}
+.sh-simi-art { flex: none; width: 68px; height: 68px; border-radius: 50%; background: rgba(255, 255, 255, .2); display: grid; place-items: center; overflow: hidden; }
+.sh-simi-art img { width: 100%; height: 100%; object-fit: contain; }
+.sh-simi.is-locked .sh-simi-art img { filter: brightness(0) opacity(.45); }
+.sh-simi-text { flex: 1; min-width: 0; display: block; }
+.sh-simi-name { display: block; font: 800 17px/1.15 var(--font-display); }
+.sh-check { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ok); color: #fff; font-size: 12px; vertical-align: 1px; }
+.sh-simi-line { display: block; margin-top: 3px; font-size: 13px; line-height: 1.3; opacity: .95; }
+.sh-quote { font-style: italic; }
+.sh-quote.is-es { margin-top: 1px; opacity: .78; }
+.sh-badge { display: inline-block; margin-left: 4px; padding: 2px 8px; border-radius: var(--r-pill); background: var(--sun); color: var(--simi-navy); font: 800 11px/1.3 var(--font-display); vertical-align: 2px; }
+.sh-chev { flex: none; display: grid; place-items: center; width: 28px; height: 44px; opacity: .85; }
+.sh-chev svg { width: 22px; height: 22px; }
+.sh-scan-pill {
+  flex: none; display: inline-flex; align-items: center; gap: 6px;
+  min-height: 44px; padding: 0 14px 0 11px; border-radius: var(--r-pill);
+  background: #fff; color: var(--simi-blue); font: 800 16px/1 var(--font-display);
+  box-shadow: 0 3px 0 rgba(16, 32, 74, .28);
+}
+.sh-scan-pill svg { width: 20px; height: 20px; }
+
+/* ---------- product rows ---------- */
+.sh-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.sh-row {
+  display: grid; grid-template-columns: 84px 1fr; gap: 12px; align-items: center;
+  min-height: 104px; padding: 10px 12px 10px 10px;
+  background: var(--card); border-radius: var(--r-md);
+  box-shadow: 0 1px 6px rgba(16, 32, 74, .09);
+}
+.sh-row.is-dr { box-shadow: 0 0 0 2px var(--sun), 0 1px 6px rgba(16, 32, 74, .09); }
+.sh-row.is-pick { background: linear-gradient(100deg, var(--sun-soft), var(--card) 55%); }
+.sh-thumb { position: relative; width: 84px; height: 84px; border-radius: var(--r-sm); overflow: hidden; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+.sh-ph { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(160deg, var(--simi-ice), #fff); color: var(--simi-blue); }
+.sh-ph svg { width: 50px; height: 50px; }
+.sh-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #fff; padding: 3px; opacity: 0; transition: opacity .25s ease; }
+.sh-photo.is-in { opacity: 1; }
+.sh-drtag { position: absolute; left: 4px; bottom: 4px; padding: 3px 6px; border-radius: var(--r-pill); background: var(--sun); color: var(--simi-navy); font: 800 10px/1 var(--font-display); }
+.sh-info { min-width: 0; }
+.sh-pick { margin: 0 0 3px; font: 800 11px/1 var(--font-display); letter-spacing: .06em; text-transform: uppercase; color: #9A6200; }
+.sh-name {
+  margin: 0; font: 800 15px/1.25 var(--font-body); color: var(--ink);
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+}
+.sh-sub { margin: 2px 0 0; font-size: 13px; line-height: 1.35; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sh-sub b { font-weight: 800; color: var(--simi-navy); }
+.sh-chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 6px 0 0; }
+.sh-chip { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: var(--r-pill); background: var(--simi-ice); color: var(--simi-navy); font: 800 12px/1 var(--font-body); white-space: nowrap; }
+.sh-chip.is-price { background: #E2F5EA; color: #13703F; }
+.sh-chip.is-sun { background: var(--sun-soft); color: #8A5A00; box-shadow: inset 0 0 0 1px #F7DC8A; }
+.sh-chip.is-size { background: transparent; color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line); }
+.sh-chip.is-aisle { background: var(--stop-red-soft); color: var(--stop-red); }
+.sh-empty { padding: 28px 20px; border-radius: var(--r-md); background: var(--card); color: var(--ink-2); text-align: center; line-height: 1.5; }
+
+/* ---------- coupon button (sticky) ---------- */
+.sh-cta { position: sticky; bottom: calc(12px + var(--safe-bottom)); z-index: 2; margin-top: 26px; }
+.sh-cta::before {
+  content: ''; position: absolute; z-index: -1; pointer-events: none;
+  left: -16px; right: -16px; top: -30px; bottom: calc(-12px - var(--safe-bottom));
+  background: linear-gradient(rgba(244, 248, 254, 0), var(--bg) 30px);
+}
+.sh-coupon-btn { width: 100%; min-height: 60px; flex-direction: column; gap: 1px; padding: 6px 18px; line-height: 1.1; }
+.sh-cta-main { display: inline-flex; align-items: center; gap: 8px; font-size: 19px; font-weight: 800; }
+.sh-cta-main svg { width: 24px; height: 24px; color: var(--sun); }
+.sh-coupon-btn small { font: 700 12px/1.2 var(--font-body); opacity: .85; }
+
+/* ---------- footer ---------- */
+.sh-foot { margin-top: 18px; padding-bottom: calc(24px + var(--safe-bottom)); font-size: 11px; line-height: 1.4; color: var(--ink-3); }
+.sh-foot p { margin: 0 0 4px; }
+.sh-home { width: 100%; margin-bottom: 16px; font-size: 16px; gap: 4px; }
+.sh-home svg, .sh-lost .pill svg { width: 20px; height: 20px; }
+
+/* ---------- unknown shelf ---------- */
+.sh-lost { margin: 16px 0 24px; padding: 22px 20px 20px; border-radius: var(--r-lg); background: var(--card); text-align: center; box-shadow: var(--shadow-1); }
+.sh-lost img { display: block; width: 96px; height: 96px; margin: 0 auto 6px; object-fit: contain; }
+.sh-lost h2 { margin: 0; font: 800 22px/1.2 var(--font-display); color: var(--simi-navy); }
+.sh-lost p { margin: 6px 0 0; color: var(--ink-2); line-height: 1.45; }
+.sh-lost .sh-es { margin-top: 2px; font-style: italic; color: var(--ink-3); }
+.sh-lost .pill { width: 100%; margin-top: 12px; }
+.sh-lost .pill + .pill { margin-top: 10px; }
+
+/* ---------- coupon sheet (opened with the shell's sheet()) ---------- */
+.sh-coupon .sheet-body { text-align: center; }
+.sh-ticket { position: relative; margin: 8px 0 16px; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 0 0 2px var(--line), var(--shadow-1); }
+.sh-ticket-top { padding: 14px 16px 18px; background: linear-gradient(135deg, var(--sun), #FFDB70); color: var(--simi-navy); }
+.sh-demo { display: inline-block; padding: 4px 10px; border-radius: var(--r-pill); background: rgba(255, 255, 255, .7); color: var(--simi-navy); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.sh-off { margin: 6px 0 0; font: 800 48px/1 var(--font-display); }
+.sh-what { margin: 2px 0 0; font: 800 18px/1.2 var(--font-display); }
+.sh-where { margin: 4px 0 0; font-size: 13px; font-weight: 600; opacity: .8; }
+.sh-ticket-bot { position: relative; padding: 18px 14px 14px; border-top: 2px dashed rgba(16, 32, 74, .22); }
+.sh-ticket-bot::before, .sh-ticket-bot::after { content: ''; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--card); box-shadow: inset 0 0 0 2px var(--line); }
+.sh-ticket-bot::before { left: -13px; }
+.sh-ticket-bot::after { right: -13px; }
+.sh-bars { background: #fff; }
+.sh-bars svg { display: block; width: 100%; height: 104px; }
+.sh-code { margin: 8px 0 0; font: 800 16px ui-monospace, Menlo, monospace; letter-spacing: .12em; color: var(--ink); }
+.sh-how { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
+.sh-done { width: 100%; min-height: 52px; }
+.sh-fine { margin: 10px 0 0; font-size: 11px; color: var(--ink-3); }
+
+/* ---------- motion: transform and opacity only ---------- */
+.sh-back:active { transform: scale(.94); }
+button.sh-simi:active { transform: scale(.98); }
+@keyframes sh-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.sh-simi, .sh-lost { animation: sh-rise .34s cubic-bezier(.2, .8, .3, 1) backwards; }
+.sh-row { animation: sh-rise .34s cubic-bezier(.2, .8, .3, 1) backwards; animation-delay: calc(var(--i, 0) * 40ms + 60ms); }
+.sh-cta { animation: sh-rise .4s .15s cubic-bezier(.2, .8, .3, 1) backwards; }
+@media (prefers-reduced-motion: reduce) {
+  .sh-simi, .sh-lost, .sh-row, .sh-cta { animation: none; }
+  .sh-photo, .sh-top::after { transition: none; }
+}

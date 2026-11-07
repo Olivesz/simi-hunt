@@ -1,0 +1,128 @@
+/* Encounter / catch screen. Motion is transform and opacity only. */
+.enc{position:absolute;inset:0;overflow:hidden;background:#bfe6ff;color:#10204A;font-family:var(--font-body,system-ui,sans-serif);touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;transition:opacity .25s ease-out}
+.enc *{box-sizing:border-box}
+.enc [hidden]{display:none!important}
+.enc-bg,.enc-video{position:absolute;inset:-6%;width:112%;height:112%;object-fit:cover;z-index:0}
+.enc-bg{background:linear-gradient(#8fd3ff 0%,#d9f2ff 48%,#8ed081 48.5%,#4fa65a 100%)}
+.enc-bg svg{width:100%;height:100%;display:block}
+.enc-video{display:none;background:#000}
+.enc.ar .enc-video{display:block}.enc.ar .enc-bg{display:none}
+
+/* Simi, its ground shadow and the catch rings (placed each frame by translate) */
+.enc-stage{position:absolute;inset:0;z-index:2}
+.enc-simi{position:absolute;left:0;top:0;width:170px;height:170px;margin:-85px 0 0 -85px;will-change:transform;cursor:pointer}
+.enc-sprite{position:relative;width:100%;height:100%}
+.enc-sprite>img,.enc-sprite>svg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.enc-sprite>:first-child{filter:drop-shadow(0 8px 6px #0003)}
+.enc-sprite>.enc-flash{opacity:0;filter:brightness(0) invert(1) drop-shadow(0 0 10px #fff)}
+.enc-sil{position:absolute;left:24%;right:24%;top:12%;bottom:8%;border-radius:50% 50% 44% 44%;background:#fff;opacity:.5;animation:encshim 1s ease-in-out infinite alternate}
+@keyframes encshim{from{opacity:.25}to{opacity:.7}}
+.enc-shadow{position:absolute;left:0;top:0;width:120px;height:26px;margin:-13px 0 0 -60px;border-radius:50%;background:radial-gradient(closest-side,#10204a40,#10204a00);will-change:transform;pointer-events:none}
+.enc-ring{position:absolute;left:0;top:0;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:6px solid var(--rc,#2ecc40);box-shadow:0 0 14px var(--rc,#2ecc40);pointer-events:none;will-change:transform;transition:opacity .2s}
+.enc-ring.outer{border:3px dashed #ffffffd9;box-shadow:none}
+.enc.loading .enc-ring,.enc.capturing .enc-ring{opacity:0}
+
+/* Name tag */
+.enc-tag{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 68px);margin:0 auto;width:max-content;max-width:calc(100% - 32px);z-index:3;display:flex;flex-direction:column;align-items:center;padding:6px 18px 7px;border-radius:22px;background:#ffffffeb;box-shadow:0 2px 10px #10204a26;pointer-events:none;text-align:center;animation:encin .35s ease-out both}
+.enc-tag b{display:flex;align-items:center;gap:7px;font-family:var(--font-display,system-ui,sans-serif);font-weight:800;font-size:20px;line-height:1.1;color:#1C4889}
+.enc-tag b::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--rc,#2ecc40);box-shadow:0 0 0 2px #fff,0 0 0 3px #10204a26}
+.enc-tag span{font-size:13px;font-weight:700;color:#44507A}
+.enc-tag span:empty{display:none}
+@keyframes encin{from{opacity:0;transform:translateY(-8px)}}
+
+/* Capsule: homed by CSS; JS only writes offsets from here */
+.enc-cap{position:absolute;left:calc(50% - 30px);bottom:calc(env(safe-area-inset-bottom,0px) + 54px);width:60px;height:98px;margin:0;padding:0;border:0;background:none;z-index:5;will-change:transform;touch-action:none;cursor:grab;-webkit-tap-highlight-color:transparent}
+.enc-cap svg{display:block;width:100%;height:100%;transform-origin:50% 90%;filter:drop-shadow(0 5px 4px #0004);pointer-events:none}
+.enc-cap.held{cursor:grabbing}
+.enc-cap.held svg{filter:drop-shadow(0 16px 12px #0005)}
+.enc-cap.off{opacity:.55}
+.enc-cap.empty{opacity:.4;filter:grayscale(1)}
+.enc-cap:focus-visible{outline:3px solid #fff;outline-offset:6px;border-radius:30px}
+.enc-grab{position:absolute;left:0;right:0;bottom:0;height:35%;z-index:4;touch-action:none}
+
+/* Instruction pill, kept above the thumb and the capsule */
+.enc-pill{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 168px);margin:0 auto;width:max-content;max-width:calc(100% - 32px);z-index:5;display:flex;flex-direction:column;align-items:center;padding:8px 18px 9px;border-radius:22px;background:#0a2a5acc;color:#fff;text-align:center;box-shadow:0 4px 14px #0003;pointer-events:none}
+.enc-pill b{font-size:17px;font-weight:800;line-height:1.25}
+.enc-pill span{font-size:13px;font-weight:700;opacity:.85}
+.enc-pill span:empty{display:none}
+.enc-pill.pulse{animation:encpulse .45s ease-out}
+@keyframes encpulse{40%{transform:scale(1.08)}}
+
+/* Throw feedback pill, placed above the outer ring by JS */
+.enc-fbw{position:absolute;left:0;right:0;top:0;z-index:6;display:flex;justify-content:center;pointer-events:none}
+.enc-fb{display:flex;flex-direction:column;align-items:center;max-width:calc(100vw - 32px);padding:8px 20px 10px;border-radius:20px;background:#0a2a5ae6;color:#fff;text-align:center;box-shadow:0 6px 18px #0004;opacity:0}
+.enc-fb b{font-family:var(--font-display,system-ui,sans-serif);font-size:22px;font-weight:800;line-height:1.15}
+.enc-fb span{font-size:13px;font-weight:700;opacity:.85}
+.enc-fb.good b{color:#FFC72C;font-size:28px}
+.enc-fb.show{animation:encfb 1.1s ease-out both}
+@keyframes encfb{0%{opacity:0;transform:scale(.6)}15%{opacity:1;transform:scale(1.08)}25%{transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-14px)}}
+
+/* HUD */
+.enc-hud{position:absolute;top:0;left:0;right:0;z-index:7;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 10px) 12px 0;pointer-events:none}
+.enc-hud>*{pointer-events:auto}
+.enc-hud-r{display:flex;align-items:center;gap:8px}
+.enc-ico{width:48px;height:48px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:#fff;color:#1C4889;box-shadow:0 2px 8px #10204a33;cursor:pointer;transition:transform .12s ease-out}
+.enc-ico svg{width:22px;height:22px}
+.enc-ico:active{transform:scale(.9)}
+.enc-ico[aria-pressed=true]{background:#024EA2;color:#fff}
+.enc-ico:focus-visible,.enc-btn:focus-visible{outline:3px solid #FFC72C;outline-offset:2px}
+.enc-caps{height:48px;display:flex;align-items:center;gap:7px;padding:0 15px 0 12px;border-radius:24px;background:#fff;color:#1C4889;font-weight:800;font-size:18px;box-shadow:0 2px 8px #10204a33}
+.enc-caps i{display:block;width:15px;height:25px}
+.enc-caps i svg{display:block;width:100%;height:100%}
+.enc-caps.bump{animation:encpulse .35s ease-out}
+
+/* First-use coach */
+.enc-coach{position:absolute;inset:0;z-index:4;pointer-events:none}
+.enc-arc{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:encarc 1.4s ease-in-out infinite}
+.enc-arc .enc-arcp{fill:none;stroke:#fff;stroke-width:5;stroke-linecap:round;stroke-dasharray:.1 14}
+@keyframes encarc{0%,25%{opacity:.35}55%{opacity:1}100%{opacity:.35}}
+.enc-finger{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:#ffffff8c;border:3px solid #fff;box-shadow:0 0 0 6px #ffffff40,0 4px 10px #0003;animation:encfinger 1.4s ease-in-out infinite}
+@keyframes encfinger{0%{opacity:0;transform:translateY(16px) scale(1.15)}15%{opacity:1;transform:none}60%{opacity:1;transform:translateY(var(--dy,-160px)) scale(.9)}80%,100%{opacity:0;transform:translateY(var(--dy,-160px)) scale(.9)}}
+
+/* Wiggle ticks under the capsule */
+.enc-ticks{position:absolute;left:0;top:0;z-index:3;display:flex;gap:10px;margin-left:-28px;opacity:0;transition:opacity .2s;pointer-events:none}
+.enc-ticks.show{opacity:1}
+.enc-ticks i{position:relative;width:12px;height:12px;border-radius:50%;background:#ffffff99;box-shadow:0 1px 3px #0004;transform:scale(.6);transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.enc-ticks i::after{content:"";position:absolute;inset:0;border-radius:50%;background:#FFC72C;opacity:0;transition:opacity .2s}
+.enc-ticks i.on{transform:none}
+.enc-ticks i.on::after{opacity:1}
+
+/* Catch click flash and star burst */
+.enc-fx{position:absolute;left:0;top:0;z-index:6;pointer-events:none}
+.enc-fx i{position:absolute;left:0;top:0;opacity:0}
+.enc-click{width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;border:4px solid #fff;box-shadow:0 0 18px #fff,inset 0 0 12px #fff}
+.enc-star{width:20px;height:20px;margin:-10px 0 0 -10px;background:#FFC72C;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.enc-star:nth-child(odd){background:#fff}
+.enc-fx.go .enc-click{animation:encclick .45s ease-out both}
+.enc-fx.go .enc-star{animation:encstar .75s cubic-bezier(.2,.8,.3,1) both}
+@keyframes encclick{0%{opacity:1;transform:scale(.2)}100%{opacity:0;transform:scale(1.7)}}
+@keyframes encstar{0%{opacity:0;transform:rotate(var(--a)) translateY(0) scale(.3)}20%{opacity:1}100%{opacity:0;transform:rotate(var(--a)) translateY(-84px) scale(1)}}
+
+/* Result cards */
+.enc-card{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:20px 16px;background:#0a2a5a8c;animation:encfade .25s ease-out both}
+@keyframes encfade{from{opacity:0}}
+.enc-cardin{width:100%;max-width:340px;max-height:100%;overflow:auto;padding:22px 20px 18px;border-radius:26px;background:#fff;text-align:center;box-shadow:0 18px 50px #10204a47;animation:encpop .42s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes encpop{from{opacity:0;transform:translateY(20px) scale(.7)}}
+.enc-card h2{margin:0 0 8px;font-family:var(--font-display,system-ui,sans-serif);font-size:28px;font-weight:800;line-height:1.1;color:#1C4889}
+.enc-card h2 small{display:block;margin-top:3px;font-family:var(--font-body,system-ui,sans-serif);font-size:15px;font-weight:700;color:#44507A}
+.enc-cimg{width:140px;height:140px;margin:4px auto;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 50% 40%,#fff 0 45%,#E8F1FC 72%)}
+.enc-cimg img,.enc-cimg svg{width:124px;height:124px;object-fit:contain}
+.enc-cimg.sm{width:110px;height:110px}
+.enc-cimg.sm svg{width:44px;height:72px;filter:grayscale(1);opacity:.6}
+.enc-card h3{margin:6px 0 0;font-family:var(--font-display,system-ui,sans-serif);font-size:22px;font-weight:800;line-height:1.1;color:#024EA2}
+.enc-card .es{font-size:14px;font-weight:700;color:#44507A}
+.enc-say{position:relative;max-width:290px;margin:4px auto 14px;padding:9px 14px;border-radius:16px;background:#FFF4D1;color:#10204A;font-size:15px;font-weight:800;line-height:1.3}
+.enc-say::after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-8px;border:8px solid transparent;border-bottom:0;border-top-color:#FFF4D1}
+.enc-say span{display:block;font-size:13px;font-weight:600;font-style:italic;color:#44507A}
+.enc-card .new{display:inline-block;margin:8px 0 2px;padding:4px 12px;border-radius:12px;background:#FFC72C;color:#10204A;font-size:14px;font-weight:800}
+.enc-card p{margin:8px 0 4px;font-size:15px;line-height:1.4;color:#44507A}
+.enc-card .row{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.enc-btn{min-height:52px;padding:0 18px;border:0;border-radius:26px;background:#E8F1FC;color:#024EA2;font:inherit;font-size:17px;font-weight:800;cursor:pointer;transition:transform .12s ease-out}
+.enc-btn.pri{background:#024EA2;color:#fff;box-shadow:0 4px 0 #1C4889}
+.enc-btn:active{transform:translateY(2px) scale(.98)}
+
+@media (prefers-reduced-motion:reduce){
+  .enc-fb.show{animation:none;opacity:1}
+  .enc-arc,.enc-finger,.enc-sil,.enc-tag,.enc-pill.pulse,.enc-caps.bump{animation:none}
+  .enc-finger{transform:translateY(var(--dy,-160px))}
+}

@@ -1,0 +1,37 @@
+{
+  "base": "https://olivesz.github.io/simi-hunt",
+  "codes": {
+    "qr-a": {
+      "storeId": "cvs-guadalupe-2402",
+      "shelfType": "sun-care",
+      "simiId": "beach",
+      "label": "QR-A \u00b7 Guadalupe \u00b7 Sun care",
+      "token": "eyJjIjoicXItYSIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoic3VuLWNhcmUiLCJtIjoiYmVhY2giLCJ2IjoxfQ.4xfvqSO7nY3Yk1_4mfVu-k1k_hNlaSA9uY_O1A3EFD-A0FzNPePXKVsgxbvWHUNE93W5VPHJwGOyZhe6Ifu-SA",
+      "url": "https://olivesz.github.io/simi-hunt/app/#/claim/eyJjIjoicXItYSIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoic3VuLWNhcmUiLCJtIjoiYmVhY2giLCJ2IjoxfQ.4xfvqSO7nY3Yk1_4mfVu-k1k_hNlaSA9uY_O1A3EFD-A0FzNPePXKVsgxbvWHUNE93W5VPHJwGOyZhe6Ifu-SA"
+    },
+    "qr-b": {
+      "storeId": "cvs-guadalupe-2402",
+      "shelfType": "dr-simi",
+      "simiId": "texas",
+      "label": "QR-B \u00b7 Guadalupe \u00b7 Dr. Simi section (store exclusive)",
+      "token": "eyJjIjoicXItYiIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoiZHItc2ltaSIsIm0iOiJ0ZXhhcyIsInYiOjF9.vDc3PzutdBsXH7xKnEArvs-SpZ8EUD7FY-aKoX-i8CA1D4XBxVcrePYF7t8OFnlE120Qs5X6dQ7Gfvu3iCOosA",
+      "url": "https://olivesz.github.io/simi-hunt/app/#/claim/eyJjIjoicXItYiIsInMiOiJjdnMtZ3VhZGFsdXBlLTI0MDIiLCJoIjoiZHItc2ltaSIsIm0iOiJ0ZXhhcyIsInYiOjF9.vDc3PzutdBsXH7xKnEArvs-SpZ8EUD7FY-aKoX-i8CA1D4XBxVcrePYF7t8OFnlE120Qs5X6dQ7Gfvu3iCOosA"
+    },
+    "qr-c": {
+      "storeId": "cvs-congress-500",
+      "shelfType": "dr-simi",
+      "simiId": "rockstar",
+      "label": "Test \u00b7 Congress \u00b7 Dr. Simi section (store exclusive)",
+      "token": "eyJjIjoicXItYyIsInMiOiJjdnMtY29uZ3Jlc3MtNTAwIiwiaCI6ImRyLXNpbWkiLCJtIjoicm9ja3N0YXIiLCJ2IjoxfQ.XlJukBwQg1xjt2HNAUfW3-YcWbenibjU4lIVXDraGChzSd4nkacA3jGsAWiaoX9pCqRQKrbF-sjuVtxTCGbizg",
+      "url": "https://olivesz.github.io/simi-hunt/app/#/claim/eyJjIjoicXItYyIsInMiOiJjdnMtY29uZ3Jlc3MtNTAwIiwiaCI6ImRyLXNpbWkiLCJtIjoicm9ja3N0YXIiLCJ2IjoxfQ.XlJukBwQg1xjt2HNAUfW3-YcWbenibjU4lIVXDraGChzSd4nkacA3jGsAWiaoX9pCqRQKrbF-sjuVtxTCGbizg"
+    },
+    "qr-d": {
+      "storeId": "any",
+      "shelfType": "skincare",
+      "simiId": "spa",
+      "label": "Test \u00b7 Any participating store \u00b7 Skincare",
+      "token": "eyJjIjoicXItZCIsInMiOiJhbnkiLCJoIjoic2tpbmNhcmUiLCJtIjoic3BhIiwidiI6MX0.HOPo56-q34DfCCgE6MW2pF9y2_5iBu8xWvJu5tW9hXupaTDk2GgYAMKnlzExQe13fTa6unVBLVEg010SzRGXug",
+      "url": "https://olivesz.github.io/simi-hunt/app/#/claim/eyJjIjoicXItZCIsInMiOiJhbnkiLCJoIjoic2tpbmNhcmUiLCJtIjoic3BhIiwidiI6MX0.HOPo56-q34DfCCgE6MW2pF9y2_5iBu8xWvJu5tW9hXupaTDk2GgYAMKnlzExQe13fTa6unVBLVEg010SzRGXug"
+    }
+  }
+}

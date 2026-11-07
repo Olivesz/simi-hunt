@@ -1,0 +1,164 @@
+[
+ {
+  "id": "cvs-las-vegas-2700",
+  "name": "CVS Pharmacy",
+  "address": "2700 South Las Vegas Boulevard, Las Vegas, NV 89109",
+  "lat": 36.138591,
+  "lon": -115.16105,
+  "osmId": "node/993704392",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ },
+ {
+  "id": "cvs-sahara-3550",
+  "name": "CVS Pharmacy",
+  "address": "3550 West Sahara Avenue, Las Vegas, NV 89102",
+  "lat": 36.14566,
+  "lon": -115.189229,
+  "osmId": "node/2810188800",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ },
+ {
+  "id": "cvs-las-vegas-3300",
+  "name": "CVS Pharmacy",
+  "address": "3300 South Las Vegas Boulevard, Las Vegas, NV 89109",
+  "lat": 36.125138,
+  "lon": -115.169863,
+  "osmId": "node/6394970837",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ },
+ {
+  "id": "cvs-maryland-0599",
+  "name": "CVS Pharmacy",
+  "address": "South Maryland Parkway, Las Vegas, NV 89154",
+  "lat": 36.116756,
+  "lon": -115.139476,
+  "osmId": "node/9383170599",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Street address not tagged in OSM; street name from Nominatim reverse geocode, no house number. Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ },
+ {
+  "id": "cvs-center-strip-0395",
+  "name": "CVS Pharmacy",
+  "address": "Center Strip Drive, Las Vegas, NV 89158",
+  "lat": 36.113406,
+  "lon": -115.17251,
+  "osmId": "node/9719070395",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Street address not tagged in OSM; street name from Nominatim reverse geocode, no house number. Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ },
+ {
+  "id": "cvs-las-vegas-3758",
+  "name": "CVS Pharmacy",
+  "address": "3758 South Las Vegas Boulevard, Las Vegas, NV 89109",
+  "lat": 36.105661,
+  "lon": -115.173585,
+  "osmId": "way/133885466",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ },
+ {
+  "id": "cvs-paradise-4490",
+  "name": "CVS Pharmacy",
+  "address": "4490 Paradise Road, Las Vegas, NV 89169",
+  "lat": 36.108498,
+  "lon": -115.150997,
+  "osmId": "way/319208750",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ },
+ {
+  "id": "cvs-maryland-2735",
+  "name": "CVS Pharmacy",
+  "address": "2735 South Maryland Parkway, Las Vegas, NV",
+  "lat": 36.140293,
+  "lon": -115.137769,
+  "osmId": "way/402847058",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ },
+ {
+  "id": "cvs-charleston-2100",
+  "name": "CVS Pharmacy",
+  "address": "2100 West Charleston Boulevard, Las Vegas, NV 89102",
+  "lat": 36.159355,
+  "lon": -115.170654,
+  "osmId": "way/553816802",
+  "shelves": [
+   "sun-care",
+   "skincare",
+   "vitamins",
+   "sleep",
+   "sports-nutrition",
+   "cold-flu"
+  ],
+  "drSimiStatus": "unverified",
+  "note": "Dr. Simi sold at select Las Vegas CVS stores since Sept 2025 (emprendedor.com, Fox 5 Vegas); no source lists which stores, so dr-simi shelf is not set."
+ }
+]

@@ -1,0 +1,527 @@
+[
+  {
+    "id": "classic",
+    "dexNo": 1,
+    "name": "Classic Simi",
+    "nameEs": "Simi Clásico",
+    "tier": "common",
+    "rarity": "common",
+    "unlock": "Roams the map everywhere. The easiest Simi to find, and usually the first one to find you.",
+    "shelf": null,
+    "biome": "Everywhere: sidewalks, bus stops and front porches",
+    "art": "../art/simis/classic.svg",
+    "flavor": "The original lab coat and mustache. Arms always open, hugs always free.",
+    "story": "Before there were eighteen outfits, there was one white lab coat. Classic Simi is the Dr. Simi everybody knows: the bald head, the curling white mustache, the white coat and dark tie, arms held wide like he just spotted you across the street. He walks the whole map, every neighborhood and every hour, because somebody always needs a friendly face. He doesn't do anything fancy. He asks how you're doing, waits for the real answer, and reminds you that taking care of yourself doesn't have to cost a fortune. Every other Simi borrowed his smile. He likes to say he is exactly the same as the rest of them, just in his work clothes.",
+    "personality": [
+      "Welcoming",
+      "Steady",
+      "Proud of his mustache"
+    ],
+    "catchphrase": "Same care, less cost, more hugs!",
+    "catchphraseEs": "¡Lo mismo, pero con más abrazos!",
+    "favoriteProduct": "Bottled water, which he calls the original wellness product",
+    "funFacts": [
+      "The first Dr. Simi plush came out in 2006. He has been changing outfits ever since.",
+      "Real Simi plushies are made by artisans at a workshop in Puebla, Mexico.",
+      "He has asked 'Did you drink water today?' more times than anyone can count."
+    ],
+    "height": "12 in (30 cm), mustache included",
+    "weight": "9 oz (255 g) of pure good vibes"
+  },
+  {
+    "id": "gym",
+    "dexNo": 2,
+    "name": "Gym Simi",
+    "nameEs": "Simi del Gym",
+    "tier": "common",
+    "rarity": "common",
+    "unlock": "Roams the map. Shows up most near gyms and fitness centers.",
+    "shelf": null,
+    "biome": "Gyms, running tracks and fitness centers",
+    "art": "../art/simis/gym.svg",
+    "flavor": "Sweatband on, towel on shoulder. Counts your reps out loud, in two languages.",
+    "story": "Gym Simi traded the lab coat for a sweatband and has not stopped moving since. He jogs between gyms, cheers for strangers on the treadmill and counts everyone's reps out loud, uno, dos, tres, whether they asked or not. He is not interested in who lifts the most. He wants you to find something that gets you moving and keep showing up, and a walk around the block absolutely counts. His towel lives on one shoulder and his water bottle is always half full, which he says is the optimistic way to see it. After every workout he stretches, refills, and goes looking for someone new to high-five.",
+    "personality": [
+      "Energetic",
+      "Encouraging",
+      "A little too loud at 6 a.m."
+    ],
+    "catchphrase": "One more rep, then one more sip!",
+    "catchphraseEs": "¡Una más, y luego agüita!",
+    "favoriteProduct": "Protein bars and a refillable water bottle",
+    "funFacts": [
+      "He stretches before every capsule toss, just in case.",
+      "He counts reps in English and Spanish, so every set feels twice as long.",
+      "His idea of a rest day is a long walk to a different gym."
+    ],
+    "height": "12 in (30 cm), 13 in on tiptoe",
+    "weight": "10 oz (285 g), mostly enthusiasm"
+  },
+  {
+    "id": "sleepy",
+    "dexNo": 3,
+    "name": "Sleepy Simi",
+    "nameEs": "Simi Dormilón",
+    "tier": "common",
+    "rarity": "uncommon",
+    "unlock": "Comes out at night. Look for him after 9 p.m., when everyone else should be in bed.",
+    "shelf": null,
+    "biome": "Quiet neighborhoods at night",
+    "art": "../art/simis/sleepy.svg",
+    "flavor": "Shows up after 9 p.m. to remind you that it is after 9 p.m.",
+    "story": "Sleepy Simi wears striped pajamas, a floppy nightcap and exactly one slipper. Nobody knows where the other one went, including him. He only appears late at night, which is a little funny, because his entire job is telling people to go to bed. He wanders quiet streets with a night-light turned way down low, yawning so wide his mustache stretches. When he finds someone scrolling at midnight, he does not lecture. He just yawns, and somehow you yawn too. He believes in dim lights, cool rooms, the same bedtime every night and phones that sleep in a different room. Then he shuffles off, still looking for that slipper.",
+    "personality": [
+      "Gentle",
+      "Drowsy",
+      "Secretly a night owl"
+    ],
+    "catchphrase": "Lights low, phone down, sweet dreams!",
+    "catchphraseEs": "¡A dormir, que mañana hay más Simis!",
+    "favoriteProduct": "Sleep masks and chamomile tea",
+    "funFacts": [
+      "He has never once finished a bedtime story. He always falls asleep first.",
+      "He counts sheep in Spanish: una oveja, dos ovejas... he rarely makes it to cinco.",
+      "His missing slipper has been spotted near three different SimiStops."
+    ],
+    "height": "11 in (28 cm), slouched",
+    "weight": "8 oz (225 g), plus pillow"
+  },
+  {
+    "id": "futbol",
+    "dexNo": 4,
+    "name": "Fútbol Simi",
+    "nameEs": "Simi Futbolista",
+    "tier": "common",
+    "rarity": "common",
+    "unlock": "Roams the map. Look in parks and near soccer fields.",
+    "shelf": null,
+    "biome": "Parks and soccer fields",
+    "art": "../art/simis/futbol.svg",
+    "flavor": "Green jersey, white shorts, and a goal celebration longer than the match.",
+    "story": "Fútbol Simi lives in a green jersey and white shorts, and he has never met a ball he would not chase. Find him at any park with a patch of grass and two backpacks for goalposts. He plays every position, mostly at once, and his goal celebrations are famous: a knee slide, a little dance and a GOOOL long enough to need a water break. He loves the game for the team, not the score. Anyone can join, any age and any skill. At halftime he passes out orange slices and reminds everyone to drink water, then sprints back onto the field before the whistle blows.",
+    "personality": [
+      "Competitive",
+      "Team-first",
+      "Dramatic about goals"
+    ],
+    "catchphrase": "Pass, play, hydrate. GOOOL!",
+    "catchphraseEs": "¡Pásala, juega y agüita! ¡GOOOL!",
+    "favoriteProduct": "Electrolyte drinks at halftime",
+    "funFacts": [
+      "Dr. Simi got a green-jersey plush for the 2026 World Cup, and this Simi wears it proudly.",
+      "His longest 'GOOOL' lasted eleven seconds. Referees are still timing it.",
+      "He picks teams so that everybody gets picked first, which makes the math tricky."
+    ],
+    "height": "12 in (30 cm), cleats on",
+    "weight": "10 oz (285 g), mostly legs"
+  },
+  {
+    "id": "bombero",
+    "dexNo": 5,
+    "name": "Firefighter Simi",
+    "nameEs": "Simi Bombero",
+    "tier": "common",
+    "rarity": "uncommon",
+    "unlock": "Roams the map. Uncommon, so keep your eyes open on busy streets and near fire stations.",
+    "shelf": null,
+    "biome": "Near fire stations and busy crosswalks",
+    "art": "../art/simis/bombero.svg",
+    "flavor": "Helmet on, boots laced, smoke alarm batteries checked. Twice.",
+    "story": "Firefighter Simi is the first one to the scene and the last one to leave, and he still finds time to wave at every kid on the sidewalk. He wears a red helmet a size too big, a coat with bright reflective stripes and boots he polishes every morning. Most days are quiet, and that is how he likes it. He spends them teaching safety, testing smoke alarms, checking first-aid kits and practicing stop, drop and roll until it looks like a dance move. He thinks being ready is a kind of kindness. If you see him, he will ask whether your family has a plan, then hand you a sticker.",
+    "personality": [
+      "Brave",
+      "Prepared",
+      "Loves a shiny helmet"
+    ],
+    "catchphrase": "Check your alarm, then check on your neighbor!",
+    "catchphraseEs": "¡Revisa tu alarma y a tu vecino también!",
+    "favoriteProduct": "First-aid kits and smoke-alarm batteries",
+    "funFacts": [
+      "Firefighter is one of the real Dr. Simi plush outfits, and a SimiPop too.",
+      "He tests his smoke alarm every month and hums along when it beeps.",
+      "His helmet is a size too big so his mustache has room to breathe."
+    ],
+    "height": "13 in (33 cm), helmet included",
+    "weight": "12 oz (340 g), the boots are heavy"
+  },
+  {
+    "id": "chef",
+    "dexNo": 6,
+    "name": "Chef Simi",
+    "nameEs": "Simi Chef",
+    "tier": "common",
+    "rarity": "common",
+    "unlock": "Roams the map. Follow your nose downtown, near restaurants and food trucks.",
+    "shelf": null,
+    "biome": "Downtown, near restaurants and food trucks",
+    "art": "../art/simis/chef.svg",
+    "flavor": "Tall hat, wooden spoon, and an opinion about how much salt is too much.",
+    "story": "Chef Simi believes every good day starts in a kitchen and every kitchen needs more color. His toque is tall, his apron is spotless until about 9 a.m., and his wooden spoon goes everywhere with him. He wanders downtown sampling from food trucks, trading recipes and gently suggesting that the plate could use a few more vegetables. His cooking is his abuela's cooking: beans, rice, a pot of caldo, fruit with chile and lime. He loves food that is simple, affordable and made for sharing, and he never cooks for one. Ask what's for dinner and he will invite you. Ask for the recipe and he will tell you a story instead.",
+    "personality": [
+      "Generous",
+      "Fussy about seasoning",
+      "Always feeding someone"
+    ],
+    "catchphrase": "Eat the rainbow, share the plate!",
+    "catchphraseEs": "¡Come de colores y comparte el plato!",
+    "favoriteProduct": "Multigomi Turmeric + Ginger gummies, because the spice rack is his happy place",
+    "funFacts": [
+      "Chef is one of the real Dr. Simi plush outfits.",
+      "His toque adds three inches, so he lists his height both ways.",
+      "He has never measured an ingredient. He measures in 'a little' and 'a little more'."
+    ],
+    "height": "12 in (30 cm), 15 in with toque",
+    "weight": "11 oz (310 g), taste-testing counts"
+  },
+  {
+    "id": "beisbolista",
+    "dexNo": 7,
+    "name": "Baseball Simi",
+    "nameEs": "Simi Beisbolista",
+    "tier": "common",
+    "rarity": "uncommon",
+    "unlock": "Roams the map. Uncommon. Check parks and ballfields on sunny afternoons.",
+    "shelf": null,
+    "biome": "Parks and ballfields on sunny afternoons",
+    "art": "../art/simis/beisbolista.svg",
+    "flavor": "Swings at every pitch, tips his cap at every strikeout and always says 'next time.'",
+    "story": "Baseball Simi is happiest on a sunny afternoon with the bleachers full and the smell of fresh-cut grass. He plays shortstop, coaches little league and keeps a running commentary going from the dugout in two languages. He loves the slow parts of the game as much as the home runs: the stretch, the chatter, the seeds shared down the bench. Day games mean sun, so he is the one passing sunscreen down the row before the first pitch and reminding everyone to wear a cap. He swings hard at every pitch. When he strikes out, he tips his cap, grins and says, 'Next time.'",
+    "personality": [
+      "Patient",
+      "Good sport",
+      "Never misses a sunscreen break"
+    ],
+    "catchphrase": "Swing big, play fair, wear your cap!",
+    "catchphraseEs": "¡Batea fuerte, juega limpio y ponte la gorra!",
+    "favoriteProduct": "SPF 30 lip balm for long day games",
+    "funFacts": [
+      "Baseball player is one of the real Dr. Simi plush outfits.",
+      "He has caught every foul ball hit his way, a few of them with his mustache.",
+      "His glove is older than most of the players he coaches."
+    ],
+    "height": "12 in (30 cm), cleats on",
+    "weight": "11 oz (310 g), glove included"
+  },
+  {
+    "id": "beach",
+    "dexNo": 8,
+    "name": "Beach Simi",
+    "nameEs": "Simi Playero",
+    "tier": "shelf",
+    "rarity": "rare",
+    "unlock": "Scan the QR code on the sun care shelf at any participating CVS SimiStop.",
+    "shelf": "sun-care",
+    "biome": "The sun-care aisle, dreaming of the lake",
+    "art": "../art/simis/beach.svg",
+    "flavor": "Floral shirt, palm hat, huaraches. Reapplies sunscreen every two hours, on the dot.",
+    "story": "Beach Simi, known back home as Simi Playero, wears a floral shirt, brown shorts, a woven palm hat and his favorite huaraches. He would live at the beach if he could. In Austin he settles for the lake, the pool and a long nap beside the sunscreen at the nearest SimiStop. He is relaxed about almost everything except sun safety. Broad-spectrum, SPF 30 or higher, reapply after swimming, shade at noon: he will recite the whole list with a smile and a fresh stripe of sunscreen on his nose. He keeps a spare bottle tucked in his hat for friends. Scan his shelf and he will hand it right to you.",
+    "personality": [
+      "Laid-back",
+      "Sunny",
+      "Strict about SPF"
+    ],
+    "catchphrase": "Sun's out, sunscreen on!",
+    "catchphraseEs": "¿Hay sol? ¡Hay bloqueador!",
+    "favoriteProduct": "Broad-spectrum SPF 50 sunscreen",
+    "funFacts": [
+      "Simi Playero is a real Dr. Simi plush. He was the newest outfit in the spring of 2023.",
+      "His palm hat fits exactly one spare bottle of sunscreen.",
+      "He has never had a tan line. He has had many hat lines."
+    ],
+    "height": "12 in (30 cm), 14 in with palm hat",
+    "weight": "9 oz (255 g), sand not included"
+  },
+  {
+    "id": "spa",
+    "dexNo": 9,
+    "name": "Spa Simi",
+    "nameEs": "Simi Spa",
+    "tier": "shelf",
+    "rarity": "rare",
+    "unlock": "Scan the QR code on the skincare shelf at any participating CVS SimiStop.",
+    "shelf": "skincare",
+    "biome": "The skincare aisle, in a very soft robe",
+    "art": "../art/simis/spa.svg",
+    "flavor": "Robe, towel turban, two cucumber slices. Please do not interrupt the face mask.",
+    "story": "Spa Simi has turned self-care into an art form. He wears a fluffy white robe that is basically a softer lab coat, a towel wrapped high on his head and two cucumber slices he saves for special occasions. His routine is simple, and he will share it with anyone who asks: wash your face, moisturize, sunscreen in the morning, plenty of water and a full night's sleep. He doesn't believe in expensive. He believes in consistent. He spends his days near the skincare shelf, comparing labels and reading ingredient lists out loud like poetry. The only thing he will not share is his robe.",
+    "personality": [
+      "Calm",
+      "Particular",
+      "Excellent at relaxing"
+    ],
+    "catchphrase": "Cleanse, moisturize, relax!",
+    "catchphraseEs": "¡Limpia, hidrata y relájate!",
+    "favoriteProduct": "Eternal Secret face scrub and a daily moisturizer",
+    "funFacts": [
+      "Dr. Simi's skincare shelf carries the Eternal Secret line. Spa Simi says the real secret is moisturizer.",
+      "His robe is the only outfit softer than the classic lab coat.",
+      "He has never eaten a cucumber. They are strictly for his eyes."
+    ],
+    "height": "12 in (30 cm), 15 in with towel",
+    "weight": "10 oz (285 g), the robe is fluffy"
+  },
+  {
+    "id": "astronaut",
+    "dexNo": 10,
+    "name": "Astronaut Simi",
+    "nameEs": "Simi Astronauta",
+    "tier": "shelf",
+    "rarity": "rare",
+    "unlock": "Scan the QR code on the vitamins shelf at any participating CVS SimiStop.",
+    "shelf": "vitamins",
+    "biome": "The vitamins aisle, in slow motion",
+    "art": "../art/simis/astronaut.svg",
+    "flavor": "Floats down the vitamin aisle in slow motion. Says capsules are tiny rockets.",
+    "story": "Astronaut Simi trained for years to go to space, then discovered the vitamin aisle and decided it was close enough. He moves through it in slow motion, as if there were no gravity, reading every label by his helmet light. He claims the SimiCápsula was his idea. Look at it, he says: two halves, sealed tight, built to carry something important. It's a rocket, only smaller. He takes his routine seriously, the way astronauts do: same breakfast, water on schedule, a checklist for everything and a daily vitamin only if his doctor or pharmacist says so. His helmet fogs up when he laughs, which is often.",
+    "personality": [
+      "Curious",
+      "Methodical",
+      "Easily starstruck"
+    ],
+    "catchphrase": "Houston, we have a healthy habit!",
+    "catchphraseEs": "¡Tres, dos, uno... a cuidarse!",
+    "favoriteProduct": "Multigomi multivitamin gummies",
+    "funFacts": [
+      "Astronaut is one of the real Dr. Simi plush outfits, and a SimiPop too.",
+      "He insists the SimiCápsula was his design. Nobody has the heart to argue.",
+      "His bubble helmet was custom-sized to fit the mustache."
+    ],
+    "height": "13 in (33 cm), helmet included",
+    "weight": "12 oz (340 g) on Earth, 2 oz on the Moon"
+  },
+  {
+    "id": "flu",
+    "dexNo": 11,
+    "name": "Bundled-Up Simi",
+    "nameEs": "Simi Abrigadito",
+    "tier": "shelf",
+    "rarity": "rare",
+    "unlock": "Scan the QR code on the cold & flu shelf at any participating CVS SimiStop.",
+    "shelf": "cold-flu",
+    "biome": "The cold and flu aisle, wrapped in scarves",
+    "art": "../art/simis/flu.svg",
+    "flavor": "Three scarves, one beanie, a box of tissues. Wash your hands, then come say hi.",
+    "story": "When the weather turns, Bundled-Up Simi appears in a beanie, earmuffs and at least three scarves, holding a mug of warm tea with both hands. He is the Simi of cold season, and he takes the job personally. He believes in rest, soup, warm drinks and staying home when you're under the weather. He sneezes into his elbow with real style and keeps hand sanitizer in every pocket. He hangs around the cold and flu shelf to help people find what they need, and when a question is too big for him, he walks them straight to the pharmacy counter. He insists on hugs, but only after you wash your hands.",
+    "personality": [
+      "Caring",
+      "Cozy",
+      "Over-prepared"
+    ],
+    "catchphrase": "Wash up, bundle up, rest up!",
+    "catchphraseEs": "¡Lávate las manos y abrígate bien!",
+    "favoriteProduct": "Tissues, hand sanitizer and honey-lemon drops",
+    "funFacts": [
+      "He wears three scarves: one for his neck, one for his ears and one for a friend who forgot theirs.",
+      "He can sneeze into his elbow without spilling a drop of tea.",
+      "His favorite sentence is 'Let's ask the pharmacist.'"
+    ],
+    "height": "12 in (30 cm), 16 in bundled",
+    "weight": "9 oz (255 g), plus 2 lb of scarves"
+  },
+  {
+    "id": "boxeador",
+    "dexNo": 12,
+    "name": "Boxer Simi",
+    "nameEs": "Simi Boxeador",
+    "tier": "shelf",
+    "rarity": "rare",
+    "unlock": "Scan the QR code on the sports nutrition shelf at any participating CVS SimiStop.",
+    "shelf": "sports-nutrition",
+    "biome": "The sports nutrition aisle, shadowboxing",
+    "art": "../art/simis/boxeador.svg",
+    "flavor": "Gloves up, robe on, light on his feet. Trains hard and takes rest days seriously.",
+    "story": "Boxer Simi comes from a proud tradition. Mexico has given the world some of boxing's greatest fighters, and he trains like he plans to join them. He wears red gloves, satin shorts and a robe with SIMI stitched across the back. Before sunrise he jumps rope, shadowboxes and runs the stairs, and he never skips the cooldown. His secret is not his jab. It is that he takes rest days as seriously as training days, eats real meals and drinks water between every round. He spars with anyone who wants to learn, gently, and always touches gloves first. In his corner, everyone is a champion.",
+    "personality": [
+      "Disciplined",
+      "Big-hearted",
+      "Light on his feet"
+    ],
+    "catchphrase": "Train hard, rest harder!",
+    "catchphraseEs": "¡Entrena duro y descansa mejor!",
+    "favoriteProduct": "Protein powder for his post-training shake",
+    "funFacts": [
+      "Boxer is one of the real Dr. Simi plush outfits.",
+      "He has never been knocked down. He has been hugged down, twice.",
+      "He jumps rope to the rhythm of a cumbia."
+    ],
+    "height": "12 in (30 cm), gloves up",
+    "weight": "Featherweight. Officially 10 oz (285 g)."
+  },
+  {
+    "id": "texas",
+    "dexNo": 13,
+    "name": "Texas Simi",
+    "nameEs": "Simi Texano",
+    "tier": "store",
+    "rarity": "legendary",
+    "unlock": "Store exclusive. Only at CVS, 2402 Guadalupe St, Austin. Scan the QR code at the Dr. Simi section.",
+    "shelf": "dr-simi",
+    "storeId": "cvs-guadalupe-2402",
+    "biome": "The Dr. Simi section at CVS on Guadalupe Street, Austin",
+    "art": "../art/simis/texas.svg",
+    "flavor": "Cowboy hat, boots, bolo tie. Says 'y'all' and 'ustedes' in the same sentence.",
+    "story": "Texas Simi is what happens when a doctor from Mexico moves to Austin and falls in love with the place. He kept the lab coat and the mustache, then added a wide cowboy hat, pointed boots, a bolo tie and a belt buckle with a single star. Dr. Simi's US home office is in downtown Austin, so he likes to say he's the local. He hangs around the Dr. Simi section of the CVS on Guadalupe Street, greeting students between classes and helping them stock a dorm-room first-aid kit without spending a fortune. He says 'y'all' and 'ustedes' in the same sentence. Both mean everybody.",
+    "personality": [
+      "Neighborly",
+      "Proud Austinite",
+      "Bilingual to the bone"
+    ],
+    "catchphrase": "Howdy, y'all! Did y'all drink water today?",
+    "catchphraseEs": "¡Quiubo, amigos! ¿Ya tomaron agua?",
+    "favoriteProduct": "Dr. Simi Vitamin C with Rose Hips. A yellow rose of Texas, he says.",
+    "funFacts": [
+      "Dr. Simi's US home office is in downtown Austin, which makes him a local.",
+      "His belt buckle has one star, for the Lone Star State.",
+      "His hat is big enough to shade him and two friends."
+    ],
+    "height": "12 in (30 cm), 17 in with hat",
+    "weight": "11 oz (310 g), boots and buckle included"
+  },
+  {
+    "id": "rockstar",
+    "dexNo": 14,
+    "name": "Rockstar Simi",
+    "nameEs": "Simi Rockero",
+    "tier": "store",
+    "rarity": "legendary",
+    "unlock": "Store exclusive. Only at CVS, 500 Congress Ave, Austin. Scan the QR code at the Dr. Simi section.",
+    "shelf": "dr-simi",
+    "storeId": "cvs-congress-500",
+    "biome": "The Dr. Simi section at CVS on Congress Avenue, Austin",
+    "art": "../art/simis/rockstar.svg",
+    "flavor": "Leather jacket, electric guitar, no hair to flip. Rocks out anyway.",
+    "story": "For years, fans have tossed Dr. Simi plushies onto concert stages. Rockstar Simi caught every one, and somewhere along the way he decided he belonged up there too. Now he plays electric guitar in a leather jacket and dark sunglasses, and he has found the perfect home: Congress Avenue in Austin, the Live Music Capital of the World. Between sets he hangs out at the Dr. Simi section, signing plushies and handing out earplugs, because he wants you to enjoy music for a long, long time. His encore never changes: a big bow, a sip of water and a plush tossed back into the crowd.",
+    "personality": [
+      "Showman",
+      "Loyal to his fans",
+      "Surprisingly serious about earplugs"
+    ],
+    "catchphrase": "Turn it up, but protect those ears!",
+    "catchphraseEs": "¡Súbele, pero cuida tus oídos!",
+    "favoriteProduct": "SimiPlushies, the throwable kind, plus a pair of earplugs",
+    "funFacts": [
+      "Fans really do throw Dr. Simi plushies onto concert stages. It became a viral tradition.",
+      "He's the only rockstar with no hair to flip, so he flips his mustache instead.",
+      "Austin calls itself the Live Music Capital of the World, so he moved in."
+    ],
+    "height": "12 in (30 cm), 13 in in platform boots",
+    "weight": "13 oz (370 g), guitar not included"
+  },
+  {
+    "id": "mariachi",
+    "dexNo": 15,
+    "name": "Mariachi Simi",
+    "nameEs": "Simi Mariachi",
+    "tier": "store",
+    "rarity": "legendary",
+    "unlock": "Store exclusive. Only at CVS, 2213 Airport Blvd, Austin. Scan the QR code at the Dr. Simi section.",
+    "shelf": "dr-simi",
+    "storeId": "cvs-airport-2213",
+    "biome": "The Dr. Simi section at CVS on Airport Boulevard, Austin",
+    "art": "../art/simis/mariachi.svg",
+    "flavor": "Charro suit, silver buttons, wide sombrero. Every check-in comes with a serenade.",
+    "story": "Mariachi Simi wears the traje de charro with pride: a fitted suit lined with silver buttons, a big bow at his collar and a wide sombrero embroidered by hand. He plays the violin, sings in a voice that fills a parking lot and knows a song for every occasion, from birthdays to graduations to the day someone finally comes home. He keeps watch at the CVS on Airport Boulevard, and with a street name like that, he greets everyone as if they just landed. He believes music is care too, and that a song from home makes anyone feel less far away. Ask for a song and he will play it. Ask him to stop and he'll play one more.",
+    "personality": [
+      "Romantic",
+      "Proud of his roots",
+      "Always ready for an encore"
+    ],
+    "catchphrase": "¡Ajúa! A song to your health!",
+    "catchphraseEs": "¡Ajúa! ¡Una canción a tu salud!",
+    "favoriteProduct": "Simi llaveros keychains, one for everyone he serenades",
+    "funFacts": [
+      "UNESCO lists mariachi as part of the world's intangible cultural heritage.",
+      "A mariachi Simi helped open the Similandia store in Hollywood.",
+      "He has sung 'Las Mañanitas' at more birthdays than he can count."
+    ],
+    "height": "12 in (30 cm), 18 in with sombrero",
+    "weight": "14 oz (395 g), the silver buttons add up"
+  },
+  {
+    "id": "muertos",
+    "dexNo": 16,
+    "name": "Día de Muertos Simi",
+    "nameEs": "Simi Calaverita",
+    "tier": "event",
+    "rarity": "legendary",
+    "unlock": "Event Simi. Appears on the map during Día de Muertos, November 1 to 3.",
+    "shelf": null,
+    "biome": "Everywhere during Día de Muertos, near marigolds and candlelight",
+    "art": "../art/simis/muertos.svg",
+    "flavor": "Painted calavera smile, arms full of marigolds. Here to help families remember.",
+    "story": "Every year at the start of November, Día de Muertos Simi arrives with a painted calavera smile and an armful of cempasúchil, the bright orange marigolds. To him, Día de Muertos is not a sad holiday. It is a family reunion. He helps set up ofrendas with photos, candles, papel picado and pan de muerto, and he loves hearing the story behind every picture: the abuela who made the best mole, the tío who told the worst jokes. He believes remembering is a way of caring, and that the people we love stay close as long as we keep telling their stories. Then he asks when you last called your family.",
+    "personality": [
+      "Warm",
+      "Nostalgic",
+      "The best storyteller in the family"
+    ],
+    "catchphrase": "Remembering is a way of caring!",
+    "catchphraseEs": "¡Recordar también es cuidar!",
+    "favoriteProduct": "CVS photo prints for the family ofrenda",
+    "funFacts": [
+      "Calavera is one of the real Dr. Simi keychain outfits.",
+      "UNESCO lists Mexico's Día de Muertos traditions as intangible cultural heritage.",
+      "He can name every flower on an ofrenda, but cempasúchil is his favorite."
+    ],
+    "height": "12 in (30 cm), 14 in with marigold crown",
+    "weight": "9 oz (255 g), plus a basket of pan de muerto"
+  },
+  {
+    "id": "luchador",
+    "dexNo": 17,
+    "name": "Luchador Simi",
+    "nameEs": "Simi Luchador",
+    "tier": "event",
+    "rarity": "rare",
+    "unlock": "Event Simi. Appears on the map on weekends, every Saturday and Sunday.",
+    "shelf": null,
+    "biome": "Everywhere on weekends, wherever there is room to fly",
+    "art": "../art/simis/luchador.svg",
+    "flavor": "Mask on, cape flying, mustache poking out. A técnico through and through.",
+    "story": "On weekends the ring calls, and Luchador Simi answers in a sparkling mask, a flowing cape and a mustache that pokes proudly out from underneath. His ring name is El Bigote de Plata, the Silver Mustache, and he is a técnico through and through: he plays fair, waves to the kids in the front row and helps his opponents up after every fall. Lucha libre is a beloved Mexican tradition, full of color, acrobatics and masks that carry real honor, and he treats it with respect. Out of the ring, he leads warm-ups, stretches and lessons in good sportsmanship. His signature move is the Abrazo Volador: a flying hug.",
+    "personality": [
+      "Fearless",
+      "Plays fair",
+      "Theatrical"
+    ],
+    "catchphrase": "Warm up, play fair, fly high!",
+    "catchphraseEs": "¡Calienta, juega limpio y a volar!",
+    "favoriteProduct": "Kinesiology tape, in every color that matches his mask",
+    "funFacts": [
+      "In lucha libre a mask is a point of honor, so his never comes off.",
+      "Técnicos are lucha libre's good guys. He has never once been a rudo.",
+      "His signature move, the Abrazo Volador, has won every match by hug."
+    ],
+    "height": "12 in (30 cm), cape fluttering",
+    "weight": "11 oz (310 g), 13 oz with the cape"
+  },
+  {
+    "id": "santa",
+    "dexNo": 18,
+    "name": "Santa Simi",
+    "nameEs": "Simi Clos",
+    "tier": "event",
+    "rarity": "legendary",
+    "unlock": "Event Simi. Appears on the map during the holidays, December 1 to 25.",
+    "shelf": null,
+    "biome": "Everywhere in December, especially near twinkling lights",
+    "art": "../art/simis/santa.svg",
+    "flavor": "Red suit, big sack, and a beard that is mostly mustache. Brings care, not coal.",
+    "story": "Every December, Santa Simi trades the lab coat for a red suit, a fluffy hat and a white beard that, everyone agrees, is mostly mustache. In Mexico, Santa is often called Santa Clos, so in the SimiColonia he goes by Simi Clos. His sack is full of small gifts: warm socks, lip balm, hand cream, a plush or two and a handwritten note that says take care of yourself. He checks his list twice, but there is no naughty side. Everybody gets something. On the busiest night of the year he still stops at every house to ask the same question: ¿ya tomaste agua? Then he's off again.",
+    "personality": [
+      "Jolly",
+      "Generous",
+      "Never too busy to check in"
+    ],
+    "catchphrase": "Ho, ho, hydrate!",
+    "catchphraseEs": "¡Jo, jo, jo! ¡Feliz Navidad y a cuidarse!",
+    "favoriteProduct": "Moisturizing hand cream for the cold sleigh ride",
+    "funFacts": [
+      "Santa Claus is one of the real Dr. Simi keychain outfits.",
+      "His beard is about 80 percent mustache, by his own measurement.",
+      "His list has only one column, and it says 'Nice'."
+    ],
+    "height": "12 in (30 cm), 15 in with hat",
+    "weight": "13 oz (370 g), after the cookies"
+  }
+]

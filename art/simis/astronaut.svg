@@ -1,0 +1,408 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Astronaut Simi (astronaut). Shelf: vitamin D ("no sun in space").
+  Read at 48 px: a round glass bubble around the head on a white suit with blue rings and boots.
+  Pose: waving hello with the left glove outside the bubble; right glove holds a vitamin D bottle.
+  Story details: clear visor drawn as an outline ring with a light-blue rim and highlight arcs so the face stays visible,
+  blue neck ring, chest control box, generic star patch (no insignia), belt, moon boots, antenna, crescent moon.
+  The bottle is amber with a sun label and a letter D drawn as a path.
+  Colors: suit #F3F5F9/#C6CFDC, glass #E4F4FD/#C6E5F6 rim #8FD0F0, blue #024EA2/#1C4889, amber #F2A03D/#CF7D1E, sun #FFC93C.
+  Head dependency: the bubble (ellipse at 256,190, rx 186, ry 160) must still enclose the new head, tufts and ears.
+  The lower rim segments sit in outfit-body so the sleeves pass in front of them.
+  Rig and palette: art/STYLE.md. #head is copied verbatim from art/base/simi-base.svg. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <!-- White die-cut border. One white use per silhouette piece. -->
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- outfit, body and prop pieces -->
+    <use href="#astronaut-glass" stroke-width="28"/>
+    <use href="#astronaut-boot-l" stroke-width="28"/>
+    <use href="#astronaut-boot-r" stroke-width="28"/>
+    <use href="#astronaut-suit" stroke-width="28"/>
+    <use href="#astronaut-sleeve-l" fill="none" stroke-width="78"/>
+    <use href="#astronaut-sleeve-r" fill="none" stroke-width="78"/>
+    <use href="#astronaut-glove-l" stroke-width="28"/>
+    <use href="#astronaut-glove-r" stroke-width="28"/>
+    <use href="#astronaut-cuff-l" stroke-width="28"/>
+    <use href="#astronaut-cuff-r" stroke-width="28"/>
+    <path d="M398 92 L416 60" fill="none" stroke-width="32"/>
+    <use href="#astronaut-bulb" stroke-width="28"/>
+    <use href="#astronaut-bottle" stroke-width="28"/>
+    <use href="#astronaut-cap" stroke-width="28"/>
+    <rect x="398" y="362" width="36" height="37" rx="7" stroke-width="28"/>
+  </g>
+
+  <g id="outfit-back" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <path id="astronaut-glass" d="M141.4 316 A186 160 0 1 1 370.6 316 Z"/>
+      <clipPath id="astronaut-glass-c"><use href="#astronaut-glass"/></clipPath>
+    </defs>
+    <!-- helmet glass, back half (clear; tinted so it reads as glass) -->
+    <g clip-path="url(#astronaut-glass-c)">
+      <use href="#astronaut-glass" fill="#C6E5F6"/>
+      <use href="#astronaut-glass" fill="#E4F4FD" transform="translate(-16 -12)"/>
+    </g>
+  </g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M188 330 C152 342 92 348 74 294"/>
+      <path id="b-arm-r" d="M330 318 C352 332 372 350 386 368"/>
+      <ellipse id="b-hand-l" cx="62" cy="246" rx="20" ry="25" transform="rotate(-15 62 246)"/>
+      <circle id="b-hand-r" cx="398" cy="384" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      
+      
+    </g>
+  </g>
+
+  <g id="outfit-body" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <path id="astronaut-boot-l" d="M185 448 L237 448 L239 472 C241 482 235 488 225 488 L197 488 C187 488 181 482 183 472 Z"/>
+      <clipPath id="astronaut-boot-l-c"><use href="#astronaut-boot-l"/></clipPath>
+      <path id="astronaut-boot-r" d="M275 448 L327 448 L329 472 C331 482 325 488 315 488 L287 488 C277 488 271 482 273 472 Z"/>
+      <clipPath id="astronaut-boot-r-c"><use href="#astronaut-boot-r"/></clipPath>
+      <path id="astronaut-suit" d="M182 296 C152 304 140 336 138 376 C136 414 142 446 176 452 L336 452 C370 446 376 414 374 376 C372 336 360 304 330 296 C304 290 208 290 182 296 Z"/>
+      <clipPath id="astronaut-suit-c"><use href="#astronaut-suit"/></clipPath>
+      <path id="astronaut-belt" d="M140 398 C200 412 312 412 372 398 L373 416 C312 430 200 430 139 416 Z"/>
+      <clipPath id="astronaut-belt-c"><use href="#astronaut-belt"/></clipPath>
+      <rect id="astronaut-buckle" x="240" y="403" width="32" height="22" rx="5"/>
+      <clipPath id="astronaut-buckle-c"><use href="#astronaut-buckle"/></clipPath>
+      <rect id="astronaut-panel" x="220" y="330" width="72" height="54" rx="9"/>
+      <clipPath id="astronaut-panel-c"><use href="#astronaut-panel"/></clipPath>
+      <circle id="astronaut-patch" cx="184" cy="372" r="18"/>
+      <clipPath id="astronaut-patch-c"><use href="#astronaut-patch"/></clipPath>
+      <ellipse id="astronaut-collar" cx="256" cy="318" rx="122" ry="24"/>
+      <clipPath id="astronaut-collar-c"><use href="#astronaut-collar"/></clipPath>
+      <path id="astronaut-sleeve-l" d="M188 330 C152 342 94 350 76 296"/>
+      <path id="astronaut-sleeve-r" d="M326 320 C350 334 370 352 382 366"/>
+      <ellipse id="astronaut-glove-l" cx="56" cy="244" rx="23" ry="29" transform="rotate(-8 56 244)"/>
+      <clipPath id="astronaut-glove-l-c"><use href="#astronaut-glove-l"/></clipPath>
+      <ellipse id="astronaut-thumb-l" cx="76" cy="252" rx="7.5" ry="12" transform="rotate(28 76 252)"/>
+      <clipPath id="astronaut-thumb-l-c"><use href="#astronaut-thumb-l"/></clipPath>
+      <ellipse id="astronaut-cuff-l" cx="74" cy="284" rx="22" ry="11" transform="rotate(-10 74 284)"/>
+      <clipPath id="astronaut-cuff-l-c"><use href="#astronaut-cuff-l"/></clipPath>
+      <circle id="astronaut-glove-r" cx="398" cy="384" r="25"/>
+      <clipPath id="astronaut-glove-r-c"><use href="#astronaut-glove-r"/></clipPath>
+      <ellipse id="astronaut-cuff-r" cx="386" cy="366" rx="12" ry="22" transform="rotate(48 386 366)"/>
+      <clipPath id="astronaut-cuff-r-c"><use href="#astronaut-cuff-r"/></clipPath>
+    </defs>
+    <!-- moon boots -->
+    <g clip-path="url(#astronaut-boot-l-c)">
+      <use href="#astronaut-boot-l" fill="#C6CFDC"/>
+      <use href="#astronaut-boot-l" fill="#F3F5F9" transform="translate(-5 -4)"/>
+      <rect x="177" y="474" width="68" height="20" fill="#024EA2"/>
+      <rect x="177" y="474" width="64" height="4" fill="#3B6FC0"/>
+    </g>
+    <use href="#astronaut-boot-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M182 474 L240 474" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#astronaut-boot-r-c)">
+      <use href="#astronaut-boot-r" fill="#C6CFDC"/>
+      <use href="#astronaut-boot-r" fill="#F3F5F9" transform="translate(-5 -4)"/>
+      <rect x="267" y="474" width="68" height="20" fill="#024EA2"/>
+      <rect x="267" y="474" width="64" height="4" fill="#3B6FC0"/>
+    </g>
+    <use href="#astronaut-boot-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M272 474 L330 474" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- puffy suit -->
+    <g clip-path="url(#astronaut-suit-c)">
+      <use href="#astronaut-suit" fill="#C6CFDC"/>
+      <use href="#astronaut-suit" fill="#F3F5F9" transform="translate(-12 -8)"/>
+      <path d="M160 340 C164 322 172 310 186 304" fill="none" stroke="#FFFFFF" stroke-width="7"/>
+    </g>
+    <use href="#astronaut-suit" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <path d="M150 432 C190 444 322 444 362 432 M210 382 C208 400 208 420 212 440 M302 382 C304 400 304 420 300 440" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- belt with buckle -->
+    <g clip-path="url(#astronaut-belt-c)">
+      <use href="#astronaut-belt" fill="#1C4889"/>
+      <use href="#astronaut-belt" fill="#024EA2" transform="translate(0 -4)"/>
+    </g>
+    <use href="#astronaut-belt" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#astronaut-buckle-c)">
+      <use href="#astronaut-buckle" fill="#C6CFDC"/>
+      <use href="#astronaut-buckle" fill="#F3F5F9" transform="translate(-2 -3)"/>
+    </g>
+    <use href="#astronaut-buckle" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- chest control box -->
+    <g clip-path="url(#astronaut-panel-c)">
+      <use href="#astronaut-panel" fill="#66738B"/>
+      <use href="#astronaut-panel" fill="#7F8DA6" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#astronaut-panel" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <rect x="230" y="340" width="34" height="18" rx="4" fill="#8FD0F0" stroke="#3B2A24" stroke-width="3.5"/>
+    <path d="M234 352 L240 346 L246 352 L252 344 L258 350" fill="none" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="278" cy="347" r="6" fill="#FFC93C" stroke="#3B2A24" stroke-width="3.5"/>
+    <circle cx="236" cy="372" r="5" fill="#F2A03D" stroke="#3B2A24" stroke-width="3.5"/>
+    <circle cx="252" cy="372" r="5" fill="#0798E8" stroke="#3B2A24" stroke-width="3.5"/>
+    <rect x="266" y="366" width="18" height="10" rx="3" fill="#F3F5F9" stroke="#3B2A24" stroke-width="3.5"/>
+    <!-- star patch (generic, no insignia) -->
+    <g clip-path="url(#astronaut-patch-c)">
+      <use href="#astronaut-patch" fill="#1C4889"/>
+      <use href="#astronaut-patch" fill="#024EA2" transform="translate(-3 -3)"/>
+    </g>
+    <path d="M184 361.5 L187.1 368.7 L194.9 369.4 L189 374.6 L190.8 382.3 L184 378.3 L177.2 382.3 L179 374.6 L173.1 369.4 L180.9 368.7 Z" fill="#FFC93C" stroke="#3B2A24" stroke-width="2.5"/>
+    <use href="#astronaut-patch" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- neck ring the helmet locks onto -->
+    <g clip-path="url(#astronaut-collar-c)">
+      <use href="#astronaut-collar" fill="#1C4889"/>
+      <use href="#astronaut-collar" fill="#024EA2" transform="translate(-6 -5)"/>
+      <path d="M150 312 C190 300 322 300 362 312" fill="none" stroke="#3B6FC0" stroke-width="5"/>
+    </g>
+    <use href="#astronaut-collar" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- lower helmet rim: drawn here so the sleeves pass in front of it -->
+    <path d="M139.6 307.5 A180 154 0 0 1 76.4 200.7" fill="none" stroke="#8FD0F0" stroke-width="7"/>
+    <path d="M135.7 312 A186 160 0 0 1 70.5 201.2" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <path d="M405.2 276.1 A180 154 0 0 1 372.4 307.5" fill="none" stroke="#8FD0F0" stroke-width="7"/>
+    <path d="M410.2 279.5 A186 160 0 0 1 376.3 312" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- puffy sleeves with seams, wrist rings, gloves -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#astronaut-sleeve-l" stroke="#3B2A24" stroke-width="56"/>
+      <use href="#astronaut-sleeve-l" stroke="#C6CFDC" stroke-width="46"/>
+      <use href="#astronaut-sleeve-l" stroke="#F3F5F9" stroke-width="32" transform="translate(-3 -5)"/>
+    </g>
+    <g fill="none" stroke-linecap="round">
+      <use href="#astronaut-sleeve-r" stroke="#3B2A24" stroke-width="56"/>
+      <use href="#astronaut-sleeve-r" stroke="#C6CFDC" stroke-width="46"/>
+      <use href="#astronaut-sleeve-r" stroke="#F3F5F9" stroke-width="32" transform="translate(-3 -5)"/>
+    </g>
+    <path d="M158 318 C152 328 152 344 158 354 M84 322 C96 312 108 310 118 312 M350 316 C342 326 336 336 334 346 M372 340 C364 348 356 356 352 364" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#astronaut-glove-l-c)">
+      <use href="#astronaut-glove-l" fill="#C6CFDC"/>
+      <use href="#astronaut-glove-l" fill="#F3F5F9" transform="translate(-4 -5)"/>
+    </g>
+    <use href="#astronaut-glove-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M47 218 L49 232 M59 216 L59 231" fill="none" stroke="#3B2A24" stroke-width="3.5"/>
+    <g clip-path="url(#astronaut-thumb-l-c)">
+      <use href="#astronaut-thumb-l" fill="#C6CFDC"/>
+      <use href="#astronaut-thumb-l" fill="#F3F5F9" transform="translate(-2 -3)"/>
+    </g>
+    <use href="#astronaut-thumb-l" fill="none" stroke="#3B2A24" stroke-width="4.5"/>
+    <g clip-path="url(#astronaut-cuff-l-c)">
+      <use href="#astronaut-cuff-l" fill="#1C4889"/>
+      <use href="#astronaut-cuff-l" fill="#024EA2" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#astronaut-cuff-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#astronaut-glove-r-c)">
+      <use href="#astronaut-glove-r" fill="#C6CFDC"/>
+      <use href="#astronaut-glove-r" fill="#F3F5F9" transform="translate(-4 -5)"/>
+    </g>
+    <use href="#astronaut-glove-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#astronaut-cuff-r-c)">
+      <use href="#astronaut-cuff-r" fill="#1C4889"/>
+      <use href="#astronaut-cuff-r" fill="#024EA2" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#astronaut-cuff-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <circle id="astronaut-bulb" cx="419" cy="54" r="9"/>
+      <clipPath id="astronaut-bulb-c"><use href="#astronaut-bulb"/></clipPath>
+    </defs>
+    <!-- helmet: clear visor drawn as an outline ring plus highlight arcs, so the face stays visible -->
+    <path d="M76.4 200.7 A180 154 0 1 1 405.2 276.1" fill="none" stroke="#8FD0F0" stroke-width="7"/>
+    <path d="M70.5 201.2 A186 160 0 1 1 410.2 279.5" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <path d="M120 108.6 A166 142 0 0 1 213 52.8" fill="none" stroke="#FFFFFF" stroke-width="11"/>
+    <circle cx="238.6" cy="48.8" r="5.5" fill="#FFFFFF"/>
+    <path d="M354.7 73.5 A168 144 0 0 1 388.4 101.3" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+    <!-- antenna -->
+    <path d="M398 92 L416 60" fill="none" stroke="#3B2A24" stroke-width="10"/>
+    <path d="M398 92 L416 60" fill="none" stroke="#7F8DA6" stroke-width="4"/>
+    <g clip-path="url(#astronaut-bulb-c)">
+      <use href="#astronaut-bulb" fill="#E5A50F"/>
+      <use href="#astronaut-bulb" fill="#FFC93C" transform="translate(-2 -3)"/>
+      <circle cx="416" cy="51" r="2.5" fill="#FFFFFF"/>
+    </g>
+    <use href="#astronaut-bulb" fill="none" stroke="#3B2A24" stroke-width="5"/>
+  </g>
+
+  <g id="prop" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <rect id="astronaut-cap" x="382" y="296" width="36" height="20" rx="5"/>
+      <clipPath id="astronaut-cap-c"><use href="#astronaut-cap"/></clipPath>
+      <rect id="astronaut-bottle" x="374" y="312" width="52" height="84" rx="12"/>
+      <clipPath id="astronaut-bottle-c"><use href="#astronaut-bottle"/></clipPath>
+      <rect id="astronaut-label" x="379" y="324" width="42" height="38" rx="5"/>
+      <clipPath id="astronaut-label-c"><use href="#astronaut-label"/></clipPath>
+    </defs>
+    <!-- vitamin D bottle: amber, sun label, letter D drawn as a path -->
+    <g clip-path="url(#astronaut-cap-c)">
+      <use href="#astronaut-cap" fill="#C6CFDC"/>
+      <use href="#astronaut-cap" fill="#F3F5F9" transform="translate(-2 -3)"/>
+      <path d="M390 298 L390 314 M398 298 L398 314 M406 298 L406 314" stroke="#C6CFDC" stroke-width="3"/>
+    </g>
+    <use href="#astronaut-cap" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#astronaut-bottle-c)">
+      <use href="#astronaut-bottle" fill="#CF7D1E"/>
+      <use href="#astronaut-bottle" fill="#F2A03D" transform="translate(-6 -5)"/>
+      <path d="M382 322 L382 384" stroke="#F8C27E" stroke-width="5"/>
+    </g>
+    <use href="#astronaut-bottle" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#astronaut-label-c)">
+      <use href="#astronaut-label" fill="#DCE3EC"/>
+      <use href="#astronaut-label" fill="#FFFFFF" transform="translate(-2 -2)"/>
+    </g>
+    <use href="#astronaut-label" fill="none" stroke="#3B2A24" stroke-width="3.5"/>
+    <path d="M412 343 L416.5 343 M408.5 351.5 L411.7 354.7 M400 355 L400 359.5 M391.5 351.5 L388.3 354.7 M388 343 L383.5 343 M391.5 334.5 L388.3 331.3 M400 331 L400 326.5 M408.5 334.5 L411.7 331.3" fill="none" stroke="#E5A50F" stroke-width="3"/>
+    <circle cx="400" cy="343" r="9" fill="#FFC93C" stroke="#3B2A24" stroke-width="2.5"/>
+    <path d="M397 338 L397 348 L400 348 C406 348 406 338 400 338 Z" fill="none" stroke="#3B2A24" stroke-width="2.2"/>
+    <!-- glove fingers wrap the bottle, thumb on the inside -->
+    <g fill="#F3F5F9" stroke="#3B2A24" stroke-width="4">
+      <rect x="398" y="362" width="36" height="14" rx="7"/>
+      <rect x="399" y="374" width="34" height="14" rx="7"/>
+      <rect x="402" y="386" width="28" height="13" rx="6.5"/>
+      <ellipse cx="375" cy="368" rx="8" ry="12" transform="rotate(15 375 368)" stroke-width="4.5"/>
+    </g>
+  </g>
+
+  <g id="fx" stroke-linecap="round" stroke-linejoin="round">
+    <!-- wave lines and twinkles -->
+    <path d="M32 214 C26 224 24 236 26 248 M48 198 C38 200 30 204 24 210" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M462 138 Q464.6 147.4 474 150 Q464.6 152.6 462 162 Q459.4 152.6 450 150 Q459.4 147.4 462 138 Z" fill="#FFC93C" stroke="#3B2A24" stroke-width="3.5"/>
+    <path d="M62 92 C46 98 42 120 56 132 C66 140 82 138 88 128 C76 130 64 124 62 112 C60 104 62 96 62 92 Z" fill="#FFC93C" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M92 64 Q93.3 68.7 98 70 Q93.3 71.3 92 76 Q90.7 71.3 86 70 Q90.7 68.7 92 64 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3"/>
+    <path d="M468 230 Q469.3 234.7 474 236 Q469.3 237.3 468 242 Q466.7 237.3 462 236 Q466.7 234.7 468 230 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3"/>
+  </g>
+</svg>

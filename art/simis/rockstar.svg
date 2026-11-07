@@ -1,0 +1,397 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Rockstar Simi: store exclusive. Leather jacket with pins, shades, red bolt guitar; a mini plush flies in from the crowd. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <!-- White die-cut border. One white use per silhouette piece. -->
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- body pieces -->
+    <use href="#b-torso" stroke-width="28"/>
+    <use href="#b-arm-l" fill="none" stroke-width="72"/>
+    <use href="#b-arm-r" fill="none" stroke-width="72"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#b-shoe-l" stroke-width="28"/>
+    <use href="#b-shoe-r" stroke-width="28"/>
+    <!-- rockstar pieces -->
+    <use href="#rockstar-collar-l" stroke-width="28"/>
+    <use href="#rockstar-collar-r" stroke-width="28"/>
+    <use href="#rockstar-sleeve-l" fill="none" stroke-width="78"/>
+    <use href="#rockstar-sleeve-r" fill="none" stroke-width="78"/>
+    <use href="#rockstar-shoe-l" stroke-width="28"/>
+    <use href="#rockstar-shoe-r" stroke-width="28"/>
+    <use href="#rockstar-neck" stroke-width="28"/>
+    <use href="#rockstar-head" stroke-width="28"/>
+    <use href="#rockstar-gbody" stroke-width="28"/>
+    <use href="#rockstar-note-0" transform="translate(426 122) rotate(12)" stroke-width="24"/>
+    <use href="#rockstar-note-1" transform="translate(450 222) rotate(18)" stroke-width="24"/>
+    <use href="#rockstar-note-2" transform="translate(70 268) rotate(-14)" stroke-width="24"/>
+    <use href="#rockstar-pl-body" transform="translate(86 108) rotate(-22)" stroke-width="22"/>
+    <use href="#rockstar-pl-arm-l" transform="translate(86 108) rotate(-22)" stroke-width="22"/>
+    <use href="#rockstar-pl-arm-r" transform="translate(86 108) rotate(-22)" stroke-width="22"/>
+    <use href="#rockstar-pl-tuft-l" transform="translate(86 108) rotate(-22)" stroke-width="22"/>
+    <use href="#rockstar-pl-tuft-r" transform="translate(86 108) rotate(-22)" stroke-width="22"/>
+    <use href="#rockstar-pl-head" transform="translate(86 108) rotate(-22)" stroke-width="22"/>
+    <use href="#rockstar-toss-0" fill="none" stroke-width="23.5"/>
+    <use href="#rockstar-toss-1" fill="none" stroke-width="23.5"/>
+    <use href="#rockstar-toss-2" fill="none" stroke-width="23.5"/>
+    <use href="#rockstar-strum-1" fill="none" stroke-width="28"/>
+    <use href="#rockstar-strum-2" fill="none" stroke-width="28"/>
+  </g>
+
+  <g id="outfit-back"></g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M182 314 C170 330 160 352 156 372"/>
+      <path id="b-arm-r" d="M330 314 C348 324 370 340 386 358"/>
+      <circle id="b-hand-l" cx="154" cy="388" r="22"/>
+      <circle id="b-hand-r" cx="394" cy="372" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M160 374 C166 378 168 386 164 392" stroke-width="4"/>
+      <path d="M388 358 C382 362 380 370 384 376" stroke-width="4"/>
+    </g>
+  </g>
+
+  <g id="outfit-body" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="rockstar-collar-l" d="M200 296 L156 258 C164 280 168 298 176 316 Z"/>
+      <clipPath id="rockstar-collar-l-c"><use href="#rockstar-collar-l"/></clipPath>
+      <path id="rockstar-collar-r" d="M312 296 L356 258 C348 280 344 298 336 316 Z"/>
+      <clipPath id="rockstar-collar-r-c"><use href="#rockstar-collar-r"/></clipPath>
+      <path id="rockstar-tee" d="M222 292 H290 L282 448 H230 Z"/>
+      <clipPath id="rockstar-tee-c"><use href="#rockstar-tee"/></clipPath>
+      <path id="rockstar-lapel-l" d="M222 292 L186 300 L196 346 L238 378 Z"/>
+      <clipPath id="rockstar-lapel-l-c"><use href="#rockstar-lapel-l"/></clipPath>
+      <path id="rockstar-lapel-r" d="M290 292 L326 300 L316 346 L274 378 Z"/>
+      <clipPath id="rockstar-lapel-r-c"><use href="#rockstar-lapel-r"/></clipPath>
+      <path id="rockstar-sleeve-l" d="M182 314 C172 328 164 344 160 358"/>
+      <path id="rockstar-sleeve-r" d="M330 314 C344 322 358 334 370 346"/>
+      <path id="rockstar-band" d="M159 361 L157 368"/>
+      <ellipse id="rockstar-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <clipPath id="rockstar-shoe-l-c"><use href="#rockstar-shoe-l"/></clipPath>
+      <ellipse id="rockstar-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+      <clipPath id="rockstar-shoe-r-c"><use href="#rockstar-shoe-r"/></clipPath>
+    </defs>
+    <g clip-path="url(#rockstar-collar-l-c)">
+    <use href="#rockstar-collar-l" fill="#2C313E"/>
+    <use href="#rockstar-collar-l" fill="#3E4556" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#rockstar-collar-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#rockstar-collar-r-c)">
+    <use href="#rockstar-collar-r" fill="#2C313E"/>
+    <use href="#rockstar-collar-r" fill="#3E4556" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#rockstar-collar-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <rect x="190" y="420" width="46" height="40" rx="12" fill="#34476E" stroke="#3B2A24" stroke-width="5"/>
+    <rect x="276" y="420" width="46" height="40" rx="12" fill="#34476E" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#b-torso-c)">
+    <use href="#b-torso" fill="#2C313E"/>
+    <use href="#b-torso" fill="#3E4556" transform="translate(-12 -8)"/>
+    <path d="M150 360 C150 330 160 306 180 296" fill="none" stroke="#7D879C" stroke-width="7" stroke-linecap="round"/>
+    <g clip-path="url(#rockstar-tee-c)">
+    <use href="#rockstar-tee" fill="#DCE3EC"/>
+    <use href="#rockstar-tee" fill="#FFFFFF" transform="translate(-6 0)"/>
+    <path d="M262 316 L240 348 H256 L246 376 L274 340 H258 L268 316 Z" fill="#024EA2" stroke="#3B2A24" stroke-width="3.5" stroke-linejoin="round"/>
+    </g>
+    <use href="#rockstar-tee" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#rockstar-lapel-l-c)">
+    <use href="#rockstar-lapel-l" fill="#222631"/>
+    <use href="#rockstar-lapel-l" fill="#2C313E" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#rockstar-lapel-l" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#rockstar-lapel-r-c)">
+    <use href="#rockstar-lapel-r" fill="#222631"/>
+    <use href="#rockstar-lapel-r" fill="#2C313E" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#rockstar-lapel-r" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M192 306 L200 342 L232 368" fill="none" stroke="#7D879C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M320 306 L312 342 L280 368" fill="none" stroke="#7D879C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="rotate(-35 206 330)"><rect x="196" y="324" width="22" height="12" rx="6" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3"/><path d="M207 324 H212 A6 6 0 0 1 212 336 H207 Z" fill="#0798E8"/><rect x="196" y="324" width="22" height="12" rx="6" fill="none" stroke="#3B2A24" stroke-width="3"/></g>
+    <path d="M306 340 C300 334 294 330 296 324 C298 318 304 318 306 324 C308 318 314 318 316 324 C318 330 312 334 306 340 Z" fill="#D60F3C" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M318 354 L320.1 359.1 L325.6 359.5 L321.4 363.1 L322.7 368.5 L318 365.6 L313.3 368.5 L314.6 363.1 L310.4 359.5 L315.9 359.1 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M210 372 L200 444" fill="none" stroke="#E2E6EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M210 372 L200 444" fill="none" stroke="#A9B2BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 4"/>
+    <rect x="120" y="422" width="280" height="30" fill="#222631"/>
+    <path d="M146 422 H366" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <circle cx="198" cy="340" r="4" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="314" cy="340" r="4" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="174" cy="304" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="162" cy="314" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="338" cy="304" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="350" cy="314" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#rockstar-sleeve-l" stroke="#3B2A24" stroke-width="56"/>
+    <use href="#rockstar-sleeve-l" stroke="#2C313E" stroke-width="46"/>
+    <use href="#rockstar-sleeve-l" stroke="#3E4556" stroke-width="32" transform="translate(-3 -5)"/>
+    </g>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#rockstar-sleeve-r" stroke="#3B2A24" stroke-width="56"/>
+    <use href="#rockstar-sleeve-r" stroke="#2C313E" stroke-width="46"/>
+    <use href="#rockstar-sleeve-r" stroke="#3E4556" stroke-width="32" transform="translate(-3 -5)"/>
+    </g>
+    <path d="M168 322 C160 334 156 344 154 352" fill="none" stroke="#7D879C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M338 312 C350 318 360 328 366 336" fill="none" stroke="#7D879C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#rockstar-band" stroke="#3B2A24" stroke-width="52"/>
+    <use href="#rockstar-band" stroke="#1D2029" stroke-width="42"/>
+    <use href="#rockstar-band" stroke="#2B2F3A" stroke-width="28" transform="translate(-3 -5)"/>
+    </g>
+    <circle cx="146" cy="364" r="3.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2"/>
+    <circle cx="158" cy="364" r="3.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2"/>
+    <circle cx="170" cy="364" r="3.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2"/>
+    <g clip-path="url(#rockstar-shoe-l-c)">
+    <use href="#rockstar-shoe-l" fill="#A60C30"/>
+    <use href="#rockstar-shoe-l" fill="#D60F3C" transform="translate(-4 -4)"/>
+    <path d="M181 474 C193 466 229 466 241 474 V490 H181 Z" fill="#FFFFFF"/><path d="M181 474 C193 466 229 466 241 474" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <use href="#rockstar-shoe-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M201 456 H221" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M199 462 H223" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g clip-path="url(#rockstar-shoe-r-c)">
+    <use href="#rockstar-shoe-r" fill="#A60C30"/>
+    <use href="#rockstar-shoe-r" fill="#D60F3C" transform="translate(-4 -4)"/>
+    <path d="M271 474 C283 466 319 466 331 474 V490 H271 Z" fill="#FFFFFF"/><path d="M271 474 C283 466 319 466 331 474" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <use href="#rockstar-shoe-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M291 456 H311" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M289 462 H313" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <linearGradient id="rockstar-lens" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B1E26"/><stop offset="0.6" stop-color="#2A2F3B"/><stop offset="1" stop-color="#3A4A68"/></linearGradient>
+      <path id="rockstar-lens-l" d="M178 158 H244 C247 158 249 161 248 165 L243 190 C241 198 235 203 227 203 H197 C189 203 183 198 181 190 L176 164 C175 160 176 158 178 158 Z"/>
+      <clipPath id="rockstar-lens-l-c"><use href="#rockstar-lens-l"/></clipPath>
+      <path id="rockstar-lens-r" d="M334 158 H268 C265 158 263 161 264 165 L269 190 C271 198 277 203 285 203 H315 C323 203 329 198 331 190 L336 164 C337 160 336 158 334 158 Z"/>
+      <clipPath id="rockstar-lens-r-c"><use href="#rockstar-lens-r"/></clipPath>
+    </defs>
+    <path d="M178 164 L140 172" fill="none" stroke="#3B2A24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M334 164 L372 172" fill="none" stroke="#3B2A24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M242 166 C250 158 262 158 270 166" fill="none" stroke="#3B2A24" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <g clip-path="url(#rockstar-lens-l-c)">
+    <use href="#rockstar-lens-l" fill="#1B1E26"/>
+    <use href="#rockstar-lens-l" fill="url(#rockstar-lens)" transform="translate(4 4)"/>
+    <path d="M190 168 L204 196 M204 166 L214 186" fill="none" stroke="#7FA6DD" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <use href="#rockstar-lens-l" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <g clip-path="url(#rockstar-lens-r-c)">
+    <use href="#rockstar-lens-r" fill="#1B1E26"/>
+    <use href="#rockstar-lens-r" fill="url(#rockstar-lens)" transform="translate(4 4)"/>
+    <path d="M272 168 L286 196 M286 166 L296 186" fill="none" stroke="#7FA6DD" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <use href="#rockstar-lens-r" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <path d="M184 161 H240" fill="none" stroke="#5A6276" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M272 161 H328" fill="none" stroke="#5A6276" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g id="prop" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="rockstar-neck" d="M206 396 H418 V412 H206 Z" transform="rotate(-8 166 404)"/>
+      <path id="rockstar-head" d="M416 392 L452 384 C460 383 464 388 462 394 L458 418 C457 423 452 424 448 423 L416 416 Z" transform="rotate(-8 166 404)"/>
+      <path id="rockstar-gbody" d="M104 404 C104 376 124 360 148 362 C164 363 172 358 184 352 C198 344 222 346 224 358 C225 366 214 374 212 384 L212 420 C214 430 222 438 218 446 C212 456 194 452 184 448 C172 444 164 444 148 446 C122 448 104 432 104 404 Z" transform="rotate(-8 166 404)"/>
+      <clipPath id="rockstar-gbody-c"><use href="#rockstar-gbody"/></clipPath>
+    </defs>
+    <use href="#rockstar-neck" fill="#E8B676" stroke="#3B2A24" stroke-width="5"/>
+    <g transform="rotate(-8 166 404)"><rect x="206" y="396" width="212" height="9" fill="#5A341E"/><path d="M238 397 V411" stroke="#A9B2BF" stroke-width="2.5"/><path d="M270 397 V411" stroke="#A9B2BF" stroke-width="2.5"/><path d="M300 397 V411" stroke="#A9B2BF" stroke-width="2.5"/><path d="M328 397 V411" stroke="#A9B2BF" stroke-width="2.5"/><path d="M354 397 V411" stroke="#A9B2BF" stroke-width="2.5"/><path d="M378 397 V411" stroke="#A9B2BF" stroke-width="2.5"/><path d="M400 397 V411" stroke="#A9B2BF" stroke-width="2.5"/><rect x="206" y="396" width="212" height="16" fill="none" stroke="#3B2A24" stroke-width="5"/></g>
+    <use href="#rockstar-head" fill="#D60F3C" stroke="#3B2A24" stroke-width="5"/>
+    <g transform="rotate(-8 166 404)"><circle cx="426" cy="387" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="3"/><circle cx="440" cy="384" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="3"/><circle cx="452" cy="382" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="3"/><circle cx="426" cy="421" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="3"/><circle cx="440" cy="422" r="4.5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="3"/></g>
+    <g clip-path="url(#rockstar-gbody-c)">
+    <use href="#rockstar-gbody" fill="#A60C30"/>
+    <use href="#rockstar-gbody" fill="#D60F3C" transform="translate(-8 -8)"/>
+    <path d="M116 392 C120 380 130 372 142 370" fill="none" stroke="#F2587A" stroke-width="6" stroke-linecap="round" transform="rotate(-8 166 404)"/>
+    </g>
+    <use href="#rockstar-gbody" fill="none" stroke="#FFFFFF" stroke-width="10"/>
+    <use href="#rockstar-gbody" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <use href="#rockstar-gbody" fill="none" stroke="#3B2A24" stroke-width="2.5" transform="translate(0 0)" clip-path="url(#rockstar-gbody-c)"/>
+    <g transform="rotate(-8 166 404)"><path d="M126 382 L176 376 L158 398 L204 394 L140 440 L158 412 L120 416 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5" stroke-linejoin="round"/><rect x="165" y="390" width="10" height="28" rx="2" fill="#2B2F3A" stroke="#3B2A24" stroke-width="2.5"/><rect x="187" y="390" width="10" height="28" rx="2" fill="#2B2F3A" stroke="#3B2A24" stroke-width="2.5"/><rect x="140" y="395" width="9" height="18" rx="2" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/><path d="M144 399 H418" stroke="#F4F6FA" stroke-width="1.6"/><path d="M144 404 H418" stroke="#F4F6FA" stroke-width="1.6"/><path d="M144 409 H418" stroke="#F4F6FA" stroke-width="1.6"/><circle cx="124" cy="432" r="5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/><circle cx="138" cy="440" r="5" fill="#E2E6EC" stroke="#3B2A24" stroke-width="2.5"/></g>
+    <path d="M166 392 L180 398 L170 408 Z" fill="#0798E8" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M146 380 C150 372 160 372 164 378 C168 386 164 396 156 398 C148 398 142 390 146 380 Z" fill="#F6C9A4" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M384 360 C390 354 402 356 406 364 C408 372 402 380 394 380 C386 380 380 370 384 360 Z" fill="#F6C9A4" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M390 368 H402" fill="none" stroke="#E3A982" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g id="fx" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="rockstar-note-0" d="M0 0 V-34 C8 -30 16 -26 18 -16 C14 -22 8 -24 4 -24 V2 C4 10 -4 14 -10 12 C-16 10 -16 2 -10 -2 C-6 -4 -2 -3 0 0 Z"/>
+      <path id="rockstar-note-1" d="M0 0 V-34 C8 -30 16 -26 18 -16 C14 -22 8 -24 4 -24 V2 C4 10 -4 14 -10 12 C-16 10 -16 2 -10 -2 C-6 -4 -2 -3 0 0 Z"/>
+      <path id="rockstar-note-2" d="M0 0 V-34 C8 -30 16 -26 18 -16 C14 -22 8 -24 4 -24 V2 C4 10 -4 14 -10 12 C-16 10 -16 2 -10 -2 C-6 -4 -2 -3 0 0 Z"/>
+      <path id="rockstar-pl-body" d="M-16 8 C-16 2 16 2 16 8 V30 C16 36 -16 36 -16 30 Z"/>
+      <path id="rockstar-pl-arm-l" d="M-14 12 C-24 10 -30 4 -30 -2 C-26 -4 -20 0 -14 4 Z"/>
+      <path id="rockstar-pl-arm-r" d="M14 12 C24 10 30 4 30 -2 C26 -4 20 0 14 4 Z"/>
+      <path id="rockstar-pl-tuft-l" d="M-12 -10 C-24 -14 -28 -2 -22 4 C-18 6 -14 2 -12 -2 Z"/>
+      <path id="rockstar-pl-tuft-r" d="M12 -10 C24 -14 28 -2 22 4 C18 6 14 2 12 -2 Z"/>
+      <path id="rockstar-pl-head" d="M0 -22 C10 -22 16 -14 16 -6 C16 4 8 10 0 10 C-8 10 -16 4 -16 -6 C-16 -14 -10 -22 0 -22 Z"/>
+      <path id="rockstar-toss-0" d="M50 128 L36 136"/>
+      <path id="rockstar-toss-1" d="M58 140 L48 152"/>
+      <path id="rockstar-toss-2" d="M44 116 L28 118"/>
+      <path id="rockstar-strum-1" d="M124 410 C116 418 112 426 112 434"/>
+      <path id="rockstar-strum-2" d="M108 402 C98 410 94 418 94 426"/>
+    </defs>
+    <use href="#rockstar-note-0" transform="translate(426 122) rotate(12)" fill="#024EA2" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <use href="#rockstar-note-1" transform="translate(450 222) rotate(18)" fill="#D60F3C" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <use href="#rockstar-note-2" transform="translate(70 268) rotate(-14)" fill="#0798E8" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <g transform="translate(86 108) rotate(-22)">
+    <use href="#rockstar-pl-body" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+    <use href="#rockstar-pl-arm-l" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+    <use href="#rockstar-pl-arm-r" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+    <use href="#rockstar-pl-tuft-l" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+    <use href="#rockstar-pl-tuft-r" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+    <use href="#rockstar-pl-head" fill="#F6C9A4" stroke="#3B2A24" stroke-width="3.5"/>
+    <path d="M-2 10 V34" fill="none" stroke="#DCE3EC" stroke-width="3"/>
+    <rect x="4" y="16" width="7" height="5" rx="1.5" fill="#024EA2"/>
+    <path d="M-11 0 C-7 -6 -2 -5 0 -2 C2 -5 7 -6 11 0 C8 5 -8 5 -11 0 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="0" cy="-3" r="3" fill="#F2B79A" stroke="#3B2A24" stroke-width="2"/>
+    <circle cx="-6" cy="-10" r="2.2" fill="#3B2A24"/><circle cx="6" cy="-10" r="2.2" fill="#3B2A24"/>
+    </g>
+    <use href="#rockstar-toss-0" fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round"/>
+    <use href="#rockstar-toss-1" fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round"/>
+    <use href="#rockstar-toss-2" fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round"/>
+    <use href="#rockstar-strum-1" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <use href="#rockstar-strum-2" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

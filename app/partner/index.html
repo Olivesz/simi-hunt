@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simi Hunt Partner Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--blue:#024EA2;--navy:#1C4889;--red:#CC0000;--ink:#14243d;--mute:#5b6b82;--line:#dde4ee;--bg:#f2f5fa;--card:#fff;--tint:#e8f0fb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.sim{position:sticky;top:0;z-index:5;background:var(--red);color:#fff;text-align:center;font-weight:700;font-size:13px;letter-spacing:.02em;padding:8px 16px}
+header{background:linear-gradient(120deg,var(--navy),var(--blue));color:#fff;padding:26px 16px 30px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+header .wrap{padding:0}
+header small{opacity:.8;text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+h1{margin:4px 0 6px;font-size:clamp(24px,4vw,34px)}
+header p{margin:0;opacity:.9;max-width:760px}
+main{padding:20px 0 40px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:14px}
+.kpi:nth-child(3n){border-top-color:var(--red)}
+.kpi .l{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.kpi .v{font-size:28px;font-weight:800;color:var(--navy);margin-top:2px}
+.kpi .n{font-size:12px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.card.wide{grid-column:1/-1}
+h2{margin:0 0 2px;font-size:16px;color:var(--navy)}
+.sub{margin:0 0 10px;font-size:12px;color:var(--mute)}
+.ch{position:relative;height:280px}
+.card.wide .ch{height:300px}
+.how{background:var(--tint);border-color:#c5d6ee}
+.how ol{margin:8px 0 0;padding-left:20px}.how li{margin:5px 0}
+footer{font-size:12px;color:var(--mute);margin-top:18px;text-align:center}
+footer b{color:var(--red)}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.kpi .v{font-size:24px}.ch{height:250px}}
+</style>
+</head>
+<body>
+<div class="sim" role="note">Simulated pilot data — illustrative only.</div>
+<header><div class="wrap">
+<small>Partner dashboard · CVS Pharmacy × Farmacias Similares</small>
+<h1>Simi Hunt: 4-week Austin pilot</h1>
+<p>How shelf-sign QR codes turn Dr. Simi collecting into measurable CVS store visits, product views and coupon redemptions. Three participating SimiStops.</p>
+</div></header>
+<main><div class="wrap">
+<section class="kpis" id="kpis" aria-label="Key metrics"></section>
+<section class="grid">
+<div class="card"><h2>QR scans by store</h2><p class="sub">Participating Austin SimiStops</p><div class="ch"><canvas id="cStore"></canvas></div></div>
+<div class="card"><h2>QR scans by shelf type</h2><p class="sub">Where the signs sit in the store</p><div class="ch"><canvas id="cShelf"></canvas></div></div>
+<div class="card wide"><h2>Daily scans over the pilot</h2><p class="sub">Days 1–28, with a 7-day moving average</p><div class="ch"><canvas id="cTrend"></canvas></div></div>
+<div class="card"><h2>Engagement to register funnel</h2><p class="sub">Map open to coupon redeemed</p><div class="ch"><canvas id="cFunnel"></canvas></div></div>
+<div class="card"><h2>New vs repeat scanners</h2><p class="sub">Share of unique scanners</p><div class="ch"><canvas id="cRepeat"></canvas></div></div>
+<div class="card wide how"><h2>How it's measured</h2>
+<ol>
+<li><b>Each signed QR claim is a verified in-store visit.</b> Shelf signs carry a cryptographically signed code bound to one store and one shelf, so a valid claim means the player was at that shelf.</li>
+<li><b>Coupon codes close the loop at the register.</b> Unlocking a Simi reveals shelf products and a coupon; redemption at checkout ties engagement to a sale.</li>
+<li><b>Privacy-light.</b> Counts come from claims and coupon codes only, with no personal profile required.</li>
+</ol></div>
+</section>
+<footer><b>Simulated pilot data — illustrative only.</b> Generated from a seeded random model; not real results. CVS and Farmacias Similares are named for context only.</footer>
+</div></main>
+<script>
+// Deterministic PRNG (mulberry32)
+function rng(s){return function(){s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rng(20261106);
+const poisson=l=>{let L=Math.exp(-l),k=0,p=1;do{k++;p*=R()}while(p>L);return k-1};
+const FALLBACK=[{id:'cvs-guadalupe-2402',name:'Guadalupe St'},{id:'cvs-congress-500',name:'Congress Ave'},{id:'cvs-airport-2213',name:'Airport Blvd'}];
+const SHELVES=[['dr-simi','Dr. Simi',.8],['sun-care','Sun care',.9],['skincare','Skincare',.7],['vitamins','Vitamins',.6],['cold-flu','Cold & flu',.55],['sleep','Sleep',.3],['sports-nutrition','Sports nutrition',.25]];
+const sum=a=>a.reduce((x,y)=>x+y,0), fmt=n=>Math.round(n).toLocaleString('en-US');
+
+function build(stores){
+ const sw=[1.3,1,.7].slice(0,stores.length);
+ const D=28, perDay=[], byStore=stores.map(()=>0), byShelf=SHELVES.map(()=>0);
+ for(let d=0;d<D;d++){
+  const growth=.55+.9*d/(D-1), wk=[1.3,.9,.9,.95,1,1.2,1.4][d%7]; // pilot starts on a Sunday-like cycle
+  let tot=0;
+  stores.forEach((s,i)=>SHELVES.forEach((h,j)=>{const n=poisson(.95*sw[i]*h[2]*growth*wk);byStore[i]+=n;byShelf[j]+=n;tot+=n}));
+  perDay.push(tot);
+ }
+ const scans=sum(perDay), uniq=Math.round(scans*.64), visits=Math.round(scans*.88);
+ const views=Math.round(scans*.79), coupons=Math.round(views*.19);
+ const stops=Math.round(scans/.46), opens=Math.round(stops/.37);
+ const repeat=Math.round(uniq*.31);
+ const ma=perDay.map((_,i)=>{const w=perDay.slice(Math.max(0,i-6),i+1);return +(sum(w)/w.length).toFixed(1)});
+ return{stores,D,perDay,ma,byStore,byShelf,scans,uniq,visits,views,coupons,opens,stops,repeat,dex:31};
+}
+function render(M){
+ const K=[['QR scans',fmt(M.scans),'signed shelf-sign claims'],['Unique scanners',fmt(M.uniq),'distinct devices'],
+ ['Scan-driven visits',fmt(M.visits),'verified in-store trips'],['Coupon redemptions',fmt(M.coupons),'closed at register'],
+ ['Redemption rate',(M.coupons/M.views*100).toFixed(1)+'%','of product views'],['Dr. Simi product views',fmt(M.views),'after a scan'],
+ ['SimiDex completion',M.dex+'%','avg of 18 Simis, scanners']];
+ document.getElementById('kpis').innerHTML=K.map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}</div><div class="n">${k[2]}</div></div>`).join('');
+ Chart.defaults.font.family='system-ui,-apple-system,"Segoe UI",sans-serif';Chart.defaults.color='#5b6b82';
+ const B='#024EA2',N='#1C4889',Rd='#CC0000',base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+ new Chart(cStore,{type:'bar',data:{labels:M.stores.map(s=>s.name),datasets:[{data:M.byStore,backgroundColor:[B,N,Rd]}]},options:{...base,scales:{y:{beginAtZero:true}}}});
+ new Chart(cShelf,{type:'bar',data:{labels:SHELVES.map(s=>s[1]),datasets:[{data:M.byShelf,backgroundColor:SHELVES.map(s=>s[0]==='dr-simi'?Rd:B)}]},options:{...base,indexAxis:'y',scales:{x:{beginAtZero:true}}}});
+ new Chart(cTrend,{data:{labels:M.perDay.map((_,i)=>'D'+(i+1)),datasets:[{type:'bar',label:'Daily scans',data:M.perDay,backgroundColor:'rgba(2,78,162,.35)'},{type:'line',label:'7-day average',data:M.ma,borderColor:Rd,backgroundColor:Rd,pointRadius:0,tension:.3,borderWidth:3}]},options:{...base,plugins:{legend:{display:true,position:'bottom'}},scales:{y:{beginAtZero:true}}}});
+ const F=[['Map opens',M.opens],['SimiStop visits',M.stops],['QR scans',M.scans],['Product views',M.views],['Coupons redeemed',M.coupons]];
+ new Chart(cFunnel,{type:'bar',data:{labels:F.map(f=>f[0]),datasets:[{data:F.map(f=>f[1]),backgroundColor:[N,N,B,B,Rd]}]},options:{...base,indexAxis:'y',scales:{x:{beginAtZero:true}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.parsed.x)+' ('+(c.parsed.x/F[0][1]*100).toFixed(1)+'% of map opens)'}}}}});
+ new Chart(cRepeat,{type:'doughnut',data:{labels:['New scanners','Repeat scanners'],datasets:[{data:[M.uniq-M.repeat,M.repeat],backgroundColor:[B,Rd],borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:true,position:'bottom'}}}});
+}
+fetch('../data/stores-austin.json').then(r=>r.ok?r.json():Promise.reject()).then(a=>{
+ const s=a.filter(x=>x&&x.id).map(x=>({id:x.id,name:(x.name||x.id).replace(/^CVS( Pharmacy)?\s*[-–—,]?\s*/i,'')||x.id}));
+ return s.length?s:FALLBACK}).catch(()=>FALLBACK).then(s=>render(build(s.slice(0,6))));
+</script>
+</body>
+</html>

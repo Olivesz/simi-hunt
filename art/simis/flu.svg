@@ -1,0 +1,424 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Sick Day Simi (flu). Shelf: cold and flu, vitamin C.
+  Read at 48 px: orange knit beanie with a pom-pom, red sweater, blue striped scarf, tissue box held out.
+  Pose: bundled up and shivering, still smiling; tissue box in the left hand, a vitamin C orange in the right.
+  Story details: thermometer in the corner of his smile, red nose, fever blush marks, heavy droopy lids,
+  shiver marks, ribbed beanie cuff with a small blue tag, snowflake-band sweater, fringed scarf, knit socks.
+  Colors: knit #F7931E/#D9740B, sweater #C8414E/#A12F3B, scarf #024EA2/#1C4889 with white stripes, box #0798E8/#0577BA, orange #FFA024.
+  Face overlays (re-check when the new head lands): lids over the eyes (215,175) and (297,175); red nose over (256,208) rx 23 ry 19;
+  thermometer starts at the mouth (268,268); beanie cuff lower edge stays above the brows.
+  Rig and palette: art/STYLE.md. #head is copied verbatim from art/base/simi-base.svg. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <!-- White die-cut border. One white use per silhouette piece. -->
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- outfit, body and prop pieces -->
+    <use href="#flu-sock-l" stroke-width="28"/>
+    <use href="#flu-sock-r" stroke-width="28"/>
+    <use href="#flu-sweater" stroke-width="28"/>
+    <use href="#flu-sleeve-l" fill="none" stroke-width="76"/>
+    <use href="#flu-sleeve-r" fill="none" stroke-width="76"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#flu-scarf" stroke-width="28"/>
+    <use href="#flu-scarf-a" stroke-width="28"/>
+    <use href="#flu-dome" stroke-width="28"/>
+    <use href="#flu-cuff" stroke-width="28"/>
+    <use href="#flu-pom" stroke-width="28"/>
+    <use href="#flu-thermo" stroke-width="28"/>
+    <use href="#flu-orange" stroke-width="28"/>
+    <use href="#flu-leaf" stroke-width="28"/>
+    <rect x="398" y="362" width="38" height="26" rx="7" stroke-width="28"/>
+    <use href="#flu-box" stroke-width="28"/>
+    <use href="#flu-tissue" stroke-width="28"/>
+  </g>
+
+  <g id="outfit-back"></g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M182 314 C164 326 140 346 124 370"/>
+      <path id="b-arm-r" d="M330 314 C348 326 372 346 388 370"/>
+      <circle id="b-hand-l" cx="118" cy="382" r="22"/>
+      <circle id="b-hand-r" cx="394" cy="382" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M124 368 C130 372 132 380 128 386" stroke-width="4"/>
+      <path d="M388 368 C382 372 380 380 384 386" stroke-width="4"/>
+    </g>
+  </g>
+
+  <g id="outfit-body" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <ellipse id="flu-sock-l" cx="211" cy="469" rx="28" ry="18"/>
+      <clipPath id="flu-sock-l-c"><use href="#flu-sock-l"/></clipPath>
+      <ellipse id="flu-sock-r" cx="301" cy="469" rx="28" ry="18"/>
+      <clipPath id="flu-sock-r-c"><use href="#flu-sock-r"/></clipPath>
+      <path id="flu-sweater" d="M182 292 C156 298 144 334 142 376 C140 416 146 446 186 452 L326 452 C366 446 372 416 370 376 C368 334 356 298 330 292 C304 286 208 286 182 292 Z"/>
+      <clipPath id="flu-sweater-c"><use href="#flu-sweater"/></clipPath>
+      <path id="flu-sleeve-l" d="M184 312 C166 324 146 340 132 358"/>
+      <path id="flu-sleeve-r" d="M328 312 C346 324 366 340 380 358"/>
+      <ellipse id="flu-cuff-l" cx="130" cy="362" rx="24" ry="13" transform="rotate(-48 130 362)"/>
+      <clipPath id="flu-cuff-l-c"><use href="#flu-cuff-l"/></clipPath>
+      <ellipse id="flu-cuff-r" cx="382" cy="362" rx="24" ry="13" transform="rotate(48 382 362)"/>
+      <clipPath id="flu-cuff-r-c"><use href="#flu-cuff-r"/></clipPath>
+      <path id="flu-scarf-b" d="M258 330 L294 330 L290 406 L252 402 Z"/>
+      <clipPath id="flu-scarf-b-c"><use href="#flu-scarf-b"/></clipPath>
+      <path id="flu-scarf-a" d="M286 326 L326 322 L336 424 L298 430 Z"/>
+      <clipPath id="flu-scarf-a-c"><use href="#flu-scarf-a"/></clipPath>
+      <path id="flu-scarf" d="M162 296 C196 316 316 316 350 296 L358 324 C320 350 192 350 154 324 Z"/>
+      <clipPath id="flu-scarf-c"><use href="#flu-scarf"/></clipPath>
+      <ellipse id="flu-knot" cx="296" cy="328" rx="24" ry="17" transform="rotate(-8 296 328)"/>
+      <clipPath id="flu-knot-c"><use href="#flu-knot"/></clipPath>
+    </defs>
+    <!-- thick knit socks -->
+    <g clip-path="url(#flu-sock-l-c)">
+      <use href="#flu-sock-l" fill="#D9740B"/>
+      <use href="#flu-sock-l" fill="#F7931E" transform="translate(-4 -5)"/>
+      <rect x="177" y="452" width="68" height="8" fill="#FFFFFF"/>
+      <rect x="177" y="476" width="68" height="16" fill="#FFF4E2"/>
+    </g>
+    <use href="#flu-sock-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M184 476 C201 480 221 480 238 476" fill="none" stroke="#3B2A24" stroke-width="3.5"/>
+    <g clip-path="url(#flu-sock-r-c)">
+      <use href="#flu-sock-r" fill="#D9740B"/>
+      <use href="#flu-sock-r" fill="#F7931E" transform="translate(-4 -5)"/>
+      <rect x="267" y="452" width="68" height="8" fill="#FFFFFF"/>
+      <rect x="267" y="476" width="68" height="16" fill="#FFF4E2"/>
+    </g>
+    <use href="#flu-sock-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M274 476 C291 480 311 480 328 476" fill="none" stroke="#3B2A24" stroke-width="3.5"/>
+    <!-- cranberry sweater with a snow-band and ribbed hem -->
+    <g clip-path="url(#flu-sweater-c)">
+      <use href="#flu-sweater" fill="#A12F3B"/>
+      <use href="#flu-sweater" fill="#C8414E" transform="translate(-12 -8)"/>
+      <rect x="130" y="364" width="260" height="28" fill="#FFFFFF"/>
+      <path d="M136 380 L146 372 L158 384 L170 372 L182 384 L194 372 L206 384 L218 372 L230 384 L242 372 L254 384 L266 372 L278 384 L290 372 L302 384 L314 372 L326 384 L338 372 L350 384 L362 372 L374 384" fill="none" stroke="#C8414E" stroke-width="5"/>
+      <path d="M130 364 L390 364 M130 392 L390 392" stroke="#3B2A24" stroke-width="3.5"/>
+      <rect x="130" y="428" width="260" height="30" fill="#A12F3B"/>
+      <rect x="130" y="428" width="246" height="26" fill="#C8414E"/>
+      <path d="M130 428 L390 428" stroke="#3B2A24" stroke-width="4"/>
+      <path d="M160 432 L160 450 M174 432 L174 450 M188 432 L188 450 M202 432 L202 450 M216 432 L216 450 M230 432 L230 450 M244 432 L244 450 M258 432 L258 450 M272 432 L272 450 M286 432 L286 450 M300 432 L300 450 M314 432 L314 450 M328 432 L328 450 M342 432 L342 450 M356 432 L356 450" stroke="#A12F3B" stroke-width="3.5"/>
+      <path d="M162 336 C164 320 172 308 186 302" fill="none" stroke="#DE6470" stroke-width="7"/>
+    </g>
+    <use href="#flu-sweater" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- knit sleeves with ribbed cuffs -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#flu-sleeve-l" stroke="#3B2A24" stroke-width="54"/>
+      <use href="#flu-sleeve-l" stroke="#A12F3B" stroke-width="44"/>
+      <use href="#flu-sleeve-l" stroke="#C8414E" stroke-width="30" transform="translate(-3 -5)"/>
+    </g>
+    <g fill="none" stroke-linecap="round">
+      <use href="#flu-sleeve-r" stroke="#3B2A24" stroke-width="54"/>
+      <use href="#flu-sleeve-r" stroke="#A12F3B" stroke-width="44"/>
+      <use href="#flu-sleeve-r" stroke="#C8414E" stroke-width="30" transform="translate(-3 -5)"/>
+    </g>
+    <g clip-path="url(#flu-cuff-l-c)">
+      <use href="#flu-cuff-l" fill="#A12F3B"/>
+      <use href="#flu-cuff-l" fill="#C8414E" transform="translate(-3 -3)"/>
+      <path d="M116 352 L126 366 M124 346 L134 360 M132 342 L142 356" stroke="#A12F3B" stroke-width="3"/>
+    </g>
+    <use href="#flu-cuff-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#flu-cuff-r-c)">
+      <use href="#flu-cuff-r" fill="#A12F3B"/>
+      <use href="#flu-cuff-r" fill="#C8414E" transform="translate(-3 -3)"/>
+      <path d="M396 352 L386 366 M388 346 L378 360 M380 342 L370 356" stroke="#A12F3B" stroke-width="3"/>
+    </g>
+    <use href="#flu-cuff-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- striped scarf: wrap, knot and two hanging ends with fringe -->
+    <g clip-path="url(#flu-scarf-b-c)">
+      <use href="#flu-scarf-b" fill="#1C4889"/>
+      <use href="#flu-scarf-b" fill="#024EA2" transform="translate(-4 -3)"/>
+      <rect x="230" y="356" width="140" height="11" fill="#FFFFFF"/>
+      <rect x="230" y="380" width="140" height="11" fill="#FFFFFF"/>
+    </g>
+    <use href="#flu-scarf-b" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#flu-scarf-a-c)">
+      <use href="#flu-scarf-a" fill="#1C4889"/>
+      <use href="#flu-scarf-a" fill="#024EA2" transform="translate(-5 -3)"/>
+      <rect x="230" y="358" width="140" height="11" fill="#FFFFFF"/>
+      <rect x="230" y="392" width="140" height="11" fill="#FFFFFF"/>
+    </g>
+    <use href="#flu-scarf-a" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M302 429.4 L303 443.4 M310 428.1 L311 442.1 M318 426.8 L319 440.8 M326 425.5 L327 439.5 M334 424.2 L335 438.2" fill="none" stroke="#3B2A24" stroke-width="9"/>
+    <path d="M302 429.4 L303 443.4 M310 428.1 L311 442.1 M318 426.8 L319 440.8 M326 425.5 L327 439.5 M334 424.2 L335 438.2" fill="none" stroke="#024EA2" stroke-width="3.5"/>
+    <path d="M258 402.6 L258 414.6 M266 403.4 L266 415.4 M274 404.2 L274 416.2 M282 405 L282 417" fill="none" stroke="#3B2A24" stroke-width="9"/>
+    <path d="M258 402.6 L258 414.6 M266 403.4 L266 415.4 M274 404.2 L274 416.2 M282 405 L282 417" fill="none" stroke="#024EA2" stroke-width="3.5"/>
+    <g clip-path="url(#flu-scarf-c)">
+      <use href="#flu-scarf" fill="#1C4889"/>
+      <use href="#flu-scarf" fill="#024EA2" transform="translate(-6 -5)"/>
+      <path d="M188 300 L180 340 M218 310 L214 346 M326 304 L332 340" stroke="#FFFFFF" stroke-width="10"/>
+    </g>
+    <use href="#flu-scarf" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <g clip-path="url(#flu-knot-c)">
+      <use href="#flu-knot" fill="#1C4889"/>
+      <use href="#flu-knot" fill="#024EA2" transform="translate(-4 -4)"/>
+      <path d="M290 312 L286 344" stroke="#FFFFFF" stroke-width="9"/>
+    </g>
+    <use href="#flu-knot" fill="none" stroke="#3B2A24" stroke-width="5"/>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <ellipse id="flu-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="flu-nose-c"><use href="#flu-nose"/></clipPath>
+      <path id="flu-dome" d="M146 140 C132 92 176 40 258 36 C336 34 384 84 366 140 C340 116 300 100 256 100 C212 100 172 116 146 140 Z"/>
+      <clipPath id="flu-dome-c"><use href="#flu-dome"/></clipPath>
+      <path id="flu-cuff" d="M136 152 C170 126 212 112 256 112 C300 112 342 126 376 152 L372 126 C340 100 300 88 256 88 C212 88 172 100 140 126 Z"/>
+      <clipPath id="flu-cuff-c"><use href="#flu-cuff"/></clipPath>
+      <path id="flu-pom" d="M298 48 A9 9 0 0 1 292.9 62.1 A9 9 0 0 1 279.8 69.7 A9 9 0 0 1 265 67.1 A9 9 0 0 1 255.3 55.5 A9 9 0 0 1 255.3 40.5 A9 9 0 0 1 265 28.9 A9 9 0 0 1 279.8 26.3 A9 9 0 0 1 292.9 33.9 A9 9 0 0 1 298 48 Z"/>
+      <clipPath id="flu-pom-c"><use href="#flu-pom"/></clipPath>
+    </defs>
+    <!-- sick-day face: heavy lids, red nose, fever blush (overlays only; the head is untouched) -->
+    <path d="M202 177 L228 169 L228 156 L202 156 Z" fill="#F6C9A4"/>
+    <path d="M202 177 C210 179 220 172 228 169" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <circle cx="212" cy="183" r="2.8" fill="#FFFFFF"/>
+    <path d="M310 177 L284 169 L284 156 L310 156 Z" fill="#F6C9A4"/>
+    <path d="M310 177 C302 179 292 172 284 169" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <circle cx="294" cy="183" r="2.8" fill="#FFFFFF"/>
+    <path d="M172 214 L178 204 M182 214 L188 204 M192 214 L198 204" fill="none" stroke="#E0646A" stroke-width="3.5"/>
+    <path d="M316 214 L322 204 M326 214 L332 204 M336 214 L342 204" fill="none" stroke="#E0646A" stroke-width="3.5"/>
+    <g clip-path="url(#flu-nose-c)">
+      <use href="#flu-nose" fill="#D24F57"/>
+      <use href="#flu-nose" fill="#EE6F72" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFC9C4"/>
+    <circle cx="262" cy="198" r="2.2" fill="#FFFFFF"/>
+    <use href="#flu-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- knit beanie with folded cuff and pom-pom -->
+    <g clip-path="url(#flu-dome-c)">
+      <use href="#flu-dome" fill="#D9740B"/>
+      <use href="#flu-dome" fill="#F7931E" transform="translate(-12 -8)"/>
+      <path d="M176 112 C172.0 100 212.0 62 232.0 44 M216 112 C214.0 100 234.0 62 244.0 44 M256 112 C256.0 100 256.0 62 256.0 44 M296 112 C298.0 100 278.0 62 268.0 44 M336 112 C340.0 100 300.0 62 280.0 44" fill="none" stroke="#D9740B" stroke-width="4"/>
+      <path d="M168 108 C176 80 196 60 222 50" fill="none" stroke="#FFB257" stroke-width="7"/>
+    </g>
+    <use href="#flu-dome" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <g clip-path="url(#flu-cuff-c)">
+      <use href="#flu-cuff" fill="#D9740B"/>
+      <use href="#flu-cuff" fill="#F7931E" transform="translate(-4 -5)"/>
+      <path d="M156 119.6 L156 133.6 M170 111.7 L170 126.2 M184 105.6 L184 120.2 M198 100.9 L198 115.4 M212 97.4 L212 111.8 M226 95 L226 109.2 M240 93.5 L240 107.6 M254 93 L254 107 M268 93.3 L268 107.3 M282 94.5 L282 108.6 M296 96.6 L296 110.9 M310 99.8 L310 114.3 M324 104.1 L324 118.7 M338 109.8 L338 124.4 M352 117.1 L352 131.3" fill="none" stroke="#D9740B" stroke-width="4"/>
+    </g>
+    <use href="#flu-cuff" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <rect x="318" y="106" width="16" height="20" rx="3" transform="rotate(14 326 116)" fill="#024EA2" stroke="#3B2A24" stroke-width="3.5"/>
+    <g clip-path="url(#flu-pom-c)">
+      <use href="#flu-pom" fill="#EBD3B0"/>
+      <use href="#flu-pom" fill="#FFF4E2" transform="translate(-4 -4)"/>
+      <path d="M266 42 C270 38 276 38 280 42 M276 56 C280 52 286 52 288 56" fill="none" stroke="#EBD3B0" stroke-width="3"/>
+    </g>
+    <use href="#flu-pom" fill="none" stroke="#3B2A24" stroke-width="5"/>
+  </g>
+
+  <g id="prop" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <rect id="flu-thermo" x="-4" y="-8" width="80" height="16" rx="8" transform="translate(268 268) rotate(22)"/>
+      <clipPath id="flu-thermo-c"><use href="#flu-thermo"/></clipPath>
+      <path id="flu-leaf" d="M408 314 C414 296 434 292 444 298 C438 312 422 318 408 314 Z"/>
+      <clipPath id="flu-leaf-c"><use href="#flu-leaf"/></clipPath>
+      <circle id="flu-orange" cx="404" cy="346" r="33"/>
+      <clipPath id="flu-orange-c"><use href="#flu-orange"/></clipPath>
+      <path id="flu-tissue" d="M98 344 C92 326 100 310 112 312 C114 298 134 296 136 312 C148 314 150 332 140 344 Z"/>
+      <clipPath id="flu-tissue-c"><use href="#flu-tissue"/></clipPath>
+      <rect id="flu-box" x="76" y="340" width="76" height="54" rx="7"/>
+      <clipPath id="flu-box-c"><use href="#flu-box"/></clipPath>
+    </defs>
+    <!-- thermometer resting in the corner of the smile -->
+    <g clip-path="url(#flu-thermo-c)">
+      <use href="#flu-thermo" fill="#DCE3EC"/>
+      <use href="#flu-thermo" fill="#FFFFFF" transform="translate(-2 -3)"/>
+    </g>
+    <use href="#flu-thermo" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g transform="translate(268 268) rotate(22)">
+      <rect x="2" y="-3" width="44" height="6" rx="3" fill="#D60F3C"/>
+      <path d="M50 -8 L50 -3 M56 -8 L56 -3 M62 -8 L62 -3" stroke="#3B2A24" stroke-width="2.5"/>
+      <rect x="64" y="-8" width="12" height="16" rx="6" fill="#024EA2" stroke="#3B2A24" stroke-width="3.5"/>
+    </g>
+    <!-- a big vitamin C orange in the right hand -->
+    <g clip-path="url(#flu-leaf-c)">
+      <use href="#flu-leaf" fill="#3E9A3A"/>
+      <use href="#flu-leaf" fill="#5DBB4F" transform="translate(-2 -3)"/>
+      <path d="M412 312 C422 306 430 302 438 300" stroke="#2E7D32" stroke-width="2.5"/>
+    </g>
+    <use href="#flu-leaf" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#flu-orange-c)">
+      <use href="#flu-orange" fill="#E07C12"/>
+      <use href="#flu-orange" fill="#FFA024" transform="translate(-7 -6)"/>
+      <ellipse cx="390" cy="330" rx="10" ry="6.5" transform="rotate(-35 390 330)" fill="#FFC36E"/>
+      <g fill="#E07C12"><circle cx="414" cy="334" r="1.8"/><circle cx="424" cy="346" r="1.8"/><circle cx="408" cy="352" r="1.8"/><circle cx="392" cy="346" r="1.8"/><circle cx="418" cy="362" r="1.8"/><circle cx="400" cy="364" r="1.8"/></g>
+    </g>
+    <use href="#flu-orange" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M404 313 L406 304" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- fingers curl under the orange, thumb on the inside -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="4">
+      <rect x="400" y="362" width="36" height="14" rx="7"/>
+      <rect x="398" y="374" width="34" height="14" rx="7"/>
+      <ellipse cx="376" cy="364" rx="8" ry="12" transform="rotate(15 376 364)" stroke-width="4.5"/>
+    </g>
+    <!-- tissue box with one tissue pulled up -->
+    <g clip-path="url(#flu-tissue-c)">
+      <use href="#flu-tissue" fill="#DCE3EC"/>
+      <use href="#flu-tissue" fill="#FFFFFF" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#flu-tissue" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M116 340 C116 328 122 318 128 314" fill="none" stroke="#DCE3EC" stroke-width="3"/>
+    <g clip-path="url(#flu-box-c)">
+      <use href="#flu-box" fill="#0577BA"/>
+      <use href="#flu-box" fill="#0798E8" transform="translate(-6 -4)"/>
+      <path d="M76 366 C92 358 104 374 120 366 C134 358 144 372 156 364" fill="none" stroke="#FFFFFF" stroke-width="5"/>
+      <circle cx="92" cy="384" r="3.5" fill="#FFFFFF"/>
+      <circle cx="138" cy="384" r="3.5" fill="#FFFFFF"/>
+    </g>
+    <use href="#flu-box" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <ellipse cx="119" cy="344" rx="20" ry="4" fill="#0577BA" stroke="#3B2A24" stroke-width="3.5"/>
+    <path d="M100 344 C104 336 132 336 138 344" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+    <!-- thumb over the box edge -->
+    <ellipse cx="148" cy="372" rx="8" ry="12" transform="rotate(-10 148 372)" fill="#F6C9A4" stroke="#3B2A24" stroke-width="4.5"/>
+  </g>
+
+  <g id="fx" stroke-linecap="round" stroke-linejoin="round">
+    <!-- shivers: short zigzags beside the shoulders -->
+    <path d="M74 262 L64 270 L76 276 L66 284 M60 236 L52 242 L62 248" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M438 262 L448 270 L436 276 L446 284 M452 236 L460 242 L450 248" fill="none" stroke="#3B2A24" stroke-width="4"/>
+  </g>
+</svg>

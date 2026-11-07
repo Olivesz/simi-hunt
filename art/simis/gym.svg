@@ -1,0 +1,336 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <title>Gym Simi</title>
+  <!-- Gym Simi (common, sports nutrition).
+       Read at 48 px: red tank with teal trim, teal band across the dome, a flexed arm on the left, a dumbbell on the right.
+       Pose: left arm re-posed into a bicep flex (fist at 88,280); gym-bicep shares the arm outline. Right hand holds the dumbbell at the rig position.
+       Expression: a confident wink (right eye covered with skin, 4 px arc). The smile stays.
+       Story: sweat drops, a gleam by the bicep, wristbands, the shaker waiting on the floor (the shelf tie-in), bare shoulders from a skin torso added at the end of #body.
+       Colors: tank #D60F3C/#A80B2F; band, trim, soles, shaker #22B5A5/#178C80; shorts #2E3A66/#212A4C; iron #6F7A8C/#525B6B; sweat #9ADCF3; gleam #FFD84D.
+       Head anchors used: band on the skull from y 86 to 132, above the brows; wink over the eye at (297, 175).
+       Head copied verbatim from art/base/simi-base.svg; body copied from the base, re-posed only where noted. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- body pieces -->
+    <use href="#b-torso" stroke-width="28"/>
+    <use href="#b-arm-l" fill="none" stroke-width="72"/>
+    <use href="#b-arm-r" fill="none" stroke-width="72"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#b-shoe-l" stroke-width="28"/>
+    <use href="#b-shoe-r" stroke-width="28"/>
+    <!-- outfit and prop pieces -->
+    <use href="#gym-band" stroke-width="28"/>
+    <use href="#gym-bicep" stroke-width="28"/>
+    <use href="#gym-snk-l" stroke-width="28"/>
+    <use href="#gym-snk-r" stroke-width="28"/>
+    <use href="#gym-sole-l" stroke-width="28"/>
+    <use href="#gym-sole-r" stroke-width="28"/>
+    <g transform="rotate(-12 394 382)" stroke-width="28"><use href="#gym-plate-a"/><use href="#gym-plate-b"/><use href="#gym-cap-a"/><use href="#gym-cap-b"/><use href="#gym-bar"/></g>
+    <use href="#gym-bottle" stroke-width="28"/>
+    <use href="#gym-lid" stroke-width="28"/>
+    <use href="#gym-spout" stroke-width="28"/>
+    <use href="#gym-drop1" stroke-width="24"/>
+    <use href="#gym-drop2" stroke-width="24"/>
+    <use href="#gym-spark" stroke-width="24"/>
+  </g>
+
+  <g id="outfit-back"></g>
+
+  <g id="body">
+    <defs>
+      <ellipse id="gym-bicep" cx="136" cy="314" rx="26" ry="16"/>
+      <clipPath id="gym-bicep-c"><use href="#gym-bicep"/></clipPath>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M182 314 C152 326 118 340 96 338 C82 336 82 320 88 300"/>
+      <path id="b-arm-r" d="M330 314 C348 326 372 346 388 370"/>
+      <circle id="b-hand-l" cx="88" cy="280" r="22"/>
+      <circle id="b-hand-r" cx="394" cy="382" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#gym-bicep" fill="#3B2A24" stroke="#3B2A24" stroke-width="10"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <g clip-path="url(#gym-bicep-c)"><use href="#gym-bicep" fill="#E3A982"/><use href="#gym-bicep" fill="#F6C9A4" transform="translate(-4 -7)"/></g>
+      <path d="M120 322 C128 328 140 328 148 324" stroke="#E3A982" stroke-width="4"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M93 262 C101 265 104 272 102 278 M90 280 C97 279 103 281 107 285 M90 292 C96 291 101 293 104 297" stroke-width="4"/>
+      <path d="M388 368 C382 372 380 380 384 386" stroke-width="4"/>
+    </g>
+    <!-- bare shoulders: skin torso under the tank top -->
+    <g clip-path="url(#b-torso-c)">
+      <use href="#b-torso" fill="#E3A982"/>
+      <use href="#b-torso" fill="#F6C9A4" transform="translate(-10 -8)"/>
+    </g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+  </g>
+
+  <g id="outfit-body">
+    <defs>
+      <path id="gym-tank" d="M196 278 L222 278 C226 300 238 320 256 320 C274 320 286 300 290 278 L316 278 C320 308 336 334 380 346 L384 402 C330 416 182 416 128 402 L132 346 C176 334 192 308 196 278 Z"/>
+      <clipPath id="gym-tank-c"><use href="#gym-tank"/></clipPath>
+      <rect id="gym-shorts" x="120" y="396" width="280" height="70"/>
+      <rect id="gym-cuff-l" x="185" y="424" width="52" height="34" rx="11"/>
+      <clipPath id="gym-cuff-l-c"><use href="#gym-cuff-l"/></clipPath>
+      <rect id="gym-cuff-r" x="275" y="424" width="52" height="34" rx="11"/>
+      <clipPath id="gym-cuff-r-c"><use href="#gym-cuff-r"/></clipPath>
+      <path id="gym-snk-l" d="M185 478 C183 459 195 448 211 448 C227 448 239 459 237 478 Z"/>
+      <clipPath id="gym-snk-l-c"><use href="#gym-snk-l"/></clipPath>
+      <path id="gym-snk-r" d="M 327 478 C 329 459 317 448 301 448 C 285 448 273 459 275 478 Z"/>
+      <clipPath id="gym-snk-r-c"><use href="#gym-snk-r"/></clipPath>
+      <path id="gym-sole-l" d="M181 474 L241 474 C247 474 247 491 240 491 L182 491 C175 491 175 474 181 474 Z"/>
+      <clipPath id="gym-sole-l-c"><use href="#gym-sole-l"/></clipPath>
+      <path id="gym-sole-r" d="M 331 474 L 271 474 C 265 474 265 491 272 491 L 330 491 C 337 491 337 474 331 474 Z"/>
+      <clipPath id="gym-sole-r-c"><use href="#gym-sole-r"/></clipPath>
+    </defs>
+    <!-- shorts legs -->
+    <g clip-path="url(#gym-cuff-l-c)"><use href="#gym-cuff-l" fill="#212A4C"/><use href="#gym-cuff-l" fill="#2E3A66" transform="translate(-5 -6)"/></g>
+    <use href="#gym-cuff-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#gym-cuff-r-c)"><use href="#gym-cuff-r" fill="#212A4C"/><use href="#gym-cuff-r" fill="#2E3A66" transform="translate(-5 -6)"/></g>
+    <use href="#gym-cuff-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- shorts and tank share the torso silhouette -->
+    <g clip-path="url(#b-torso-c)">
+      <use href="#gym-shorts" fill="#212A4C"/>
+      <use href="#gym-shorts" fill="#2E3A66" transform="translate(-10 -6)"/>
+      <g fill="none" stroke="#22B5A5" stroke-width="8" stroke-linecap="butt">
+        <path d="M158 404 C157 420 160 434 168 446"/>
+        <path d="M354 404 C355 420 352 434 344 446"/>
+      </g>
+      <path d="M256 418 L256 448" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+      <g clip-path="url(#gym-tank-c)">
+        <use href="#gym-tank" fill="#A80B2F"/>
+        <use href="#gym-tank" fill="#D60F3C" transform="translate(-12 -8)"/>
+        <path d="M166 352 C160 366 158 380 160 394" fill="none" stroke="#E8456A" stroke-width="7" stroke-linecap="round"/>
+        <use href="#gym-tank" fill="none" stroke="#22B5A5" stroke-width="14"/>
+      </g>
+      <use href="#gym-tank" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    </g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- wristbands -->
+    <g fill="none" stroke-linecap="butt">
+      <path d="M83.5 324.6 L85.6 306.7" stroke="#3B2A24" stroke-width="54"/><path d="M83.8 321.6 L85.3 309.7" stroke="#178C80" stroke-width="44"/><path d="M83.8 321.6 L85.3 309.7" stroke="#22B5A5" stroke-width="30" transform="translate(-3 -5)"/>
+      <path d="M367.5 344.6 L382 361.1" stroke="#3B2A24" stroke-width="54"/><path d="M369.4 346.8 L380 358.8" stroke="#178C80" stroke-width="44"/><path d="M369.4 346.8 L380 358.8" stroke="#22B5A5" stroke-width="30" transform="translate(-3 -5)"/>
+    </g>
+    <!-- sneakers -->
+    <g clip-path="url(#gym-snk-l-c)"><use href="#gym-snk-l" fill="#DCE3EC"/><use href="#gym-snk-l" fill="#FFFFFF" transform="translate(-5 -6)"/></g>
+    <use href="#gym-snk-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#gym-snk-r-c)"><use href="#gym-snk-r" fill="#DCE3EC"/><use href="#gym-snk-r" fill="#FFFFFF" transform="translate(-5 -6)"/></g>
+    <use href="#gym-snk-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#gym-sole-l-c)"><use href="#gym-sole-l" fill="#178C80"/><use href="#gym-sole-l" fill="#22B5A5" transform="translate(-3 -4)"/></g>
+    <use href="#gym-sole-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#gym-sole-r-c)"><use href="#gym-sole-r" fill="#178C80"/><use href="#gym-sole-r" fill="#22B5A5" transform="translate(-3 -4)"/></g>
+    <use href="#gym-sole-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round">
+      <path d="M203 458 L219 458"/><path d="M201 466 L221 466"/>
+      <path d="M293 458 L309 458"/><path d="M291 466 L311 466"/>
+    </g>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head">
+    <defs>
+      <path id="gym-band" d="M178 86 C212 103 300 103 334 86 C346 92 354 104 354 114 C312 132 200 132 158 114 C158 104 166 92 178 86 Z"/>
+      <clipPath id="gym-band-c"><use href="#gym-band"/></clipPath>
+    </defs>
+    <!-- terry sweatband -->
+    <g clip-path="url(#gym-band-c)"><use href="#gym-band" fill="#178C80"/><use href="#gym-band" fill="#22B5A5" transform="translate(-4 -6)"/><path d="M168 100 C206 118 306 118 344 100" fill="none" stroke="#FFFFFF" stroke-width="6"/></g>
+    <use href="#gym-band" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- confident wink: right eye closed -->
+    <ellipse cx="297" cy="175" rx="15" ry="19" fill="#F6C9A4"/>
+    <path d="M284 180 C290 168 304 168 310 180" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g id="prop">
+    <defs>
+      <rect id="gym-plate-a" x="344" y="344" width="20" height="76" rx="7"/>
+      <clipPath id="gym-plate-a-c"><use href="#gym-plate-a"/></clipPath>
+      <rect id="gym-plate-b" x="424" y="344" width="20" height="76" rx="7"/>
+      <clipPath id="gym-plate-b-c"><use href="#gym-plate-b"/></clipPath>
+      <rect id="gym-cap-a" x="331" y="358" width="15" height="48" rx="6"/>
+      <clipPath id="gym-cap-a-c"><use href="#gym-cap-a"/></clipPath>
+      <rect id="gym-cap-b" x="442" y="358" width="15" height="48" rx="6"/>
+      <clipPath id="gym-cap-b-c"><use href="#gym-cap-b"/></clipPath>
+      <rect id="gym-bar" x="336" y="374" width="116" height="16" rx="5"/>
+      <rect id="gym-bottle" x="104" y="414" width="42" height="74" rx="9"/>
+      <clipPath id="gym-bottle-c"><use href="#gym-bottle"/></clipPath>
+      <rect id="gym-lid" x="100" y="398" width="50" height="20" rx="7"/>
+      <clipPath id="gym-lid-c"><use href="#gym-lid"/></clipPath>
+      <path id="gym-spout" d="M116 400 L116 390 C116 384 132 384 132 390 L132 400 Z"/>
+    </defs>
+    <!-- dumbbell in the right hand -->
+    <g transform="rotate(-12 394 382)">
+      <use href="#gym-bar" fill="#525B6B" stroke="#3B2A24" stroke-width="4"/>
+      <g clip-path="url(#gym-cap-a-c)"><use href="#gym-cap-a" fill="#525B6B"/><use href="#gym-cap-a" fill="#6F7A8C" transform="translate(-3 -5)"/></g>
+    <use href="#gym-cap-a" fill="none" stroke="#3B2A24" stroke-width="5"/>
+      <g clip-path="url(#gym-cap-b-c)"><use href="#gym-cap-b" fill="#525B6B"/><use href="#gym-cap-b" fill="#6F7A8C" transform="translate(-3 -5)"/></g>
+    <use href="#gym-cap-b" fill="none" stroke="#3B2A24" stroke-width="5"/>
+      <g clip-path="url(#gym-plate-a-c)"><use href="#gym-plate-a" fill="#525B6B"/><use href="#gym-plate-a" fill="#6F7A8C" transform="translate(-4 -6)"/><rect x="347" y="350" width="4" height="40" rx="2" fill="#A3ACBB"/></g>
+    <use href="#gym-plate-a" fill="none" stroke="#3B2A24" stroke-width="5"/>
+      <g clip-path="url(#gym-plate-b-c)"><use href="#gym-plate-b" fill="#525B6B"/><use href="#gym-plate-b" fill="#6F7A8C" transform="translate(-4 -6)"/><rect x="427" y="350" width="4" height="40" rx="2" fill="#A3ACBB"/></g>
+    <use href="#gym-plate-b" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)"><use href="#b-hand-r" fill="#E3A982"/><use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/></g>
+    <use href="#b-hand-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"><path d="M406 377 C396 374 386 375 380 379"/><path d="M406 389 C396 386 386 387 380 391"/></g>
+    <!-- protein shaker waiting on the floor -->
+    <use href="#gym-spout" fill="#2E3A66" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#gym-bottle-c)"><use href="#gym-bottle" fill="#178C80"/><use href="#gym-bottle" fill="#22B5A5" transform="translate(-5 -4)"/><path d="M132 430 L142 430" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/><path d="M132 444 L142 444" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/><path d="M132 458 L142 458" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/><rect x="110" y="420" width="6" height="40" rx="3" fill="#7FE0D4"/></g>
+    <use href="#gym-bottle" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#gym-lid-c)"><use href="#gym-lid" fill="#212A4C"/><use href="#gym-lid" fill="#2E3A66" transform="translate(-3 -4)"/></g>
+    <use href="#gym-lid" fill="none" stroke="#3B2A24" stroke-width="5"/>
+  </g>
+
+  <g id="fx">
+    <defs>
+      <path id="gym-drop1" d="M396 92 C404 104 410 112 410 119 C410 127 403 132 396 132 C389 132 382 127 382 119 C382 112 388 104 396 92 Z"/>
+      <path id="gym-drop2" d="M424 138 C429 146 433 151 433 156 C433 161 429 165 424 165 C419 165 415 161 415 156 C415 151 419 146 424 138 Z"/>
+      <path id="gym-spark" d="M54 214 C56 226 60 230 72 232 C60 234 56 238 54 250 C52 238 48 234 36 232 C48 230 52 226 54 214 Z"/>
+      <path id="gym-spark2" d="M34 274 C35 281 37 283 44 284 C37 285 35 287 34 294 C33 287 31 285 24 284 C31 283 33 281 34 274 Z"/>
+    </defs>
+    <!-- effort sweat and a bicep gleam -->
+    <g fill="#9ADCF3" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#gym-drop1"/>
+      <use href="#gym-drop2"/>
+    </g>
+    <g fill="#FFFFFF"><ellipse cx="390" cy="118" rx="3" ry="5"/><circle cx="421" cy="155" r="2.5"/></g>
+    <g fill="#FFD84D" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"><use href="#gym-spark"/><use href="#gym-spark2" stroke-width="3.5"/></g>
+  </g>
+</svg>

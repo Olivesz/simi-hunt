@@ -1,0 +1,512 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Spa Day Simi (spa). Shelf: skincare.
+  Read at 48 px: pink towel turban with a twisted peak, mint robe, two green dots for eyes.
+  Pose: relaxed spa day; left hand holds cucumber water, right hand raised to present an open jar of face cream.
+  Story details: cucumber slices over the eyes, a dab of cream on his nose, shawl collar and tied belt,
+  rubber duck peeking out of the pocket, terry slippers, cream jar in Similares blue with a leaf label and no text.
+  Colors: robe #8FDCC6/#5FBBA3 with trim #CDF3E8, towel #F6A9C3/#DE7FA2, cucumber #3E8E41 and #D9F2AE, jar #024EA2/#1C4889.
+  Face overlays (re-check when the new head lands): cucumbers centered on the eyes (215,175) and (297,175), r 21;
+  cream dab on the nose top near (257,195); turban lower edge stays above the brows.
+  Rig and palette: art/STYLE.md. #head is copied verbatim from art/base/simi-base.svg. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <!-- White die-cut border. One white use per silhouette piece. -->
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- outfit, body and prop pieces -->
+    <use href="#spa-slipper-l" stroke-width="28"/>
+    <use href="#spa-slipper-r" stroke-width="28"/>
+    <use href="#spa-robe" stroke-width="28"/>
+    <use href="#spa-sleeve-l" stroke-width="28"/>
+    <use href="#spa-sleeve-r" stroke-width="28"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#spa-dome" stroke-width="28"/>
+    <use href="#spa-twist-1" stroke-width="28"/>
+    <use href="#spa-twist-2" stroke-width="28"/>
+    <use href="#spa-twist-3" stroke-width="28"/>
+    <use href="#spa-tuck" stroke-width="28"/>
+    <use href="#spa-glass" stroke-width="28"/>
+    <path d="M128 322 L146 278" fill="none" stroke-width="36"/>
+    <rect x="350" y="266" width="20" height="18" stroke-width="12"/>
+    <use href="#spa-jar" stroke-width="28"/>
+    <use href="#spa-rim" stroke-width="28"/>
+    <use href="#spa-cream" stroke-width="28"/>
+  </g>
+
+  <g id="outfit-back"></g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M182 314 C164 326 140 342 124 356"/>
+      <path id="b-arm-r" d="M330 314 C352 322 374 332 392 342"/>
+      <circle id="b-hand-l" cx="116" cy="366" r="22"/>
+      <circle id="b-hand-r" cx="404" cy="348" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      
+      
+    </g>
+  </g>
+
+  <g id="outfit-body" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <ellipse id="spa-slipper-l" cx="211" cy="470" rx="28" ry="17"/>
+      <clipPath id="spa-slipper-l-c"><use href="#spa-slipper-l"/></clipPath>
+      <path id="spa-strap-l" d="M185 464 C193 450 229 450 237 464 C229 460 193 460 185 464 Z"/>
+      <clipPath id="spa-strap-l-c"><use href="#spa-strap-l"/></clipPath>
+      <ellipse id="spa-slipper-r" cx="301" cy="470" rx="28" ry="17"/>
+      <clipPath id="spa-slipper-r-c"><use href="#spa-slipper-r"/></clipPath>
+      <path id="spa-strap-r" d="M275 464 C283 450 319 450 327 464 C319 460 283 460 275 464 Z"/>
+      <clipPath id="spa-strap-r-c"><use href="#spa-strap-r"/></clipPath>
+      <path id="spa-robe" d="M184 290 C158 296 146 330 142 372 C138 412 136 440 140 456 C180 466 332 466 372 456 C376 440 374 412 370 372 C366 330 354 296 328 290 C304 284 208 284 184 290 Z"/>
+      <clipPath id="spa-robe-c"><use href="#spa-robe"/></clipPath>
+      <path id="spa-chest" d="M212 288 C224 324 246 356 256 372 C266 356 288 324 300 288 Z"/>
+      <clipPath id="spa-chest-c"><use href="#spa-chest"/></clipPath>
+      <path id="spa-lapel-r" d="M322 288 C314 330 286 366 246 398 L230 386 C262 358 286 324 298 288 Z"/>
+      <clipPath id="spa-lapel-r-c"><use href="#spa-lapel-r"/></clipPath>
+      <path id="spa-lapel-l" d="M190 288 C198 330 226 366 266 398 L282 386 C250 358 226 324 214 288 Z"/>
+      <clipPath id="spa-lapel-l-c"><use href="#spa-lapel-l"/></clipPath>
+      <path id="spa-belt" d="M142 390 C200 404 312 404 370 390 L371 406 C312 420 200 420 141 406 Z"/>
+      <clipPath id="spa-belt-c"><use href="#spa-belt"/></clipPath>
+      <path id="spa-tail-a" d="M222 410 L204 448 L218 452 L232 414 Z"/>
+      <clipPath id="spa-tail-a-c"><use href="#spa-tail-a"/></clipPath>
+      <path id="spa-tail-b" d="M238 412 L246 450 L260 446 L244 410 Z"/>
+      <clipPath id="spa-tail-b-c"><use href="#spa-tail-b"/></clipPath>
+      <ellipse id="spa-loop-a" cx="210" cy="402" rx="17" ry="10" transform="rotate(-14 210 402)"/>
+      <clipPath id="spa-loop-a-c"><use href="#spa-loop-a"/></clipPath>
+      <ellipse id="spa-loop-b" cx="252" cy="402" rx="17" ry="10" transform="rotate(14 252 402)"/>
+      <clipPath id="spa-loop-b-c"><use href="#spa-loop-b"/></clipPath>
+      <rect id="spa-knot" x="221" y="392" width="20" height="20" rx="6"/>
+      <clipPath id="spa-knot-c"><use href="#spa-knot"/></clipPath>
+      <path id="spa-duck-tail" d="M306 436 C302 426 304 416 310 414 C312 422 316 430 322 434 Z"/>
+      <clipPath id="spa-duck-tail-c"><use href="#spa-duck-tail"/></clipPath>
+      <circle id="spa-duck" cx="328" cy="420" r="14"/>
+      <clipPath id="spa-duck-c"><use href="#spa-duck"/></clipPath>
+      <path id="spa-pocket" d="M300 430 L348 426 L349 450 C349 455 345 458 339 458 L310 459 C304 459 301 455 301 450 Z"/>
+      <clipPath id="spa-pocket-c"><use href="#spa-pocket"/></clipPath>
+      <path id="spa-sleeve-l" d="M206 292 C168 292 132 312 106 342 C116 362 130 376 150 390 C162 372 178 356 198 346 Z"/>
+      <clipPath id="spa-sleeve-l-c"><use href="#spa-sleeve-l"/></clipPath>
+      <path id="spa-cuff-l" d="M106 342 C116 362 130 376 150 390 L160 378 C142 366 130 352 122 334 Z"/>
+      <clipPath id="spa-cuff-l-c"><use href="#spa-cuff-l"/></clipPath>
+      <path id="spa-sleeve-r" d="M306 292 C346 288 380 300 402 318 C396 334 390 348 380 364 C362 352 340 346 316 346 Z"/>
+      <clipPath id="spa-sleeve-r-c"><use href="#spa-sleeve-r"/></clipPath>
+      <path id="spa-cuff-r" d="M402 318 C396 334 390 348 380 364 L366 358 C376 344 382 330 386 314 Z"/>
+      <clipPath id="spa-cuff-r-c"><use href="#spa-cuff-r"/></clipPath>
+    </defs>
+    <!-- terry slippers -->
+    <g clip-path="url(#spa-slipper-l-c)">
+      <use href="#spa-slipper-l" fill="#DCE3EC"/>
+      <use href="#spa-slipper-l" fill="#FFFFFF" transform="translate(-4 -5)"/>
+    </g>
+    <use href="#spa-slipper-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-strap-l-c)">
+      <use href="#spa-strap-l" fill="#DE7FA2"/>
+      <use href="#spa-strap-l" fill="#F6A9C3" transform="translate(-2 -2)"/>
+    </g>
+    <use href="#spa-strap-l" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-slipper-r-c)">
+      <use href="#spa-slipper-r" fill="#DCE3EC"/>
+      <use href="#spa-slipper-r" fill="#FFFFFF" transform="translate(-4 -5)"/>
+    </g>
+    <use href="#spa-slipper-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-strap-r-c)">
+      <use href="#spa-strap-r" fill="#DE7FA2"/>
+      <use href="#spa-strap-r" fill="#F6A9C3" transform="translate(-2 -2)"/>
+    </g>
+    <use href="#spa-strap-r" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- robe -->
+    <g clip-path="url(#spa-robe-c)">
+      <use href="#spa-robe" fill="#5FBBA3"/>
+      <use href="#spa-robe" fill="#8FDCC6" transform="translate(-10 -6)"/>
+      <path d="M160 330 C164 316 172 306 184 300" fill="none" stroke="#CDF3E8" stroke-width="6"/>
+    </g>
+    <use href="#spa-robe" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <path d="M178 426 C182 440 182 450 180 460 M332 428 C330 442 330 452 332 460" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- open neckline and shawl collar -->
+    <g clip-path="url(#spa-chest-c)">
+      <use href="#spa-chest" fill="#E3A982"/>
+      <use href="#spa-chest" fill="#F6C9A4" transform="translate(-6 0)"/>
+    </g>
+    <use href="#spa-chest" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-lapel-r-c)">
+      <use href="#spa-lapel-r" fill="#8FDCC6"/>
+      <use href="#spa-lapel-r" fill="#CDF3E8" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#spa-lapel-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-lapel-l-c)">
+      <use href="#spa-lapel-l" fill="#8FDCC6"/>
+      <use href="#spa-lapel-l" fill="#CDF3E8" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#spa-lapel-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- belt and knot -->
+    <g clip-path="url(#spa-belt-c)">
+      <use href="#spa-belt" fill="#8FDCC6"/>
+      <use href="#spa-belt" fill="#CDF3E8" transform="translate(0 -4)"/>
+    </g>
+    <use href="#spa-belt" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-tail-a-c)">
+      <use href="#spa-tail-a" fill="#8FDCC6"/>
+      <use href="#spa-tail-a" fill="#CDF3E8" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#spa-tail-a" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-tail-b-c)">
+      <use href="#spa-tail-b" fill="#8FDCC6"/>
+      <use href="#spa-tail-b" fill="#CDF3E8" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#spa-tail-b" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-loop-a-c)">
+      <use href="#spa-loop-a" fill="#8FDCC6"/>
+      <use href="#spa-loop-a" fill="#CDF3E8" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#spa-loop-a" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-loop-b-c)">
+      <use href="#spa-loop-b" fill="#8FDCC6"/>
+      <use href="#spa-loop-b" fill="#CDF3E8" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#spa-loop-b" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-knot-c)">
+      <use href="#spa-knot" fill="#8FDCC6"/>
+      <use href="#spa-knot" fill="#CDF3E8" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#spa-knot" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- pocket with a rubber duck -->
+    <g clip-path="url(#spa-duck-tail-c)">
+      <use href="#spa-duck-tail" fill="#E8B21E"/>
+      <use href="#spa-duck-tail" fill="#FFD447" transform="translate(-2 -2)"/>
+    </g>
+    <use href="#spa-duck-tail" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-duck-c)">
+      <use href="#spa-duck" fill="#E8B21E"/>
+      <use href="#spa-duck" fill="#FFD447" transform="translate(-3 -4)"/>
+    </g>
+    <use href="#spa-duck" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M339 418 C350 414 357 420 351 425 C345 429 339 426 339 424 Z" fill="#F7931E" stroke="#3B2A24" stroke-width="3.5"/>
+    <circle cx="332" cy="415" r="3" fill="#3B2A24"/>
+    <circle cx="333" cy="413.8" r="1" fill="#FFFFFF"/>
+    <g clip-path="url(#spa-pocket-c)">
+      <use href="#spa-pocket" fill="#5FBBA3"/>
+      <use href="#spa-pocket" fill="#8FDCC6" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#spa-pocket" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M301 439 L348 435" fill="none" stroke="#3B2A24" stroke-width="3.5"/>
+    <!-- sleeves: left hangs, right is raised to hold the jar -->
+    <g clip-path="url(#spa-sleeve-l-c)">
+      <use href="#spa-sleeve-l" fill="#5FBBA3"/>
+      <use href="#spa-sleeve-l" fill="#8FDCC6" transform="translate(-6 -6)"/>
+    </g>
+    <use href="#spa-sleeve-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-cuff-l-c)">
+      <use href="#spa-cuff-l" fill="#8FDCC6"/>
+      <use href="#spa-cuff-l" fill="#CDF3E8" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#spa-cuff-l" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-sleeve-r-c)">
+      <use href="#spa-sleeve-r" fill="#5FBBA3"/>
+      <use href="#spa-sleeve-r" fill="#8FDCC6" transform="translate(-6 -6)"/>
+    </g>
+    <use href="#spa-sleeve-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-cuff-r-c)">
+      <use href="#spa-cuff-r" fill="#8FDCC6"/>
+      <use href="#spa-cuff-r" fill="#CDF3E8" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#spa-cuff-r" fill="none" stroke="#3B2A24" stroke-width="4"/>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <path id="spa-dome" d="M140 152 C122 98 166 40 256 36 C346 40 390 98 372 152 C340 128 300 114 256 114 C212 114 172 128 140 152 Z"/>
+      <clipPath id="spa-dome-c"><use href="#spa-dome"/></clipPath>
+      <path id="spa-border" d="M140 152 C172 128 212 114 256 114 C300 114 340 128 372 152 L370 136 C338 112 298 100 256 100 C214 100 174 112 142 136 Z"/>
+      <clipPath id="spa-border-c"><use href="#spa-border"/></clipPath>
+      <path id="spa-tuck" d="M282 38 C286 26 300 22 310 28 C318 34 314 46 302 48 C292 50 284 46 282 38 Z"/>
+      <clipPath id="spa-tuck-c"><use href="#spa-tuck"/></clipPath>
+      <ellipse id="spa-twist-3" cx="280" cy="47" rx="25" ry="16" transform="rotate(-30 280 47)"/>
+      <clipPath id="spa-twist-3-c"><use href="#spa-twist-3"/></clipPath>
+      <ellipse id="spa-twist-2" cx="266" cy="70" rx="31" ry="19" transform="rotate(-18 266 70)"/>
+      <clipPath id="spa-twist-2-c"><use href="#spa-twist-2"/></clipPath>
+      <ellipse id="spa-twist-1" cx="256" cy="98" rx="36" ry="22" transform="rotate(-6 256 98)"/>
+      <clipPath id="spa-twist-1-c"><use href="#spa-twist-1"/></clipPath>
+      <circle id="spa-cuke-l" cx="215" cy="175" r="21"/>
+      <clipPath id="spa-cuke-l-c"><use href="#spa-cuke-l"/></clipPath>
+      <circle id="spa-cuke-r" cx="297" cy="175" r="21"/>
+      <clipPath id="spa-cuke-r-c"><use href="#spa-cuke-r"/></clipPath>
+      <path id="spa-dab" d="M246 197 C244 190 252 185 258 189 C262 184 270 188 268 194 C272 198 266 203 260 201 C254 203 246 202 246 197 Z"/>
+      <clipPath id="spa-dab-c"><use href="#spa-dab"/></clipPath>
+    </defs>
+    <!-- towel turban: wrapped dome, woven border, twisted roll -->
+    <g clip-path="url(#spa-dome-c)">
+      <use href="#spa-dome" fill="#DE7FA2"/>
+      <use href="#spa-dome" fill="#F6A9C3" transform="translate(-12 -8)"/>
+      <path d="M168 112 C176 84 196 64 222 54 M344 112 C336 84 316 64 290 54" fill="none" stroke="#DE7FA2" stroke-width="5"/>
+      <path d="M156 118 C158 96 170 78 186 66" fill="none" stroke="#FFC4D7" stroke-width="7"/>
+    </g>
+    <use href="#spa-dome" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <g clip-path="url(#spa-border-c)">
+      <use href="#spa-border" fill="#DE7FA2"/>
+      <use href="#spa-border" fill="#F6A9C3" transform="translate(0 -3)"/>
+      <path d="M141 144 C173 120 213 107 256 107 C299 107 339 120 371 144" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    </g>
+    <use href="#spa-border" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <g clip-path="url(#spa-tuck-c)">
+      <use href="#spa-tuck" fill="#DE7FA2"/>
+      <use href="#spa-tuck" fill="#F6A9C3" transform="translate(-3 -4)"/>
+    </g>
+    <use href="#spa-tuck" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-twist-3-c)">
+      <use href="#spa-twist-3" fill="#DE7FA2"/>
+      <use href="#spa-twist-3" fill="#F6A9C3" transform="translate(-4 -5)"/>
+      <path d="M265 43 C272 37 290 35 297 39" fill="none" stroke="#FFC4D7" stroke-width="5" transform="rotate(-30 280 47)"/>
+    </g>
+    <use href="#spa-twist-3" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-twist-2-c)">
+      <use href="#spa-twist-2" fill="#DE7FA2"/>
+      <use href="#spa-twist-2" fill="#F6A9C3" transform="translate(-4 -5)"/>
+      <path d="M245 66 C258 57 276 55 289 62" fill="none" stroke="#FFC4D7" stroke-width="5" transform="rotate(-18 266 70)"/>
+    </g>
+    <use href="#spa-twist-2" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-twist-1-c)">
+      <use href="#spa-twist-1" fill="#DE7FA2"/>
+      <use href="#spa-twist-1" fill="#F6A9C3" transform="translate(-4 -5)"/>
+      <path d="M230 94 C248 82 266 80 284 90" fill="none" stroke="#FFC4D7" stroke-width="5" transform="rotate(-6 256 98)"/>
+    </g>
+    <use href="#spa-twist-1" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- cucumber slices over the eyes -->
+    <g clip-path="url(#spa-cuke-l-c)">
+      <use href="#spa-cuke-l" fill="#B7DD85"/>
+      <use href="#spa-cuke-l" fill="#D9F2AE" transform="translate(-3 -3)"/>
+      <circle cx="215" cy="175" r="21" fill="none" stroke="#3E8E41" stroke-width="9"/>
+      <circle cx="215" cy="175" r="16.5" fill="none" stroke="#EFFAD8" stroke-width="2"/>
+    </g>
+    <ellipse cx="222" cy="175" rx="2.4" ry="1.5" transform="rotate(0 222 175)" fill="#8DBF57"/><ellipse cx="218.5" cy="181.1" rx="2.4" ry="1.5" transform="rotate(60 218.5 181.1)" fill="#8DBF57"/><ellipse cx="211.5" cy="181.1" rx="2.4" ry="1.5" transform="rotate(120 211.5 181.1)" fill="#8DBF57"/><ellipse cx="208" cy="175" rx="2.4" ry="1.5" transform="rotate(180 208 175)" fill="#8DBF57"/><ellipse cx="211.5" cy="168.9" rx="2.4" ry="1.5" transform="rotate(240 211.5 168.9)" fill="#8DBF57"/><ellipse cx="218.5" cy="168.9" rx="2.4" ry="1.5" transform="rotate(300 218.5 168.9)" fill="#8DBF57"/>
+    <ellipse cx="208" cy="168" rx="4" ry="2.6" transform="rotate(-35 208 168)" fill="#FFFFFF"/>
+    <use href="#spa-cuke-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-cuke-r-c)">
+      <use href="#spa-cuke-r" fill="#B7DD85"/>
+      <use href="#spa-cuke-r" fill="#D9F2AE" transform="translate(-3 -3)"/>
+      <circle cx="297" cy="175" r="21" fill="none" stroke="#3E8E41" stroke-width="9"/>
+      <circle cx="297" cy="175" r="16.5" fill="none" stroke="#EFFAD8" stroke-width="2"/>
+    </g>
+    <ellipse cx="304" cy="175" rx="2.4" ry="1.5" transform="rotate(0 304 175)" fill="#8DBF57"/><ellipse cx="300.5" cy="181.1" rx="2.4" ry="1.5" transform="rotate(60 300.5 181.1)" fill="#8DBF57"/><ellipse cx="293.5" cy="181.1" rx="2.4" ry="1.5" transform="rotate(120 293.5 181.1)" fill="#8DBF57"/><ellipse cx="290" cy="175" rx="2.4" ry="1.5" transform="rotate(180 290 175)" fill="#8DBF57"/><ellipse cx="293.5" cy="168.9" rx="2.4" ry="1.5" transform="rotate(240 293.5 168.9)" fill="#8DBF57"/><ellipse cx="300.5" cy="168.9" rx="2.4" ry="1.5" transform="rotate(300 300.5 168.9)" fill="#8DBF57"/>
+    <ellipse cx="290" cy="168" rx="4" ry="2.6" transform="rotate(-35 290 168)" fill="#FFFFFF"/>
+    <use href="#spa-cuke-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- a dab of cream on the nose -->
+    <g clip-path="url(#spa-dab-c)">
+      <use href="#spa-dab" fill="#DCE3EC"/>
+      <use href="#spa-dab" fill="#FFFFFF" transform="translate(-2 -2)"/>
+    </g>
+    <use href="#spa-dab" fill="none" stroke="#3B2A24" stroke-width="3.5"/>
+  </g>
+
+  <g id="prop" stroke-linecap="round" stroke-linejoin="round">
+    <defs>
+      <path id="spa-glass" d="M94 312 L142 312 L137 378 C137 384 133 388 127 388 L109 388 C103 388 99 384 99 378 Z"/>
+      <clipPath id="spa-glass-c"><use href="#spa-glass"/></clipPath>
+      <rect id="spa-jar" x="376" y="298" width="56" height="46" rx="10"/>
+      <clipPath id="spa-jar-c"><use href="#spa-jar"/></clipPath>
+      <rect id="spa-label" x="384" y="309" width="40" height="24" rx="5"/>
+      <clipPath id="spa-label-c"><use href="#spa-label"/></clipPath>
+      <rect id="spa-rim" x="372" y="288" width="64" height="13" rx="6"/>
+      <clipPath id="spa-rim-c"><use href="#spa-rim"/></clipPath>
+      <path id="spa-cream" d="M380 289 C376 276 390 268 402 272 C404 260 418 256 422 266 C432 272 432 282 428 289 Z"/>
+      <clipPath id="spa-cream-c"><use href="#spa-cream"/></clipPath>
+      <ellipse id="spa-thumb" cx="387" cy="338" rx="9" ry="12" transform="rotate(-20 387 338)"/>
+      <clipPath id="spa-thumb-c"><use href="#spa-thumb"/></clipPath>
+    </defs>
+    <!-- cucumber water in the left hand -->
+    <path d="M128 322 L146 278" fill="none" stroke="#3B2A24" stroke-width="13"/>
+    <path d="M128 322 L146 278" fill="none" stroke="#F6A9C3" stroke-width="5"/>
+    <g clip-path="url(#spa-glass-c)">
+      <use href="#spa-glass" fill="#93D3EE"/>
+      <use href="#spa-glass" fill="#C4ECF8" transform="translate(-5 -3)"/>
+      <path d="M90 300 L146 300 L146 324 L90 324 Z" fill="#EEFAFE"/>
+      <path d="M96 324 L140 324" stroke="#93D3EE" stroke-width="3"/>
+      <circle cx="110" cy="338" r="10" fill="#D9F2AE" stroke="#3E8E41" stroke-width="4"/>
+      <circle cx="129" cy="346" r="9" fill="#D9F2AE" stroke="#3E8E41" stroke-width="4"/>
+      <path d="M104 330 L101 372" stroke="#FFFFFF" stroke-width="4"/>
+    </g>
+    <use href="#spa-glass" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <!-- fingers wrap the glass, thumb on the inside -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="4">
+      <rect x="88" y="352" width="36" height="14" rx="7"/>
+      <rect x="89" y="364" width="34" height="14" rx="7"/>
+      <rect x="92" y="376" width="28" height="13" rx="6.5"/>
+      <ellipse cx="143" cy="356" rx="8" ry="12" transform="rotate(-15 143 356)" stroke-width="4.5"/>
+    </g>
+    <g clip-path="url(#spa-jar-c)">
+      <use href="#spa-jar" fill="#1C4889"/>
+      <use href="#spa-jar" fill="#024EA2" transform="translate(-6 -4)"/>
+    </g>
+    <use href="#spa-jar" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-label-c)">
+      <use href="#spa-label" fill="#DCE3EC"/>
+      <use href="#spa-label" fill="#FFFFFF" transform="translate(-2 -2)"/>
+    </g>
+    <use href="#spa-label" fill="none" stroke="#3B2A24" stroke-width="3.5"/>
+    <path d="M396 328 C394 318 402 312 412 313 C413 322 406 329 396 328 Z" fill="#8FDCC6" stroke="#3B2A24" stroke-width="3"/>
+    <path d="M398 326 L408 317" fill="none" stroke="#3B2A24" stroke-width="2.5"/>
+    <g clip-path="url(#spa-rim-c)">
+      <use href="#spa-rim" fill="#DCE3EC"/>
+      <use href="#spa-rim" fill="#FFFFFF" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#spa-rim" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#spa-cream-c)">
+      <use href="#spa-cream" fill="#DCE3EC"/>
+      <use href="#spa-cream" fill="#FFFFFF" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#spa-cream" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M392 281 C402 275 412 277 418 283" fill="none" stroke="#3B2A24" stroke-width="3.5"/>
+    <g clip-path="url(#spa-thumb-c)">
+      <use href="#spa-thumb" fill="#E3A982"/>
+      <use href="#spa-thumb" fill="#F6C9A4" transform="translate(-2 -3)"/>
+    </g>
+    <use href="#spa-thumb" fill="none" stroke="#3B2A24" stroke-width="4"/>
+  </g>
+
+  <g id="fx" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M454 249 Q456.9 259.1 467 262 Q456.9 264.9 454 275 Q451.1 264.9 441 262 Q451.1 259.1 454 249 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M458 295 Q459.5 300.5 465 302 Q459.5 303.5 458 309 Q456.5 303.5 451 302 Q456.5 300.5 458 295 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+    <path d="M92 69 Q94 76 101 78 Q94 80 92 87 Q90 80 83 78 Q90 76 92 69 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+  </g>
+</svg>

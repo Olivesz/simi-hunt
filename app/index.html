@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <title>Simi Hunt</title>
+  <meta name="description" content="Catch Simis on the map, scan SimiStop shelf codes at CVS, and fill your SimiDex.">
+  <meta name="theme-color" content="#024EA2">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Simi Hunt">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22%23024EA2%22/%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22178%22%20fill%3D%22%23fff%22/%3E%3Cg%20transform%3D%22rotate%2835%20256%20256%29%22%3E%3Crect%20x%3D%22196%22%20y%3D%22116%22%20width%3D%22120%22%20height%3D%22280%22%20rx%3D%2260%22%20fill%3D%22%231C4889%22/%3E%3Cpath%20d%3D%22M206%20256V176a50%2050%200%200%201%20100%200v80z%22%20fill%3D%22%232C73C6%22/%3E%3Cpath%20d%3D%22M206%20256h100v80a50%2050%200%200%201-100%200z%22%20fill%3D%22%23FFC72C%22/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body data-route="boot">
+  <div id="app">
+    <main id="map-layer" aria-label="Map"></main>
+    <section id="screen-layer" aria-live="polite"></section>
+
+    <header id="hud-top" class="hud">
+      <button class="chip player-chip" id="chip-capsules" type="button" aria-label="Capsules">
+        <span class="capsule-icon" aria-hidden="true"></span>
+        <span class="chip-num" id="capsule-count">20</span>
+      </button>
+      <span class="demo-badge" id="demo-badge" hidden>DEMO</span>
+    </header>
+
+    <nav id="hud-bottom" class="hud" aria-label="Main">
+      <button class="nav-side" id="btn-dex" type="button" aria-label="Open SimiDex">
+        <span class="nav-icon dex-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><rect x="7" y="5" width="34" height="38" rx="9" fill="currentColor"/><rect x="12" y="10" width="24" height="16" rx="5" fill="#fff" opacity=".92"/><circle cx="17" cy="34" r="3.4" fill="#FFC72C"/><rect x="24" y="31.5" width="11" height="5" rx="2.5" fill="#fff" opacity=".7"/></svg>
+        </span>
+        <span class="nav-label">SimiDex <b id="dex-count">0</b></span>
+      </button>
+
+      <button class="capsule-btn" id="btn-menu" type="button" aria-label="Open menu" aria-expanded="false">
+        <span class="capsule-shape" aria-hidden="true"><i></i><i></i></span>
+      </button>
+
+      <button class="nav-side profile-chip" id="btn-profile" type="button" aria-label="Profile and streak">
+        <span class="avatar" aria-hidden="true"><img id="avatar-img" alt="" src="../art/base/simi-base.svg"></span>
+        <span class="nav-label streak"><span aria-hidden="true">🔥</span> <b id="streak-count">0</b></span>
+      </button>
+    </nav>
+
+    <div id="menu" class="menu" hidden>
+      <div class="menu-scrim" data-close></div>
+      <button type="button" class="ov-x menu-x" data-close aria-label="Close menu">&times;</button>
+      <div class="menu-items">
+        <button type="button" class="menu-item" data-action="scan"><span class="mi-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><rect x="8" y="8" width="3.2" height="3.2" rx=".6" fill="currentColor"/><rect x="12.8" y="8" width="3.2" height="3.2" rx=".6" fill="currentColor"/><rect x="8" y="12.8" width="3.2" height="3.2" rx=".6" fill="currentColor"/><rect x="13.4" y="13.4" width="2" height="2" rx=".4" fill="currentColor"/></svg>
+        </span>Scan QR</button>
+        <button type="button" class="menu-item" data-action="stores"><span class="mi-icon stop" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2.5c-3.9 0-7 3-7 6.9 0 5 7 12.1 7 12.1s7-7.1 7-12.1c0-3.9-3.1-6.9-7-6.9Z" fill="currentColor"/><path d="M12 6.2v6.4M8.8 9.4h6.4" stroke="#fff" stroke-width="2.3" stroke-linecap="round"/></svg>
+        </span>SimiStops</button>
+        <button type="button" class="menu-item" data-action="settings"><span class="mi-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 8.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8Z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M19.4 13.5a7.7 7.7 0 0 0 0-3l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.5A7.6 7.6 0 0 0 7 6.5l-2.4-1-2 3.4 2 1.6a7.7 7.7 0 0 0 0 3l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 2.6 1.5l.4 2.5h4l.4-2.5a7.6 7.6 0 0 0 2.6-1.5l2.4 1 2-3.4-2-1.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </span>Settings</button>
+      </div>
+    </div>
+
+    <div id="sheet-root"></div>
+    <div id="modal-root"></div>
+    <div id="toast-root" aria-live="assertive"></div>
+  </div>
+
+  <noscript><p class="noscript">Simi Hunt needs JavaScript to run.</p></noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

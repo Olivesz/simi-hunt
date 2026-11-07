@@ -1,0 +1,358 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Texas Simi: store exclusive. Cowboy hat with a bluebonnet, red bandana, leather vest, star buckle, boots, lasso; waves howdy with a wink. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <!-- White die-cut border. One white use per silhouette piece. -->
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- body pieces -->
+    <use href="#b-torso" stroke-width="28"/>
+    <use href="#b-arm-l" fill="none" stroke-width="72"/>
+    <use href="#b-arm-r" fill="none" stroke-width="72"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#b-shoe-l" stroke-width="28"/>
+    <use href="#b-shoe-r" stroke-width="28"/>
+    <!-- texas pieces -->
+    <use href="#texas-sleeve-l" fill="none" stroke-width="78"/>
+    <use href="#texas-sleeve-r" fill="none" stroke-width="78"/>
+    <use href="#texas-boot-l" stroke-width="28"/>
+    <use href="#texas-boot-r" stroke-width="28"/>
+    <use href="#texas-crown" stroke-width="28"/>
+    <use href="#texas-brim" stroke-width="28"/>
+    <use href="#texas-rope-0" fill="none" stroke-width="37"/>
+    <use href="#texas-rope-1" fill="none" stroke-width="37"/>
+    <use href="#texas-rope-2" fill="none" stroke-width="37"/>
+    <use href="#texas-wave-1" fill="none" stroke-width="28"/>
+    <use href="#texas-wave-2" fill="none" stroke-width="28"/>
+  </g>
+
+  <g id="outfit-back"></g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M182 314 C164 326 140 346 124 370"/>
+      <path id="b-arm-r" d="M330 314 C350 312 368 302 382 290"/>
+      <circle id="b-hand-l" cx="118" cy="382" r="22"/>
+      <ellipse id="b-hand-r" cx="398" cy="270" rx="20" ry="25" transform="rotate(14 398 270)"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M124 368 C130 372 132 380 128 386" stroke-width="4"/>
+      <path d="M380 276 C374 270 372 262 376 256 M394 248 L396 258 M405 250 L404 260 M414 256 L410 264" stroke-width="4"/>
+    </g>
+  </g>
+
+  <g id="outfit-body" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="texas-vest-l" d="M128 280 L214 286 C220 320 230 358 240 404 C206 398 168 394 128 394 Z"/>
+      <clipPath id="texas-vest-l-c"><use href="#texas-vest-l"/></clipPath>
+      <path id="texas-vest-r" d="M384 280 L298 286 C292 320 282 358 272 404 C306 398 344 394 384 394 Z"/>
+      <clipPath id="texas-vest-r-c"><use href="#texas-vest-r"/></clipPath>
+      <linearGradient id="texas-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" stop-color="#E2E6EC"/><stop offset="1" stop-color="#C3CAD4"/></linearGradient>
+      <rect id="texas-buckle" x="228" y="386" width="56" height="36" rx="10"/>
+      <clipPath id="texas-buckle-c"><use href="#texas-buckle"/></clipPath>
+      <path id="texas-kerchief-band" d="M184 288 C214 304 298 304 328 288 L332 304 C300 320 212 320 180 304 Z"/>
+      <clipPath id="texas-kerchief-band-c"><use href="#texas-kerchief-band"/></clipPath>
+      <path id="texas-kerchief" d="M210 300 C234 314 278 314 302 300 L264 360 C260 366 252 366 248 360 Z"/>
+      <clipPath id="texas-kerchief-c"><use href="#texas-kerchief"/></clipPath>
+      <path id="texas-sleeve-l" d="M182 314 C166 324 152 338 142 352"/>
+      <path id="texas-sleeve-r" d="M330 314 C346 312 360 306 372 298"/>
+      <path id="texas-boot-l" d="M192 432 L204 432 L212 440 L220 432 L234 432 L236 466 C240 470 242 478 240 487 L178 487 C170 487 166 482 168 477 C172 470 184 467 190 464 Z"/>
+      <clipPath id="texas-boot-l-c"><use href="#texas-boot-l"/></clipPath>
+      <path id="texas-boot-r" d="M320 432 L308 432 L300 440 L292 432 L278 432 L276 466 C272 470 270 478 272 487 L334 487 C342 487 346 482 344 477 C340 470 328 467 322 464 Z"/>
+      <clipPath id="texas-boot-r-c"><use href="#texas-boot-r"/></clipPath>
+    </defs>
+    <g clip-path="url(#b-torso-c)">
+    <use href="#b-torso" fill="#1C4889"/>
+    <use href="#b-torso" fill="#024EA2" transform="translate(-12 -8)"/>
+    <rect x="120" y="408" width="280" height="60" fill="#26365A"/>
+    <rect x="110" y="408" width="280" height="60" fill="#34476E" transform="translate(-6 -4)"/>
+    <path d="M256 412 V446" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M226 418 C232 424 240 426 248 426" fill="none" stroke="#26365A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M256 318 V392" fill="none" stroke="#1C4889" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="256" cy="340" r="5" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3"/>
+    <circle cx="256" cy="366" r="5" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3"/>
+    <path d="M204 300 C220 318 240 326 256 328 C272 326 292 318 308 300" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g clip-path="url(#texas-vest-l-c)">
+    <use href="#texas-vest-l" fill="#7C4521"/>
+    <use href="#texas-vest-l" fill="#A0602F" transform="translate(-8 -6)"/>
+    <path d="M176 290 C168 320 166 352 172 390" fill="none" stroke="#C3834C" stroke-width="6" stroke-linecap="round"/>
+    </g>
+    <use href="#texas-vest-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#texas-vest-r-c)">
+    <use href="#texas-vest-r" fill="#7C4521"/>
+    <use href="#texas-vest-r" fill="#A0602F" transform="translate(-8 -6)"/>
+    </g>
+    <use href="#texas-vest-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M206 298 C212 326 220 360 228 392" fill="none" stroke="#EDCB8E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+    <path d="M306 298 C300 326 292 360 284 392" fill="none" stroke="#EDCB8E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+    <path d="M152 386 C178 388 204 392 228 396" fill="none" stroke="#EDCB8E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+    <path d="M360 386 C334 388 308 392 284 396" fill="none" stroke="#EDCB8E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+    <path d="M170 354 C182 350 196 350 208 354" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M342 354 C330 350 316 350 304 354" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="120" y="394" width="280" height="18" fill="#5A341E"/>
+    <path d="M140 394 H372" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M140 412 H372" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="176" y="390" width="10" height="26" rx="3" fill="#5A341E" stroke="#3B2A24" stroke-width="3.5"/>
+    <rect x="326" y="390" width="10" height="26" rx="3" fill="#5A341E" stroke="#3B2A24" stroke-width="3.5"/>
+    </g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <g clip-path="url(#texas-buckle-c)">
+    <use href="#texas-buckle" fill="#AEB6C2"/>
+    <use href="#texas-buckle" fill="url(#texas-metal)" transform="translate(-4 -4)"/>
+    <path d="M236 394 L246 390" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <use href="#texas-buckle" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M256 392 L259.4 400.3 L268.4 401 L261.6 406.8 L263.6 415.5 L256 410.9 L248.4 415.5 L250.4 406.8 L243.6 401 L252.6 400.3 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M256 399 L257.6 402.8 L261.7 403.1 L258.6 405.8 L259.5 409.9 L256 407.7 L252.5 409.9 L253.4 405.8 L250.3 403.1 L254.4 402.8 Z" fill="#D19A1F"/>
+    <g clip-path="url(#texas-kerchief-band-c)">
+    <use href="#texas-kerchief-band" fill="#A60C30"/>
+    <use href="#texas-kerchief-band" fill="#D60F3C" transform="translate(-3 -3)"/>
+    </g>
+    <use href="#texas-kerchief-band" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#texas-kerchief-c)">
+    <use href="#texas-kerchief" fill="#A60C30"/>
+    <use href="#texas-kerchief" fill="#D60F3C" transform="translate(-6 -5)"/>
+    <circle cx="234" cy="314" r="4.5" fill="#FFFFFF"/><circle cx="278" cy="314" r="4.5" fill="#FFFFFF"/><circle cx="256" cy="326" r="4.5" fill="#FFFFFF"/><circle cx="244" cy="340" r="4.5" fill="#FFFFFF"/><circle cx="268" cy="340" r="4.5" fill="#FFFFFF"/><circle cx="256" cy="354" r="4.5" fill="#FFFFFF"/>
+    </g>
+    <use href="#texas-kerchief" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#texas-sleeve-l" stroke="#3B2A24" stroke-width="56"/>
+    <use href="#texas-sleeve-l" stroke="#1C4889" stroke-width="46"/>
+    <use href="#texas-sleeve-l" stroke="#024EA2" stroke-width="32" transform="translate(-3 -5)"/>
+    </g>
+    <path d="M168 361 L125 330" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#texas-sleeve-r" stroke="#3B2A24" stroke-width="56"/>
+    <use href="#texas-sleeve-r" stroke="#1C4889" stroke-width="46"/>
+    <use href="#texas-sleeve-r" stroke="#024EA2" stroke-width="32" transform="translate(-3 -5)"/>
+    </g>
+    <path d="M352 280 L380 323" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g clip-path="url(#texas-boot-l-c)">
+    <use href="#texas-boot-l" fill="#6A361A"/>
+    <use href="#texas-boot-l" fill="#8C4C28" transform="translate(-5 -5)"/>
+    <path d="M198 446 C204 460 222 460 228 446" fill="none" stroke="#EDCB8E" stroke-width="3.5" stroke-linecap="round"/><path d="M206 450 C210 454 216 454 220 450" fill="none" stroke="#EDCB8E" stroke-width="3" stroke-linecap="round"/><rect x="216" y="474" width="26" height="16" fill="#4A2A18"/><path d="M172 476 C182 470 196 470 206 474" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <use href="#texas-boot-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#texas-boot-r-c)">
+    <use href="#texas-boot-r" fill="#6A361A"/>
+    <use href="#texas-boot-r" fill="#8C4C28" transform="translate(-5 -5)"/>
+    <path d="M314 446 C308 460 290 460 284 446" fill="none" stroke="#EDCB8E" stroke-width="3.5" stroke-linecap="round"/><path d="M306 450 C302 454 296 454 292 450" fill="none" stroke="#EDCB8E" stroke-width="3" stroke-linecap="round"/><rect x="270" y="474" width="26" height="16" fill="#4A2A18"/><path d="M340 476 C330 470 316 470 306 474" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <use href="#texas-boot-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="texas-crown" d="M188 104 C182 74 186 46 200 32 C214 20 236 28 256 36 C276 28 298 20 312 32 C326 46 330 74 324 104 Z"/>
+      <clipPath id="texas-crown-c"><use href="#texas-crown"/></clipPath>
+      <path id="texas-brim" d="M60 70 C76 106 166 120 256 120 C346 120 436 106 452 70 C424 92 342 100 256 100 C170 100 88 92 60 70 Z"/>
+      <clipPath id="texas-brim-c"><use href="#texas-brim"/></clipPath>
+    </defs>
+    <ellipse cx="297" cy="175" rx="14" ry="18" fill="#F6C9A4"/>
+    <path d="M284 179 C290 169 304 169 310 179" fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g clip-path="url(#texas-crown-c)">
+    <use href="#texas-crown" fill="#B98444"/>
+    <use href="#texas-crown" fill="#D9A45F" transform="translate(-10 -6)"/>
+    <rect x="170" y="82" width="180" height="22" fill="#5A341E"/><path d="M204 38 C196 52 194 66 196 78" fill="none" stroke="#F0CC94" stroke-width="7" stroke-linecap="round"/><path d="M140 82 H372" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <use href="#texas-crown" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <path d="M256 38 C251 52 251 66 255 80" fill="none" stroke="#B98444" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M200 44 C204 54 206 64 206 76" fill="none" stroke="#9A6A32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M312 44 C308 54 306 64 306 76" fill="none" stroke="#9A6A32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M256 84 L258.4 89.7 L264.6 90.2 L259.9 94.3 L261.3 100.3 L256 97 L250.7 100.3 L252.1 94.3 L247.4 90.2 L253.6 89.7 Z" fill="#E2E6EC" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M214 94 C212 82 212 68 216 50" fill="none" stroke="#4E8A3A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <ellipse cx="0" cy="0" rx="11" ry="4.5" transform="translate(208 88) rotate(186) translate(9 0)" fill="#5FA046" stroke="#3B2A24" stroke-width="2.5"/>
+    <ellipse cx="0" cy="0" rx="11" ry="4.5" transform="translate(208 88) rotate(212) translate(9 0)" fill="#5FA046" stroke="#3B2A24" stroke-width="2.5"/>
+    <ellipse cx="0" cy="0" rx="11" ry="4.5" transform="translate(208 88) rotate(238) translate(9 0)" fill="#5FA046" stroke="#3B2A24" stroke-width="2.5"/>
+    <ellipse cx="0" cy="0" rx="11" ry="4.5" transform="translate(208 88) rotate(264) translate(9 0)" fill="#5FA046" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="207" cy="90" r="7.5" fill="#024EA2" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="204.8" cy="87.4" r="2.4" fill="#FFFFFF"/>
+    <circle cx="222" cy="89" r="7.5" fill="#024EA2" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="219.8" cy="86.4" r="2.4" fill="#FFFFFF"/>
+    <circle cx="210" cy="78" r="7" fill="#024EA2" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="207.9" cy="75.5" r="2.2" fill="#FFFFFF"/>
+    <circle cx="224" cy="77" r="6.5" fill="#024EA2" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="222.1" cy="74.7" r="2.1" fill="#FFFFFF"/>
+    <circle cx="213" cy="66" r="6.5" fill="#0798E8" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="211.1" cy="63.7" r="2.1" fill="#FFFFFF"/>
+    <circle cx="223" cy="64" r="5.5" fill="#0798E8" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="221.3" cy="62.1" r="1.8" fill="#FFFFFF"/>
+    <circle cx="216" cy="55" r="5.5" fill="#FFFFFF" stroke="#3B2A24" stroke-width="2.5"/>
+    <circle cx="219" cy="46" r="4.5" fill="#FFFFFF" stroke="#3B2A24" stroke-width="2.5"/>
+    <g clip-path="url(#texas-brim-c)">
+    <use href="#texas-brim" fill="#D9A45F"/>
+    <path d="M40 86 C120 120 392 120 472 86 V140 H40 Z" fill="#B98444"/><path d="M86 90 C126 104 170 110 214 112" fill="none" stroke="#F0CC94" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <use href="#texas-brim" fill="none" stroke="#3B2A24" stroke-width="6"/>
+  </g>
+
+  <g id="prop" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="texas-rope-0" d="M104 398 C80 404 66 426 70 446 C74 466 104 472 124 460 C140 448 140 420 126 404"/>
+      <path id="texas-rope-1" d="M114 400 C96 410 86 430 90 446 C96 460 114 462 128 452"/>
+      <path id="texas-rope-2" d="M124 460 C128 466 128 472 124 476"/>
+    </defs>
+    <use href="#texas-rope-0" fill="none" stroke="#3B2A24" stroke-width="15" stroke-linecap="round"/>
+    <use href="#texas-rope-1" fill="none" stroke="#3B2A24" stroke-width="15" stroke-linecap="round"/>
+    <use href="#texas-rope-2" fill="none" stroke="#3B2A24" stroke-width="15" stroke-linecap="round"/>
+    <use href="#texas-rope-0" fill="none" stroke="#E6C07F" stroke-width="7" stroke-linecap="round"/>
+    <use href="#texas-rope-1" fill="none" stroke="#E6C07F" stroke-width="7" stroke-linecap="round"/>
+    <use href="#texas-rope-2" fill="none" stroke="#E6C07F" stroke-width="7" stroke-linecap="round"/>
+    <use href="#texas-rope-0" fill="none" stroke="#C79B57" stroke-width="3" stroke-dasharray="3 7"/>
+    <use href="#texas-rope-1" fill="none" stroke="#C79B57" stroke-width="3" stroke-dasharray="3 7"/>
+    <ellipse cx="124" cy="462" rx="7" ry="5" fill="#E6C07F" stroke="#3B2A24" stroke-width="3.5"/>
+    <path d="M124 368 C132 368 138 376 136 386 C134 394 126 396 120 392 C114 386 116 370 124 368 Z" fill="#F6C9A4" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+
+  <g id="fx" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="texas-wave-1" d="M428 254 C436 264 438 278 432 290"/>
+      <path id="texas-wave-2" d="M442 244 C454 258 456 280 448 298"/>
+    </defs>
+    <use href="#texas-wave-1" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <use href="#texas-wave-2" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <path d="M304 375 L305.9 382.1 L313 384 L305.9 385.9 L304 393 L302.1 385.9 L295 384 L302.1 382.1 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+</svg>

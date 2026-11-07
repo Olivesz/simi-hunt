@@ -1,0 +1,342 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Simi Hunt: Bombero. Head and body copied from art/base/simi-base.svg. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- body pieces -->
+    <use href="#b-torso" stroke-width="28"/>
+    <use href="#b-arm-l" fill="none" stroke-width="72"/>
+    <use href="#b-arm-r" fill="none" stroke-width="72"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#b-shoe-l" stroke-width="28"/>
+    <use href="#b-shoe-r" stroke-width="28"/>
+    <!-- outfit and prop pieces -->
+    <use href="#bombero-helmet-sil" stroke-width="28"/>
+    <use href="#bombero-boot-l" stroke-width="28"/>
+    <use href="#bombero-boot-r" stroke-width="28"/>
+    <use href="#bombero-hose" fill="none" stroke-width="50"/>
+    <g transform="translate(394 382) rotate(-58)"><rect x="0" y="-17" width="104" height="34" rx="14" stroke-width="28"/><path d="M100 -14 L132 -28 C146 -26 148 -8 144 0 C148 14 144 28 132 28 L100 14 Z" stroke-width="28"/></g>
+  </g>
+
+  <g id="outfit-back">
+    <defs>
+      <path id="bombero-hose" d="M394 398 C400 426 428 436 436 452 C442 466 420 470 380 470 L196 468"/>
+    </defs>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#bombero-hose" stroke="#3B2A24" stroke-width="22"/>
+      <use href="#bombero-hose" stroke="#A9271F" stroke-width="12"/>
+      <use href="#bombero-hose" stroke="#D63A2F" stroke-width="6" transform="translate(-1 -2)"/>
+    </g>
+    <rect x="383" y="398" width="24" height="14" rx="4" transform="rotate(-18 395 405)" fill="#FFC93C" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M389 401 L390 410 M396 399 L397 408" transform="rotate(-18 395 405)" stroke="#E3A51D" stroke-width="3"/>
+  </g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M184 318 C156 322 128 312 104 292"/>
+      <path id="b-arm-r" d="M330 314 C348 326 372 346 388 370"/>
+      <ellipse id="b-hand-l" cx="90" cy="276" rx="20" ry="25" transform="rotate(-20 90 276)"/>
+      <circle id="b-hand-r" cx="394" cy="382" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M104 262 C98 268 98 278 104 284" stroke-width="4"/>
+      <path d="M388 368 C382 372 380 380 384 386" stroke-width="4"/>
+    </g>
+  </g>
+
+  <g id="outfit-body">
+    <defs>
+      <path id="bombero-boot-l" d="M188 440 L236 440 L237 468 C250 470 254 488 236 488 L192 488 C180 488 180 476 187 468 Z"/>
+      <path id="bombero-boot-r" d="M276 440 L324 440 L325 468 C332 476 332 488 320 488 L276 488 C258 488 262 470 275 468 Z"/>
+      <path id="bombero-sleeve-l" d="M206 290 C178 286 152 296 138 312 C126 324 112 334 102 349 L150 385 C158 372 168 360 180 352 C190 344 200 336 208 330 C210 318 210 300 206 290 Z"/>
+      <path id="bombero-sleeve-r" d="M 306 290 C 334 286 360 296 374 312 C 386 324 400 334 410 349 L 362 385 C 354 372 344 360 332 352 C 322 344 312 336 304 330 C 302 318 302 300 306 290 Z"/>
+      <clipPath id="bombero-sleeve-l-c"><use href="#bombero-sleeve-l"/></clipPath>
+      <clipPath id="bombero-sleeve-r-c"><use href="#bombero-sleeve-r"/></clipPath>
+    </defs>
+    <!-- boots -->
+    <g fill="#4A4554" stroke="#3B2A24" stroke-width="5" stroke-linejoin="round">
+      <use href="#bombero-boot-l"/>
+      <use href="#bombero-boot-r"/>
+    </g>
+    <g fill="#FFC93C" stroke="#3B2A24" stroke-width="4">
+      <rect x="188" y="451" width="49" height="9"/>
+      <rect x="275" y="451" width="49" height="9"/>
+    </g>
+    <g fill="#5E5868">
+      <ellipse cx="202" cy="478" rx="9" ry="4"/>
+      <ellipse cx="290" cy="478" rx="9" ry="4"/>
+    </g>
+    <!-- turnout coat -->
+    <g clip-path="url(#b-torso-c)">
+      <use href="#b-torso" fill="#C2964F"/>
+      <use href="#b-torso" fill="#E4BC73" transform="translate(-12 -8)"/>
+      <!-- reflective bands: yellow / silver / yellow -->
+      <rect x="120" y="344" width="280" height="20" fill="#FFC93C"/>
+      <rect x="120" y="350" width="280" height="8" fill="#EEF2F6"/>
+      <rect x="120" y="408" width="280" height="20" fill="#FFC93C"/>
+      <rect x="120" y="414" width="280" height="8" fill="#EEF2F6"/>
+      <!-- storm flap -->
+      <rect x="252" y="290" width="22" height="170" fill="#E4BC73"/>
+      <rect x="270" y="290" width="4" height="170" fill="#C2964F"/>
+      <g fill="none" stroke="#3B2A24" stroke-width="4">
+        <path d="M120 344 H400 M120 364 H400 M120 408 H400 M120 428 H400"/>
+        <path d="M252 290 V450 M274 290 V450"/>
+      </g>
+    </g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- clasps -->
+    <g fill="#4A4554" stroke="#3B2A24" stroke-width="4">
+      <rect x="266" y="320" width="17" height="10" rx="3"/>
+      <rect x="266" y="380" width="17" height="10" rx="3"/>
+    </g>
+    <!-- raised left sleeve -->
+    <g fill="none" stroke-linecap="round">
+      <path d="M178 320 C162 322 146 318 132 312" stroke="#3B2A24" stroke-width="58"/>
+      <path d="M178 320 C162 322 146 318 132 312" stroke="#C2964F" stroke-width="48"/>
+      <path d="M178 320 C162 322 146 318 132 312" stroke="#E4BC73" stroke-width="34" transform="translate(-2 -5)"/>
+    </g>
+    <g transform="rotate(24 154 318)" stroke="#3B2A24" stroke-width="4">
+      <rect x="146" y="294" width="16" height="48" fill="#FFC93C"/>
+      <rect x="151" y="294" width="6" height="48" fill="#EEF2F6" stroke="none"/>
+    </g>
+    <g transform="rotate(30 124 309)">
+      <rect x="116" y="284" width="15" height="50" rx="6" fill="#4A4554" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <!-- sleeves -->
+    <g clip-path="url(#bombero-sleeve-r-c)">
+      <use href="#bombero-sleeve-r" fill="#C2964F"/>
+      <use href="#bombero-sleeve-r" fill="#E4BC73" transform="translate(-6 -6)"/>
+    </g>
+    <g clip-path="url(#bombero-sleeve-r-c)">
+      <path d="M406 334 L352 374" stroke="#FFC93C" stroke-width="16"/>
+      <path d="M406 334 L352 374" stroke="#EEF2F6" stroke-width="6"/>
+      <path d="M416 348 L360 390" stroke="#4A4554" stroke-width="14"/>
+      <path d="M411 327 L347 375 M421 341 L357 389 M412 355 L358 395" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linejoin="round">
+      <use href="#bombero-sleeve-r"/>
+    </g>
+    <!-- shoulder patch: blue cross on white -->
+    <circle cx="178" cy="318" r="13" fill="#FFFFFF" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M175 308 h6 v7 h7 v6 h-7 v7 h-6 v-7 h-7 v-6 h7 Z" fill="#024EA2"/>
+    <!-- radio clipped to the coat -->
+    <path d="M326 300 L326 316" stroke="#3B2A24" stroke-width="5" stroke-linecap="round"/>
+    <rect x="308" y="312" width="26" height="30" rx="5" fill="#4A4554" stroke="#3B2A24" stroke-width="4"/>
+    <g fill="#6A6476"><circle cx="316" cy="321" r="2.5"/><circle cx="326" cy="321" r="2.5"/><circle cx="316" cy="329" r="2.5"/><circle cx="326" cy="329" r="2.5"/></g>
+    <rect x="314" y="334" width="14" height="4" rx="2" fill="#FFC93C"/>
+    <!-- collar -->
+    <g fill="#E4BC73" stroke="#3B2A24" stroke-width="5" stroke-linejoin="round">
+      <path d="M198 288 C208 304 224 318 246 326 L242 298 Z"/>
+      <path d="M314 288 C304 304 288 318 266 326 L270 298 Z"/>
+    </g>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head">
+    <defs>
+      <path id="bombero-dome" d="M154 104 C152 54 198 26 256 26 C314 26 360 54 358 104 C300 116 212 116 154 104 Z"/>
+      <clipPath id="bombero-dome-c"><use href="#bombero-dome"/></clipPath>
+      <path id="bombero-helmet-sil" d="M104 102 C104 88 140 80 154 78 C168 44 206 24 256 24 C306 24 344 44 358 78 C372 80 408 88 408 102 C408 116 340 126 256 126 C172 126 104 116 104 102 Z"/>
+      <path id="bombero-front" d="M228 106 L226 58 C226 44 240 34 256 34 C272 34 286 44 286 58 L284 106 C272 116 240 116 228 106 Z"/>
+      <clipPath id="bombero-front-c"><use href="#bombero-front"/></clipPath>
+    </defs>
+    <!-- brim -->
+    <ellipse cx="256" cy="103" rx="150" ry="21" fill="#A9271F" stroke="#3B2A24" stroke-width="6"/>
+    <ellipse cx="252" cy="99" rx="142" ry="15" fill="#D63A2F"/>
+    <!-- dome -->
+    <g clip-path="url(#bombero-dome-c)">
+      <use href="#bombero-dome" fill="#A9271F"/>
+      <use href="#bombero-dome" fill="#D63A2F" transform="translate(-10 -8)"/>
+    </g>
+    <path d="M184 58 C200 40 224 32 244 32" fill="none" stroke="#F0675C" stroke-width="9" stroke-linecap="round"/>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M198 108 C192 78 206 50 232 36 M314 108 C320 78 306 50 280 36" stroke-width="4"/>
+      <use href="#bombero-dome" stroke-width="6"/>
+    </g>
+    <!-- front shield with flame -->
+    <g clip-path="url(#bombero-front-c)">
+      <use href="#bombero-front" fill="#E3A51D"/>
+      <use href="#bombero-front" fill="#FFC93C" transform="translate(-4 -4)"/>
+    </g>
+    <use href="#bombero-front" fill="none" stroke="#3B2A24" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M256 50 C262 62 274 68 272 84 C270 96 262 102 256 102 C248 102 240 96 240 86 C240 76 246 72 248 64 C252 70 254 74 256 76 C258 68 258 60 256 50 Z" fill="#D63A2F" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M256 80 C262 86 262 96 256 98 C250 96 250 88 256 80 Z" fill="#FFC93C"/>
+    <!-- a little soot from the last call -->
+    <g fill="#8F2A22"><ellipse cx="318" cy="62" rx="7" ry="4" transform="rotate(30 318 62)"/><circle cx="330" cy="78" r="3"/><ellipse cx="196" cy="88" rx="5" ry="3" transform="rotate(-20 196 88)"/></g>
+  </g>
+
+  <g id="prop">
+    <defs>
+      <clipPath id="bombero-nohand"><path clip-rule="evenodd" d="M-50 -50H600V600H-50Z M369.5 382 a24.5 24.5 0 1 0 49.0 0 a24.5 24.5 0 1 0 -49.0 0Z"/></clipPath>
+      <linearGradient id="bombero-chrome" x1="0" y1="-14" x2="0" y2="14" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" stop-color="#E4EAF1"/><stop offset="1" stop-color="#AEB8C6"/>
+      </linearGradient>
+    </defs>
+    <g clip-path="url(#bombero-nohand)">
+      <g transform="translate(394 382) rotate(-58)" stroke="#3B2A24" stroke-linejoin="round">
+        <rect x="-8" y="-16" width="30" height="32" rx="6" fill="#B9C3CF" stroke-width="5"/>
+        <path d="M20 -14 L72 -10 L72 10 L20 14 Z" fill="url(#bombero-chrome)" stroke-width="5"/>
+        <path d="M26 -8 L66 -6" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+        <rect x="70" y="-17" width="32" height="34" rx="9" fill="#4A4554" stroke-width="5"/>
+        <path d="M81 -13 V13 M91 -13 V13" stroke="#6A6476" stroke-width="4"/>
+      </g>
+    </g>
+    <!-- thumb over the grip -->
+    <ellipse cx="0" cy="0" rx="10" ry="8" transform="translate(394 382) rotate(-58) translate(18 -12)" fill="#F6C9A4" stroke="#3B2A24" stroke-width="4"/>
+  </g>
+
+  <g id="fx">
+    <g fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round">
+      <path d="M56 250 C48 260 48 274 52 284"/>
+      <path d="M42 258 C38 266 38 276 40 282"/>
+    </g>
+    <g transform="translate(394 382) rotate(-58)" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <path d="M102 -10 C114 -14 124 -20 132 -26 C140 -26 144 -18 140 -12 C146 -8 146 4 140 8 C146 14 142 24 132 26 C124 20 114 14 102 10 Z" fill="#9AD8F7"/>
+      <path d="M108 -3 C116 -5 124 -8 130 -12 M108 4 C118 6 126 9 132 12" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M0 0 C5 -6 13 -5 16 0 C13 5 5 6 0 0 Z" transform="translate(138 -40) rotate(-24)" fill="#0798E8" stroke-width="3.5"/>
+      <path d="M0 0 C4 -5 10 -4 12 0 C10 4 4 5 0 0 Z" transform="translate(152 -14) rotate(-8)" fill="#0798E8" stroke-width="3.5"/>
+    </g>
+  </g>
+</svg>

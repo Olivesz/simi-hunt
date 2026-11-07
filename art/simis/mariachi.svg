@@ -1,0 +1,358 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Simi Hunt: Mariachi. Head and body copied from art/base/simi-base.svg. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- body pieces -->
+    <use href="#b-torso" stroke-width="28"/>
+    <use href="#b-arm-l" fill="none" stroke-width="72"/>
+    <use href="#b-arm-r" fill="none" stroke-width="72"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#b-shoe-l" stroke-width="28"/>
+    <use href="#b-shoe-r" stroke-width="28"/>
+    <!-- outfit and prop pieces -->
+    <use href="#mariachi-hat-sil" stroke-width="28"/>
+    <g transform="translate(52 420) rotate(-6.34)"><use href="#mariachi-guitar-body" stroke-width="25" transform="scale(1.13)"/><rect x="180" y="-10" width="216" height="20" rx="6" stroke-width="28"/></g>
+    <use href="#mariachi-note-1" stroke-width="24"/>
+    <use href="#mariachi-note-2" stroke-width="24"/>
+  </g>
+
+  <g id="outfit-back"></g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M182 314 C164 326 140 346 124 370"/>
+      <path id="b-arm-r" d="M330 314 C348 326 372 346 388 370"/>
+      <circle id="b-hand-l" cx="118" cy="382" r="22"/>
+      <circle id="b-hand-r" cx="394" cy="382" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M124 368 C130 372 132 380 128 386" stroke-width="4"/>
+      <path d="M388 368 C382 372 380 380 384 386" stroke-width="4"/>
+    </g>
+  </g>
+
+  <g id="outfit-body">
+    <defs>
+      <path id="mariachi-sleeve-l" d="M206 290 C178 286 152 296 138 312 C126 324 112 334 102 349 L150 385 C158 372 168 360 180 352 C190 344 200 336 208 330 C210 318 210 300 206 290 Z"/>
+      <path id="mariachi-sleeve-r" d="M 306 290 C 334 286 360 296 374 312 C 386 324 400 334 410 349 L 362 385 C 354 372 344 360 332 352 C 322 344 312 336 304 330 C 302 318 302 300 306 290 Z"/>
+      <clipPath id="mariachi-sleeve-l-c"><use href="#mariachi-sleeve-l"/></clipPath>
+      <clipPath id="mariachi-sleeve-r-c"><use href="#mariachi-sleeve-r"/></clipPath>
+      <path id="mariachi-shirt" d="M224 290 C228 330 234 370 238 404 L274 404 C278 370 284 330 288 290 Z"/>
+      <clipPath id="mariachi-shirt-c"><use href="#mariachi-shirt"/></clipPath>
+    </defs>
+    <!-- black botines -->
+    <g fill="#3F3B4A" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-shoe-l"/>
+      <use href="#b-shoe-r"/>
+    </g>
+    <g fill="#5A5568"><ellipse cx="200" cy="461" rx="10" ry="5"/><ellipse cx="290" cy="461" rx="10" ry="5"/></g>
+    <!-- traje de charro: short jacket over trousers, one cloth -->
+    <g clip-path="url(#b-torso-c)">
+      <use href="#b-torso" fill="#2B2833"/>
+      <use href="#b-torso" fill="#3F3B4A" transform="translate(-12 -8)"/>
+      <rect x="120" y="400" width="280" height="60" fill="#2B2833"/>
+      <rect x="110" y="400" width="280" height="60" fill="#3F3B4A" transform="translate(-6 -2)"/>
+    </g>
+    <g clip-path="url(#mariachi-shirt-c)">
+      <use href="#mariachi-shirt" fill="#DCE3EC"/>
+      <use href="#mariachi-shirt" fill="#FFFFFF" transform="translate(-4 -6)"/>
+    </g>
+    <!-- silver piping on the jacket edges and hem -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M224 290 C228 330 234 370 238 398 M288 290 C284 330 278 370 274 398" stroke="#3B2A24" stroke-width="12"/>
+      <path d="M224 290 C228 330 234 370 238 398 M288 290 C284 330 278 370 274 398" stroke="#E6EAF0" stroke-width="5"/>
+      <path d="M150 396 C180 402 214 402 238 398 M274 398 C298 402 332 402 362 396" stroke="#3B2A24" stroke-width="12"/>
+      <path d="M150 396 C180 402 214 402 238 398 M274 398 C298 402 332 402 362 396" stroke="#E6EAF0" stroke-width="5"/>
+    </g>
+    <!-- botonadura: silver buttons down the trouser seams -->
+    <g fill="#E6EAF0" stroke="#3B2A24" stroke-width="3.5">
+      <circle cx="160" cy="412" r="5.5"/><circle cx="163" cy="426" r="5.5"/><circle cx="169" cy="439" r="5.5"/>
+      <circle cx="352" cy="412" r="5.5"/><circle cx="349" cy="426" r="5.5"/><circle cx="343" cy="439" r="5.5"/>
+      <circle cx="230" cy="352" r="5"/><circle cx="234" cy="376" r="5"/><circle cx="282" cy="352" r="5"/><circle cx="278" cy="376" r="5"/>
+    </g>
+    <g fill="#FFFFFF"><circle cx="350" cy="410" r="1.8"/><circle cx="347" cy="424" r="1.8"/><circle cx="341" cy="437" r="1.8"/><circle cx="228" cy="350" r="1.6"/><circle cx="232" cy="374" r="1.6"/><circle cx="280" cy="350" r="1.6"/><circle cx="276" cy="374" r="1.6"/></g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- sleeves -->
+    <g clip-path="url(#mariachi-sleeve-l-c)">
+      <use href="#mariachi-sleeve-l" fill="#2B2833"/>
+      <use href="#mariachi-sleeve-l" fill="#3F3B4A" transform="translate(-6 -6)"/>
+    </g>
+    <g clip-path="url(#mariachi-sleeve-r-c)">
+      <use href="#mariachi-sleeve-r" fill="#2B2833"/>
+      <use href="#mariachi-sleeve-r" fill="#3F3B4A" transform="translate(-6 -6)"/>
+    </g>
+    <g clip-path="url(#mariachi-sleeve-r-c)" fill="none" stroke-linecap="round">
+      <path d="M406 340 L356 378" stroke="#E6EAF0" stroke-width="5"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linejoin="round">
+      <use href="#mariachi-sleeve-l"/>
+      <use href="#mariachi-sleeve-r"/>
+    </g>
+    <g fill="#E6EAF0" stroke="#3B2A24" stroke-width="3.5"><circle cx="394" cy="352" r="4.5"/><circle cx="384" cy="360" r="4.5"/></g>
+    <g fill="none" stroke="#E6EAF0" stroke-width="3.5" stroke-linecap="round">
+      <path d="M350 322 C360 330 368 330 374 324 M332 324 C328 334 332 342 340 346"/>
+    </g>
+    <g fill="#E6EAF0" stroke="#3B2A24" stroke-width="2.5"><circle cx="340" cy="309" r="4.5"/><circle cx="340" cy="323" r="4.5"/><circle cx="333" cy="316" r="4.5"/><circle cx="347" cy="316" r="4.5"/></g>
+    <circle cx="340" cy="316" r="3.5" fill="#D60F3C"/>
+    <!-- mono (bow tie) -->
+    <g stroke="#3B2A24" stroke-width="5" stroke-linejoin="round">
+      <path d="M252 318 C236 300 206 298 204 318 C206 338 236 336 252 318 Z" fill="#D60F3C"/>
+      <path d="M260 318 C276 300 306 298 308 318 C306 338 276 336 260 318 Z" fill="#D60F3C"/>
+    </g>
+    <g fill="none" stroke="#A50B2E" stroke-width="4" stroke-linecap="round"><path d="M214 322 C224 326 236 324 244 320 M298 322 C288 326 276 324 268 320"/></g>
+    <g fill="#A50B2E" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <path d="M248 324 C244 336 238 346 232 352 L244 354 L250 344 Z"/>
+      <path d="M264 324 C268 336 274 346 280 352 L268 354 L262 344 Z"/>
+    </g>
+    <rect x="244" y="306" width="24" height="24" rx="8" fill="#D60F3C" stroke="#3B2A24" stroke-width="5"/>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head">
+    <defs>
+      <path id="mariachi-brim" d="M70 74 C90 106 170 124 256 124 C342 124 422 106 442 74 C440 60 428 56 416 62 C374 57 314 55 256 55 C198 55 138 57 96 62 C84 56 72 60 70 74 Z"/>
+      <clipPath id="mariachi-brim-c"><use href="#mariachi-brim"/></clipPath>
+      <path id="mariachi-crown" d="M196 86 C196 60 208 36 226 28 C236 24 246 30 256 26 C266 30 276 24 286 28 C304 36 316 60 316 86 C290 94 222 94 196 86 Z"/>
+      <clipPath id="mariachi-crown-c"><use href="#mariachi-crown"/></clipPath>
+      <path id="mariachi-hat-sil" d="M70 74 C72 60 84 56 96 62 C128 58 160 57 196 57 C200 36 222 24 256 24 C290 24 312 36 318 58 C350 57 384 58 416 62 C428 56 440 60 442 74 C422 106 342 124 256 124 C170 124 90 106 70 74 Z"/>
+    </defs>
+    <!-- sombrero de charro -->
+    <g clip-path="url(#mariachi-brim-c)">
+      <use href="#mariachi-brim" fill="#2B2833"/>
+      <use href="#mariachi-brim" fill="#3F3B4A" transform="translate(-8 -6)"/>
+    </g>
+    <g clip-path="url(#mariachi-brim-c)" fill="none" stroke-linecap="round">
+      <path d="M72 74 C94 104 172 120 256 120 C340 120 418 104 440 74" stroke="#E6EAF0" stroke-width="8"/>
+      <path d="M72 74 C94 104 172 120 256 120 C340 120 418 104 440 74" stroke="#3B2A24" stroke-width="3" transform="translate(0 -6)"/>
+      <g stroke="#E6EAF0" stroke-width="4">
+        <path d="M118 90 C108 86 110 76 120 78 C128 80 126 90 136 90 C146 90 146 80 156 82"/>
+        <path d="M394 90 C404 86 402 76 392 78 C384 80 386 90 376 90 C366 90 366 80 356 82"/>
+        <path d="M164 100 C160 94 166 90 172 94 M348 100 C352 94 346 90 340 94"/>
+      </g>
+    </g>
+    <use href="#mariachi-brim" fill="none" stroke="#3B2A24" stroke-width="6" stroke-linejoin="round"/>
+    <g clip-path="url(#mariachi-crown-c)">
+      <use href="#mariachi-crown" fill="#2B2833"/>
+      <use href="#mariachi-crown" fill="#3F3B4A" transform="translate(-8 -6)"/>
+    </g>
+    <path d="M212 54 C214 44 220 36 228 32" fill="none" stroke="#5A5568" stroke-width="7" stroke-linecap="round"/>
+    <g clip-path="url(#mariachi-crown-c)">
+      <rect x="180" y="70" width="160" height="16" fill="#E6EAF0"/>
+      <path d="M202 78 l8 -6 l8 6 l-8 6 Z M226 78 l8 -6 l8 6 l-8 6 Z M250 78 l6 -6 l6 6 l-6 6 Z M270 78 l8 -6 l8 6 l-8 6 Z M294 78 l8 -6 l8 6 l-8 6 Z" fill="#3F3B4A"/>
+      <path d="M180 70 H340" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <path d="M240 34 C246 42 252 46 256 46 C260 46 266 42 272 34" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <use href="#mariachi-crown" fill="none" stroke="#3B2A24" stroke-width="6" stroke-linejoin="round"/>
+    <!-- singing: happy closed eyes -->
+    <g fill="#F6C9A4"><ellipse cx="215" cy="175" rx="14" ry="18"/><ellipse cx="297" cy="175" rx="14" ry="18"/></g>
+    <g fill="none" stroke="#3B2A24" stroke-width="4.5" stroke-linecap="round">
+      <path d="M203 180 C208 168 222 168 227 180"/>
+      <path d="M285 180 C290 168 304 168 309 180"/>
+    </g>
+  </g>
+
+  <g id="prop">
+    <defs>
+      <clipPath id="mariachi-nohand"><path clip-rule="evenodd" d="M-50 -50H600V600H-50Z M369.5 382 a24.5 24.5 0 1 0 49.0 0 a24.5 24.5 0 1 0 -49.0 0Z"/></clipPath>
+      <path id="mariachi-guitar-body" d="M0 0 C0 -30 22 -52 54 -52 C78 -52 92 -40 102 -36 C114 -42 126 -44 144 -44 C168 -44 186 -24 186 0 C186 24 168 44 144 44 C126 44 114 42 102 36 C92 40 78 52 54 52 C22 52 0 30 0 0 Z"/>
+      <clipPath id="mariachi-guitar-c"><use href="#mariachi-guitar-body"/></clipPath>
+    </defs>
+    <g clip-path="url(#mariachi-nohand)">
+      <g transform="translate(52 420) rotate(-6.34)" stroke="#3B2A24" stroke-linejoin="round" stroke-linecap="round">
+        <!-- neck and headstock -->
+        <rect x="196" y="-10" width="158" height="20" rx="4" fill="#7A4A2E" stroke-width="5"/>
+        <g stroke="#E8D9B8" stroke-width="2.5"><path d="M214 -8 V8 M246 -8 V8 M276 -8 V8 M304 -8 V8 M330 -8 V8"/></g>
+        <path d="M352 -12 L392 -16 C398 -16 400 -12 400 -8 L400 8 C400 12 398 16 392 16 L352 12 Z" fill="#7A4A2E" stroke-width="5"/>
+        <g fill="#E6EAF0" stroke-width="3"><circle cx="364" cy="-18" r="4.5"/><circle cx="380" cy="-20" r="4.5"/><circle cx="364" cy="18" r="4.5"/><circle cx="380" cy="20" r="4.5"/></g>
+        <!-- body -->
+        <g transform="scale(1.13)">
+          <g clip-path="url(#mariachi-guitar-c)">
+            <use href="#mariachi-guitar-body" fill="#D08A3C" stroke="none"/>
+            <use href="#mariachi-guitar-body" fill="#F2B35E" stroke="none" transform="translate(-6 -6)"/>
+          </g>
+          <path d="M30 -30 C40 -40 56 -44 70 -42" fill="none" stroke="#FFD593" stroke-width="6"/>
+          <use href="#mariachi-guitar-body" fill="none" stroke-width="5.3"/>
+          <circle cx="142" cy="0" r="19" fill="#D60F3C" stroke-width="3.6"/>
+          <circle cx="142" cy="0" r="12" fill="#3B2A24" stroke="none"/>
+          <path d="M142 -19 l3 6 l-3 2 l-3 -2 Z M142 19 l3 -6 l-3 -2 l-3 2 Z M123 0 l6 3 l2 -3 l-2 -3 Z M161 0 l-6 3 l-2 -3 l2 -3 Z" fill="#FFD593" stroke="none"/>
+          <rect x="38" y="-20" width="14" height="40" rx="4" fill="#7A4A2E" stroke-width="3.6"/>
+        </g>
+        <g stroke="#F6EBD3" stroke-width="2"><path d="M48 -6 H396 M48 0 H396 M48 6 H396"/></g>
+      </g>
+    </g>
+    <!-- strumming arm over the guitar -->
+    <g clip-path="url(#mariachi-sleeve-l-c)">
+      <use href="#mariachi-sleeve-l" fill="#2B2833"/>
+      <use href="#mariachi-sleeve-l" fill="#3F3B4A" transform="translate(-6 -6)"/>
+    </g>
+    <use href="#mariachi-sleeve-l" fill="none" stroke="#3B2A24" stroke-width="5" stroke-linejoin="round"/>
+    <g fill="#E6EAF0" stroke="#3B2A24" stroke-width="3.5"><circle cx="118" cy="352" r="4.5"/><circle cx="128" cy="360" r="4.5"/></g>
+    <g fill="none" stroke="#E6EAF0" stroke-width="3.5" stroke-linecap="round">
+      <path d="M162 322 C152 330 144 330 138 324 M180 324 C184 334 180 342 172 346"/>
+    </g>
+    <g fill="#E6EAF0" stroke="#3B2A24" stroke-width="2.5"><circle cx="172" cy="309" r="4.5"/><circle cx="172" cy="323" r="4.5"/><circle cx="165" cy="316" r="4.5"/><circle cx="179" cy="316" r="4.5"/></g>
+    <circle cx="172" cy="316" r="3.5" fill="#D60F3C"/>
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <use href="#b-hand-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M124 368 C130 372 132 380 128 386" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <!-- fretting thumb over the neck -->
+    <ellipse cx="386" cy="368" rx="9" ry="7" fill="#F6C9A4" stroke="#3B2A24" stroke-width="4"/>
+  </g>
+
+  <g id="fx">
+    <defs>
+      <path id="mariachi-note-1" d="M432 214 L432 252 C428 249 420 249 416 254 C412 260 416 266 424 266 C432 266 438 260 438 252 L438 226 L456 220 L456 210 Z"/>
+      <path id="mariachi-note-2" d="M470 262 L470 290 C466 287 458 287 455 292 C452 298 456 303 463 303 C470 303 476 297 476 290 L476 262 Z"/>
+    </defs>
+    <g fill="#024EA2" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#mariachi-note-1"/>
+      <use href="#mariachi-note-2"/>
+    </g>
+  </g>
+</svg>

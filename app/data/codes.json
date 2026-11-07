@@ -1,0 +1,26 @@
+{
+  "qr-a": {
+    "storeId": "cvs-guadalupe-2402",
+    "shelfType": "sun-care",
+    "simiId": "beach",
+    "label": "QR-A \u00b7 Guadalupe \u00b7 Sun care"
+  },
+  "qr-b": {
+    "storeId": "cvs-guadalupe-2402",
+    "shelfType": "dr-simi",
+    "simiId": "texas",
+    "label": "QR-B \u00b7 Guadalupe \u00b7 Dr. Simi section (store exclusive)"
+  },
+  "qr-c": {
+    "storeId": "cvs-congress-500",
+    "shelfType": "dr-simi",
+    "simiId": "rockstar",
+    "label": "Test \u00b7 Congress \u00b7 Dr. Simi section (store exclusive)"
+  },
+  "qr-d": {
+    "storeId": "any",
+    "shelfType": "skincare",
+    "simiId": "spa",
+    "label": "Test \u00b7 Any participating store \u00b7 Skincare"
+  }
+}

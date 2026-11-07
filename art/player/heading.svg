@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Points up (north) from the center; rotate around the center by the heading in degrees. -->
+  <defs>
+    <radialGradient id="hd-g" cx="64" cy="64" r="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0.08" stop-color="#0798E8" stop-opacity="0.8"/>
+      <stop offset="0.5" stop-color="#0798E8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#0798E8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path d="M64 64 L37.7 10.1 A60 60 0 0 1 90.3 10.1 Z" fill="url(#hd-g)"/>
+</svg>

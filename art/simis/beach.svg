@@ -1,0 +1,355 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Simi Hunt: beach. Rig and palette: art/STYLE.md. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <use href="#b-torso" stroke-width="28"/>
+    <use href="#beach-shirt" stroke-width="28"/>
+    <use href="#b-arm-l" fill="none" stroke-width="72"/>
+    <use href="#b-arm-r" fill="none" stroke-width="72"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#beach-sleeve-l" stroke-width="28"/>
+    <use href="#beach-sleeve-r" stroke-width="28"/>
+    <use href="#b-foot-l" stroke-width="28"/>
+    <use href="#b-foot-r" stroke-width="28"/>
+    <use href="#beach-sole-l" stroke-width="28"/>
+    <use href="#beach-sole-r" stroke-width="28"/>
+    <use href="#beach-brim" stroke-width="28"/>
+    <use href="#beach-crown" stroke-width="28"/>
+    <use href="#beach-bottle" stroke-width="28"/>
+    <use href="#beach-cap" stroke-width="28"/>
+    <path d="M436 262 C446 272 450 286 448 300 M448 248 C462 262 468 284 464 304" fill="none" stroke-width="26"/>
+    <path d="M78 262 L92 276 L78 290 L64 276 Z" stroke-width="26"/>
+  </g>
+
+  <g id="outfit-back"></g>
+
+  <g id="body">
+    <!-- re-posed: right arm raised in a wave -->
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M182 314 C164 326 140 346 124 370"/>
+      <path id="b-arm-r" d="M328 318 C356 320 382 312 402 300"/>
+      <circle id="b-hand-l" cx="116" cy="372" r="22"/>
+      <ellipse id="b-hand-r" cx="414" cy="286" rx="20" ry="25" transform="rotate(15 414 286)"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-foot-l" cx="211" cy="468" rx="25" ry="15"/>
+      <ellipse id="b-foot-r" cx="301" cy="468" rx="25" ry="15"/>
+    </defs>
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+      <use href="#b-foot-l"/>
+      <use href="#b-foot-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M194 470 L194 478 M202 472 L202 480"/>
+      <path d="M318 470 L318 478 M310 472 L310 480"/>
+    </g>
+    <!-- waving hand: thumb toward the head -->
+    <ellipse cx="394" cy="290" rx="8" ry="12" transform="rotate(-50 394 290)" fill="#F6C9A4" stroke="#3B2A24" stroke-width="4.5"/>
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M407 262 L404 274 M419 265 L415 277" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-body">
+    <defs>
+      <path id="beach-shirt" d="M184 292 C160 298 148 334 146 376 C145 396 145 408 144 420 L368 420 C367 408 367 396 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="beach-shirt-c"><use href="#beach-shirt"/></clipPath>
+      <path id="beach-sleeve-l" d="M210 290 C180 284 150 294 132 316 C142 332 158 348 176 360 C184 346 198 336 212 330 Z"/>
+      <path id="beach-sleeve-r" d="M302 290 C330 282 362 286 380 294 C386 310 386 326 380 340 C360 336 338 338 318 342 C314 322 310 304 302 290 Z"/>
+      <clipPath id="beach-sleeve-l-c"><use href="#beach-sleeve-l"/></clipPath>
+      <clipPath id="beach-sleeve-r-c"><use href="#beach-sleeve-r"/></clipPath>
+      <ellipse id="beach-sole-l" cx="211" cy="482" rx="29" ry="7"/>
+      <ellipse id="beach-sole-r" cx="301" cy="482" rx="29" ry="7"/>
+      <g id="beach-flower">
+        <path d="M-6 -16 C-2 -26 14 -22 10 -10 C22 -12 26 4 14 6 C20 16 6 26 0 14 C-6 26 -22 18 -14 6 C-26 4 -22 -12 -10 -10 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3"/>
+        <circle r="5" fill="#FFD23F" stroke="#3B2A24" stroke-width="2.5"/>
+      </g>
+      <path id="beach-leaf" d="M0 0 C8 -12 24 -12 30 -4 C22 6 8 8 0 0 Z" fill="#1FAE9B" stroke="#3B2A24" stroke-width="3"/>
+    </defs>
+    <!-- shorts -->
+    <g fill="#A8743F" stroke="#3B2A24" stroke-width="5">
+      <rect x="188" y="414" width="50" height="34" rx="10"/>
+      <rect x="274" y="414" width="50" height="34" rx="10"/>
+    </g>
+    <g clip-path="url(#b-torso-c)">
+      <use href="#b-torso" fill="#865A2E"/>
+      <use href="#b-torso" fill="#A8743F" transform="translate(-8 -6)"/>
+    </g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <path d="M256 424 L256 446" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <!-- shirt -->
+    <g clip-path="url(#beach-shirt-c)">
+      <use href="#beach-shirt" fill="#D94E3B"/>
+      <use href="#beach-shirt" fill="#FF6B57" transform="translate(-10 -8)"/>
+      <use href="#beach-leaf" transform="translate(176 362) rotate(20)"/>
+      <use href="#beach-leaf" transform="translate(300 404) rotate(-30)"/>
+      <use href="#beach-leaf" transform="translate(330 318) rotate(160)"/>
+      <use href="#beach-flower" transform="translate(186 346)"/>
+      <use href="#beach-flower" transform="translate(326 386) rotate(30)"/>
+      <use href="#beach-flower" transform="translate(222 406) rotate(-20) scale(0.8)"/>
+      <use href="#beach-flower" transform="translate(310 330) rotate(15) scale(0.75)"/>
+    </g>
+    <!-- open neck -->
+    <path d="M232 300 L256 338 L280 300 Z" fill="#E3A982" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#beach-shirt" stroke-width="6"/>
+      <path d="M256 338 L256 418" stroke-width="4"/>
+    </g>
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5">
+      <circle cx="256" cy="362" r="5"/>
+      <circle cx="256" cy="392" r="5"/>
+    </g>
+    <!-- camp collar -->
+    <g fill="#FF6B57" stroke="#3B2A24" stroke-width="4.5" stroke-linejoin="round">
+      <path d="M232 300 L256 338 L222 330 L196 312 L206 298 Z"/>
+      <path d="M280 300 L256 338 L290 330 L316 312 L306 298 Z"/>
+    </g>
+    <!-- sleeves -->
+    <g clip-path="url(#beach-sleeve-l-c)">
+      <use href="#beach-sleeve-l" fill="#D94E3B"/>
+      <use href="#beach-sleeve-l" fill="#FF6B57" transform="translate(-5 -8)"/>
+      <use href="#beach-flower" transform="translate(166 318) scale(0.7)"/>
+    </g>
+    <g clip-path="url(#beach-sleeve-r-c)">
+      <use href="#beach-sleeve-r" fill="#D94E3B"/>
+      <use href="#beach-sleeve-r" fill="#FF6B57" transform="translate(-5 -8)"/>
+      <use href="#beach-flower" transform="translate(352 312) scale(0.7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linejoin="round">
+      <use href="#beach-sleeve-l"/>
+      <use href="#beach-sleeve-r"/>
+    </g>
+    <!-- huaraches -->
+    <g fill="#C99A45" stroke="#3B2A24" stroke-width="4.5">
+      <use href="#beach-sole-l"/>
+      <use href="#beach-sole-r"/>
+    </g>
+    <g fill="none" stroke-linecap="round">
+      <path d="M192 462 C204 454 218 454 230 462 M282 462 C294 454 308 454 320 462" stroke="#3B2A24" stroke-width="13"/>
+      <path d="M192 462 C204 454 218 454 230 462 M282 462 C294 454 308 454 320 462" stroke="#865A2E" stroke-width="6"/>
+      <path d="M200 474 L211 458 L222 474 M290 474 L301 458 L312 474" stroke="#3B2A24" stroke-width="10"/>
+      <path d="M200 474 L211 458 L222 474 M290 474 L301 458 L312 474" stroke="#C99A45" stroke-width="4"/>
+    </g>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+  <g id="outfit-head">
+    <defs>
+      <path id="beach-crown" d="M184 100 C178 52 212 24 256 24 C300 24 334 52 328 100 Z"/>
+      <clipPath id="beach-crown-c"><use href="#beach-crown"/></clipPath>
+      <path id="beach-brim" d="M256 82 C342 82 412 92 412 104 C412 118 342 124 256 124 C170 124 100 118 100 104 C100 92 170 82 256 82 Z"/>
+      <clipPath id="beach-brim-c"><use href="#beach-brim"/></clipPath>
+      <linearGradient id="beach-lens-g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3A78D0"/>
+        <stop offset="1" stop-color="#14325F"/>
+      </linearGradient>
+      <rect id="beach-lens-l" x="184" y="154" width="62" height="46" rx="18"/>
+      <rect id="beach-lens-r" x="266" y="154" width="62" height="46" rx="18"/>
+    </defs>
+    <!-- sunglasses -->
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round">
+      <path d="M184 166 L170 160 M328 166 L342 160 M246 168 C252 162 260 162 266 168" stroke-width="6"/>
+    </g>
+    <g fill="url(#beach-lens-g)" stroke="#3B2A24" stroke-width="6">
+      <use href="#beach-lens-l"/>
+      <use href="#beach-lens-r"/>
+    </g>
+    <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round">
+      <path d="M198 166 L208 162 M196 180 L222 166"/>
+      <path d="M280 166 L290 162 M278 180 L304 166"/>
+    </g>
+    <!-- palm hat -->
+    <g clip-path="url(#beach-crown-c)">
+      <use href="#beach-crown" fill="#C99A45"/>
+      <use href="#beach-crown" fill="#EDC979" transform="translate(-10 -6)"/>
+      <rect x="170" y="64" width="172" height="20" fill="#1FAE9B"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M182 64 L330 64 M180 84 L332 84" stroke-width="4"/>
+      <path d="M218 40 C226 46 232 54 234 62 M256 32 L256 62 M294 40 C286 46 280 54 278 62" stroke="#B5853A" stroke-width="3.5"/>
+      <use href="#beach-crown" stroke-width="6"/>
+    </g>
+    <g clip-path="url(#beach-brim-c)">
+      <use href="#beach-brim" fill="#C99A45"/>
+      <use href="#beach-brim" fill="#EDC979" transform="translate(-8 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M140 102 C170 110 210 112 236 112 M276 112 C302 112 342 110 372 102" stroke="#B5853A" stroke-width="3.5"/>
+      <use href="#beach-brim" stroke-width="6"/>
+      <path d="M180 96 C210 102 302 102 332 96" stroke-width="4"/>
+    </g>
+    <use href="#beach-flower" transform="translate(304 72) scale(0.85)"/>
+    <!-- zinc sunscreen stripe on the nose -->
+    <path d="M238 202 C246 192 266 192 274 202 C266 210 246 210 238 202 Z" fill="#FFFFFF" stroke="#3B2A24" stroke-width="3.5"/>
+  </g>
+
+  <g id="prop">
+    <defs>
+      <rect id="beach-bottle" x="92" y="284" width="46" height="88" rx="12"/>
+      <clipPath id="beach-bottle-c"><use href="#beach-bottle"/></clipPath>
+      <rect id="beach-cap" x="102" y="266" width="26" height="22" rx="5"/>
+    </defs>
+    <!-- sunscreen bottle, no text -->
+    <use href="#beach-cap" fill="#024EA2" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#beach-bottle-c)">
+      <use href="#beach-bottle" fill="#DCE3EC"/>
+      <use href="#beach-bottle" fill="#FFFFFF" transform="translate(-6 -6)"/>
+      <rect x="80" y="308" width="70" height="36" fill="#0798E8"/>
+    </g>
+    <use href="#beach-bottle" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <path d="M92 308 L138 308 M92 344 L138 344" stroke="#3B2A24" stroke-width="4"/>
+    <g stroke="#FFD23F" stroke-width="3.5" stroke-linecap="round">
+      <path d="M115 314 L115 318 M115 334 L115 338 M103 326 L107 326 M123 326 L127 326"/>
+    </g>
+    <circle cx="115" cy="326" r="6" fill="#FFD23F" stroke="#3B2A24" stroke-width="3"/>
+    <!-- thumb wraps the bottle -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="4">
+      <rect x="88" y="348" width="34" height="14" rx="7"/>
+      <rect x="88" y="360" width="32" height="14" rx="7"/>
+      <rect x="90" y="372" width="28" height="13" rx="6.5"/>
+      <ellipse cx="138" cy="352" rx="8" ry="12" transform="rotate(-15 138 352)" stroke-width="4.5"/>
+    </g>
+  </g>
+
+  <g id="fx">
+    <!-- product sparkle on the bottle -->
+    <path d="M78 262 C80 272 82 274 92 276 C82 278 80 280 78 290 C76 280 74 278 64 276 C74 274 76 272 78 262 Z" fill="#FFD23F" stroke="#3B2A24" stroke-width="3.5" stroke-linejoin="round"/>
+    <g fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round">
+      <path d="M436 262 C446 272 450 286 448 300"/>
+      <path d="M448 248 C462 262 468 284 464 304"/>
+    </g>
+  </g>
+</svg>

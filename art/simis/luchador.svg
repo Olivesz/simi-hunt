@@ -1,0 +1,317 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Luchador Simi: event. Original mask with a blue-cross crest and gold wings, blue cape, gold title belt, red boots; double-biceps flex. -->
+
+  <g id="shadow">
+    <ellipse cx="256" cy="492" rx="120" ry="14" fill="#3B2A24" opacity="0.2"/>
+  </g>
+
+  <!-- White die-cut border. One white use per silhouette piece. -->
+  <g id="sticker" fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head pieces: copy verbatim -->
+    <use href="#h-skull" stroke-width="28"/>
+    <use href="#h-tuft-l" stroke-width="28"/>
+    <use href="#h-tuft-r" stroke-width="28"/>
+    <use href="#h-ear-l" stroke-width="28"/>
+    <use href="#h-ear-r" stroke-width="28"/>
+    <!-- body pieces -->
+    <use href="#b-torso" stroke-width="28"/>
+    <use href="#b-arm-l" fill="none" stroke-width="72"/>
+    <use href="#b-arm-r" fill="none" stroke-width="72"/>
+    <use href="#b-hand-l" stroke-width="28"/>
+    <use href="#b-hand-r" stroke-width="28"/>
+    <use href="#b-shoe-l" stroke-width="28"/>
+    <use href="#b-shoe-r" stroke-width="28"/>
+    <!-- luchador pieces -->
+    <use href="#luchador-cape" stroke-width="28"/>
+    <use href="#luchador-boot-l" stroke-width="28"/>
+    <use href="#luchador-boot-r" stroke-width="28"/>
+    <use href="#luchador-spark-0" stroke-width="22"/>
+    <use href="#luchador-spark-1" stroke-width="22"/>
+    <use href="#luchador-spark-2" stroke-width="22"/>
+    <use href="#luchador-spark-3" stroke-width="22"/>
+    <use href="#luchador-flex-0" fill="none" stroke-width="24"/>
+    <use href="#luchador-flex-1" fill="none" stroke-width="24"/>
+    <use href="#luchador-flex-2" fill="none" stroke-width="24"/>
+    <use href="#luchador-flex-3" fill="none" stroke-width="24"/>
+  </g>
+
+  <g id="outfit-back" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="luchador-cape" d="M190 294 C150 330 98 420 76 470 C140 484 372 484 436 470 C414 420 362 330 322 294 Z"/>
+      <clipPath id="luchador-cape-c"><use href="#luchador-cape"/></clipPath>
+    </defs>
+    <g clip-path="url(#luchador-cape-c)">
+    <use href="#luchador-cape" fill="#1C4889"/>
+    <use href="#luchador-cape" fill="#024EA2" transform="translate(-12 -6)"/>
+    <path d="M70 458 C140 474 372 474 442 458 V500 H70 Z" fill="#F4BB33"/><path d="M70 458 C140 474 372 474 442 458" fill="none" stroke="#3B2A24" stroke-width="4"/><path d="M150 360 C130 392 112 428 100 458 M362 360 C382 392 400 428 412 458" fill="none" stroke="#14325F" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <use href="#luchador-cape" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <path d="M116 423 L118.4 428.7 L124.6 429.2 L119.9 433.3 L121.3 439.3 L116 436.1 L110.7 439.3 L112.1 433.3 L107.4 429.2 L113.6 428.7 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M396 423 L398.4 428.7 L404.6 429.2 L399.9 433.3 L401.3 439.3 L396 436.1 L390.7 439.3 L392.1 433.3 L387.4 429.2 L393.6 428.7 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M76 470 C90 456 104 452 118 456 C110 464 104 472 104 478 C94 478 84 476 76 470 Z" fill="#D60F3C" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M436 470 C422 456 408 452 394 456 C402 464 408 472 408 478 C418 478 428 476 436 470 Z" fill="#D60F3C" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+
+  <g id="body">
+    <defs>
+      <path id="b-torso" d="M184 292 C160 298 148 334 146 376 C144 420 160 446 196 448 L316 448 C352 446 368 420 366 376 C364 334 352 298 328 292 C304 286 208 286 184 292 Z"/>
+      <clipPath id="b-torso-c"><use href="#b-torso"/></clipPath>
+      <path id="b-arm-l" d="M184 316 C160 326 134 332 116 320 C106 312 102 298 102 282"/>
+      <path id="b-arm-r" d="M328 316 C352 326 378 332 396 320 C406 312 410 298 410 282"/>
+      <circle id="b-hand-l" cx="102" cy="262" r="22"/>
+      <circle id="b-hand-r" cx="410" cy="262" r="22"/>
+      <clipPath id="b-hand-l-c"><use href="#b-hand-l"/></clipPath>
+      <clipPath id="b-hand-r-c"><use href="#b-hand-r"/></clipPath>
+      <rect id="b-leg-l" x="194" y="418" width="38" height="46" rx="16"/>
+      <rect id="b-leg-r" x="280" y="418" width="38" height="46" rx="16"/>
+      <ellipse id="b-shoe-l" cx="211" cy="469" rx="27" ry="18"/>
+      <ellipse id="b-shoe-r" cx="301" cy="469" rx="27" ry="18"/>
+    </defs>
+    <!-- arms: dark stroke under a skin stroke = outlined limb -->
+    <g fill="none" stroke-linecap="round">
+      <use href="#b-arm-l" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-r" stroke="#3B2A24" stroke-width="50"/>
+      <use href="#b-arm-l" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-r" stroke="#E3A982" stroke-width="40"/>
+      <use href="#b-arm-l" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+      <use href="#b-arm-r" stroke="#F6C9A4" stroke-width="26" transform="translate(-3 -5)"/>
+    </g>
+    <!-- legs -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#b-leg-l"/>
+      <use href="#b-leg-r"/>
+    </g>
+    <!-- hands: mitten with thumb -->
+    <g clip-path="url(#b-hand-l-c)">
+      <use href="#b-hand-l" fill="#E3A982"/>
+      <use href="#b-hand-l" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g clip-path="url(#b-hand-r-c)">
+      <use href="#b-hand-r" fill="#E3A982"/>
+      <use href="#b-hand-r" fill="#F6C9A4" transform="translate(-5 -6)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round">
+      <use href="#b-hand-l"/>
+      <use href="#b-hand-r"/>
+      <path d="M90 256 C96 250 106 250 112 256" stroke-width="4"/>
+      <path d="M422 256 C416 250 406 250 400 256" stroke-width="4"/>
+    </g>
+    <path d="M134 328 C134 314 156 308 166 318" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <path d="M378 328 C378 314 356 308 346 318" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <path d="M110 260 C116 262 120 266 122 272 M108 270 C114 272 118 276 120 280" fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M402 260 C396 262 392 266 390 272 M404 270 C398 272 394 276 392 280" fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+
+  <g id="outfit-body" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <linearGradient id="luchador-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE08A"/><stop offset="0.5" stop-color="#F4BB33"/><stop offset="1" stop-color="#D19A1F"/></linearGradient>
+      <ellipse id="luchador-plate" cx="256" cy="401" rx="46" ry="34"/>
+      <clipPath id="luchador-plate-c"><use href="#luchador-plate"/></clipPath>
+      <path id="luchador-cuff-l" d="M104 306 L103 290"/>
+      <path id="luchador-cuff-r" d="M408 306 L409 290"/>
+      <path id="luchador-boot-l" d="M188 430 H234 C238 430 240 434 240 438 V468 C240 480 232 487 220 487 H192 C178 487 174 478 176 468 C178 458 184 452 186 446 V438 C186 434 188 430 188 430 Z"/>
+      <clipPath id="luchador-boot-l-c"><use href="#luchador-boot-l"/></clipPath>
+      <path id="luchador-boot-r" d="M324 430 H278 C274 430 272 434 272 438 V468 C272 480 280 487 292 487 H320 C334 487 338 478 336 468 C334 458 328 452 326 446 V438 C326 434 324 430 324 430 Z"/>
+      <clipPath id="luchador-boot-r-c"><use href="#luchador-boot-r"/></clipPath>
+    </defs>
+    <rect x="190" y="420" width="46" height="40" rx="12" fill="#D60F3C" stroke="#3B2A24" stroke-width="5"/>
+    <rect x="276" y="420" width="46" height="40" rx="12" fill="#D60F3C" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#b-torso-c)">
+    <use href="#b-torso" fill="#E3A982"/>
+    <use href="#b-torso" fill="#F6C9A4" transform="translate(-12 -8)"/>
+    <path d="M120 334 L194 300 C206 322 224 334 256 334 C288 334 306 322 318 300 L392 334 V470 H120 Z" fill="#A60C30"/>
+    <path d="M120 330 L194 296 C206 318 224 330 256 330 C288 330 306 318 318 296 L392 330 V470 H120 Z" fill="#D60F3C" transform="translate(-10 -2)"/>
+    <path d="M150 318 L194 296 C206 318 224 330 256 330 C288 330 306 318 318 296 L362 318" fill="none" stroke="#3B2A24" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M200 306 C214 324 232 330 256 330 C280 330 298 324 312 306" fill="none" stroke="#F4BB33" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M150 360 C150 340 158 326 170 318" fill="none" stroke="#F2587A" stroke-width="7" stroke-linecap="round"/>
+    <path d="M256 420 V446" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <use href="#b-torso" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <g clip-path="url(#b-torso-c)"><rect x="120" y="384" width="280" height="34" fill="#D19A1F"/><rect x="120" y="384" width="280" height="28" fill="#F4BB33"/></g>
+    <path d="M146 384 H366" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M146 418 H366" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="166" y="388" width="24" height="26" rx="6" fill="#FFE08A" stroke="#3B2A24" stroke-width="3.5"/>
+    <circle cx="178" cy="401" r="4" fill="#D60F3C"/>
+    <rect x="322" y="388" width="24" height="26" rx="6" fill="#FFE08A" stroke="#3B2A24" stroke-width="3.5"/>
+    <circle cx="334" cy="401" r="4" fill="#D60F3C"/>
+    <g clip-path="url(#luchador-plate-c)">
+    <use href="#luchador-plate" fill="#D19A1F"/>
+    <use href="#luchador-plate" fill="url(#luchador-gold)" transform="translate(-5 -5)"/>
+    <path d="M222 386 C230 378 242 374 254 374" fill="none" stroke="#FFE08A" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <use href="#luchador-plate" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <circle cx="256" cy="401" r="21" fill="#FFFFFF" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M250 387 H262 V395 H270 V407 H262 V415 H250 V407 H242 V395 H250 Z" fill="#024EA2" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+    <g fill="none" stroke-linecap="butt" stroke-linejoin="round">
+    <use href="#luchador-cuff-l" stroke="#3B2A24" stroke-width="54"/>
+    <use href="#luchador-cuff-l" stroke="#D19A1F" stroke-width="44"/>
+    <use href="#luchador-cuff-l" stroke="#F4BB33" stroke-width="30" transform="translate(-3 0)"/>
+    </g>
+    <g fill="none" stroke-linecap="butt" stroke-linejoin="round">
+    <use href="#luchador-cuff-r" stroke="#3B2A24" stroke-width="54"/>
+    <use href="#luchador-cuff-r" stroke="#D19A1F" stroke-width="44"/>
+    <use href="#luchador-cuff-r" stroke="#F4BB33" stroke-width="30" transform="translate(-3 0)"/>
+    </g>
+    <path d="M80 298 H128" fill="none" stroke="#D19A1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M384 298 H432" fill="none" stroke="#D19A1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g clip-path="url(#luchador-boot-l-c)">
+    <use href="#luchador-boot-l" fill="#A60C30"/>
+    <use href="#luchador-boot-l" fill="#D60F3C" transform="translate(-5 -5)"/>
+    <path d="M201 446 L221 456 M221 446 L201 456 M201 458 L221 468 M221 458 L201 468" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/><rect x="170" y="428" width="200" height="12" fill="#F4BB33"/><path d="M170 440 H370" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <use href="#luchador-boot-l" fill="none" stroke="#3B2A24" stroke-width="5"/>
+    <g clip-path="url(#luchador-boot-r-c)">
+    <use href="#luchador-boot-r" fill="#A60C30"/>
+    <use href="#luchador-boot-r" fill="#D60F3C" transform="translate(-5 -5)"/>
+    <path d="M291 446 L311 456 M311 446 L291 456 M291 458 L311 468 M311 458 L291 468" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/><rect x="170" y="428" width="200" height="12" fill="#F4BB33"/><path d="M170 440 H370" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    </g>
+    <use href="#luchador-boot-r" fill="none" stroke="#3B2A24" stroke-width="5"/>
+  </g>
+
+  <g id="head">
+    <defs>
+      <path id="h-skull" d="M256 72 C322 72 374 124 374 190 C374 260 322 306 256 306 C190 306 138 260 138 190 C138 124 190 72 256 72 Z"/>
+      <clipPath id="h-skull-c"><use href="#h-skull"/></clipPath>
+      <ellipse id="h-ear-l" cx="138" cy="242" rx="15" ry="19"/>
+      <ellipse id="h-ear-r" cx="374" cy="242" rx="15" ry="19"/>
+      <path id="h-tuft-l" d="M176 136 C154 120 116 124 100 146 C110 148 116 152 118 158 C98 164 86 182 86 200 C96 196 106 198 112 204 C100 216 98 234 104 246 C118 236 136 242 150 248 C164 230 170 214 168 196 C170 176 182 158 176 136 Z"/>
+      <path id="h-tuft-r" d="M336 136 C358 120 396 124 412 146 C402 148 396 152 394 158 C414 164 426 182 426 200 C416 196 406 198 400 204 C412 216 414 234 408 246 C394 236 376 242 362 248 C348 230 342 214 344 196 C342 176 330 158 336 136 Z"/>
+      <clipPath id="h-tuft-l-c"><use href="#h-tuft-l"/></clipPath>
+      <clipPath id="h-tuft-r-c"><use href="#h-tuft-r"/></clipPath>
+      <path id="h-brow-l" d="M188 146 C190 130 210 124 228 130 C238 134 242 142 236 148 C226 142 208 142 196 150 C192 152 188 150 188 146 Z"/>
+      <path id="h-brow-r" d="M324 146 C322 130 302 124 284 130 C274 134 270 142 276 148 C286 142 304 142 316 150 C320 152 324 150 324 146 Z"/>
+      <path id="h-mouth" d="M228 246 C230 288 282 288 284 246 Z"/>
+      <clipPath id="h-mouth-c"><use href="#h-mouth"/></clipPath>
+      <path id="h-mus" d="M256 214 C236 200 200 200 182 214 C168 224 162 242 166 260 C176 264 186 260 190 252 C198 262 214 262 222 252 C232 262 248 258 256 248 C264 258 280 262 290 252 C298 262 314 262 322 252 C326 260 336 264 346 260 C350 242 344 224 330 214 C312 200 276 200 256 214 Z"/>
+      <clipPath id="h-mus-c"><use href="#h-mus"/></clipPath>
+      <ellipse id="h-nose" cx="256" cy="208" rx="23" ry="19"/>
+      <clipPath id="h-nose-c"><use href="#h-nose"/></clipPath>
+    </defs>
+    <!-- ears -->
+    <g fill="#F6C9A4" stroke="#3B2A24" stroke-width="5">
+      <use href="#h-ear-l"/>
+      <use href="#h-ear-r"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-width="3.5" stroke-linecap="round">
+      <path d="M140 234 C132 238 132 250 140 254"/>
+      <path d="M372 234 C380 238 380 250 372 254"/>
+    </g>
+    <!-- skull -->
+    <g clip-path="url(#h-skull-c)">
+      <use href="#h-skull" fill="#E3A982"/>
+      <use href="#h-skull" fill="#F6C9A4" transform="translate(-12 -12)"/>
+    </g>
+    <ellipse cx="206" cy="112" rx="26" ry="12" transform="rotate(-30 206 112)" fill="#FCE3CE"/>
+    <circle cx="240" cy="92" r="6" fill="#FCE3CE"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <!-- cheeks -->
+    <g fill="#F59A9A">
+      <ellipse cx="184" cy="208" rx="18" ry="11"/>
+      <ellipse cx="328" cy="208" rx="18" ry="11"/>
+    </g>
+    <!-- eyes -->
+    <g fill="#3B2A24">
+      <ellipse cx="215" cy="175" rx="11" ry="15"/>
+      <ellipse cx="297" cy="175" rx="11" ry="15"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="211" cy="169" r="4.5"/>
+      <circle cx="293" cy="169" r="4.5"/>
+      <circle cx="219" cy="182" r="2"/>
+      <circle cx="301" cy="182" r="2"/>
+    </g>
+    <!-- brows -->
+    <g fill="#FFFFFF" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round">
+      <use href="#h-brow-l"/>
+      <use href="#h-brow-r"/>
+    </g>
+    <!-- mouth -->
+    <use href="#h-mouth" fill="#8E3B3B"/>
+    <g clip-path="url(#h-mouth-c)">
+      <ellipse cx="256" cy="280" rx="17" ry="9" fill="#F07F86"/>
+    </g>
+    <use href="#h-mouth" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <!-- mustache -->
+    <g clip-path="url(#h-mus-c)">
+      <use href="#h-mus" fill="#DCE3EC"/>
+      <use href="#h-mus" fill="#FFFFFF" transform="translate(-4 -7)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-mus" stroke-width="5"/>
+      <path d="M196 232 C206 240 220 240 230 234" stroke-width="3.5"/>
+      <path d="M316 232 C306 240 292 240 282 234" stroke-width="3.5"/>
+      <path d="M256 232 L256 246" stroke-width="3.5"/>
+    </g>
+    <!-- nose -->
+    <g clip-path="url(#h-nose-c)">
+      <use href="#h-nose" fill="#E3A982"/>
+      <use href="#h-nose" fill="#F6C9A4" transform="translate(-4 -5)"/>
+    </g>
+    <ellipse cx="248" cy="200" rx="7" ry="4.5" fill="#FFF1E4"/>
+    <use href="#h-nose" fill="none" stroke="#3B2A24" stroke-width="4"/>
+    <!-- side hair -->
+    <g clip-path="url(#h-tuft-l-c)">
+      <use href="#h-tuft-l" fill="#DCE3EC"/>
+      <use href="#h-tuft-l" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g clip-path="url(#h-tuft-r-c)">
+      <use href="#h-tuft-r" fill="#DCE3EC"/>
+      <use href="#h-tuft-r" fill="#FFFFFF" transform="translate(-6 -8)"/>
+    </g>
+    <g fill="none" stroke="#3B2A24" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#h-tuft-l" stroke-width="6"/>
+      <use href="#h-tuft-r" stroke-width="6"/>
+      <path d="M120 176 C132 174 142 180 146 190" stroke-width="3.5"/>
+      <path d="M122 222 C134 220 144 226 148 234" stroke-width="3.5"/>
+      <path d="M392 176 C380 174 370 180 366 190" stroke-width="3.5"/>
+      <path d="M390 222 C378 220 368 226 364 234" stroke-width="3.5"/>
+    </g>
+  </g>
+
+  <g id="outfit-head" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="luchador-holes" d="M188 178 C190 158 214 150 238 162 C246 176 240 196 220 198 C202 200 190 192 188 178 ZM324 178 C322 158 298 150 274 162 C266 176 272 196 292 198 C310 200 322 192 324 178 ZM256 186 C276 186 286 196 288 202 C318 198 350 210 358 234 C364 256 352 276 334 282 C314 296 284 300 256 300 C228 300 198 296 178 282 C160 276 148 256 154 234 C162 210 194 198 224 202 C226 196 236 186 256 186 Z"/>
+    </defs>
+    <g clip-path="url(#h-skull-c)">
+    <path d="M0 0 H512 V512 H0 Z M188 178 C190 158 214 150 238 162 C246 176 240 196 220 198 C202 200 190 192 188 178 ZM324 178 C322 158 298 150 274 162 C266 176 272 196 292 198 C310 200 322 192 324 178 ZM256 186 C276 186 286 196 288 202 C318 198 350 210 358 234 C364 256 352 276 334 282 C314 296 284 300 256 300 C228 300 198 296 178 282 C160 276 148 256 154 234 C162 210 194 198 224 202 C226 196 236 186 256 186 Z" fill="#A60C30" fill-rule="evenodd"/>
+    <path d="M0 0 H512 V512 H0 Z M188 178 C190 158 214 150 238 162 C246 176 240 196 220 198 C202 200 190 192 188 178 ZM324 178 C322 158 298 150 274 162 C266 176 272 196 292 198 C310 200 322 192 324 178 ZM256 186 C276 186 286 196 288 202 C318 198 350 210 358 234 C364 256 352 276 334 282 C314 296 284 300 256 300 C228 300 198 296 178 282 C160 276 148 256 154 234 C162 210 194 198 224 202 C226 196 236 186 256 186 Z" fill="#D60F3C" fill-rule="evenodd" transform="translate(-12 -12)"/>
+    <path d="M186 174 C170 160 160 136 162 112 C176 128 190 138 206 146 C196 130 194 114 198 98 C210 118 226 134 242 146 L238 162 C214 150 192 156 186 174 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M326 174 C342 160 352 136 350 112 C336 128 322 138 306 146 C316 130 318 114 314 98 C302 118 286 134 270 146 L274 162 C298 150 320 156 326 174 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M174 140 C180 150 188 156 196 160" fill="none" stroke="#D19A1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M338 140 C332 150 324 156 316 160" fill="none" stroke="#D19A1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M150 252 C156 266 164 276 176 284 C170 274 170 266 174 258 C178 270 186 278 196 284 L160 300 C150 286 146 270 150 252 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M362 252 C356 266 348 276 336 284 C342 274 342 266 338 258 C334 270 326 278 316 284 L352 300 C362 286 366 270 362 252 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M244 72 C248 60 264 60 268 72 L266 122 C262 128 250 128 246 122 Z" fill="#F4BB33" stroke="#3B2A24" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M256 66 V104" fill="none" stroke="#FFE08A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M200 84 C210 78 220 76 230 76" fill="none" stroke="#F2587A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <use href="#luchador-holes" fill="none" stroke="#3B2A24" stroke-width="15"/>
+    <use href="#luchador-holes" fill="none" stroke="#F4BB33" stroke-width="7"/>
+    <use href="#h-skull" fill="none" stroke="#3B2A24" stroke-width="6"/>
+    <circle cx="256" cy="128" r="22" fill="#FFFFFF" stroke="#3B2A24" stroke-width="4"/>
+    <path d="M250 112 H262 V122 H272 V134 H262 V144 H250 V134 H240 V122 H250 Z" fill="#024EA2" stroke="#3B2A24" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+
+  <g id="prop"></g>
+
+  <g id="fx" stroke-linejoin="round" stroke-linecap="round">
+    <defs>
+      <path id="luchador-spark-0" d="M74 222 L76.1 229.9 L84 232 L76.1 234.1 L74 242 L71.9 234.1 L64 232 L71.9 229.9 Z"/>
+      <path id="luchador-spark-1" d="M438 222 L440.1 229.9 L448 232 L440.1 234.1 L438 242 L435.9 234.1 L428 232 L435.9 229.9 Z"/>
+      <path id="luchador-spark-2" d="M62 289 L63.5 294.5 L69 296 L63.5 297.5 L62 303 L60.5 297.5 L55 296 L60.5 294.5 Z"/>
+      <path id="luchador-spark-3" d="M450 289 L451.5 294.5 L457 296 L451.5 297.5 L450 303 L448.5 297.5 L443 296 L448.5 294.5 Z"/>
+      <path id="luchador-flex-0" d="M76 262 L62 258"/>
+      <path id="luchador-flex-1" d="M76 280 L62 284"/>
+      <path id="luchador-flex-2" d="M436 262 L450 258"/>
+      <path id="luchador-flex-3" d="M436 280 L450 284"/>
+    </defs>
+    <use href="#luchador-spark-0" fill="#F4BB33" stroke="#3B2A24" stroke-width="3"/>
+    <use href="#luchador-spark-1" fill="#F4BB33" stroke="#3B2A24" stroke-width="3"/>
+    <use href="#luchador-spark-2" fill="#F4BB33" stroke="#3B2A24" stroke-width="3"/>
+    <use href="#luchador-spark-3" fill="#F4BB33" stroke="#3B2A24" stroke-width="3"/>
+    <use href="#luchador-flex-0" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <use href="#luchador-flex-1" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <use href="#luchador-flex-2" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+    <use href="#luchador-flex-3" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>
