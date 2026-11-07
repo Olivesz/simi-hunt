@@ -18,7 +18,7 @@
 .enc-sil{position:absolute;left:24%;right:24%;top:12%;bottom:8%;border-radius:50% 50% 44% 44%;background:#fff;opacity:.5;animation:encshim 1s ease-in-out infinite alternate}
 @keyframes encshim{from{opacity:.25}to{opacity:.7}}
 .enc-shadow{position:absolute;left:0;top:0;width:120px;height:26px;margin:-13px 0 0 -60px;border-radius:50%;background:radial-gradient(closest-side,#10204a40,#10204a00);will-change:transform;pointer-events:none}
-.enc-ring{position:absolute;left:0;top:0;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:6px solid var(--rc,#2ecc40);box-shadow:0 0 14px var(--rc,#2ecc40);pointer-events:none;will-change:transform;transition:opacity .2s}
+.enc-ring{z-index:3;position:absolute;left:0;top:0;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:6px solid var(--rc,#2ecc40);box-shadow:0 0 14px var(--rc,#2ecc40);pointer-events:none;will-change:transform;transition:opacity .2s}
 .enc-ring.outer{border:3px dashed #ffffffd9;box-shadow:none}
 .enc.loading .enc-ring,.enc.capturing .enc-ring{opacity:0}
 

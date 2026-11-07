@@ -889,7 +889,7 @@ function summonSimi() {
   const heading = (map.getBearing() + 65 + Math.random() * 30) * Math.PI / 180;
   const d = 18;
   const sp = {
-    spawnId: `demo:${simiId}`, simiId,
+    spawnId: `demo:${simiId}:${Date.now().toString(36)}`, simiId,
     lat: pos.lat + (d * Math.cos(heading)) / 111320,
     lon: pos.lon + (d * Math.sin(heading)) / (111320 * Math.cos(pos.lat * Math.PI / 180)),
     expiresAt: Date.now() + 15 * 60 * 1000,
